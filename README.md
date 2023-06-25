@@ -111,21 +111,43 @@ pnpm --filter=<internal-package-name> add <external-lib-name>
 
 ### Contribution
 
-To contribute to the repository.
+#### To contribute to the repository.
 
 - Fork the repository on GitHub.
 - Clone the repository locally.
 - Set up your environment and install global dependencies.
 - Install the recommended plugins (e.g., VSCode).
+- Create a branch off of the `main` branch and call it `feature/<name>` or `bug/<name>`.
 - Make modifications, fix bugs, and add new features.
 - Write unit tests for your new logic.
 - Format, lint, test, and build.
 - Commit your changes to your own repository.
-- Merge your changes into the `sandbox` branch in your repository.
-- Issue a pull request (PR) from your `repo/sandbox` to `showcase/sandbox`.
+- `Issue your PR` (pull request) from your branch against the `dev` branch.
 - Monitor your PR for further instructions and recommended fixes, if required.
 - Sync your forked repository with the upstream showcase repository.
 - Rinse and repeat.
+- `Note:` Don't recycle bug/feature branches, just create new ones.
+
+#### Branches pipeline / flow
+
+```txt
+bug/<nam> -------+
+feature/<name> --|--->  dev  ----->  ci  ----->  main  ----->  (Deployment)
+   ^                     ^            ^            ^
+   |                     |            |            |
+   |                     |            |            |
+Local Development        |            |            |
+& Experimentation        |            |            |
+                         |            |            |
+                   Pull Requests      |            |
+                   from forks         |            |
+                                      |            |
+                                Comprehensive      |
+                                Testing and        |
+                                Integration        |
+                                                   |
+                                               Production
+```
 
 ### Community Guidelines
 
@@ -152,13 +174,13 @@ X.Y.Z Semantic Versioning
 --------------------------------------------------------------------------------
  TypeScript              14          820          131           98          591
  JSON                    24          474            0            0          474
- Markdown                11          310           95            0          215
+ Markdown                11          332           97            0          235
  Typescript JSX          12          254           24           17          213
  JavaScript              14          215            7           62          146
  YAML                     1            5            0            0            5
  CSS                      1            4            0            0            4
 --------------------------------------------------------------------------------
- Total                   77         2082          257          177         1648
+ Total                   77         2104          259          177         1668
 --------------------------------------------------------------------------------
 ```
 

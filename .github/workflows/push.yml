@@ -6,6 +6,7 @@ on:
     branches:
       - dev
       - ci
+      - bugs/*
       - feature/*
     # ignore changes to the README, VSCode config, and other non-code files.
     paths-ignore:
