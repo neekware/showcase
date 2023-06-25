@@ -15,7 +15,9 @@ export default function Main() {
     <div className="container">
       <h1 className="title">
         Showcase <br />
-        <span>The best version of yourself!!</span>
+        <span className="ml-4 flex h-24 border-2 border-gray-300 p-3 text-gray-700 shadow-md">
+          The best version of yourself!!
+        </span>
       </h1>
       <CounterButton />
       <p className="description m-10">

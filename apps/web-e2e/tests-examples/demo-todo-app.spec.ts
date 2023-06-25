@@ -277,7 +277,6 @@ test.describe('Editing', () => {
       .press('Enter');
 
     await expect(todoItems).toHaveText([TODO_ITEMS[0], TODO_ITEMS[2]]);
-
   });
 
   test('should cancel edits on escape', async ({ page }) => {
