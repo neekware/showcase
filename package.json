@@ -5,7 +5,7 @@
     "prettier": "node_modules/.bin/prettier",
     "turbo": "node_modules/.bin/turbo",
     "format": "prettier -w .",
-    "prepare": "husky install",
+    "postinstall": "husky install",
     "build": "yarn turbo run build",
     "clean": "yarn turbo run clean",
     "dev": "yarn turbo run dev --no-cache  --continue --concurrency=11",
