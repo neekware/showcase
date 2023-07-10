@@ -7,7 +7,7 @@ export const NewTabLink = ({
   href: string;
 }) => {
   return (
-    <a target="_blank" rel="noreferrer" href={href} {...other}>
+    <a href={href} target="_blank" rel="noreferrer" {...other}>
       {children}
     </a>
   );

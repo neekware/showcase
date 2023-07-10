@@ -1,4 +1,4 @@
-export function BreakpointIndicator() {
+export function VisualBreakpoint() {
   if (process.env.NODE_ENV === 'production') return null;
 
   return (

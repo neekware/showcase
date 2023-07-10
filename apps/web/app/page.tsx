@@ -1,31 +1,46 @@
-import React from 'react';
-
 import Link from 'next/link';
 
-import { log } from '@showcase/logger';
-import { CounterButton, NewTabLink } from '@showcase/ui';
+import { Button, buttonVariants } from '@web/components/ui/button';
+import { siteConfig } from '@web/config/site';
 
-export const metadata = {
-  title: 'Showcase | Present the best of yourself!',
-};
-
-export default function Main() {
-  log('Hey! This is Home.');
+export default function IndexPage() {
   return (
-    <div className="container">
-      <h1 className="title">
-        Showcase <br />
-        <span className="ml-4 flex h-24 border-2 border-gray-300 p-3 text-gray-700 shadow-md">
-          The best version of yourself!!
-        </span>
-      </h1>
-      <CounterButton />
-      <p className="description m-10">
-        Built With{' '}
-        <NewTabLink href="https://turbo.build/repo">Turborepo</NewTabLink> +{' '}
-        <NewTabLink href="https://nextjs.org/">Next.js</NewTabLink>
-      </p>
-      <Link href="/about">About Us</Link>
-    </div>
+    <section className="grid items-center gap-6 pb-8 pt-6 md:py-10">
+      <div className="flex max-w-[980px] flex-col items-start gap-2">
+        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+          Beautifully designed components <br className="hidden sm:inline" />
+          built with Radix UI and Tailwind CSS.
+        </h1>
+        <p className="text-muted-foreground max-w-[700px] text-lg">
+          Accessible and customizable components that you can copy and paste
+          into your apps. Free. Open Source. And Next.js 13 Ready.
+        </p>
+      </div>
+      <div className="flex gap-4">
+        <Link
+          href={siteConfig.links.docs}
+          target="_blank"
+          rel="noreferrer"
+          className={buttonVariants()}
+        >
+          Documentation
+        </Link>
+        <Link
+          target="_blank"
+          rel="noreferrer"
+          href={siteConfig.links.github}
+          className={buttonVariants({ variant: 'outline' })}
+        >
+          GitHub
+        </Link>
+        <Button variant="secondary" className="animate-in zoom-in duration-500">
+          Secondary
+        </Button>
+        <Button variant="ghost">Ghost</Button>
+        <Link href="/about" className={buttonVariants({ variant: 'outline' })}>
+          About
+        </Link>
+      </div>
+    </section>
   );
 }

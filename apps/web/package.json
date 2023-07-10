@@ -3,18 +3,32 @@
   "version": "0.1.0",
   "scripts": {
     "clean": "rm -rf .turbo && rm -rf .next && rm -rf dist",
-    "dev": "next",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
-    "build": "next build ",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "preview": "next build && next start",
+    "typecheck": "tsc --noEmit",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.3",
     "@showcase/logger": "workspace:*",
-    "next": "^13.4.1",
+    "@showcase/ui": "workspace:*",
+    "class-variance-authority": "^0.4.0",
+    "clsx": "^1.2.1",
+    "lucide-react": "0.105.0-alpha.4",
+    "next": "^13.4.4",
+    "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@showcase/ui": "workspace:*"
+    "sharp": "^0.31.3",
+    "tailwind-merge": "^1.12.0",
+    "tailwindcss-animate": "^1.0.6"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
@@ -23,12 +37,12 @@
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.14",
     "eslint-config-custom": "workspace:*",
-    "postcss": "^8.4.24",
-    "tailwindcss": "^3.3.2",
     "jest": "^26.6.3",
     "jest-presets": "workspace:*",
-    "tsconfig": "workspace:*",
+    "postcss": "^8.4.24",
     "tailwind-config": "workspace:*",
+    "tailwindcss": "^3.3.2",
+    "tsconfig": "workspace:*",
     "typescript": "^4.8.3"
   }
 }

@@ -8,6 +8,7 @@ module.exports = {
   importOrder: [
     '^(react/(.*)$)|^(react-(.*)$)|^(react$)',
     '^(next/(.*)$)|^(next-(.8)$)|^(next$)',
+    '^@web/(.*)$',
     '^@showcase/(.*)$',
     '^[./]',
   ],

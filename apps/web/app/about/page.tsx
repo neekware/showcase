@@ -1,8 +1,19 @@
-import { log } from '@showcase/logger';
+import React from 'react';
 
-import AboutContent from '../components/AboutUs';
+import Link from 'next/link';
+
+import { buttonVariants } from '@web/components/ui/button';
+
+import { log } from '@showcase/logger';
 
 export default function About() {
   log('Hey! This is About Us.');
-  return <AboutContent />;
+  return (
+    <div>
+      <h1>About Us</h1>
+      <Link href="/" className={buttonVariants({ variant: 'outline' })}>
+        Home
+      </Link>
+    </div>
+  );
 }

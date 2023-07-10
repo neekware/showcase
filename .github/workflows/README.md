@@ -1,7 +1,9 @@
 ```text
 Branches pipeline / flow
 
-feature/<name>  ----->  dev  ----->  ci  ----->  main  ----->  (Deployment)
+defect/<name> ----+
+                  |
+feature/<name>  --+-->  dev  ----->  ci  ----->  main  ----->  (Deployment)
    ^                     ^            ^            ^
    |                     |            |            |
    |                     |            |            |

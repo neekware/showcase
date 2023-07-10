@@ -1,19 +1,54 @@
-import React from 'react';
+import { Metadata } from 'next';
 
-import { Navbar } from '@showcase/ui';
-import '@showcase/ui/styles.css';
+import { SiteHeader } from '@web/components/site-header';
+import { TailwindIndicator } from '@web/components/tailwind-indicator';
+import { ThemeProvider } from '@web/components/theme-provider';
+import { siteConfig } from '@web/config/site';
+import { fontSans } from '@web/lib/fonts';
+import { cn } from '@web/lib/utils';
+import '@web/styles/globals.css';
 
-export default function RootLayout({
-  children,
-}: {
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+};
+
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" dir="rtl">
-      <body>
-        <Navbar />
-        <main>{children}</main>
-      </body>
-    </html>
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body
+          className={cn(
+            'bg-background min-h-screen font-sans antialiased',
+            fontSans.variable
+          )}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <div className="container relative flex min-h-screen flex-col">
+              <SiteHeader />
+              <div className="flex-1 pt-5">{children}</div>
+            </div>
+            <TailwindIndicator />
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
   );
 }

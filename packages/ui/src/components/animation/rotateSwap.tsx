@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { tm } from '../../../util/style/StyleUtil';
+import { tm } from '../../util/style/styleUtil';
 import { RotateComponentProps } from './types';
 
 /**

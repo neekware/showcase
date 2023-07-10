@@ -3,5 +3,5 @@
 
 # pnpm format && \
 # turbo lint && \
-turbo loc && \
+pnpm loc && \
 git add README.md

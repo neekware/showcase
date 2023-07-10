@@ -7,7 +7,7 @@
   },
   "scripts": {
     "prettier": "node_modules/.bin/prettier",
-    "pnpm turbo": "node_modules/.bin/turbo",
+    "turbo": "node_modules/.bin/turbo",
     "format": "prettier -w .",
     "prepare": "husky install",
     "build": "pnpm turbo run build",
@@ -23,7 +23,7 @@
     "lint:prettier": "pnpm turbo run lint:prettier"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
@@ -31,7 +31,7 @@
     "husky": "^8.0.3",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
-    "turbo": "^1.10.6"
+    "turbo": "^1.10.7"
   },
   "packageManager": "pnpm@7.15.0"
 }
