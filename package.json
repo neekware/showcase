@@ -1,29 +1,22 @@
 {
   "name": "showcase",
   "version": "0.1.0",
-  "author": {
-    "name": "Neekware Inc.",
-    "url": "https://neekware.com"
-  },
   "scripts": {
     "prettier": "node_modules/.bin/prettier",
     "turbo": "node_modules/.bin/turbo",
     "format": "prettier -w .",
     "prepare": "husky install",
-    "build": "pnpm turbo run build",
-    "clean": "pnpm turbo run clean",
-    "dev": "pnpm turbo run dev --no-cache  --continue --concurrency=11",
-    "start": "pnpm turbo run dev --no-cache  --continue --concurrency=11",
-    "loc": "pnpm turbo run loc",
-    "coverage": "pnpm turbo run coverage",
-    "coveralls": "pnpm turbo run coveralls",
-    "test": "pnpm turbo run test",
-    "e2e": "pnpm turbo run e2e",
-    "lint": "pnpm turbo run lint",
-    "lint:prettier": "pnpm turbo run lint:prettier"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "build": "yarn turbo run build",
+    "clean": "yarn turbo run clean",
+    "dev": "yarn turbo run dev --no-cache  --continue --concurrency=11",
+    "start": "yarn turbo run dev --no-cache  --continue --concurrency=11",
+    "loc": "yarn turbo run loc",
+    "coverage": "yarn turbo run coverage",
+    "coveralls": "yarn turbo run coveralls",
+    "test": "yarn turbo run test",
+    "e2e": "yarn turbo run e2e",
+    "lint": "yarn turbo run lint",
+    "lint:prettier": "yarn turbo run lint:prettier"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
@@ -33,5 +26,18 @@
     "prettier-plugin-tailwindcss": "^0.3.0",
     "turbo": "^1.10.7"
   },
-  "packageManager": "pnpm@7.15.0"
+  "author": {
+    "name": "Neekware Inc.",
+    "url": "https://neekware.com"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "configs/*",
+    "packages/*",
+    "tools/*"
+  ],
+  "packageManager": "yarn@3.4.1"
 }

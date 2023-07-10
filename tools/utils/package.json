@@ -6,8 +6,8 @@
   "sideEffects": false,
   "description": "Local tools and utils",
   "scripts": {
-    "loc": "pnpm ts-node ./src/loc.ts",
-    "coveralls": "pnpm ts-node ./src/coveralls.ts"
+    "loc": "yarn ts-node ./src/loc.ts",
+    "coveralls": "yarn ts-node ./src/coveralls.ts"
   },
   "devDependencies": {
     "@types/node": "^20.3.1",
