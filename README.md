@@ -25,10 +25,10 @@ The project has the following structure:
 
 To use this mono-repo project, please follow these steps:
 
-First, prepare your development environment. You need to install Node version 16.0.0 or higher. Additionally, install `turbo` and `pnpm` globally by running the following commands:
+First, prepare your development environment. You need to install Node version 16.0.0 or higher. Additionally, install `turbo` and `yarn` globally by running the following commands:
 
 ```bash
-npm install -g pnpm
+npm install -g yarn
 npm install -g turbo
 ```
 
@@ -42,14 +42,14 @@ git clone https://github.com/neekware/showcase.git
 cd showcase
 
 # Install dependencies
-pnpm i
+yarn install
 ```
 
 You can format all files of a specific type:
 
 ```bash
 # Example: Format all .ts, .tsx, .json, .html, .css, .scss files
-pnpm format
+yarn format
 ```
 
 To run lint, build and test.
@@ -98,15 +98,15 @@ To install new packages, you can use the following commands:
 
 ```bash
 # Install an external dependency at the root/top-level in the main package.json
-pnpm -w add <external-lib-name>
+yarn add <external-lib>
 
 # Install a external development dependency at the root/top-level in the main package.json
-pnpm -w add <external-lib-name> -D
+yarn add -D <external-lib>
 
 # Install a dependency in a sub-package (lib/app) ONLY
-# Example: pnpm --filter=ui add uuid
-# (where "ui" is the internal package name and "uuid" is the external dependency)
-pnpm --filter=<internal-package-name> add <external-lib-name>
+# Example: yarn workspace web add uuid
+# (where "web" is the workspace and "uuid" is the external dependency)
+yarn workspace <workspace-name> add <external-lib>
 ```
 
 ### Contribution

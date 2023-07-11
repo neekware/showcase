@@ -1,7 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# pnpm format && \
+# yarn format && \
 # turbo lint && \
-pnpm loc && \
+yarn loc && \
 git add README.md
