@@ -7434,15 +7434,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-config@workspace:configs/tailwind-config":
+"tailwind-config@*, tailwind-config@workspace:configs/tailwind-config":
   version: 0.0.0-use.local
   resolution: "tailwind-config@workspace:configs/tailwind-config"
   dependencies:
     autoprefixer: ^10.4.14
     postcss: ^8.4.24
     tailwindcss: ^3.3.2
+    tailwindcss-animate: ^1.0.6
   languageName: unknown
   linkType: soft
+
+"tailwindcss-animate@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "tailwindcss-animate@npm:1.0.6"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 01471cb5e64d0936b3dc90bdb1d4b379e8b73b3d285553337d8576e5d458e868ddff99c6db0ae454c1be69ce8f88dc0eed44ea62e4d7bca10d7d2479fc4c8ee0
+  languageName: node
+  linkType: hard
 
 "tailwindcss@npm:^3.3.2":
   version: 3.3.2
@@ -8097,10 +8107,15 @@ turbo@latest:
     "@types/node": ^20.3.1
     "@types/react": ^18.0.22
     "@types/react-dom": ^18.0.7
+    autoprefixer: ^10.4.14
     eslint-config-custom: "*"
     next: ^13.4.1
+    postcss: ^8.4.24
     react: ^18.2.0
     react-dom: ^18.2.0
+    tailwind-config: "*"
+    tailwindcss: ^3.3.2
+    tailwindcss-animate: ^1.0.6
     tsconfig: "*"
     typescript: ^4.5.3
     ui: "*"
