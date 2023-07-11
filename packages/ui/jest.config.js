@@ -5,4 +5,5 @@ module.exports = {
   rootDir: '.',
   coverageDirectory: '../../coverage/ui',
   coverageReporters: ['html', 'json', ['lcov', { projectRoot: '../..' }]],
+  testEnvironment: 'jsdom',
 };
