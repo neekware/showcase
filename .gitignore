@@ -35,14 +35,15 @@ yarn-error.log*
 # vercel
 .vercel
 
-.pnp.*
+# yarn (not using zero-installs)
 .yarn/*
-.yarn/install-state.gz
-!.yarn/patches
-!.yarn/plugins
 !.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+!.yarn/plugins
+.pnp.*
+
+# yarn (using zero-installs)
+# .yarn/unplugged
+# .yarn/build-state.yml
 
 **/.DS_Store
 **/Thumbs.db
