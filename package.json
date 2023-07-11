@@ -30,7 +30,9 @@
   "packageManager": "yarn@3.4.1",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "configs/*",
+    "packages/*",
+    "tools/*"
   ],
   "author": {
     "name": "Neekware Inc.",
