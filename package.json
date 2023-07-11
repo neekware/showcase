@@ -1,6 +1,12 @@
 {
   "name": "showcase",
   "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "configs/*",
+    "packages/*",
+    "tools/*"
+  ],
   "scripts": {
     "prettier": "node_modules/.bin/prettier",
     "turbo": "node_modules/.bin/turbo",
@@ -33,11 +39,5 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "workspaces": [
-    "apps/*",
-    "configs/*",
-    "packages/*",
-    "tools/*"
-  ],
   "packageManager": "yarn@3.4.1"
 }
