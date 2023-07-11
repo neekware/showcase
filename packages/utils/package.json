@@ -1,0 +1,24 @@
+{
+  "name": "@showcase/utils",
+  "version": "0.1.0",
+  "scripts": {
+    "clean": "rm -rf .turbo && rm -rf dist",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.1",
+    "eslint": "^8.44.0",
+    "eslint-config-custom": "workspace:*",
+    "jest": "^29.6.1",
+    "jest-presets": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.5.3"
+  },
+  "dependencies": {
+    "tailwind-merge": "^1.13.2"
+  }
+}

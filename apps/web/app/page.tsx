@@ -1,5 +1,5 @@
-import Button from 'ui/button';
-import Header from 'ui/header';
+import { Button } from '@showcase/ui/button';
+import { Header } from '@showcase/ui/header';
 
 export default function Page() {
   return (

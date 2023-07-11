@@ -18,8 +18,8 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@turbo/gen": "^1.9.7",
-    "@types/node": "^20.3.1",
-    "eslint": "^7.32.0",
+    "@types/node": "^20.4.1",
+    "eslint": "^8.44.0",
     "eslint-config-custom": "*",
     "husky": "^8.0.3",
     "prettier": "^2.8.8",
