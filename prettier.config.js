@@ -20,7 +20,7 @@ module.exports = {
     require.resolve('@trivago/prettier-plugin-sort-imports'),
     require.resolve('prettier-plugin-tailwindcss'),
   ],
-  tailwindConfig: './configs/tailwind-config/tailwind.config.js',
+  // tailwindConfig: './configs/tailwind-config/tailwind.config.js',
   tailwindFunctions: ['clsx', 'cn', 'tw', 'classnames'],
   singleQuote: true,
   overrides: [

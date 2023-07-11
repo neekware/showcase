@@ -1,9 +1,9 @@
 .next
 .turbo
 
-dist/
+/dist/
 build/
-node_modules/
+**/node_modules
 target/
 coverage/
 snapshot/
@@ -12,6 +12,7 @@ generated/
 yarn.lock
 pnpm-lock.yaml
 package-lock.json
+.yarn/*
 
 **/*.map
 **/*.gz

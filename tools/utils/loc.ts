@@ -6,7 +6,13 @@ const { program } = require('commander');
 const replaceSection = require('markdown-replace-section');
 
 const DEBUG = false;
-const EXCLUDE_LIST = ['pnpm-lock.yaml', 'node_modules', 'dist', 'coverage', 'yarn.lock'];
+const EXCLUDE_LIST = [
+  'pnpm-lock.yaml',
+  'node_modules',
+  'dist',
+  'coverage',
+  'yarn.lock',
+];
 const sectionName = 'Lines of Code (auto-generated stats)';
 const sectionHelp = `
 ### Line of code generation
