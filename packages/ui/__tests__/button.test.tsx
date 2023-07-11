@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react';
 
-import Button from '../Button';
+import Button from '../button';
 
 test('checks if button click updates the text', () => {
   const handleClick = jest.fn();
