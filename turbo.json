@@ -7,9 +7,7 @@
       "outputs": [".next/**", "!.next/cache/**"],
       "dependsOn": ["^build"]
     },
-    "test": {
-      "dependsOn": ["lint", "build"]
-    },
+    "test": {},
     "coverage": {
       "dependsOn": ["^test"],
       "cache": false
