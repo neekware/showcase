@@ -5,5 +5,3 @@ module.exports = {
   presets: [tailwindPreset],
   content: ['app/**/*.{ts,tsx}'],
 };
-
-export default config;

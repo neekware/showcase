@@ -1,7 +1,7 @@
-import { fontFamily } from 'tailwindcss/defaultTheme';
-import plugin from 'tailwindcss/plugin';
+const tailwindPlugin = require('tailwindcss/plugin');
+const fontFamily = require('tailwindcss/defaultTheme');
 
-export const themePlugin = plugin(
+module.exports = tailwindPlugin(
   function ({ addBase }) {
     addBase({
       ':root': {
