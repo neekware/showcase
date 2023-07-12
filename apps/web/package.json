@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@showcase/web",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@showcase/ui": "*",
     "next": "^13.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@showcase/ui": "*",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
