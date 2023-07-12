@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "clean": "rm -rf .turbo && rm -rf dist",
-    "lint": "eslint \"src/**/*.ts*\"",
+    "lint": "eslint \"**/*.{ts,tsx}\"",
     "test": "jest",
     "coverage": "jest --coverage",
     "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore"

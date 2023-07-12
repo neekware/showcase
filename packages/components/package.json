@@ -1,5 +1,5 @@
 {
-  "name": "@showcase/ui",
+  "name": "@showcase/components",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -24,8 +24,6 @@
     "typescript": "^4.5.3"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
-    "@radix-ui/react-switch": "^1.0.3",
-    "class-variance-authority": "^0.6.1"
+    "lucide-react": "^0.259.0"
   }
 }

@@ -1218,6 +1218,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@showcase/components@workspace:packages/components":
+  version: 0.0.0-use.local
+  resolution: "@showcase/components@workspace:packages/components"
+  dependencies:
+    "@showcase/utils": "*"
+    "@testing-library/react": ^14.0.0
+    "@types/jest": ^29.5.3
+    "@types/react": ^18.2.0
+    "@types/react-dom": ^18.2.0
+    eslint: ^8.44.0
+    eslint-config-custom: "*"
+    jest: ^29.6.1
+    jest-environment-jsdom: ^29.6.1
+    jest-presets: "workspace:*"
+    lucide-react: ^0.259.0
+    react: ^18.2.0
+    tsconfig: "*"
+    typescript: ^4.5.3
+  languageName: unknown
+  linkType: soft
+
 "@showcase/ui@*, @showcase/ui@workspace:packages/ui":
   version: 0.0.0-use.local
   resolution: "@showcase/ui@workspace:packages/ui"
@@ -5659,6 +5680,15 @@ __metadata:
   version: 10.0.0
   resolution: "lru-cache@npm:10.0.0"
   checksum: 18f101675fe283bc09cda0ef1e3cc83781aeb8373b439f086f758d1d91b28730950db785999cd060d3c825a8571c03073e8c14512b6655af2188d623031baf50
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.259.0":
+  version: 0.259.0
+  resolution: "lucide-react@npm:0.259.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: d760b2af40e36393e2f72beca3162eb8ab264e09fba8660649b7f955ecee38d2d7242ea513f7249c3d97a937b02257c3ee20af5d82d4f77509e3f143da7d009d
   languageName: node
   linkType: hard
 
