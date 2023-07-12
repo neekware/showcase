@@ -1,3 +1,5 @@
+import 'tailwind-config/globals.css';
+
 import Link from 'next/link';
 
 import { Button, buttonVariants } from '@showcase/ui/button';

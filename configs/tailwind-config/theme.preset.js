@@ -1,5 +1,5 @@
 const animatePlugin = require('tailwindcss-animate');
-const themePlugin = require('theme.plugin');
+const themePlugin = require('./theme.plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
