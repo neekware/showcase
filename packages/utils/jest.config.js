@@ -1,8 +1,8 @@
 // Jest configuration for the ui package
 module.exports = {
   preset: 'jest-presets/jest/node',
-  displayName: 'utils',
+  displayName: '@showcase/utils',
   rootDir: '.',
-  coverageDirectory: '../../coverage/utils',
+  coverageDirectory: '../../coverage/@showcase/utils',
   coverageReporters: ['html', 'json', ['lcov', { projectRoot: '../..' }]],
 };
