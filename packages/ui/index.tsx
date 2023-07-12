@@ -1,5 +1,5 @@
 import * as React from 'react';
 
 // component exports
-export * from './button';
-export * from './header';
+export * from './src/button';
+export * from './src/header';

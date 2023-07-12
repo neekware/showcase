@@ -2,8 +2,8 @@ import 'tailwind-config/globals.css';
 
 import Link from 'next/link';
 
-import { Button, buttonVariants } from '@showcase/ui/button';
-import { Header } from '@showcase/ui/header';
+import { Button, buttonVariants } from '@showcase/ui';
+import { Header } from '@showcase/ui';
 
 export default function Page() {
   return (

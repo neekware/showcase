@@ -1,14 +1,12 @@
 {
   "name": "@showcase/ui",
   "version": "0.1.0",
-  "main": "./index.tsx",
-  "types": "./index.tsx",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint \"**/*.ts*\"",
-    "generate:component": "turbo gen react-component",
     "test": "jest ",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "lint": "eslint \"**/*.ts*\"",
+    "clean": "rm -rf .turbo && rm -rf dist"
   },
   "devDependencies": {
     "@showcase/utils": "*",
