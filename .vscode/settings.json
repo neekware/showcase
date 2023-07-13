@@ -2,5 +2,38 @@
   "css.lint.unknownAtRules": "ignore",
   "cSpell.words": ["typecheck"],
   "javascript.preferences.importModuleSpecifier": "shortest",
-  "typescript.preferences.importModuleSpecifier": "relative"
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "search.exclude": {
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/coverage": true,
+    "**/graph": true
+  },
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#b85833",
+    "statusBarItem.hoverBackground": "#ce7350",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBar.border": "#b85833"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnSave": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
