@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "copy:fonts": "cpx \"../../packages/assets/src/fonts/*\" public/fonts",
+    "dev": "yarn copy:fonts && next dev",
+    "build": "yarn copy:fonts && next build",
+    "start": "yarn copy:fonts && next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@showcase/assets": "*",
     "@showcase/ui": "*",
     "next": "^13.4.1",
     "react": "^18.2.0",

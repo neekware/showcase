@@ -1,4 +1,9 @@
 module.exports = {
   reactStrictMode: true,
-  transpilePackages: ['@showcase/ui'],
+  transpilePackages: [
+    '@showcase/assets',
+    '@showcase/components',
+    '@showcase/ui',
+    '@showcase/utils',
+  ],
 };
