@@ -6,13 +6,11 @@ import { cn } from '@showcase/utils';
 
 import { leftNavItems, siteConfig } from '../../environment/settings';
 
-interface MarketingLayoutProps {
+interface HomeLayoutProps {
   children: React.ReactNode;
 }
 
-export default async function MarketingLayout({
-  children,
-}: MarketingLayoutProps) {
+export default async function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="bg-background container z-40">
