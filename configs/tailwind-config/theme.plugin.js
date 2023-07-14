@@ -48,16 +48,16 @@ module.exports = tailwindPlugin(
         '--ring': '216 34% 17%',
         '--radius': '0.5rem',
       },
-    }),
-      addBase({
-        '@layer base': {
-          '*': { '@apply border-border': true },
-          body: {
-            '@apply bg-background text-foreground': true,
-            fontFeatureSettings: '"rlig" 1, "calt" 1',
-          },
+    });
+    addBase({
+      '@layer base': {
+        '*': { '@apply border-border': true },
+        body: {
+          '@apply bg-background text-foreground': true,
+          fontFeatureSettings: '"rlig" 1, "calt" 1',
         },
-      });
+      },
+    });
   },
   // default config
   {

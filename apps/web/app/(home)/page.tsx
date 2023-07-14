@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { buttonVariants } from '@showcase/ui';
+import { Button, buttonVariants } from '@showcase/ui';
 import { cn } from '@showcase/utils';
 
 import { siteConfig } from '../../environment/settings';
@@ -12,6 +12,13 @@ export default async function Page() {
     <>
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
+          <Button variant="outline">Button</Button>
+          <Button
+            variant="secondary"
+            className="animate-in zoom-in duration-500"
+          >
+            Secondary
+          </Button>
           <Link
             href={siteConfig.links.twitter}
             className="bg-muted rounded-2xl px-4 py-1.5 text-sm font-medium"
