@@ -6,6 +6,6 @@ module.exports = {
   plugins: [
     require('tailwindcss-animate'),
     require('@tailwindcss/typography'),
-    require('theme.plugin'),
+    require('./theme.plugin'),
   ],
 };
