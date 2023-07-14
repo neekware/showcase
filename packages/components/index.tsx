@@ -7,3 +7,6 @@ export * from './src/types';
 export * from './src/icons';
 export * from './src/tailwindIndicator';
 export * from './src/themeProvider';
+export * from './src/leftNav';
+export * from './src/mobileNav';
+export * from './src/footer';

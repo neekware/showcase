@@ -7,9 +7,11 @@ import {
   User,
 } from 'lucide-react';
 
+import { Icons } from './types';
+
 export type Icon = LucideIcon;
 
-export const Icons = {
+export const siteIcons: Icons = {
   logo: User,
   sun: SunMedium,
   moon: Moon,

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { SiteConfig } from '@showcase/components';
+import { NavItem, SiteConfig } from '@showcase/components';
 
 export const siteConfig: SiteConfig = {
   name: 'Showcase',
@@ -13,6 +13,26 @@ export const siteConfig: SiteConfig = {
     github: 'https://github.com/showcase-io',
   },
 };
+
+export const leftNavItems: NavItem[] = [
+  {
+    title: 'Features',
+    href: '/#features',
+  },
+  {
+    title: 'Pricing',
+    href: '/pricing',
+    disabled: true,
+  },
+  {
+    title: 'Blog',
+    href: '/blog',
+  },
+  {
+    title: 'Documentation',
+    href: '/docs',
+  },
+];
 
 export const siteMetadata: Metadata = {
   title: {

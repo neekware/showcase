@@ -1224,7 +1224,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@showcase/components@workspace:packages/components":
+"@showcase/components@*, @showcase/components@workspace:packages/components":
   version: 0.0.0-use.local
   resolution: "@showcase/components@workspace:packages/components"
   dependencies:
@@ -1290,7 +1290,9 @@ __metadata:
   resolution: "@showcase/web@workspace:apps/web"
   dependencies:
     "@showcase/assets": "*"
+    "@showcase/components": "*"
     "@showcase/ui": "*"
+    "@showcase/utils": "*"
     "@types/node": ^20.4.1
     "@types/react": ^18.0.22
     "@types/react-dom": ^18.0.7
