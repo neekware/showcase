@@ -51,10 +51,10 @@ module.exports = tailwindPlugin(
     }),
       addBase({
         '@layer base': {
-          '*': { '@apply border-border': {} },
+          '*': { '@apply border-border': true },
           body: {
-            '@apply bg-background text-foreground': {},
-            fontFeatureSettings: "'rlig' 1, 'calt' 1",
+            '@apply bg-background text-foreground': true,
+            fontFeatureSettings: '"rlig" 1, "calt" 1',
           },
         },
       });

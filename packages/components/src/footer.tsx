@@ -1,8 +1,8 @@
-import * as React from 'react';
-
 import { SiteConfig } from '@showcase/components';
 import { siteIcons } from '@showcase/components';
 import { cn } from '@showcase/utils';
+
+import { ThemeToggle } from './themeToggle';
 
 export interface SiteFooterProps {
   siteConfig: SiteConfig;
@@ -55,7 +55,7 @@ export function Footer({ siteConfig, className }: SiteFooterProps) {
             .
           </p>
         </div>
-        {/* <ModeToggle /> */}
+        <ThemeToggle />
       </div>
     </footer>
   );
