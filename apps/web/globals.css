@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+/* Remove the blue highlight of button on mobile devices */
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
