@@ -1,5 +1,5 @@
 const tailwindPlugin = require('tailwindcss/plugin');
-const fontFamily = require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = tailwindPlugin(
   function ({ addBase }) {
@@ -111,16 +111,17 @@ module.exports = tailwindPlugin(
           sm: 'calc(var(--radius) - 4px)',
         },
         fontFamily: {
-          sans: ['var(--font-sans)', fontFamily.sans],
+          sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+          heading: ['var(--font-heading)', ...defaultTheme.fontFamily.sans],
         },
         keyframes: {
           'accordion-down': {
-            from: { height: '0' },
+            from: { height: 0 },
             to: { height: 'var(--radix-accordion-content-height)' },
           },
           'accordion-up': {
             from: { height: 'var(--radix-accordion-content-height)' },
-            to: { height: '0' },
+            to: { height: 0 },
           },
         },
         animation: {
