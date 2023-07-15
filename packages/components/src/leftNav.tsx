@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import { ReactNode, useState } from 'react';
 
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
@@ -14,12 +14,12 @@ import { NavItem, SiteConfig } from './types';
 interface LeftNavProps {
   siteConfig: SiteConfig;
   items?: NavItem[];
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export function LeftNav({ items, siteConfig, children }: LeftNavProps) {
   const segment = useSelectedLayoutSegment();
-  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
+  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   return (
     <div className="flex gap-6 md:gap-10">
@@ -50,12 +50,14 @@ export function LeftNav({ items, siteConfig, children }: LeftNavProps) {
       ) : null}
       <button
         className="flex items-center space-x-2 md:hidden"
-        onClick={() => setShowMobileMenu(!showMobileMenu)}
+        onClick={() => {
+          setShowMobileMenu(!showMobileMenu);
+        }}
       >
-        {showMobileMenu ? <siteIcons.close /> : <siteIcons.logo />}
+        {showMobileMenu ? <siteIcons.close /> : <siteIcons.menu />}
         <span className="font-bold">Menu</span>
       </button>
-      {showMobileMenu && items && (
+      {showMobileMenu && items?.length && (
         <MobileNav siteConfig={siteConfig} items={items}>
           {children}
         </MobileNav>

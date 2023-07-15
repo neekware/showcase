@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 
 import Link from 'next/link';
 
@@ -11,7 +11,7 @@ import { NavItem, SiteConfig } from './types';
 interface MobileNavProps {
   siteConfig: SiteConfig;
   items: NavItem[];
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export function MobileNav({ items, siteConfig, children }: MobileNavProps) {
