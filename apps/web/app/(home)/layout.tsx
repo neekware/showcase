@@ -13,7 +13,7 @@ interface HomeLayoutProps {
 export default async function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="bg-background container z-40">
+      <header className="container z-40 dark:bg-transparent">
         <div className="flex h-20 items-center justify-between py-6">
           <LeftNav items={leftNavItems} siteConfig={siteConfig} />
           <nav>
