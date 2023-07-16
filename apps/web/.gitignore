@@ -34,3 +34,5 @@ yarn-error.log*
 .vercel
 
 public/fonts
+public/icons
+public/logos
