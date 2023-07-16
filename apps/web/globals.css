@@ -69,3 +69,33 @@ a {
     background-position: 100% 0%, 0% 100%;
   }
 }
+.gradients_glowConic {
+  background: conic-gradient(
+    from 85deg at 50% 50%,
+    #9ad1ff 0deg,
+    #a750ba 180deg,
+    #ff6597 1turn
+  );
+}
+
+.gradients_glow {
+  mix-blend-mode: normal;
+  filter: blur(75px);
+  will-change: filter;
+}
+
+.gradients_glowSmall {
+  filter: blur(32px);
+}
+
+.gradients_heroHeading {
+  background: linear-gradient(180deg, #fff, #aaa), #fff;
+}
+.light .gradients_heroHeading {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), #000);
+}
+.gradients_heroHeading,
+.light .gradients_heroHeading {
+  -webkit-background-clip: text;
+  background-clip: text;
+}

@@ -4,6 +4,7 @@ import { Button, buttonVariants } from '@showcase/ui';
 import { cn } from '@showcase/utils';
 
 import { siteConfig } from '../../environment/settings';
+import { Hero } from './hero';
 
 export default async function Page() {
   const stars = 50;
@@ -11,24 +12,16 @@ export default async function Page() {
   return (
     <>
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
-        <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-          <Button variant="outline">Button</Button>
-          <Button
-            variant="secondary"
-            className="animate-in zoom-in duration-500"
-          >
-            Secondary
-          </Button>
-          <Link
-            href={siteConfig.links.twitter}
-            className="bg-muted rounded-2xl px-4 py-1.5 text-sm font-medium"
-            target="_blank"
-          >
-            Follow along on Twitter
-          </Link>
-          <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-            An example app built using Next.js 13 server components.
+        <Hero />
+        <div className="container flex max-w-[64rem] flex-col items-center gap-4 pt-10 text-center">
+          <div className="rounded-2xl px-4 py-1.5 text-2xl font-semibold uppercase">
+            Waterloo Conservative Party
+          </div>
+
+          <h1 className="gradients_heroHeading max-w-lg text-center text-[40px] font-extrabold leading-none tracking-[-0.04em] text-transparent md:max-w-xl md:text-5xl lg:max-w-4xl lg:text-[80px]">
+            The build system that makes ship happen
           </h1>
+
           <p className="text-muted-foreground max-w-[42rem] leading-normal sm:text-xl sm:leading-8">
             I&apos;m building a web app with Next.js 13 and open sourcing
             everything. Follow along as we figure this out together.
