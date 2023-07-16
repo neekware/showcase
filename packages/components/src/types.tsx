@@ -10,6 +10,8 @@ export type SiteConfig = {
     github: string;
   };
   leftNavItems?: NavItem[];
+  partyColorDark?: string;
+  partyColorLight?: string;
 };
 
 export type Icons = {

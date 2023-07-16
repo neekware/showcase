@@ -89,7 +89,7 @@ a {
 }
 
 .gradients_heroHeading {
-  background: linear-gradient(180deg, #fff, #aaa), #fff;
+  background: linear-gradient(180deg, #fff, #6290c5), #fff;
 }
 .light .gradients_heroHeading {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), #000);

@@ -1,8 +1,5 @@
 import Link from 'next/link';
 
-import { Button, buttonVariants } from '@showcase/ui';
-import { cn } from '@showcase/utils';
-
 import { siteConfig } from '../../environment/settings';
 import { Hero } from './hero';
 
@@ -11,36 +8,7 @@ export default async function Page() {
 
   return (
     <>
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
-        <Hero />
-        <div className="container flex max-w-[64rem] flex-col items-center gap-4 pt-10 text-center">
-          <div className="rounded-2xl px-4 py-1.5 text-2xl font-semibold uppercase">
-            Waterloo Conservative Party
-          </div>
-
-          <h1 className="gradients_heroHeading max-w-lg text-center text-[40px] font-extrabold leading-none tracking-[-0.04em] text-transparent md:max-w-xl md:text-5xl lg:max-w-4xl lg:text-[80px]">
-            The build system that makes ship happen
-          </h1>
-
-          <p className="text-muted-foreground max-w-[42rem] leading-normal sm:text-xl sm:leading-8">
-            I&apos;m building a web app with Next.js 13 and open sourcing
-            everything. Follow along as we figure this out together.
-          </p>
-          <div className="space-x-4">
-            <Link href="/login" className={cn(buttonVariants({ size: 'lg' }))}>
-              Get Started
-            </Link>
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}
-            >
-              GitHub
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Hero />
       <section
         id="features"
         className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24"

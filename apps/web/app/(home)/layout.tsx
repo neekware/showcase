@@ -29,11 +29,7 @@ export default async function HomeLayout({ children }: HomeLayoutProps) {
           </nav>
         </div>
       </header>
-      <main className="flex-1">
-        <div className="blue-gradient" role="presentation" />
-        <div className="purple-gradient" role="presentation" />
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
       <Footer siteConfig={siteConfig} />
     </div>
   );

@@ -29,7 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
-          'min-h-screen font-sans antialiased',
+          'flex min-h-screen items-center justify-center font-sans antialiased',
           fontSans.variable,
           fontHeading.variable
         )}

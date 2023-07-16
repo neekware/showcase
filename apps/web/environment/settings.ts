@@ -12,6 +12,8 @@ export const siteConfig: SiteConfig = {
     twitter: 'https://twitter.com/showcase-io',
     github: 'https://github.com/showcase-io',
   },
+  partyColorDark: '#00a7e0',
+  partyColorLight: '#102c52',
 };
 
 export const leftNavItems: NavItem[] = [
