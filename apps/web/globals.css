@@ -12,7 +12,21 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-/*
+.blue-gradient {
+  position: fixed;
+  width: 1336px;
+  height: 682px;
+  top: 45px;
+  right: -555px;
+  background: radial-gradient(
+    57.58% 57.58% at 48.79% 42.42%,
+    rgb(8 70 96 / 50%) 0%,
+    rgba(46, 55, 114, 0) 63.22%
+  );
+  transform: rotate(5deg);
+  pointer-events: none;
+}
+
 .blue-gradient {
   position: fixed;
   width: 1336px;
@@ -40,32 +54,4 @@ a {
     rgba(21, 25, 52, 0) 100%
   );
   transform: rotate(-5deg);
-} */
-
-.dark .main-layout {
-  background-size: 200% 200%;
-  background-position: 100% 0%, 0% 100%;
-  background-image: radial-gradient(
-      50% 50% at 50% 50%,
-      rgb(81 42 143 / 50%) 0%,
-      rgba(21, 25, 52, 0) 100%
-    ),
-    radial-gradient(
-      57.58% 57.58% at 48.79% 42.42%,
-      rgb(8 70 96 / 50%) 0%,
-      rgba(46, 55, 114, 0) 63.22%
-    );
-  animation: gradient 60s linear infinite;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 100% 0%, 0% 100%;
-  }
-  50% {
-    background-position: 0% 100%, 100% 0%;
-  }
-  100% {
-    background-position: 100% 0%, 0% 100%;
-  }
 }
