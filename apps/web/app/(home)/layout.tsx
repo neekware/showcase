@@ -13,7 +13,7 @@ interface HomeLayoutProps {
 export default async function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="bg-background container z-40">
+      <header className="container z-40 dark:bg-transparent">
         <div className="flex h-20 items-center justify-between py-6">
           <LeftNav items={leftNavItems} siteConfig={siteConfig} />
           <nav>
@@ -29,11 +29,7 @@ export default async function HomeLayout({ children }: HomeLayoutProps) {
           </nav>
         </div>
       </header>
-      <main className="flex-1">
-        <div className="blue-gradient" role="presentation" />
-        <div className="purple-gradient" role="presentation" />
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
       <Footer siteConfig={siteConfig} />
     </div>
   );
