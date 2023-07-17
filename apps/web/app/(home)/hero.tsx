@@ -68,16 +68,17 @@ export function Hero() {
             and individual rights and responsibilities;
           </p>
           <div className="space-x-4">
-            <Link href="/login" className={cn(buttonVariants({ size: 'lg' }))}>
-              Get Started
+            <Link href="/donate" className={cn(buttonVariants({ size: 'lg' }))}>
+              Donate
             </Link>
             <Link
               href={siteConfig.links.github}
-              target="_blank"
               rel="noreferrer"
-              className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}
+              className={cn(
+                buttonVariants({ variant: 'destructive', size: 'lg' })
+              )}
             >
-              GitHub
+              Get Started
             </Link>
           </div>
         </div>
