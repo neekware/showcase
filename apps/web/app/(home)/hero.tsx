@@ -3,6 +3,7 @@ import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { CirclePulse } from '@showcase/components';
 import { buttonVariants } from '@showcase/ui';
 import { cn } from '@showcase/utils';
 
@@ -16,35 +17,13 @@ export function Hero() {
           className="z-50 flex w-full items-center justify-center"
           style={{ opacity: 1, transform: 'none' }}
         >
-          <div className="absolute h-32 w-32 md:h-[40rem] md:w-[40rem] lg:h-[60rem] lg:w-[60rem]">
-            <Image
-              alt="Hero"
-              loading="lazy"
-              layout="fill"
-              objectFit="cover"
-              decoding="async"
-              className="hidden dark:block"
-              style={{ color: 'transparent' }}
-              src="icons/svg/dark-hero-circles.svg"
-            />
-            <Image
-              alt="Hero"
-              loading="lazy"
-              layout="fill"
-              objectFit="cover"
-              decoding="async"
-              className="block dark:hidden"
-              style={{ color: 'transparent' }}
-              src="icons/svg/light-hero-circles.svg"
-            />
-          </div>
+          <CirclePulse className="absolute md:h-[40rem] md:w-[40rem] lg:h-[60rem] lg:h-[75rem] xl:w-[60rem] xl:w-[75rem]" />
 
-          <div className="absolute z-50 flex h-64 w-64 items-center justify-center">
-            <span
-              className="gradients_glow gradients_glowConic gradients_glowSmall absolute opacity-40 dark:opacity-100"
-              style={{ width: '120px', height: '120px', borderRadius: '100%' }}
-            ></span>
-          </div>
+          <div
+            className=" gradients_glow gradients_glowConic gradients_glowSmall absolute z-50 flex h-64 w-64 items-center justify-center opacity-40 dark:opacity-100"
+            style={{ width: '120px', height: '120px', borderRadius: '100%' }}
+          ></div>
+
           <div className="z-50 h-[120px] w-[120px]">
             <Image
               alt=""

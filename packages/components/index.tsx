@@ -10,3 +10,4 @@ export * from './src/themeProvider';
 export * from './src/leftNav';
 export * from './src/mobileNav';
 export * from './src/footer';
+export * from './src/svg';
