@@ -17,7 +17,11 @@ export function Hero() {
           className="z-50 flex w-full items-center justify-center"
           style={{ opacity: 1, transform: 'none' }}
         >
-          <CirclePulse className="absolute md:h-[40rem] md:w-[40rem] lg:h-[60rem] lg:h-[75rem] xl:w-[60rem] xl:w-[75rem]" />
+          <CirclePulse
+            strokeOpacity={'.12'}
+            strokeWidth={'.05'}
+            className="absolute md:h-[40rem] md:w-[40rem] lg:h-[64rem] xl:w-[64rem]"
+          />
 
           <div
             className=" gradients_glow gradients_glowConic gradients_glowSmall absolute z-50 flex h-64 w-64 items-center justify-center opacity-40 dark:opacity-100"

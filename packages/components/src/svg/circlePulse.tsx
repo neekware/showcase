@@ -28,7 +28,7 @@ export const CirclePulse: React.FC<CirclePulseProps> = ({
   circleRadii = [25, 25, 45],
   animationDurations = ['3s', '3s', '3s'],
   animationBegins = ['0.2s', '0s', '0.4s'],
-  theme = 'dark',
+  theme = 'light',
   className = '',
 }) => {
   const stopColor = theme === 'dark' ? stopColorDark : stopColorLight;
@@ -58,7 +58,7 @@ export const CirclePulse: React.FC<CirclePulseProps> = ({
           strokeWidth={strokeWidth}
           style={{
             fill: index === 1 ? 'url(#radial)' : 'none',
-            fillOpacity: '.1',
+            fillOpacity: '.0',
             stroke: `rgba(255,255,255,${strokeOpacity})`,
           }}
         >
