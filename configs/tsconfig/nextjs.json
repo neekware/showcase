@@ -13,8 +13,7 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "strict": false,
-    "target": "es5",
-    "jsx": "react-jsx"
+    "target": "es5"
   },
   "include": ["src", "next-env.d.ts"],
   "exclude": ["node_modules"]
