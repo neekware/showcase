@@ -5,6 +5,7 @@ module.exports = {
   themes: ['light', 'dark'],
   plugins: [
     require('tailwindcss-animate'),
+    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('./theme.plugin'),
   ],

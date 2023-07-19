@@ -11,6 +11,9 @@ module.exports = tailwindPlugin(
           fontFeatureSettings: '"rlig" 1, "calt" 1',
         },
       },
+      ':active, :focus': {
+        outline: 'none',
+      },
     });
   },
   // default config
@@ -72,9 +75,9 @@ module.exports = tailwindPlugin(
           ring: 'hsl(var(--ws-ring))',
         },
         borderRadius: {
-          lg: `var(--ws-radius)`,
-          md: `calc(var(--ws-radius) - 2px)`,
           sm: 'calc(var(--ws-radius) - 4px)',
+          md: 'calc(var(--ws-radius) - 2px)',
+          lg: 'var(--ws-radius)',
         },
         fontFamily: {
           sans: ['var(--ws-font-sans)', ...defaultTheme.fontFamily.sans],
