@@ -28,52 +28,53 @@ module.exports = tailwindPlugin(
       },
       extend: {
         colors: {
-          background: 'hsl(var(--ws-background))',
-          foreground: 'hsl(var(--ws-foreground))',
+          background: 'hsl(var(--ws-background) / <alpha-value>)',
+          foreground: 'hsl(var(--ws-foreground) / <alpha-value>)',
           primary: {
-            DEFAULT: 'hsl(var(--ws-primary))',
-            foreground: 'hsl(var(--ws-primary-foreground))',
+            DEFAULT: 'hsl(var(--ws-primary) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-primary-foreground) / <alpha-value>)',
           },
           secondary: {
-            DEFAULT: 'hsl(var(--ws-secondary))',
-            foreground: 'hsl(var(--ws-secondary-foreground))',
+            DEFAULT: 'hsl(var(--ws-secondary) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-secondary-foreground) / <alpha-value>)',
           },
           accent: {
-            DEFAULT: 'hsl(var(--ws-accent))',
-            foreground: 'hsl(var(--ws-accent-foreground))',
+            DEFAULT: 'hsl(var(--ws-accent) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-accent-foreground) / <alpha-value>)',
           },
           warning: {
-            DEFAULT: 'hsl(var(--ws-warning))',
-            foreground: 'hsl(var(--ws-warning-foreground))',
+            DEFAULT: 'hsl(var(--ws-warning) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-warning-foreground) / <alpha-value>)',
           },
           error: {
-            DEFAULT: 'hsl(var(--ws-error))',
-            foreground: 'hsl(var(--ws-error-foreground))',
+            DEFAULT: 'hsl(var(--ws-error) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-error-foreground) / <alpha-value>)',
           },
           success: {
-            DEFAULT: 'hsl(var(--ws-success))',
-            foreground: 'hsl(var(--ws-success-foreground))',
+            DEFAULT: 'hsl(var(--ws-success) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-success-foreground) / <alpha-value>)',
           },
           information: {
-            DEFAULT: 'hsl(var(--ws-information))',
-            foreground: 'hsl(var(--ws-information-foreground))',
+            DEFAULT: 'hsl(var(--ws-information) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-information-foreground) / <alpha-value>)',
           },
           muted: {
-            DEFAULT: 'hsl(var(--ws-muted))',
-            foreground: 'hsl(var(--ws-muted-foreground))',
+            DEFAULT: 'hsl(var(--ws-muted) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-muted-foreground) / <alpha-value>)',
           },
           popover: {
-            DEFAULT: 'hsl(var(--ws-popover))',
-            foreground: 'hsl(var(--ws-popover-foreground))',
+            DEFAULT: 'hsl(var(--ws-popover) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-popover-foreground) / <alpha-value>)',
           },
           card: {
-            DEFAULT: 'hsl(var(--ws-card))',
-            foreground: 'hsl(var(--ws-card-foreground))',
+            DEFAULT: 'hsl(var(--ws-card) / <alpha-value>)',
+            foreground: 'hsl(var(--ws-card-foreground) / <alpha-value>)',
           },
-          border: 'hsl(var(--ws-border))',
-          input: 'hsl(var(--ws-input))',
-          ring: 'hsl(var(--ws-ring))',
+          border: 'hsl(var(--ws-border) / <alpha-value>)',
+          input: 'hsl(var(--ws-input) / <alpha-value>)',
+          ring: 'hsl(var(--ws-ring) / <alpha-value>)',
         },
+
         borderRadius: {
           sm: 'calc(var(--ws-radius) - 4px)',
           md: 'calc(var(--ws-radius) - 2px)',
