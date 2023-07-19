@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { CirclePulse } from '@showcase/components';
-import { buttonVariants } from '@showcase/ui';
+import { Button, buttonVariants } from '@showcase/ui';
 import { cn } from '@showcase/utils';
 
 import { siteConfig } from '../../environment/settings';
@@ -54,9 +54,9 @@ export function Hero() {
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 pt-10 text-center">
           <div className="rounded-2xl px-4 py-1.5 text-2xl font-semibold ">
             <div style={{ color: siteConfig.partyColorDark }}>
-              Waterloo Conservative Association
+              Conservative Association
             </div>
-            <div className="text-muted-foreground">CPC</div>
+            <div className="text-muted-foreground">Waterloo CPC</div>
           </div>
 
           <h1 className="gradients_heroHeading max-w-lg text-center text-[40px] font-extrabold leading-none tracking-[-0.04em] text-transparent md:max-w-xl md:text-5xl lg:max-w-4xl lg:text-[80px]">
@@ -68,15 +68,16 @@ export function Hero() {
             and individual rights and responsibilities;
           </p>
           <div className="space-x-4">
+            <Button variant="error" size="lg">
+              Hello
+            </Button>
             <Link href="/donate" className={cn(buttonVariants({ size: 'lg' }))}>
               Donate
             </Link>
             <Link
               href={siteConfig.links.github}
               rel="noreferrer"
-              className={cn(
-                buttonVariants({ variant: 'destructive', size: 'lg' })
-              )}
+              className={cn(buttonVariants({ variant: 'error', size: 'lg' }))}
             >
               Get Started
             </Link>

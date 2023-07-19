@@ -29,6 +29,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
+          'bg-background text-foreground',
           'flex min-h-screen items-center justify-center font-sans antialiased',
           fontSans.variable,
           fontHeading.variable

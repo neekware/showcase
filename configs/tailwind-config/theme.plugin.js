@@ -4,13 +4,6 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = tailwindPlugin(
   function ({ addBase }) {
     addBase({
-      '@layer base': {
-        '*': { '@apply border-border': true },
-        body: {
-          '@apply bg-background text-foreground': true,
-          fontFeatureSettings: '"rlig" 1, "calt" 1',
-        },
-      },
       ':active, :focus': {
         outline: 'none',
       },
