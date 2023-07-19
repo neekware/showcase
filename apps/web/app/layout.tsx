@@ -5,7 +5,7 @@ import { TailwindIndicator, ThemeProvider } from '@showcase/components';
 import { cn } from '@showcase/utils';
 
 import { siteMetadata } from '../environment/settings';
-import '../globals.css';
+import '../styles/globals.css';
 
 const fontSans = FontSans({
   subsets: ['latin'],
