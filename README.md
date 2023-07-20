@@ -33,20 +33,19 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
 ## Lines of Code (auto-generated stats)
 
 ```txt<br>--------------------------------------------------------------------------------
  Language             Files        Lines        Blank      Comment         Code
 --------------------------------------------------------------------------------
- TypeScript               6          279           36           45          198
- Typescript JSX           2          135            9            0          126
- JSON                     4          112            0            0          112
- JavaScript               4           86            1           20           65
+ TypeScript               7          285           37           45          203
+ Typescript JSX           3          197           17            0          180
+ JSON                     5          135            0            0          135
+ JavaScript               4          145            1           20          124
+ CSS                      1           78           22            0           56
  Markdown                 2           69           23            0           46
- CSS                      1           27            3            0           24
 --------------------------------------------------------------------------------
- Total                   19          708           72           65          571
+ Total                   22          909          100           65          744
 --------------------------------------------------------------------------------
 ```
 
@@ -54,5 +53,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 The above line of code table is auto generated and should not be edited manually.
 Note: `loc` should be installed on your system, in order to generate the above stats.
-      It will ignore all directories, files that you have in .gitignore.
+It will ignore all directories, files that you have in .gitignore.
+
 - `brew install loc` # install on mac
