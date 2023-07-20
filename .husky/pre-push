@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+. "$(dirname "$0")/_/husky.sh"
+
+# BRANCH=$(git rev-parse --abbrev-ref HEAD)
+# DIFF=$(git diff origin/$BRANCH..HEAD)
+
+# if [ "$DIFF" != "" ] 
+# then
+#   echo "There are changes to be pushed"
+#   yarn build && yarn test
+# else
+#   echo "No changes to be pushed, skipping build & test"
+# fi
+

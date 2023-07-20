@@ -32,3 +32,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Lines of Code (auto-generated stats)
+
+```txt<br>--------------------------------------------------------------------------------
+ Language             Files        Lines        Blank      Comment         Code
+--------------------------------------------------------------------------------
+ TypeScript               3          231           28           45          158
+ Typescript JSX           2          135            9            0          126
+ JSON                     4          112            0            0          112
+ JavaScript               4           86            1           20           65
+ Markdown                 2           45           18            0           27
+ CSS                      1           27            3            0           24
+--------------------------------------------------------------------------------
+ Total                   16          636           59           65          512
+--------------------------------------------------------------------------------
+```
+
+### Line of code generation
+
+The above line of code table is auto generated and should not be edited manually.
+Note: `loc` should be installed on your system, in order to generate the above stats.
+      It will ignore all directories, files that you have in .gitignore.
+- `brew install loc` # install on mac
