@@ -194,4 +194,7 @@ X.Y.Z Semantic Versioning
 [coverage-image]: https://coveralls.io/repos/neekware/showcase/badge.svg
 [coverage-link]: https://coveralls.io/r/neekware/showcase
 
-Branches: feat/uiComp (shadcn - home + hero implemented, pre tailwind UI)
+## Branches
+
+feat/uiComp (shadcn - home + hero implemented, pre tailwind UI)
+tailwindUIInit (tailwind UI init)
