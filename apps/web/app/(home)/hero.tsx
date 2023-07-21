@@ -20,7 +20,7 @@ export function Hero() {
           <CirclePulse
             strokeOpacity={'.12'}
             strokeWidth={'.05'}
-            className="absolute md:h-[40rem] md:w-[40rem] lg:h-[64rem] xl:w-[64rem]"
+            className="absolute md:h-[36rem] md:w-[36rem]"
           />
 
           <div
