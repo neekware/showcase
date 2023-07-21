@@ -6,6 +6,7 @@
 @layer base {
   * {
     @apply border-border;
+    --ws-radius: 0.5rem;
   }
   body {
     @apply bg-background text-foreground;
@@ -64,6 +65,5 @@
     --ws-color-border: 210, 40%, 40%;
     --ws-color-input: 210, 40%, 40%;
     --ws-color-ring: 215, 20.2%, 45%;
-    --ws-radius: 0.5rem;
   }
 }
