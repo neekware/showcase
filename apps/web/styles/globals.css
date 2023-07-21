@@ -1,10 +1,2 @@
-@tailwind base;
-
-@import 'themes/default';
-@import 'themes/dark';
-
-@tailwind components;
-@tailwind utilities;
-@tailwind variants;
-
+@import 'themes';
 @import 'gradients';

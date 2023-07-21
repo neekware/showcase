@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  :root {
+    --ws-color-background: 0, 0%, 100%;
+    --ws-color-foreground: 222.2, 47.4%, 11.2%;
+    --ws-color-primary: 222.2, 47.4%, 11.2%;
+    --ws-color-primary-foreground: 210, 40%, 98%;
+    --ws-color-secondary: 210, 40%, 96.1%;
+    --ws-color-secondary-foreground: 222.2, 47.4%, 11.2%;
+    --ws-color-accent: 210, 40%, 96.1%;
+    --ws-color-accent-foreground: 222.2, 47.4%, 11.2%;
+    --ws-color-warning: 0, 100%, 50%;
+    --ws-color-warning-foreground: 210, 40%, 98%;
+    --ws-color-error: 0, 100%, 50%;
+    --ws-color-error-foreground: 0, 0%, 95%;
+    --ws-color-success: 120, 50%, 40%;
+    --ws-color-success-foreground: 0, 0%, 100%;
+    --ws-color-information: 200, 100%, 35%;
+    --ws-color-information-foreground: 0, 0%, 100%;
+    --ws-color-muted: 210, 40%, 96.1%;
+    --ws-color-muted-foreground: 215.4, 16.3%, 46.9%;
+    --ws-color-popover: 0, 0%, 100%;
+    --ws-color-popover-foreground: 222.2, 47.4%, 11.2%;
+    --ws-color-card: 0, 0%, 100%;
+    --ws-color-card-foreground: 222.2, 47.4%, 11.2%;
+    --ws-color-border: 214.3, 31.8%, 91.4%;
+    --ws-color-input: 214.3, 31.8%, 91.4%;
+    --ws-ring: 215, 20.2%, 65.1%;
+  }
+
+  .dark {
+    --ws-color-background: 224, 71%, 4%;
+    --ws-color-foreground: 0, 0%, 95%;
+    --ws-color-primary: 222.2, 47.4%, 70%;
+    --ws-color-primary-foreground: 0, 0%, 100%;
+    --ws-color-secondary: 210, 40%, 60%;
+    --ws-color-secondary-foreground: 0, 0%, 100%;
+    --ws-color-accent: 210, 40%, 60%;
+    --ws-color-accent-foreground: 0, 0%, 100%;
+    --ws-color-warning: 36, 100%, 50%;
+    --ws-color-warning-foreground: 0, 0%, 100%;
+    --ws-color-error: 0, 100%, 50%;
+    --ws-color-error-foreground: 0, 0%, 95%;
+    --ws-color-success: 120, 50%, 40%;
+    --ws-color-success-foreground: 0, 0%, 100%;
+    --ws-color-information: 200, 100%, 35%;
+    --ws-color-information-foreground: 0, 0%, 100%;
+    --ws-color-muted: 210, 20%, 20%;
+    --ws-color-muted-foreground: 215.4, 16.3%, 70%;
+    --ws-color-popover: 224, 71%, 4%;
+    --ws-color-popover-foreground: 0, 0%, 95%;
+    --ws-color-card: 224, 71%, 15%;
+    --ws-color-card-foreground: 0, 0%, 95%;
+    --ws-color-border: 210, 40%, 40%;
+    --ws-color-input: 210, 40%, 40%;
+    --ws-color-ring: 215, 20.2%, 45%;
+    --ws-radius: 0.5rem;
+  }
+}

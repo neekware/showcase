@@ -1,6 +1,15 @@
 const tailwindPlugin = require('tailwindcss/plugin');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `hsla(var(${variableName}), ${opacityValue})`;
+    }
+    return `hsl(var(${variableName}))`;
+  };
+}
+
 module.exports = tailwindPlugin(
   function ({ addBase }) {
     addBase({
@@ -21,51 +30,51 @@ module.exports = tailwindPlugin(
       },
       extend: {
         colors: {
-          background: 'hsl(var(--ws-background) / <alpha-value>)',
-          foreground: 'hsl(var(--ws-foreground) / <alpha-value>)',
+          background: withOpacity('--ws-color-background'),
+          foreground: withOpacity('--ws-color-foreground'),
           primary: {
-            DEFAULT: 'hsl(var(--ws-primary) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-primary-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-primary'),
+            foreground: withOpacity('--ws-color-primary-foreground'),
           },
           secondary: {
-            DEFAULT: 'hsl(var(--ws-secondary) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-secondary-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-secondary'),
+            foreground: withOpacity('--ws-color-secondary-foreground'),
           },
           accent: {
-            DEFAULT: 'hsl(var(--ws-accent) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-accent-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-accent'),
+            foreground: withOpacity('--ws-color-accent-foreground'),
           },
           warning: {
-            DEFAULT: 'hsl(var(--ws-warning) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-warning-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-warning'),
+            foreground: withOpacity('--ws-color-warning-foreground'),
           },
           error: {
-            DEFAULT: 'hsl(var(--ws-error) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-error-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-error'),
+            foreground: withOpacity('--ws-color-error-foreground'),
           },
           success: {
-            DEFAULT: 'hsl(var(--ws-success) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-success-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-success'),
+            foreground: withOpacity('--ws-color-success-foreground'),
           },
           information: {
-            DEFAULT: 'hsl(var(--ws-information) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-information-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-information'),
+            foreground: withOpacity('--ws-color-information-foreground'),
           },
           muted: {
-            DEFAULT: 'hsl(var(--ws-muted) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-muted-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-muted'),
+            foreground: withOpacity('--ws-color-muted-foreground'),
           },
           popover: {
-            DEFAULT: 'hsl(var(--ws-popover) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-popover-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-popover'),
+            foreground: withOpacity('--ws-color-popover-foreground'),
           },
           card: {
-            DEFAULT: 'hsl(var(--ws-card) / <alpha-value>)',
-            foreground: 'hsl(var(--ws-card-foreground) / <alpha-value>)',
+            DEFAULT: withOpacity('--ws-color-card'),
+            foreground: withOpacity('--ws-color-card-foreground'),
           },
-          border: 'hsl(var(--ws-border) / <alpha-value>)',
-          input: 'hsl(var(--ws-input) / <alpha-value>)',
-          ring: 'hsl(var(--ws-ring) / <alpha-value>)',
+          border: withOpacity('--ws-color-border'),
+          input: withOpacity('--ws-color-input'),
+          ring: withOpacity('--ws-color-ring'),
         },
 
         borderRadius: {
