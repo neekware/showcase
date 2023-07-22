@@ -45,6 +45,16 @@ export function Navbar() {
                     style={{ color: 'transparent' }}
                     src="/logos/cpc/cpc-logo-light.svg"
                   />
+                  <Image
+                    alt=""
+                    loading="lazy"
+                    width="36"
+                    height="36"
+                    decoding="async"
+                    className="block dark:hidden"
+                    style={{ color: 'transparent' }}
+                    src="/logos/cpc/cpc-logo-dark.svg"
+                  />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
