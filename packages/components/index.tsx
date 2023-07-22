@@ -11,3 +11,4 @@ export * from './src/leftNav';
 export * from './src/mobileNav';
 export * from './src/footer';
 export * from './src/svg';
+export * from './src/navbar';

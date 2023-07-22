@@ -28,26 +28,26 @@ export function Hero() {
             style={{ width: '120px', height: '120px', borderRadius: '100%' }}
           ></div>
 
-          <div className="z-50 h-[120px] w-[120px]">
+          <div className="z-50 w-[120px] md:w-[160px]">
             <Image
               alt=""
               loading="lazy"
-              width="120"
-              height="120"
+              width="160"
+              height="160"
               decoding="async"
               className="hidden dark:block"
               style={{ color: 'transparent' }}
-              src="/logos/cpc/cpc-logo-light.png"
+              src="/logos/cpc/cpc-logo-light.svg"
             />
             <Image
               alt=""
               loading="lazy"
-              width="120"
-              height="120"
+              width="160"
+              height="160"
               decoding="async"
               className="block dark:hidden"
               style={{ color: 'transparent' }}
-              src="/logos/cpc/cpc-logo-dark.png"
+              src="/logos/cpc/cpc-logo-dark.svg"
             />
           </div>
         </div>
