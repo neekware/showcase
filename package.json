@@ -7,7 +7,7 @@
     "lint": "turbo run lint",
     "e2e": "turbo run e2e",
     "lint:prettier": "yarn turbo run lint:prettier",
-    "format": "prettier -w .",
+    "format": "prettier -w \"**/*.{ts,tsx,js,jsx,html,css,svg,yml,json}\"",
     "postinstall": "husky install",
     "clean": "yarn turbo run clean",
     "loc": "yarn turbo run loc",

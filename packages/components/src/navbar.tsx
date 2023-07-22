@@ -38,12 +38,12 @@ export function Navbar() {
                   <Image
                     alt=""
                     loading="lazy"
-                    width="32"
-                    height="32"
+                    width="36"
+                    height="36"
                     decoding="async"
                     className="hidden dark:block"
                     style={{ color: 'transparent' }}
-                    src="/logos/cpc/cpc-logo-light.png"
+                    src="/logos/cpc/cpc-logo-light.svg"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">

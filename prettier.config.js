@@ -54,5 +54,9 @@ module.exports = {
         printWidth: 80,
       },
     },
+    {
+      files: '*.svg',
+      options: { parser: 'html' },
+    },
   ],
 };
