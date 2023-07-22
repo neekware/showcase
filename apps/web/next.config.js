@@ -3,6 +3,7 @@ module.exports = {
   transpilePackages: [
     '@showcase/assets',
     '@showcase/components',
+    '@showcase/svgs',
     '@showcase/ui',
     '@showcase/utils',
   ],

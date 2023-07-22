@@ -1634,6 +1634,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@showcase/svgs@*, @showcase/svgs@workspace:packages/svgs":
+  version: 0.0.0-use.local
+  resolution: "@showcase/svgs@workspace:packages/svgs"
+  dependencies:
+    "@heroicons/react": ^2.0.18
+    "@showcase/utils": "*"
+    "@testing-library/react": ^14.0.0
+    "@types/jest": ^29.5.3
+    "@types/react": ^18.2.0
+    "@types/react-dom": ^18.2.0
+    eslint: ^8.44.0
+    eslint-config-custom: "*"
+    jest: ^29.6.1
+    jest-environment-jsdom: ^29.6.1
+    jest-presets: "workspace:*"
+    lucide-react: ^0.259.0
+    react: ^18.2.0
+    tsconfig: "*"
+    typescript: ^4.5.3
+  languageName: unknown
+  linkType: soft
+
 "@showcase/ui@*, @showcase/ui@workspace:packages/ui":
   version: 0.0.0-use.local
   resolution: "@showcase/ui@workspace:packages/ui"
@@ -1680,6 +1702,7 @@ __metadata:
   dependencies:
     "@showcase/assets": "*"
     "@showcase/components": "*"
+    "@showcase/svgs": "*"
     "@showcase/ui": "*"
     "@showcase/utils": "*"
     "@tailwindcss/forms": ^0.5.4

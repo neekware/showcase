@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { CirclePulse } from '@showcase/components';
+import { LogoCPC } from '@showcase/svgs';
 import { Button, buttonVariants } from '@showcase/ui';
 import { cn } from '@showcase/utils';
 
@@ -24,31 +24,12 @@ export function Hero() {
           />
 
           <div
-            className=" gradients_glow gradients_glowConic gradients_glowSmall absolute z-50 flex h-64 w-64 items-center justify-center opacity-40 dark:opacity-100"
+            className="gradients_glow gradients_glowConic gradients_glowSmall absolute z-50 flex h-64 w-64 items-center justify-center opacity-40 dark:opacity-100"
             style={{ width: '120px', height: '120px', borderRadius: '100%' }}
           ></div>
 
-          <div className="z-50 w-[120px] md:w-[160px]">
-            <Image
-              alt=""
-              loading="lazy"
-              width="160"
-              height="160"
-              decoding="async"
-              className="hidden dark:block"
-              style={{ color: 'transparent' }}
-              src="/logos/cpc/cpc-logo-light.svg"
-            />
-            <Image
-              alt=""
-              loading="lazy"
-              width="160"
-              height="160"
-              decoding="async"
-              className="block dark:hidden"
-              style={{ color: 'transparent' }}
-              src="/logos/cpc/cpc-logo-dark.svg"
-            />
+          <div className="z-50">
+            <LogoCPC heartBeat={true} width={160} height={160} />
           </div>
         </div>
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 pt-10 text-center">

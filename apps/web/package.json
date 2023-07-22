@@ -12,6 +12,7 @@
   "dependencies": {
     "@showcase/assets": "*",
     "@showcase/components": "*",
+    "@showcase/svgs": "*",
     "@showcase/ui": "*",
     "@showcase/utils": "*",
     "next": "^13.4.1",

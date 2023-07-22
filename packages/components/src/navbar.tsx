@@ -7,6 +7,7 @@ import { Fragment } from 'react';
 
 import Image from 'next/image';
 
+import { LogoCPC } from '@showcase/svgs';
 import { cn } from '@showcase/utils';
 
 const navigation = [
@@ -35,26 +36,7 @@ export function Navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="36"
-                    height="36"
-                    decoding="async"
-                    className="hidden dark:block"
-                    style={{ color: 'transparent' }}
-                    src="/logos/cpc/cpc-logo-light.svg"
-                  />
-                  <Image
-                    alt=""
-                    loading="lazy"
-                    width="36"
-                    height="36"
-                    decoding="async"
-                    className="block dark:hidden"
-                    style={{ color: 'transparent' }}
-                    src="/logos/cpc/cpc-logo-dark.svg"
-                  />
+                  <LogoCPC width={36} height={36} />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
