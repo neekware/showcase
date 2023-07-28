@@ -67,3 +67,27 @@
     --ws-color-ring: 215, 20.2%, 45%;
   }
 }
+
+@layer utilities {
+  .animation-delay-300 {
+    animation-delay: 0.3s;
+  }
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  .animation-delay-6000 {
+    animation-delay: 6s;
+  }
+  .animation-delay-8000 {
+    animation-delay: 8s;
+  }
+}

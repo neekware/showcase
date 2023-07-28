@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import Link from 'next/link';
 
-import { CirclePulse } from '@showcase/components';
-import { LogoCPC } from '@showcase/svgs';
+import { CirclePulse } from '@showcase/svgs';
+import { BlobsAnimation, LogoCPC } from '@showcase/svgs';
 import { Button, buttonVariants } from '@showcase/ui';
 import { cn } from '@showcase/utils';
 
@@ -20,13 +20,27 @@ export function Hero() {
           <CirclePulse
             strokeOpacity={'.12'}
             strokeWidth={'.05'}
-            className="absolute md:h-[36rem] md:w-[36rem]"
+            className="fixed md:h-[36rem] md:w-[36rem]"
+          />
+          <BlobsAnimation
+            className="flex items-center justify-center"
+            blobs={[
+              {
+                color: 'bg-blue-300',
+              },
+              {
+                color: 'bg-yellow-300',
+              },
+              {
+                color: 'bg-purple-500',
+              },
+            ]}
           />
 
-          <div
+          {/* <div
             className="gradients_glow gradients_glowConic gradients_glowSmall absolute z-50 flex h-64 w-64 items-center justify-center opacity-40 dark:opacity-100"
             style={{ width: '120px', height: '120px', borderRadius: '100%' }}
-          ></div>
+          ></div> */}
 
           <div className="z-50">
             <LogoCPC heartBeat={true} width={160} height={160} />
