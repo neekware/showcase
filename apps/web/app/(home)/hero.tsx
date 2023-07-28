@@ -23,7 +23,7 @@ export function Hero() {
             className="fixed md:h-[36rem] md:w-[36rem]"
           />
           <BlobsAnimation
-            className="flex items-center justify-center"
+            className="pointer-events-none flex items-center justify-center"
             blobs={[
               {
                 color: 'bg-blue-300',

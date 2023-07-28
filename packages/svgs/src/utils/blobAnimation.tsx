@@ -45,7 +45,7 @@ export const BlobsAnimation: React.FC<BlobsAnimationProps> = ({
   }));
 
   return (
-    <div className={`${className}`}>
+    <div className={`pointer-event-none ${className}`}>
       <div className="fixed w-full max-w-lg opacity-20">
         {finalBlobs.map((blob, index) => {
           const delay = index === 0 ? '' : `animation-delay-${index * 2000}`;
