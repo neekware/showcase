@@ -31,11 +31,7 @@ export function Hero() {
               stopColor2="#151934"
             />
           </div>
-          <CirclePulse
-            strokeOpacity={'.12'}
-            strokeWidth={'.05'}
-            className="fixed md:h-[36rem] md:w-[36rem]"
-          />
+
           {/* <BlobsAnimation
             className="pointer-events-none flex items-center justify-center"
             blobs={[
@@ -123,9 +119,13 @@ export function Hero() {
             className="gradients_glow gradients_glowConic gradients_glowSmall absolute z-50 flex h-64 w-64 items-center justify-center opacity-40 dark:opacity-100"
             style={{ width: '120px', height: '120px', borderRadius: '100%' }}
           ></div> */}
-          <div className="z-50">
-            <LogoCPC heartBeat={true} width={160} height={160} />
-          </div>
+
+          <CirclePulse
+            strokeOpacity={'.12'}
+            strokeWidth={'.05'}
+            className="md:h-[36rem] md:w-[36rem]"
+          />
+          <LogoCPC heartBeat={true} width={160} height={160} />
         </div>
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 pt-10 text-center">
           <div className="rounded-2xl px-4 py-1.5 text-2xl font-semibold ">

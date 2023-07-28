@@ -1,3 +1,5 @@
+import { CssPosition } from './types';
+
 interface BlobProps {
   position?: string;
   size?: string;
@@ -7,8 +9,9 @@ interface BlobProps {
 }
 
 interface BlobsAnimationProps {
-  className?: string;
   blobs?: Partial<BlobProps>[];
+  position?: CssPosition;
+  className?: string;
 }
 
 const defaultBlobs: BlobProps[] = [
@@ -36,8 +39,9 @@ const defaultBlobs: BlobProps[] = [
 ];
 
 export const BlobsAnimation: React.FC<BlobsAnimationProps> = ({
-  className = '',
   blobs = [],
+  position = 'fixed',
+  className = '',
 }) => {
   const finalBlobs = defaultBlobs.map((defaultBlob, index) => ({
     ...defaultBlob,
@@ -46,7 +50,10 @@ export const BlobsAnimation: React.FC<BlobsAnimationProps> = ({
 
   return (
     <div className={`pointer-event-none ${className}`}>
-      <div className="fixed w-full max-w-lg opacity-20">
+      <div
+        className="w-full max-w-lg opacity-20"
+        style={position ? { position: position } : {}}
+      >
         {finalBlobs.map((blob, index) => {
           const delay = index === 0 ? '' : `animation-delay-${index * 2000}`;
           return (

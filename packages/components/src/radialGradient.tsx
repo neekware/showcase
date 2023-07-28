@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 
 import React from 'react';
 
-type Position = 'relative' | 'absolute' | 'fixed' | 'static' | 'sticky';
+import { CssPosition } from './types';
 
 interface RadialGradientProps {
   width?: string;
@@ -17,7 +17,7 @@ interface RadialGradientProps {
   stopColor2?: string;
   stopOpacity2?: string;
   fillOpacity?: string;
-  position?: Position;
+  position?: CssPosition;
   className?: string;
 }
 

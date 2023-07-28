@@ -1,5 +1,12 @@
 import type { Icon } from './icons';
 
+export type CssPosition =
+  | 'relative'
+  | 'absolute'
+  | 'fixed'
+  | 'static'
+  | 'sticky';
+
 export type SiteConfig = {
   name: string;
   description: string;

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { CssPosition } from './types';
+
 interface CirclePulseProps {
   width?: string;
   height?: string;
@@ -13,6 +15,7 @@ interface CirclePulseProps {
   animationDurations?: string[];
   animationBegins?: string[];
   theme?: 'light' | 'dark';
+  position?: CssPosition;
   className?: string;
 }
 
@@ -29,6 +32,7 @@ export const CirclePulse: React.FC<CirclePulseProps> = ({
   animationDurations = ['3s', '3s', '3s'],
   animationBegins = ['0.2s', '0s', '0.4s'],
   theme = 'light',
+  position = 'absolute',
   className = '',
 }) => {
   const stopColor = theme === 'dark' ? stopColorDark : stopColorLight;
@@ -42,6 +46,7 @@ export const CirclePulse: React.FC<CirclePulseProps> = ({
       viewBox={viewBox}
       width={width}
       height={height}
+      style={position ? { position: position } : {}}
     >
       <defs>
         <radialGradient id="radial" gradientUnits="userSpaceOnUse">
