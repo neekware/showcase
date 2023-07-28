@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import Link from 'next/link';
 
-import { CirclePulse } from '@showcase/svgs';
-import { BlobsAnimation, LogoCPC } from '@showcase/svgs';
+import { BlobsAnimation, RadialGradient } from '@showcase/components';
+import { CirclePulse, LogoCPC } from '@showcase/svgs';
 import { Button, buttonVariants } from '@showcase/ui';
 import { cn } from '@showcase/utils';
 
@@ -36,6 +36,18 @@ export function Hero() {
               },
             ]}
           />
+
+          {/* <RadialGradient
+            startColor="rgba(24, 180, 244, 0.5)"
+            endColor="rgba(46, 55, 114, 0)"
+            position={{
+              top: '100px',
+              right: '-400px',
+              width: '1400px',
+              height: '800px',
+              rotation: '5deg',
+            }}
+          /> */}
 
           {/* <div
             className="gradients_glow gradients_glowConic gradients_glowSmall absolute z-50 flex h-64 w-64 items-center justify-center opacity-40 dark:opacity-100"

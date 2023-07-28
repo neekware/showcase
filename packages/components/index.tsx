@@ -9,3 +9,5 @@ export * from './src/leftNav';
 export * from './src/mobileNav';
 export * from './src/footer';
 export * from './src/navbar';
+export * from './src/blobAnimation';
+export * from './src/radialGradient';
