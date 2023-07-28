@@ -1,44 +1,76 @@
-interface GradientProps {
+import { randomUUID } from 'crypto';
+
+import React from 'react';
+
+type Position = 'relative' | 'absolute' | 'fixed' | 'static' | 'sticky';
+
+interface RadialGradientProps {
+  width?: string;
+  height?: string;
+  viewBox?: string;
+  cx?: string;
+  cy?: string;
+  rx?: string;
+  ry?: string;
+  gradientTransform?: string;
+  stopColor1?: string;
+  stopColor2?: string;
+  stopOpacity2?: string;
+  fillOpacity?: string;
+  position?: Position;
   className?: string;
-  startColor?: string;
-  endColor?: string;
-  position?: {
-    top?: string;
-    right?: string;
-    width?: string;
-    height?: string;
-    rotation?: string;
-  };
-  role?: string;
 }
 
-export const RadialGradient: React.FC<GradientProps> = ({
-  className = 'purple-gradient',
-  startColor = 'rgba(24, 180, 244, 0.5)',
-  endColor = 'rgba(46, 55, 114, 0)',
-  position = {
-    top: '100px',
-    right: '-400px',
-    width: '1400px',
-    height: '800px',
-    rotation: '5deg',
-  },
-  role = 'presentation',
+export const RadialGradient: React.FC<RadialGradientProps> = ({
+  width = '1440',
+  height = '821',
+  viewBox = '0 0 1440 821',
+  cx = '657.051',
+  cy = '410.5',
+  rx = '842.051',
+  ry = '410.5',
+  gradientTransform = 'translate(657.051 410.5) rotate(90) scale(410.5 700.051)',
+  stopColor1 = '#AC7FF4',
+  stopColor2 = '#151934',
+  stopOpacity2 = '0',
+  fillOpacity = '0.6',
+  position = 'absolute',
+  className = '',
 }) => {
-  const { top, right, width, height, rotation } = position;
+  // Generate a unique ID for each instance to avoid conflicts when using multiple gradients on the same page
+  const gradientId = randomUUID();
+
   return (
-    <div
+    <svg
       className={className}
-      style={{
-        position: 'fixed',
-        width,
-        height,
-        top,
-        right,
-        background: `radial-gradient(57.58% 57.58% at 48.79% 42.42%, ${startColor} 0%, ${endColor} 63.22%)`,
-        transform: `rotate(${rotation})`,
-      }}
-      role={role}
-    />
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={position ? { position: position } : {}}
+    >
+      <ellipse
+        cx={cx}
+        cy={cy}
+        rx={rx}
+        ry={ry}
+        fill={`url(#${gradientId})`}
+        fillOpacity={fillOpacity}
+      />
+      <defs>
+        <radialGradient
+          id={gradientId}
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform={gradientTransform}
+        >
+          <stop offset="0" stopColor={stopColor1} />
+          <stop offset="1" stopColor={stopColor2} stopOpacity={stopOpacity2} />
+        </radialGradient>
+      </defs>
+    </svg>
   );
 };
