@@ -41,11 +41,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
  Typescript JSX           8          508           47            0          461
  TypeScript               7          285           37           45          203
  JSON                     5          138            0            0          138
- JavaScript               4          145            1           20          124
- CSS                      1           78           22            0           56
+ JavaScript               4          154            2           20          132
+ CSS                      1           71            3            0           68
  Markdown                 2           69           23            0           46
 --------------------------------------------------------------------------------
- Total                   27         1223          130           65         1028
+ Total                   27         1225          112           65         1048
 --------------------------------------------------------------------------------
 ```
 

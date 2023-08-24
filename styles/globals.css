@@ -4,67 +4,60 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --ring: 215 20.2% 65.1%;
-
-    --radius: 0.5rem;
+    --color-background: 0, 0%, 100%;
+    --color-foreground: 222.2, 47.4%, 11.2%;
+    --color-primary: 222.2, 47.4%, 11.2%;
+    --color-primary-foreground: 210, 40%, 98%;
+    --color-secondary: 210, 40%, 96.1%;
+    --color-secondary-foreground: 222.2, 47.4%, 11.2%;
+    --color-accent: 210, 40%, 96.1%;
+    --color-accent-foreground: 222.2, 47.4%, 11.2%;
+    --color-warning: 0, 100%, 50%;
+    --color-warning-foreground: 210, 40%, 98%;
+    --color-error: 0, 100%, 50%;
+    --color-error-foreground: 0, 0%, 95%;
+    --color-success: 120, 50%, 40%;
+    --color-success-foreground: 0, 0%, 100%;
+    --color-information: 200, 100%, 35%;
+    --color-information-foreground: 0, 0%, 100%;
+    --color-muted: 210, 40%, 96.1%;
+    --color-muted-foreground: 215.4, 16.3%, 46.9%;
+    --color-popover: 0, 0%, 100%;
+    --color-popover-foreground: 222.2, 47.4%, 11.2%;
+    --color-card: 0, 0%, 100%;
+    --color-card-foreground: 222.2, 47.4%, 11.2%;
+    --color-border: 214.3, 31.8%, 91.4%;
+    --color-input: 214.3, 31.8%, 91.4%;
+    --color-ring: 215, 20.2%, 65.1%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-
-    --ring: 217.2 32.6% 17.5%;
+    --color-background: 224, 71%, 4%;
+    --color-foreground: 0, 0%, 95%;
+    --color-primary: 222.2, 47.4%, 70%;
+    --color-primary-foreground: 0, 0%, 100%;
+    --color-secondary: 210, 40%, 60%;
+    --color-secondary-foreground: 0, 0%, 100%;
+    --color-accent: 210, 40%, 60%;
+    --color-accent-foreground: 0, 0%, 100%;
+    --color-warning: 36, 100%, 50%;
+    --color-warning-foreground: 0, 0%, 100%;
+    --color-error: 0, 100%, 50%;
+    --color-error-foreground: 0, 0%, 95%;
+    --color-success: 120, 50%, 40%;
+    --color-success-foreground: 0, 0%, 100%;
+    --color-information: 200, 100%, 35%;
+    --color-information-foreground: 0, 0%, 100%;
+    --color-muted: 210, 20%, 20%;
+    --color-muted-foreground: 215.4, 16.3%, 70%;
+    --color-popover: 224, 71%, 4%;
+    --color-popover-foreground: 0, 0%, 95%;
+    --color-card: 224, 71%, 15%;
+    --color-card-foreground: 0, 0%, 95%;
+    --color-border: 210, 40%, 40%;
+    --color-input: 210, 40%, 40%;
+    --color-ring: 215, 20.2%, 45%;
+    --color-radius: 0.5rem;
   }
 }
 

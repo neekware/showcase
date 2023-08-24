@@ -1,3 +1,12 @@
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `hsla(var(${variableName}), ${opacityValue})`;
+    }
+    return `hsl(var(${variableName}))`;
+  };
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
@@ -17,38 +26,38 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        border: withOpacity('--color-border'),
+        input: withOpacity('--color-input'),
+        ring: withOpacity('--color-ring'),
+        background: withOpacity('--color-background'),
+        foreground: withOpacity('--color-foreground'),
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: withOpacity('--color-primary'),
+          foreground: withOpacity('--color-primary-foreground'),
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: withOpacity('--color-secondary'),
+          foreground: withOpacity('--color-secondary-foreground'),
         },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+        warning: {
+          DEFAULT: withOpacity('--color-warning'),
+          foreground: withOpacity('--color-warning-foreground'),
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: withOpacity('--color-muted'),
+          foreground: withOpacity('--color-muted-foreground'),
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: withOpacity('--color-accent'),
+          foreground: withOpacity('--color-accent-foreground'),
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: withOpacity('--color-popover'),
+          foreground: withOpacity('--color-popover-foreground'),
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: withOpacity('--color-card'),
+          foreground: withOpacity('--color-card-foreground'),
         },
       },
       borderRadius: {
