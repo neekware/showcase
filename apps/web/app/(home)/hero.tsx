@@ -1,9 +1,10 @@
 import * as React from 'react';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { BlobsAnimation, RadialGradient } from '@showcase/components';
-import { CirclePulse, LogoCPC } from '@showcase/svgs';
+import { CirclePulse, Heartbeat, LogoCPC } from '@showcase/svgs';
 import { Button, buttonVariants } from '@showcase/ui';
 import { cn } from '@showcase/utils';
 
@@ -125,7 +126,11 @@ export function Hero() {
             strokeWidth={'.05'}
             className="md:h-[36rem] md:w-[36rem]"
           />
-          <LogoCPC heartBeat={true} width={160} height={160} />
+          {/* <LogoCPC heartBeat={true} width={160} height={160} /> */}
+          {/* <Heartbeat /> */}
+          <div style={{ height: '300px', width: '300px' }}>
+            <img src="/icons/svg/flag.svg" alt="Heartbeat" />
+          </div>
         </div>
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 pt-10 text-center">
           <div className="rounded-2xl px-4 py-1.5 text-2xl font-semibold ">
