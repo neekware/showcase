@@ -13,7 +13,8 @@
     "loc": "yarn turbo run loc",
     "coverage": "yarn turbo run coverage",
     "coveralls": "yarn turbo run coveralls",
-    "test": "yarn turbo run test"
+    "test": "yarn turbo run test",
+    "upgrade": "yarn turbo run upgrade"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",

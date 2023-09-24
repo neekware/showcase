@@ -6,8 +6,9 @@
   "sideEffects": false,
   "description": "Local tools and utils",
   "scripts": {
-    "loc": "yarn ts-node ./src/loc.ts",
-    "coveralls": "yarn ts-node ./src/coveralls.ts"
+    "loc": "yarn ts-node ./utils/loc.ts",
+    "coveralls": "yarn ts-node ./utils/coveralls.ts",
+    "upgrade": "yarn ts-node ./utils/upgrade.ts"
   },
   "devDependencies": {
     "@types/node": "^20.4.1",
