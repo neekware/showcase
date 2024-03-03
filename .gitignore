@@ -17,3 +17,7 @@
 **/test-results/
 **/playwright-report/
 **/playwright/.cache/
+
+.yarn/*
+!.yarn/cache/
+!.yarn/releases/
