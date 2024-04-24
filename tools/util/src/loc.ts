@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-
 import { execute, projDir, readme } from './util';
 
 const { program } = require('commander');

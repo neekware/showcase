@@ -7,6 +7,8 @@ module.exports = {
   extends: [
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:tailwindcss/recommended',
     'prettier',
   ],
   plugins: ['@typescript-eslint', 'import'],
@@ -38,7 +40,7 @@ module.exports = {
           'index',
         ],
         alphabetize: {
-          order: 'asc', // Sort in ascending order
+          // order: 'asc', // Sort in ascending order
           caseInsensitive: true, // Ignore the case of imports
         },
       },

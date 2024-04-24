@@ -19,6 +19,9 @@ module.exports = {
     '@vercel/style-guide/eslint/react',
     '@vercel/style-guide/eslint/next',
     'eslint-config-turbo',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:tailwindcss/recommended',
+    'prettier',
   ].map(require.resolve),
   parserOptions: {
     project,
@@ -37,7 +40,11 @@ module.exports = {
   },
   ignorePatterns: ['.*.js', 'node_modules/', 'dist/'],
   rules: {
-    'import/no-default-export': 'off',
+    'simple-import-sort/imports': 'error',
+    '@next/next/no-html-link-for-pages': 'off',
+    'tailwindcss/no-custom-classname': 'off',
+    'tailwindcss/classnames-order': 'warn',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'import/order': [
       'error',
       {
@@ -51,7 +58,7 @@ module.exports = {
           'index',
         ],
         alphabetize: {
-          order: 'asc', // Sort in ascending order
+          // order: 'asc', // Sort in ascending order
           caseInsensitive: true, // Ignore the case of imports
         },
       },

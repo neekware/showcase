@@ -24,7 +24,7 @@ module.exports = {
     // Local imports
     '^[./]',
   ],
-  importOrderSeparation: true, // Ensures a newline between each group
+  importOrderSeparation: false,
   importOrderSortSpecifiers: true,
   importOrderGroupNamespaceSpecifiers: true,
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],

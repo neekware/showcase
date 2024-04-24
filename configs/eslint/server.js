@@ -15,6 +15,9 @@ module.exports = {
   extends: [
     '@vercel/style-guide/eslint/node',
     '@vercel/style-guide/eslint/typescript',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:tailwindcss/recommended',
+    'prettier',
   ].map(require.resolve),
   parserOptions: {
     project,
@@ -55,7 +58,7 @@ module.exports = {
           'index',
         ],
         alphabetize: {
-          order: 'asc', // Sort in ascending order
+          // order: 'asc', // Sort in ascending order
           caseInsensitive: true, // Ignore the case of imports
         },
       },

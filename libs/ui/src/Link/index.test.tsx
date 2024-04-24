@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client';
-
 import { Link } from '.';
 
 describe('Link', () => {
