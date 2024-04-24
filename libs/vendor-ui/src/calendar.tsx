@@ -3,11 +3,18 @@
 import * as React from 'react';
 import { DayPicker } from 'react-day-picker';
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
-import Icon from '@mdi/react';
+import { Icon } from '@mdi/react';
 import { cn } from '@repo/util';
 import { buttonVariants } from './button';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
+// Define the Icon components outside the Calendar component
+function IconLeft() {
+  return <Icon path={mdiChevronLeft} className="h-6 w-6" />;
+}
+function IconRight() {
+  return <Icon path={mdiChevronRight} className="h-6 w-6" />;
+}
 
 function Calendar({
   className,
@@ -58,10 +65,7 @@ function Calendar({
         day_hidden: 'invisible',
         ...classNames,
       }}
-      components={{
-        IconLeft: () => <Icon path={mdiChevronLeft} className="h-6 w-6" />,
-        IconRight: () => <Icon path={mdiChevronRight} className="h-6 w-6" />,
-      }}
+      components={{ IconLeft, IconRight }}
       {...props}
     />
   );

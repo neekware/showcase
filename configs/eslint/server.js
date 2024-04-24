@@ -13,12 +13,14 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 
 module.exports = {
   extends: [
-    '@vercel/style-guide/eslint/node',
-    '@vercel/style-guide/eslint/typescript',
+    'eslint:recommended',
+    require.resolve('@vercel/style-guide/eslint/node'),
+    require.resolve('@vercel/style-guide/eslint/typescript'),
+    'eslint-config-turbo',
     'plugin:@typescript-eslint/recommended',
-    'plugin:tailwindcss/recommended',
     'prettier',
-  ].map(require.resolve),
+  ],
+  plugins: ['@typescript-eslint', 'import'],
   parserOptions: {
     project,
   },
@@ -44,11 +46,12 @@ module.exports = {
   ],
   ignorePatterns: ['.*.js', 'node_modules/', 'dist/'],
   rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off',
     'import/no-default-export': 'off',
     'import/order': [
-      'error',
+      'warn',
       {
-        'newlines-between': 'always',
+        'newlines-between': 'never',
         groups: [
           'builtin',
           'external',

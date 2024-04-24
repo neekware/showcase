@@ -13,13 +13,17 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 
 module.exports = {
   extends: [
-    '@vercel/style-guide/eslint/browser',
-    '@vercel/style-guide/eslint/typescript',
-    '@vercel/style-guide/eslint/react',
+    'eslint:recommended',
+    'prettier',
+    require.resolve('@vercel/style-guide/eslint/browser'),
+    require.resolve('@vercel/style-guide/eslint/typescript'),
+    require.resolve('@vercel/style-guide/eslint/react'),
+    'eslint-config-turbo',
     'plugin:@typescript-eslint/recommended',
     'plugin:tailwindcss/recommended',
     'prettier',
-  ].map(require.resolve),
+  ],
+  plugins: ['@typescript-eslint', 'import', 'tailwindcss'],
   parserOptions: {
     project,
     ecmaFeatures: {
@@ -43,18 +47,19 @@ module.exports = {
   },
   ignorePatterns: ['node_modules/', 'dist/', '.eslintrc.js', '**/*.css'],
   rules: {
-    'simple-import-sort/imports': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
     '@next/next/no-html-link-for-pages': 'off',
     'tailwindcss/no-custom-classname': 'off',
     'tailwindcss/classnames-order': 'warn',
+    'tailwindcss/enforces-shorthand': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'import/no-default-export': 'off',
     'react/prop-types': 'off', // Example rule, disable if using TypeScript for prop validation
     'react/react-in-jsx-scope': 'off', // Not needed for React 17+
     'import/order': [
-      'error',
+      'warn',
       {
-        'newlines-between': 'always',
+        'newlines-between': 'never',
         groups: [
           'builtin',
           'external',

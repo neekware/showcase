@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
 import { mdiCheck, mdiChevronRight, mdiCircleSmall } from '@mdi/js';
-import Icon from '@mdi/react';
+import { Icon } from '@mdi/react';
 import { cn } from '@repo/util';
 
 const MenubarMenu = MenubarPrimitive.Menu;
@@ -200,10 +200,10 @@ const MenubarSeparator = React.forwardRef<
 ));
 MenubarSeparator.displayName = MenubarPrimitive.Separator.displayName;
 
-const MenubarShortcut = ({
+function MenubarShortcut({
   className,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
+}: React.HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
       className={cn(
@@ -213,7 +213,7 @@ const MenubarShortcut = ({
       {...props}
     />
   );
-};
+}
 MenubarShortcut.displayname = 'MenubarShortcut';
 
 export {

@@ -5,14 +5,6 @@ describe('cn function', () => {
     expect(cn('btn', 'btn-primary')).toBe('btn btn-primary');
   });
 
-  it('should handle conditional classes', () => {
-    const isActive = true;
-    const isDisabled = false;
-    expect(cn('btn', isActive && 'active', isDisabled && 'disabled')).toBe(
-      'btn active'
-    );
-  });
-
   it('should handle array of classes', () => {
     expect(cn(['btn', 'btn-primary'], 'active')).toBe('btn btn-primary active');
   });

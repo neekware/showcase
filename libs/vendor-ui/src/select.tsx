@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { mdiCheck, mdiCodeTags } from '@mdi/js';
-import Icon from '@mdi/react';
+import { Icon } from '@mdi/react';
 import { cn } from '@repo/util';
 
 const Select = SelectPrimitive.Root;

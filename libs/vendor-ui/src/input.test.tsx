@@ -13,6 +13,7 @@ describe('Input component', () => {
   });
 
   test('forwards the ref to the DOM element', () => {
+    // eslint-disable-next-line import/no-named-as-default-member -- Disable
     const ref = React.createRef<HTMLInputElement>();
     render(<Input ref={ref} aria-label="test-input" />);
     const inputElement = screen.getByLabelText('test-input');

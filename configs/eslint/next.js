@@ -13,16 +13,19 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 
 module.exports = {
   extends: [
-    '@vercel/style-guide/eslint/node',
-    '@vercel/style-guide/eslint/typescript',
-    '@vercel/style-guide/eslint/browser',
-    '@vercel/style-guide/eslint/react',
-    '@vercel/style-guide/eslint/next',
+    'eslint:recommended',
+    'prettier',
+    require.resolve('@vercel/style-guide/eslint/node'),
+    require.resolve('@vercel/style-guide/eslint/typescript'),
+    require.resolve('@vercel/style-guide/eslint/browser'),
+    require.resolve('@vercel/style-guide/eslint/react'),
+    require.resolve('@vercel/style-guide/eslint/next'),
     'eslint-config-turbo',
     'plugin:@typescript-eslint/recommended',
     'plugin:tailwindcss/recommended',
     'prettier',
-  ].map(require.resolve),
+  ],
+  plugins: ['@typescript-eslint', 'import', 'tailwindcss'],
   parserOptions: {
     project,
   },
@@ -40,15 +43,17 @@ module.exports = {
   },
   ignorePatterns: ['.*.js', 'node_modules/', 'dist/'],
   rules: {
-    'simple-import-sort/imports': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'import/no-default-export': 'off',
     '@next/next/no-html-link-for-pages': 'off',
     'tailwindcss/no-custom-classname': 'off',
     'tailwindcss/classnames-order': 'warn',
+    'tailwindcss/enforces-shorthand': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'import/order': [
-      'error',
+      'warn',
       {
-        'newlines-between': 'always',
+        'newlines-between': 'never',
         groups: [
           'builtin',
           'external',

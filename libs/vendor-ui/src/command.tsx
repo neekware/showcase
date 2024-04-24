@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { mdiMagnify } from '@mdi/js';
-import Icon from '@mdi/react';
+import { Icon } from '@mdi/react';
 import { type DialogProps } from '@radix-ui/react-dialog';
 import { cn } from '@repo/util';
 import { Command as CommandPrimitive } from 'cmdk';
@@ -41,7 +41,7 @@ const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-  <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
+  <div className="flex items-center border-b px-3" data-cmdk-input-wrapper="">
     <Icon path={mdiMagnify} className="mr-2 h-6 w-6 shrink-0 opacity-50" />
     <CommandPrimitive.Input
       ref={ref}

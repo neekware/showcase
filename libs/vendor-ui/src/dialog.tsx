@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { mdiClose } from '@mdi/js';
-import Icon from '@mdi/react';
+import { Icon } from '@mdi/react';
 import { cn } from '@repo/util';
 
 const Dialog = DialogPrimitive.Root;
@@ -14,11 +14,14 @@ interface DialogPortalProps extends DialogPrimitive.DialogPortalProps {
   className?: string;
 }
 
-const DialogPortal = ({ className, ...props }: DialogPortalProps) => (
-  <div className={cn(className)}>
-    <DialogPrimitive.Portal {...props} />
-  </div>
-);
+function DialogPortal({ className, ...props }: DialogPortalProps) {
+  return (
+    <div className={cn(className)}>
+      <DialogPrimitive.Portal {...props} />
+    </div>
+  );
+}
+
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;
 
 const DialogOverlay = React.forwardRef<
@@ -60,32 +63,36 @@ const DialogContent = React.forwardRef<
 ));
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
-const DialogHeader = ({
+function DialogHeader({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      'flex flex-col space-y-1.5 text-center sm:text-left',
-      className
-    )}
-    {...props}
-  />
-);
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={cn(
+        'flex flex-col space-y-1.5 text-center sm:text-left',
+        className
+      )}
+      {...props}
+    />
+  );
+}
 DialogHeader.displayName = 'DialogHeader';
 
-const DialogFooter = ({
+function DialogFooter({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
-      className
-    )}
-    {...props}
-  />
-);
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={cn(
+        'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
+        className
+      )}
+      {...props}
+    />
+  );
+}
 DialogFooter.displayName = 'DialogFooter';
 
 const DialogTitle = React.forwardRef<

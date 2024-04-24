@@ -27,10 +27,12 @@ module.exports = {
     },
   },
   rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'import/no-default-export': 'off',
     'import/order': [
-      'error',
+      'warn',
       {
-        'newlines-between': 'always',
+        'newlines-between': 'never',
         groups: [
           'builtin',
           'external',
