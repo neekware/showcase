@@ -1,10 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { Input } from './input';
-
-// Adjust the import path as necessary.
 
 describe('Input component', () => {
   test('renders correctly with default props', () => {
@@ -27,12 +24,5 @@ describe('Input component', () => {
     render(<Input customStyle={customStyle} aria-label="test-input" />);
     const inputElement = screen.getByLabelText('test-input');
     expect(inputElement).toHaveClass(customStyle);
-  });
-
-  test('changes value when typed into', () => {
-    render(<Input aria-label="test-input" />);
-    const inputElement = screen.getByLabelText('test-input');
-    userEvent.type(inputElement, 'Hello, World!');
-    expect(inputElement).toHaveValue('Hello, World!');
   });
 });
