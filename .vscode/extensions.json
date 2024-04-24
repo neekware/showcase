@@ -1,0 +1,23 @@
+{
+  "recommendations": [
+    "johnpapa.vscode-cloak",
+    "streetsidesoftware.code-spell-checker",
+    "nicolas-liger.dbml-viewer",
+    "mikestead.dotenv",
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "graphql.vscode-graphql-syntax",
+    "firsttris.vscode-jest-runner",
+    "ritwickdey.liveserver",
+    "pkief.material-icon-theme",
+    "ms-playwright.playwright",
+    "esbenp.prettier-vscode",
+    "qwtel.sqlite-viewer",
+    "rangav.vscode-thunder-client",
+    "mike-co.import-sorter",
+    "matt-meyers.vscode-dbml",
+    "dotjoshjohnson.xml",
+    "bradlc.vscode-tailwindcss"
+  ]
+}

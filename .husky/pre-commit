@@ -1,7 +1,7 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-# pnpm format && \
-# turbo lint && \
-turbo loc && \
-git add README.md
+pnpm format
+# pnpm lint --fix
+# yarn loc && \
+# git add README.md

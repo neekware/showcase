@@ -1,37 +1,32 @@
 {
-  "name": "showcase",
-  "version": "0.1.0",
-  "author": {
-    "name": "Neekware Inc.",
-    "url": "https://neekware.com"
-  },
+  "private": true,
   "scripts": {
-    "prettier": "node_modules/.bin/prettier",
-    "pnpm turbo": "node_modules/.bin/turbo",
-    "format": "prettier -w .",
+    "__REPO_RELATED__": "",
     "prepare": "husky install",
-    "build": "pnpm turbo run build",
-    "clean": "pnpm turbo run clean",
-    "dev": "pnpm turbo run dev --no-cache  --continue --concurrency=11",
-    "start": "pnpm turbo run dev --no-cache  --continue --concurrency=11",
-    "loc": "pnpm turbo run loc",
-    "coverage": "pnpm turbo run coverage",
-    "coveralls": "pnpm turbo run coveralls",
-    "test": "pnpm turbo run test",
-    "e2e": "pnpm turbo run e2e",
-    "lint": "pnpm turbo run lint",
-    "lint:prettier": "pnpm turbo run lint:prettier"
-  },
-  "engines": {
-    "node": ">=16.0.0"
+    "update": "pnpm update --latest -r",
+    "clean": "turbo clean; rm -rf .turbo && rm -rf dist && rm -rf coverage",
+    "clean:deep": "turbo clean:deep; rm -rf node_modules",
+    "clean:cache": "rm -rf node_modules/.cache",
+    "loc": "turbo loc",
+    "__FORMAT_RELATED__": "",
+    "format": "prettier -w \"**/*.{ts,tsx,js,jsx,html,css,svg,yml,json,md}\"",
+    "lint": "turbo lint",
+    "typecheck": "turbo run typecheck",
+    "__ACTION_RELATED__": "",
+    "build": "turbo build",
+    "start": "turbo start",
+    "dev": "turbo dev",
+    "test": "turbo run test",
+    "coveralls": "turbo coveralls"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "@types/node": "^20.3.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "husky": "^8.0.3",
-    "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.3.0",
-    "turbo": "^1.10.6"
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "turbo": "^1.13.2"
   },
-  "packageManager": "pnpm@7.15.0"
+  "engines": {
+    "node": ">=18"
+  }
 }

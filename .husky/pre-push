@@ -9,7 +9,7 @@ set -e
 # if [ "$DIFF" != "" ] 
 # then
 #   echo "There are changes to be pushed"
-#   pnpm build && pnpm test
+#   yarn build && yarn test
 # else
 #   echo "No changes to be pushed, skipping build & test"
 # fi
