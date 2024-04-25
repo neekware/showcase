@@ -16,8 +16,6 @@ export * from './dialog';
 export * from './dropdown-menu';
 export * from './form';
 export * from './hover-card';
-export * from './index';
-export * from './input.test';
 export * from './input';
 export * from './label';
 export * from './menubar';
