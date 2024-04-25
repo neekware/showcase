@@ -15,8 +15,8 @@
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit",
     "__ACTION_RELATED__": "",
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "build:pkg": "tsup",
+    "dev:pkg": "tsup --watch",
     "test": "jest --coverage"
   },
   "jest": {
