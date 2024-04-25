@@ -32,6 +32,9 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../libs/ui
+      '@repo/vendor-ui':
+        specifier: workspace:*
+        version: link:../../libs/vendor-ui
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)

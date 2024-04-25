@@ -1,5 +1,6 @@
 import { log } from '@repo/logger';
 import { CounterButton, Link } from '@repo/ui';
+import { Button } from '@repo/vendor-ui';
 
 export const metadata = {
   title: 'Store | Showcase',
@@ -14,6 +15,7 @@ export default function Store(): JSX.Element {
         Store <br />
         <span>Kitchen Sink</span>
       </h1>
+      <Button>Hello You</Button>
       <CounterButton />
       <p className="description">
         Built With{' '}
