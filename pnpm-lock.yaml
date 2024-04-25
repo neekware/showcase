@@ -32,6 +32,9 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../libs/ui
+      '@repo/util':
+        specifier: workspace:*
+        version: link:../../libs/util
       '@repo/vendor-ui':
         specifier: workspace:*
         version: link:../../libs/vendor-ui
