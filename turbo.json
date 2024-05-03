@@ -4,10 +4,12 @@
   "globalEnv": ["PORT"],
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "build:libs": {
-      "dependsOn": ["^build:libs"]
+      "dependsOn": ["^build:libs"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "start": {
       "dependsOn": ["^build"],

@@ -5,4 +5,9 @@ module.exports = {
   parserOptions: {
     project: true,
   },
+  settings: {
+    tailwindcss: {
+      config: 'tailwind.config.js',
+    },
+  },
 };

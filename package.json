@@ -22,6 +22,8 @@
     "coveralls": "turbo coveralls"
   },
   "devDependencies": {
+    "@softonus/prettier-plugin-duplicate-remover": "^1.0.1",
+    "@softonus/prettier-plugin-whitespace-remover": "^1.0.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "husky": "^9.0.11",
     "prettier": "^3.2.5",

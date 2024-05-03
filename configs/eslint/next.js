@@ -13,13 +13,12 @@ const project = resolve(process.cwd(), 'tsconfig.json');
 
 module.exports = {
   extends: [
-    'eslint:recommended',
-    'prettier',
     require.resolve('@vercel/style-guide/eslint/node'),
     require.resolve('@vercel/style-guide/eslint/typescript'),
     require.resolve('@vercel/style-guide/eslint/browser'),
     require.resolve('@vercel/style-guide/eslint/react'),
     require.resolve('@vercel/style-guide/eslint/next'),
+    'eslint:recommended',
     'eslint-config-turbo',
     'plugin:@typescript-eslint/recommended',
     'plugin:tailwindcss/recommended',
@@ -40,6 +39,22 @@ module.exports = {
         project,
       },
     },
+    tailwindcss: {
+      callees: ['classnames', 'clsx', 'ctl'],
+      cssFiles: [
+        '**/*.css',
+        '!**/node_modules',
+        '!**/.*',
+        '!**/dist',
+        '!**/build',
+      ],
+      cssFilesRefreshRate: 5_000,
+      removeDuplicates: true,
+      skipClassAttribute: false,
+      whitelist: [],
+      tags: [], // can be set to e.g. ['tw'] for use in tw`bg-blue`
+      classRegex: '^class(Name)?$', // can be modified to support custom attributes. E.g. "^tw$" for `twin.macro`
+    },
   },
   ignorePatterns: ['.*.js', 'node_modules/', 'dist/'],
   rules: {
@@ -47,7 +62,7 @@ module.exports = {
     'import/no-default-export': 'off',
     '@next/next/no-html-link-for-pages': 'off',
     'tailwindcss/no-custom-classname': 'off',
-    'tailwindcss/classnames-order': 'warn',
+    'tailwindcss/classnames-order': 'off',
     'tailwindcss/enforces-shorthand': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'import/order': [

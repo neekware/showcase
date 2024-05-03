@@ -8,5 +8,12 @@
       "@web/*": ["./src/*"]
     }
   },
-  "include": ["src", "next.config.js", "next-env.d.ts", ".next/types/**/*.ts"]
+  "include": [
+    "src",
+    "postcss.config.js",
+    "tailwind.config.js",
+    "next.config.js",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ]
 }
