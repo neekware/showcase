@@ -1,0 +1,32 @@
+{
+  "name": "@repo/tools-util",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "sideEffects": false,
+  "description": "Local tools and utils",
+  "scripts": {
+    "__REPO_RELATED__": "",
+    "clean": "rm -rf .turbo && rm -rf dist && rm -rf .next && rm -rf coverage",
+    "clean:mods": "rm -rf node_modules",
+    "__FORMAT_RELATED__": "",
+    "typecheck": "tsc --noEmit",
+    "__ACTION_RELATED__": "",
+    "loc": "pnpm ts-node ./src/loc.ts",
+    "coveralls": "pnpm ts-node ./src/coveralls.ts"
+  },
+  "jest": {
+    "preset": "@repo/jest-presets/browser"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/glob": "^8.1.0",
+    "@types/node": "^20.12.8",
+    "commander": "^12.0.0",
+    "dotenv": "^16.4.5",
+    "glob": "^10.3.12",
+    "jest": "^29.7.0",
+    "markdown-replace-section": "^0.4.0",
+    "ts-node": "^10.9.2"
+  }
+}

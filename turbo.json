@@ -1,81 +1,56 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "globalEnv": ["NODE_ENV", "PORT"],
+  "globalEnv": ["PORT"],
   "pipeline": {
     "build": {
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
-      "dependsOn": ["^build"]
-    },
-    "test": {
-      "dependsOn": ["lint", "build"]
-    },
-    "coverage": {
-      "dependsOn": ["^test"],
-      "cache": false
-    },
-    "coveralls": {
-      "dependsOn": ["^coverage"],
-      "cache": false
-    },
-    "lint": {
-      "dependsOn": ["lint:prettier"]
-    },
-    "lint:prettier": {
-      "inputs": [
-        "**/*.code-snippets",
-        "**/*.component.html",
-        "**/*.css",
-        "**/*.gql",
-        "**/*.graphql",
-        "**/*.har",
-        "**/*.hbs",
-        "**/*.htm",
-        "**/*.html",
-        "**/*.js",
-        "**/*.json",
-        "**/*.json5",
-        "**/*.jsonc",
-        "**/*.jss",
-        "**/*.jsx",
-        "**/*.less",
-        "**/*.markdown",
-        "**/*.md",
-        "**/*.mdx",
-        "**/*.scss",
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.xhtml",
-        "**/*.yaml",
-        "**/*.yml",
-        "**/*.eslintrc",
-        "**/*.eslintrc.json",
-        "**/*.prettierrc",
-        "**/*README",
-        "**/*tsconfig.json",
-        "**/*tslint.json"
-      ]
-    },
-    "dev": {
       "dependsOn": ["^build"],
-      "cache": false,
-      "persistent": true
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "build:libs": {
+      "dependsOn": ["^build:libs"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "start": {
       "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },
-    "e2e": {
-      "dependsOn": ["^start"],
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "coveralls": {
+      "dependsOn": ["test"],
       "cache": false
     },
-    "e2e:report": {
-      "dependsOn": ["^e2e"],
-      "cache": false
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "dev:turbo": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
     },
     "clean": {
-      "cache": false
+      "cache": false,
+      "persistent": true
+    },
+    "clean:mods": {
+      "cache": false,
+      "persistent": true
+    },
+    "clean:cache": {
+      "cache": false,
+      "persistent": true
     },
     "loc": {
       "cache": false

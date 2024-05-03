@@ -15,7 +15,7 @@ The project has the following structure:
 ├── README.md
 ├── apps # Directory for applications
 │ └── web # Web application built using Next.js
-├── configs # Configuration files, including tsconfig, jest, eslint
+├── configs # tsconfig, jest, eslint, tailwind, ... etc.
 ├── tools # Node.js scripts and tools
 │ └── utils # Utility scripts and tools
 
@@ -42,7 +42,7 @@ git clone https://github.com/neekware/showcase.git
 cd showcase
 
 # Install dependencies
-pnpm i
+pnpm install
 ```
 
 You can format all files of a specific type:
@@ -98,15 +98,15 @@ To install new packages, you can use the following commands:
 
 ```bash
 # Install an external dependency at the root/top-level in the main package.json
-pnpm -w add <external-lib-name>
+pnpm -w add <package-name>
 
 # Install a external development dependency at the root/top-level in the main package.json
-pnpm -w add <external-lib-name> -D
+pnpm -w add -D <package-name>
 
 # Install a dependency in a sub-package (lib/app) ONLY
-# Example: pnpm --filter=ui add uuid
-# (where "ui" is the internal package name and "uuid" is the external dependency)
-pnpm --filter=<internal-package-name> add <external-lib-name>
+# Example: pnpm workspace web add uuid
+# (where "web" is the workspace and "uuid" is the external dependency)
+pnpm add <package-name> --filter <workspace-name>
 ```
 
 ### Contribution
@@ -131,22 +131,22 @@ pnpm --filter=<internal-package-name> add <external-lib-name>
 #### Branches pipeline / flow
 
 ```txt
-bug/<nam> -------+
-feature/<name> --|--->  dev  ----->  ci  ----->  main  ----->  (Deployment)
-   ^                     ^            ^            ^
-   |                     |            |            |
-   |                     |            |            |
-Local Development        |            |            |
-& Experimentation        |            |            |
-                         |            |            |
-                   Pull Requests      |            |
-                   from forks         |            |
-                                      |            |
-                                Comprehensive      |
-                                Testing and        |
-                                Integration        |
-                                                   |
-                                               Production
+bug/<name> ---+
+feat/<name> --|--> (dev) --> (ci) --> (main) --> (deploy)
+    ^                ^        ^         ^
+    |                |        |         |
+    |                |        |         |
+Local Development    |        |         |
+& Experimentation    |        |         |
+                     |        |         |
+                Pull Requests |         |
+                from forks    |         |
+                              |         |
+                       Comprehensive    |
+                       Testing and      |
+                       Integration      |
+                                        |
+                                   Production
 ```
 
 ### Community Guidelines
@@ -172,15 +172,15 @@ X.Y.Z Semantic Versioning
 ```txt<br>--------------------------------------------------------------------------------
  Language             Files        Lines        Blank      Comment         Code
 --------------------------------------------------------------------------------
- TypeScript              14          819          130           98          591
- JSON                    24          475            0            0          475
- Markdown                11          332           97            0          235
- Typescript JSX          12          256           24           17          215
- JavaScript              14          220            7           62          151
+ Typescript JSX          48         3046          295            6         2745
+ JSON                    28          696            0            0          696
+ TypeScript              14          513           66           53          394
+ JavaScript              13          435           16           92          327
+ Markdown                 3          210           57            0          153
+ CSS                      1           63            7            0           56
  YAML                     1            5            0            0            5
- CSS                      1            4            0            0            4
 --------------------------------------------------------------------------------
- Total                   77         2111          258          177         1676
+ Total                  108         4968          441          151         4376
 --------------------------------------------------------------------------------
 ```
 
