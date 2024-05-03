@@ -17,6 +17,7 @@
     "build:libs": "turbo build:libs",
     "start": "turbo start",
     "dev": "turbo dev",
+    "dev:turbo": "turbo dev -- --turbo",
     "test": "turbo run test",
     "coveralls": "turbo coveralls"
   },
