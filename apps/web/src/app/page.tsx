@@ -3,10 +3,10 @@ import { CounterButton } from '@repo/ui';
 import { Button } from '@repo/vendor-ui';
 
 export const metadata = {
-  title: 'Store | Showcase',
+  title: 'Home | Showcase',
 };
 
-export default function Store(): JSX.Element {
+export default function Home(): JSX.Element {
   log('Hey! This is the Store page.');
 
   return (

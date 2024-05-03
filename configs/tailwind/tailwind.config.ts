@@ -2,10 +2,7 @@ import type { Config } from 'tailwindcss';
 
 const baseConfig: Config = {
   darkMode: ['class'],
-  content: [
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: [],
   theme: {
     fontSize: {
       '3xl': '1.875rem', // 30px
