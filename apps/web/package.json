@@ -5,7 +5,7 @@
   "scripts": {
     "__REPO_RELATED__": "",
     "clean": "rm -rf .turbo && rm -rf dist && rm -rf .next && rm -rf coverage",
-    "clean:deep": "rm -rf node_modules",
+    "clean:mods": "rm -rf node_modules",
     "__FORMAT_RELATED__": "",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

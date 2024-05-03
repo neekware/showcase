@@ -6,6 +6,9 @@
     "build": {
       "dependsOn": ["^build"]
     },
+    "build:libs": {
+      "dependsOn": ["^build:libs"]
+    },
     "start": {
       "dependsOn": ["^build"],
       "cache": false,
@@ -34,7 +37,7 @@
       "cache": false,
       "persistent": true
     },
-    "clean:deep": {
+    "clean:mods": {
       "cache": false,
       "persistent": true
     },

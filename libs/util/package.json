@@ -13,12 +13,12 @@
   "scripts": {
     "__REPO_RELATED__": "",
     "clean": "rm -rf .turbo && rm -rf dist && rm -rf .next && rm -rf coverage",
-    "clean:deep": "rm -rf node_modules",
+    "clean:mods": "rm -rf node_modules",
     "__FORMAT_RELATED__": "",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit",
     "__ACTION_RELATED__": "",
-    "build:pkg": "tsup",
+    "build:libs": "tsup",
     "dev:pkg": "tsup --watch",
     "test": "jest --coverage"
   },

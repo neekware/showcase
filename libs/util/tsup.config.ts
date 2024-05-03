@@ -1,7 +1,7 @@
 import { type Options, defineConfig } from 'tsup';
 
 export default defineConfig((options: Options) => ({
-  entry: ['./src/index.tsx'],
+  entry: ['./index.tsx'],
   format: ['cjs', 'esm'],
   dts: true,
   external: ['react'],
