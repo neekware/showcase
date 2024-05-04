@@ -1,5 +1,10 @@
+import { Breakpoints, SiteFooter, SiteHeader, ThemeProvider } from '@repo/ui';
+import { ThemeSelector } from '@repo/ui/src/theme-selector';
 import { cn } from '@repo/util';
 import { fontSans } from '@web/cfg/fonts';
+import { mobileSettings } from '../cfg/mobile';
+import { siteSettings } from '../cfg/site';
+import { availableThemes } from '../cfg/themes';
 import './styles.css';
 
 export default function RootLayout({
@@ -15,7 +20,24 @@ export default function RootLayout({
           'bg-background min-h-screen font-sans antialiased'
         )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative flex min-h-screen flex-col">
+            <SiteHeader
+              themes={availableThemes}
+              siteSettings={siteSettings}
+              mobileSettings={mobileSettings}
+            />
+            <div className="flex-1">{children}</div>
+            <SiteFooter siteSettings={siteSettings} />
+          </div>
+          <Breakpoints />
+        </ThemeProvider>
+        <ThemeSelector themes={availableThemes} />
       </body>
     </html>
   );

@@ -10,15 +10,17 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "__ACTION_RELATED__": "",
-    "build": "next build",
-    "dev": "next dev -p 4200",
-    "start": "next start -p 3200",
+    "build:web": "next build",
+    "dev:web": "next dev -p 4200",
+    "start:web": "next start -p 3200",
     "test": "jest --coverage --passWithNoTests"
   },
   "jest": {
     "preset": "@repo/jest-presets/browser"
   },
   "dependencies": {
+    "@mdi/js": "^7.4.47",
+    "@mdi/react": "^1.6.1",
     "@repo/logger": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/util": "workspace:*",

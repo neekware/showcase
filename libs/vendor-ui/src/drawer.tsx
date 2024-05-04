@@ -1,0 +1,30 @@
+'use client';
+
+import { forwardRef } from 'react';
+import { cn } from '@repo/util';
+import { Drawer as DrawerPrimitive } from 'vaul';
+
+const DrawerTrigger = DrawerPrimitive.Trigger;
+
+const DrawerContent = forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <DrawerPrimitive.Portal>
+    <DrawerPrimitive.Overlay className="fixed inset-0 z-50 bg-zinc-950/60" />
+    <DrawerPrimitive.Content
+      ref={ref}
+      className={cn(
+        'bg-background fixed inset-x-0 bottom-0 z-50 mt-24 h-[96%] rounded-t-[10px]',
+        className
+      )}
+      {...props}
+    >
+      <div className="bg-muted absolute left-1/2 top-3 h-2 w-[100px] -translate-x-1/2 rounded-full" />
+      {children}
+    </DrawerPrimitive.Content>
+  </DrawerPrimitive.Portal>
+));
+DrawerContent.displayName = 'DrawerContent';
+
+export { DrawerContent, DrawerTrigger };

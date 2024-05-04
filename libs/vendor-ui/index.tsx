@@ -13,6 +13,7 @@ export * from './src/collapsible';
 export * from './src/command';
 export * from './src/context-menu';
 export * from './src/dialog';
+export * from './src/drawer';
 export * from './src/dropdown-menu';
 export * from './src/form';
 export * from './src/hover-card';

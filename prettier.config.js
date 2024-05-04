@@ -6,6 +6,9 @@ module.exports = {
   tabWidth: 2,
   trailingComma: 'es5',
   importOrder: [
+    // Node related `type` imports
+    '^(node/(.*)$)|^(node:(.*)$)|^(node$)',
+
     // React related imports
     '^(react/(.*)$)|^(react-(.*)$)|^(react$)',
 

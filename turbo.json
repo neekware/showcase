@@ -1,9 +1,13 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "globalEnv": ["PORT"],
+  "globalEnv": ["PORT", "NODE_ENV"],
   "pipeline": {
     "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "build:web": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
@@ -11,12 +15,12 @@
       "dependsOn": ["^build:libs"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
-    "start": {
+    "start:web": {
       "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },
-    "test": {
+    "test:web": {
       "dependsOn": ["^build"],
       "outputs": ["coverage/**"]
     },
@@ -30,7 +34,7 @@
     "typecheck": {
       "dependsOn": ["^build"]
     },
-    "dev": {
+    "dev:web": {
       "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
