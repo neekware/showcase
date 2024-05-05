@@ -19,12 +19,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body
-        className={cn(
-          fontSans.variable,
-          'bg-background min-h-screen font-sans antialiased'
-        )}
-      >
+      <body className={fontSans.variable}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
