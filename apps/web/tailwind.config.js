@@ -4,7 +4,9 @@ import baseConfig from '@repo/tailwind-config';
 export default {
   ...baseConfig,
   content: [
-    'src/**/*.{js,ts,jsx,tsx,mdx}',
-    '../../libs/**/*.{js,ts,jsx,tsx,mdx}',
+    '../../libs/util/src/**/*.{ts,tsx}',
+    '../../libs/vendor-ui/src/**/*.{ts,tsx}',
+    '../../libs/ui/src/**/*.{ts,tsx}',
+    './src/app/**/*.{ts,tsx}',
   ],
 };

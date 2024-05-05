@@ -1,5 +1,10 @@
-import { Breakpoints, SiteFooter, SiteHeader, ThemeProvider } from '@repo/ui';
-import { ThemeSelector } from '@repo/ui/src/theme-selector';
+import {
+  Breakpoints,
+  SiteFooter,
+  SiteHeader,
+  ThemeProvider,
+  ThemeSelector,
+} from '@repo/ui';
 import { cn } from '@repo/util';
 import { fontSans } from '@web/cfg/fonts';
 import { mobileSettings } from '../cfg/mobile';
