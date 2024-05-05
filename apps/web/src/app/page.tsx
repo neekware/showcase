@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { log } from '@repo/logger';
 import { CounterButton } from '@repo/ui';
 import { Button } from '@repo/vendor-ui';
@@ -15,6 +16,9 @@ export default function Home(): JSX.Element {
         <div>
           <Button variant="destructive">Test</Button>
           <CounterButton />
+          <Link href="/auth/login">
+            <Button variant="default">Login</Button>
+          </Link>
         </div>
       </div>
     </div>

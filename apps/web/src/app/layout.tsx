@@ -5,7 +5,7 @@ import {
   ThemeProvider,
   ThemeSwap,
 } from '@repo/ui';
-import { fontSans } from '@web/cfg/fonts';
+import { fontRoboto } from '../cfg/fonts';
 import { mobileSettings } from '../cfg/mobile';
 import { siteSettings } from '../cfg/site';
 import { availableThemes } from '../cfg/themes';
@@ -20,7 +20,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={fontSans.variable}>
+      <body className={fontRoboto.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

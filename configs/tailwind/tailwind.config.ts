@@ -24,6 +24,7 @@ const baseConfig: Config = {
       fontFamily: {
         sans: ['var(--font-sans)'],
         mono: ['var(--font-mono)'],
+        roboto: ['var(--font-roboto)'],
       },
       colors: {
         border: 'hsl(var(--border))',

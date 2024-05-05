@@ -16,6 +16,7 @@ The project has the following structure:
 ├── apps # Directory for applications
 │ └── web # Web application built using Next.js
 ├── configs # tsconfig, jest, eslint, tailwind, ... etc.
+├── libs # logger, ui, vendor, ... etc.
 ├── tools # Node.js scripts and tools
 │ └── utils # Utility scripts and tools
 
