@@ -76,7 +76,7 @@ export function NavMobile({ mobileSettings, siteSettings }: NavMobileProps) {
           className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
         >
           <div className={`h-6 w-6 ${animationClass}`}>
-            {open ? <Icon path={mdiMenu} /> : <Icon path={mdiClose} />}
+            {open ? <Icon path={mdiClose} /> : <Icon path={mdiMenu} />}
           </div>
           <span className="sr-only">Toggle Menu</span>
         </Button>
