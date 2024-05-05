@@ -1,7 +1,7 @@
 import { type MobileSettings } from '@repo/ui';
 
 export const mobileSettings: MobileSettings = {
-  navMain: [
+  topNav: [
     {
       title: 'Themes',
       href: '/themes',
@@ -41,7 +41,7 @@ export const mobileSettings: MobileSettings = {
       title: 'Dark Mode',
       items: [
         {
-          title: 'Next.js',
+          title: 'NextJs',
           href: '/docs/dark-mode/next',
           items: [],
         },

@@ -13,11 +13,11 @@ export interface NavItemWithChildren extends NavItem {
   items: NavItemWithChildren[];
 }
 
-export type NavMainItem = NavItem;
+export type TopNavItem = NavItem;
 
 export type NavSidebarItem = NavItemWithChildren;
 
 export interface MobileSettings {
-  navMain: NavMainItem[];
+  topNav: TopNavItem[];
   navSidebar: NavSidebarItem[];
 }

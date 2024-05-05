@@ -5,12 +5,13 @@ import {
   ThemeProvider,
   ThemeSelector,
 } from '@repo/ui';
-import { cn } from '@repo/util';
 import { fontSans } from '@web/cfg/fonts';
 import { mobileSettings } from '../cfg/mobile';
 import { siteSettings } from '../cfg/site';
 import { availableThemes } from '../cfg/themes';
-import './styles.css';
+import '../styles/base.css';
+import '../styles/globals.css';
+import '../styles/themes.css';
 
 export default function RootLayout({
   children,
