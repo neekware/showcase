@@ -9,7 +9,7 @@ export const siteSettings: SiteSettings = {
   socials: [
     {
       title: 'X',
-      href: 'https://twitter.com/showcase_io',
+      href: 'https://twitter.com/',
       icon: mdiTwitter,
     },
     {

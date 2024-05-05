@@ -16,8 +16,8 @@ export const mobileSettings: MobileSettings = {
       external: true,
     },
     {
-      title: 'X Twitter',
-      href: 'https://twitter.com/showcase_io',
+      title: 'X',
+      href: 'https://twitter.com/',
       external: true,
     },
   ],
