@@ -3,7 +3,7 @@ import {
   SiteFooter,
   SiteHeader,
   ThemeProvider,
-  ThemeSelector,
+  ThemeSwap,
 } from '@repo/ui';
 import { fontSans } from '@web/cfg/fonts';
 import { mobileSettings } from '../cfg/mobile';
@@ -38,7 +38,7 @@ export default function RootLayout({
           </div>
           <Breakpoints />
         </ThemeProvider>
-        <ThemeSelector themes={availableThemes} />
+        <ThemeSwap />
       </body>
     </html>
   );

@@ -8,7 +8,7 @@ export interface AuthType {
 }
 
 export interface ThemeType {
-  colorScheme: string;
+  name: string;
   radius: number;
   [id: string]: unknown;
 }
@@ -28,7 +28,7 @@ export interface StateSettings {
 
 export const DefaultStateSettings: StateSettings = {
   auth: { token: '', isLoggedIn: false },
-  theme: { colorScheme: 'zinc', radius: 0.5 },
+  theme: { name: 'zinc', radius: 0.5 },
   profile: { username: '', email: '' },
 };
 

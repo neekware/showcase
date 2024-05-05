@@ -52,7 +52,7 @@ export function ThemeSelector({ themes }: ThemeSelectorProps) {
 function Selector({ themes }: ThemeSelectorProps) {
   const [mounted, setMounted] = React.useState(false);
   const { setTheme: setMode, theme: mode } = useTheme();
-  const [theme, setTheme] = useThemeState();
+  const [theme, setThemeState] = useThemeState();
 
   React.useEffect(() => {
     setMounted(true);
@@ -80,9 +80,9 @@ function Selector({ themes }: ThemeSelectorProps) {
                   size="sm"
                   key={nextTheme.name}
                   onClick={() => {
-                    setTheme({
+                    setThemeState({
                       ...theme,
-                      name: theme.name,
+                      name: nextTheme.name,
                     });
                   }}
                   className={cn(

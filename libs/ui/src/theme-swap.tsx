@@ -13,7 +13,7 @@ export function ThemeSwap() {
       }
     });
 
-    const nextTheme = theme.colorScheme;
+    const nextTheme = theme.name;
     document.body.classList.add(`theme-${nextTheme}`);
   }, [theme]);
 
