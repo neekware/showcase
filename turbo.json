@@ -7,20 +7,12 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
-    "build:web": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
-    },
-    "build:libs": {
-      "dependsOn": ["^build:libs"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
-    },
-    "start:web": {
+    "start": {
       "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },
-    "test:web": {
+    "test": {
       "dependsOn": ["^build"],
       "outputs": ["coverage/**"]
     },
@@ -34,7 +26,7 @@
     "typecheck": {
       "dependsOn": ["^build"]
     },
-    "dev:web": {
+    "dev": {
       "dependsOn": ["^build"],
       "cache": false,
       "persistent": true

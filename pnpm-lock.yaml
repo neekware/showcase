@@ -38,6 +38,18 @@ importers:
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
+      '@repo/logger':
+        specifier: workspace:*
+        version: link:../../libs/logger
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../libs/ui
+      '@repo/util':
+        specifier: workspace:*
+        version: link:../../libs/util
+      '@repo/vendor-ui':
+        specifier: workspace:*
+        version: link:../../libs/vendor-ui
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)

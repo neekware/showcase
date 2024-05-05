@@ -13,10 +13,9 @@
     "lint": "turbo lint",
     "typecheck": "turbo run typecheck",
     "__ACTION_RELATED__": "",
-    "build:web": "turbo build:web",
-    "build:libs": "turbo build:libs",
-    "start:web": "turbo start",
-    "dev:web": "turbo dev",
+    "build": "turbo build",
+    "start": "turbo start",
+    "dev": "turbo dev",
     "dev:turbo": "turbo dev",
     "test": "turbo run test",
     "coveralls": "turbo coveralls"
