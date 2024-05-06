@@ -30,7 +30,7 @@ export function NavTop() {
           Documentation
         </Link>
         <Link
-          href="/docs/components"
+          href="/components"
           className={cn(
             'hover:text-foreground/80 transition-colors',
             pathname.startsWith('/docs/components')

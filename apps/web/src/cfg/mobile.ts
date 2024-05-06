@@ -4,11 +4,11 @@ export const mobileSettings: MobileSettings = {
   topNav: [
     {
       title: 'Themes',
-      href: '/themes',
+      href: '#',
     },
     {
       title: 'Examples',
-      href: '/examples',
+      href: '#',
     },
     {
       title: 'GitHub',
@@ -27,12 +27,12 @@ export const mobileSettings: MobileSettings = {
       items: [
         {
           title: 'Introduction',
-          href: '/docs',
+          href: '#',
           items: [],
         },
         {
           title: 'About',
-          href: '/docs/about',
+          href: '#',
           items: [],
         },
       ],
@@ -42,7 +42,7 @@ export const mobileSettings: MobileSettings = {
       items: [
         {
           title: 'NextJs',
-          href: '/docs/dark-mode/next',
+          href: '#',
           items: [],
         },
       ],
