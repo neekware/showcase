@@ -15,17 +15,19 @@ export function ThemeModeToggle() {
 
   return (
     <div className="text-primary relative w-9 px-0">
-      {theme === 'dark' ? (
-        <Button variant="link" onClick={toggleTheme}>
-          <Icon path={mdiWeatherSunny} className="h-6 w-6" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      ) : (
-        <Button variant="link" onClick={toggleTheme}>
-          <Icon path={mdiWeatherNight} className="h-6 w-6" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      )}
+      <Button
+        onClick={toggleTheme}
+        variant="ghost"
+        className="flex size-8 items-center justify-center rounded-full"
+      >
+        <div className="text-primary">
+          <Icon
+            path={theme === 'dark' ? mdiWeatherSunny : mdiWeatherNight}
+            size={1}
+          />
+        </div>
+        <span className="sr-only">Toggle theme</span>
+      </Button>
     </div>
   );
 }

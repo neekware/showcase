@@ -32,8 +32,13 @@ export function ThemeSelector({ themes }: ThemeSelectorProps) {
       <div className="md:flex">
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="ghost" className="">
-              <Icon path={mdiPalette} className="text-primary h-6 w-6" />
+            <Button
+              variant="ghost"
+              className="flex size-8 items-center justify-center rounded-full"
+            >
+              <div className="text-primary">
+                <Icon path={mdiPalette} size={1} />
+              </div>
               <span className="sr-only">Customize theme</span>
             </Button>
           </PopoverTrigger>

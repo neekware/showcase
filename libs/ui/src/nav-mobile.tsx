@@ -62,12 +62,12 @@ export function NavMobile({ mobileSettings, siteSettings }: NavMobileProps) {
             setOpen(!open);
           }}
           variant="ghost"
-          className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+          className="flex size-8 items-center justify-center rounded-full md:hidden"
         >
-          <div className="h-6 w-6">
-            <Icon path={mdiMenu} />
+          <div className="text-primary">
+            <Icon path={mdiMenu} size={1} />
           </div>
-          <span className="sr-only">Toggle Menu</span>
+          <span className="sr-only">Toggle option Menu</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="border-t pr-0">
