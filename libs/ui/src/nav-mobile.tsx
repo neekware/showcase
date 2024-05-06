@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link, { type LinkProps } from 'next/link';
 import { useRouter } from 'next/navigation';
-import { mdiBriefcaseAccountOutline, mdiClose, mdiMenu } from '@mdi/js';
+import { mdiBriefcaseAccountOutline, mdiMenu } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { cn, hrefToString } from '@repo/util';
 import {
@@ -53,35 +53,24 @@ interface NavMobileProps {
 
 export function NavMobile({ mobileSettings, siteSettings }: NavMobileProps) {
   const [open, setOpen] = React.useState(false);
-  const [clicked, setClicked] = React.useState(false);
-
-  const handleClick = () => {
-    setClicked(true);
-    setOpen(!open);
-  };
-
-  let animationClass = '';
-  if (clicked) {
-    animationClass = open
-      ? 'animate-spin-clockwise'
-      : 'animate-spin-counter-clockwise';
-  }
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button
-          onClick={handleClick}
+          onClick={() => {
+            setOpen(!open);
+          }}
           variant="ghost"
           className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
         >
-          <div className={`h-6 w-6 ${animationClass}`}>
-            {open ? <Icon path={mdiClose} /> : <Icon path={mdiMenu} />}
+          <div className="h-6 w-6">
+            <Icon path={mdiMenu} />
           </div>
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="mt-14 border-t pr-0">
+      <SheetContent side="left" className="border-t pr-0">
         <LinkMobile
           href="/"
           className="mr-6 flex items-center space-x-2"
@@ -90,7 +79,7 @@ export function NavMobile({ mobileSettings, siteSettings }: NavMobileProps) {
           <Icon path={mdiBriefcaseAccountOutline} className="h-6 w-6" />
           <span className="font-bold">{siteSettings.name}</span>
         </LinkMobile>
-        <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
+        <ScrollArea className="my-4 h-[calc(100vh-2rem)] pb-10 pl-1">
           <div className="flex flex-col space-y-3">
             {mobileSettings.topNav.map(
               (item) =>
@@ -117,7 +106,7 @@ export function NavMobile({ mobileSettings, siteSettings }: NavMobileProps) {
                             <LinkMobile
                               href={subItem.href}
                               onOpenChange={setOpen}
-                              className="text-muted-foreground"
+                              className="text-muted-foreground pl-4"
                             >
                               {subItem.title}
                             </LinkMobile>
