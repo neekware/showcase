@@ -51,7 +51,7 @@ export function ThemeSelector({ themes }: ThemeSelectorProps) {
 
 function Selector({ themes }: ThemeSelectorProps) {
   const [mounted, setMounted] = React.useState(false);
-  const { setTheme: setMode, theme: mode } = useTheme();
+  const { setTheme: setMode, theme: mode = 'system' } = useTheme();
   const [theme, setThemeState] = useThemeState();
 
   React.useEffect(() => {

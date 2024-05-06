@@ -9,6 +9,7 @@ export * from './src/site-header';
 export * from './src/site-types';
 export * from './src/theme-provider';
 export * from './src/theme-selector';
+export * from './src/theme-toaster';
 export * from './src/theme-swap';
 export * from './src/theme-toggle';
 export * from './src/theme-types';

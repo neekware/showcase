@@ -7,7 +7,7 @@ import { Icon } from '@mdi/react';
 import { Button } from '@repo/vendor-ui';
 
 export function ThemeModeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme = 'system', setTheme } = useTheme();
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');

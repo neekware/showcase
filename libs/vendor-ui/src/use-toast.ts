@@ -1,4 +1,3 @@
-// Inspired by react-hot-toast library
 import * as React from 'react';
 import type { ToastActionElement, ToastProps } from './toast';
 
@@ -22,7 +21,7 @@ const actionTypes = {
 let count = 0;
 
 function genId() {
-  count = (count + 1) % Number.MAX_VALUE;
+  count = (count + 1) % Number.MAX_SAFE_INTEGER;
   return count.toString();
 }
 
@@ -166,7 +165,7 @@ function toast({ ...props }: Toast) {
   };
 }
 
-export function useToast() {
+function useToast() {
   const [state, setState] = React.useState<ToastState>(memoryState);
 
   React.useEffect(() => {
@@ -177,13 +176,15 @@ export function useToast() {
         listeners.splice(index, 1);
       }
     };
-  }, []);
+  }, [state]);
 
   return {
     ...state,
-    createToast: toast,
+    toast,
     dismiss: (toastId?: string) => {
       dispatch({ type: 'DISMISS_TOAST', toastId });
     },
   };
 }
+
+export { useToast, toast };
