@@ -8,6 +8,7 @@ export interface SocialItem {
 
 export interface SiteSettings {
   name: string;
+  icon?: string;
   url: string;
   ogImage: string;
   description: string;

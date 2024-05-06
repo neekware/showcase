@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link, { type LinkProps } from 'next/link';
 import { useRouter } from 'next/navigation';
-import { mdiBriefcaseAccountOutline, mdiMenu } from '@mdi/js';
+import { mdiMenu } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { cn, hrefToString } from '@repo/util';
 import {
@@ -76,7 +76,9 @@ export function NavMobile({ mobileSettings, siteSettings }: NavMobileProps) {
           className="mr-6 flex items-center space-x-2"
           onOpenChange={setOpen}
         >
-          <Icon path={mdiBriefcaseAccountOutline} className="h-6 w-6" />
+          {siteSettings.icon ? (
+            <Icon path={siteSettings.icon} className="h-6 w-6" />
+          ) : null}
           <span className="font-bold">{siteSettings.name}</span>
         </LinkMobile>
         <ScrollArea className="my-4 h-[calc(100vh-2rem)] pb-10 pl-1">

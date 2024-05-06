@@ -1,8 +1,9 @@
-import { mdiGithub, mdiTwitter } from '@mdi/js';
+import { mdiBriefcaseAccountOutline, mdiGithub, mdiTwitter } from '@mdi/js';
 import { type SiteSettings } from '@repo/ui';
 
 export const siteSettings: SiteSettings = {
   name: 'Showcase UI',
+  icon: mdiBriefcaseAccountOutline,
   url: 'https://showcase.io',
   ogImage: 'https://showcase.io/og.jpg',
   description: 'Showcase your political self beautify on a unified portal.',
