@@ -1,6 +1,6 @@
 {
   "name": "@repo/tools-util",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "private": true,
   "sideEffects": false,
@@ -16,12 +16,12 @@
     "coveralls": "pnpm ts-node ./src/coveralls.ts"
   },
   "jest": {
-    "preset": "@repo/jest-presets/browser"
+    "preset": "@repo/jest-cfg/browser"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
+    "@repo/typescript-cfg": "workspace:*",
     "@types/glob": "^8.1.0",
-    "@types/node": "^20.12.8",
+    "@types/node": "^20.12.10",
     "commander": "^12.0.0",
     "dotenv": "^16.4.5",
     "glob": "^10.3.12",

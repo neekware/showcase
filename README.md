@@ -14,11 +14,11 @@ The project has the following structure:
 ```text
 ├── README.md
 ├── apps # Directory for applications
-│ └── web # Web application built using Next.js
-├── configs # tsconfig, jest, eslint, tailwind, ... etc.
+│ └── www # Web application built using Next.js
+├── cfgs # tsconfig, jest, eslint, tailwind, ... etc.
 ├── libs # logger, ui, vendor, ... etc.
 ├── tools # Node.js scripts and tools
-│ └── utils # Utility scripts and tools
+│ └── util # Utility scripts and tools
 
 ```
 
@@ -43,7 +43,7 @@ git clone https://github.com/neekware/showcase.git
 cd showcase
 
 # Install dependencies
-pnpm install
+pnpm i
 ```
 
 You can format all files of a specific type:
@@ -79,8 +79,14 @@ turbo coveralls
 To clean build,test,lint cache artifact.
 
 ```bash
-# clean all lint, build, test, ... etc. artifacts
+# clean the build artifacts (.turbo, .next, dist/*, etc.)
 turbo clean
+
+# clean the build cache artifacts
+turbo clean:cache
+
+# clean the node_modules
+turbo clean:mods
 ```
 
 To execute long-running processes.
@@ -105,8 +111,8 @@ pnpm -w add <package-name>
 pnpm -w add -D <package-name>
 
 # Install a dependency in a sub-package (lib/app) ONLY
-# Example: pnpm workspace web add uuid
-# (where "web" is the workspace and "uuid" is the external dependency)
+# Example: pnpm workspace www add uuid
+# (where "www" is the workspace and "uuid" is the external dependency)
 pnpm add <package-name> --filter <workspace-name>
 ```
 
@@ -127,18 +133,22 @@ pnpm add <package-name> --filter <workspace-name>
 - Monitor your PR for further instructions and recommended fixes, if required.
 - Sync your forked repository with the upstream showcase repository.
 - Rinse and repeat.
-- `Note:` Don't recycle bug/feature branches, just create new ones.
+- `Note:` Don't reuse bug/feature branches, just create new ones.
 
 #### Branches pipeline / flow
 
 ```txt
-bug/<name> ---+
-feat/<name> --|--> (dev) --> (ci) --> (main) --> (deploy)
+bug/<name> -\
+enh/<name> --\
+fea/<name> ---\--> (dev) -> (ci) --> (main) --> (deploy)
     ^                ^        ^         ^
     |                |        |         |
     |                |        |         |
 Local Development    |        |         |
 & Experimentation    |        |         |
+(bug) Bugs           |        |         |
+(enh) Enhancement    |        |         |
+(fea) Features       |        |         |
                      |        |         |
                 Pull Requests |         |
                 from forks    |         |

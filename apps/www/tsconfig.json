@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules"],
-  "extends": "@repo/typescript-config/nextjs.json",
+  "extends": "@repo/typescript-cfg/nextjs.json",
   "compilerOptions": {
     "outDir": "dist",
     "plugins": [{ "name": "next" }]

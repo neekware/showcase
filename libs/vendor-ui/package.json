@@ -1,6 +1,6 @@
 {
   "name": "@repo/vendor-ui",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "sideEffects": false,
@@ -23,19 +23,19 @@
     "test": "jest --coverage"
   },
   "jest": {
-    "preset": "@repo/jest-presets/browser",
+    "preset": "@repo/jest-cfg/browser",
     "coverageDirectory": "../../coverage/vendor-ui",
     "collectCoverage": true
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/jest-presets": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@testing-library/jest-dom": "^6.4.4",
-    "@testing-library/react": "^15.0.6",
+    "@repo/eslint-cfg": "workspace:*",
+    "@repo/jest-cfg": "workspace:*",
+    "@repo/typescript-cfg": "workspace:*",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.8",
+    "@types/node": "^20.12.10",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "jest": "^29.7.0",
@@ -85,8 +85,8 @@
     "embla-carousel-react": "^8.0.4",
     "input-otp": "^1.2.4",
     "react-day-picker": "^8.10.1",
-    "react-hook-form": "^7.51.3",
+    "react-hook-form": "^7.51.4",
     "react-resizable-panels": "^2.0.19",
-    "vaul": "^0.9.0"
+    "vaul": "^0.9.1"
   }
 }

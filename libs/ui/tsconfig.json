@@ -1,5 +1,5 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "@repo/typescript-cfg/react-library.json",
   "compilerOptions": {
     "lib": ["dom", "ES2015"],
     "types": ["jest", "node"]

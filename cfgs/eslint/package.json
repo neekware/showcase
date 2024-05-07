@@ -1,7 +1,7 @@
 {
-  "name": "@repo/eslint-config",
+  "name": "@repo/eslint-cfg",
   "license": "MIT",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "clean:mods": "rm -rf node_modules"

@@ -1,5 +1,5 @@
 {
-  "name": "@repo/web",
+  "name": "@repo/www",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -16,7 +16,7 @@
     "test": "jest --coverage --passWithNoTests"
   },
   "jest": {
-    "preset": "@repo/jest-presets/browser"
+    "preset": "@repo/jest-cfg/browser"
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",
@@ -32,14 +32,14 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.3",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/tailwind-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repo/eslint-cfg": "workspace:*",
+    "@repo/tailwind-cfg": "workspace:*",
+    "@repo/typescript-cfg": "workspace:*",
     "@types/eslint": "^8.56.10",
-    "@types/node": "^20.12.8",
+    "@types/node": "^20.12.10",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
-    "eslint": "8.57.0",
+    "eslint": "9.2.0",
     "jest": "^29.7.0",
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7",
