@@ -32,9 +32,10 @@ export default function RootLayout({
               themes={availableThemes}
               siteSettings={siteSettings}
               mobileSettings={mobileSettings}
+              className="mb-10"
             />
             <div className="flex-1">{children}</div>
-            <SiteFooter siteSettings={siteSettings} />
+            <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
           </div>
           <Breakpoints />
         </ThemeProvider>
