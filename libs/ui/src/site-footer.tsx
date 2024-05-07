@@ -12,7 +12,7 @@ export function SiteFooter({ siteSettings }: MainHeaderProps) {
   return (
     <footer className="border-t py-6 md:px-8 md:py-0">
       <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-        <p className="text-muted-foreground text-center text-sm leading-loose md:text-left">
+        <div className="text-muted-foreground text-center text-sm leading-loose md:text-left">
           Built by Showcase UI, A Neekware Inc. Project.
           {siteSettings.footerSocialLinks.map((sItem) => {
             return (
@@ -41,7 +41,7 @@ export function SiteFooter({ siteSettings }: MainHeaderProps) {
               </Link>
             );
           })}
-        </p>
+        </div>
       </div>
     </footer>
   );
