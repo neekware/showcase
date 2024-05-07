@@ -16,10 +16,10 @@
     "coveralls": "pnpm ts-node ./src/coveralls.ts"
   },
   "jest": {
-    "preset": "@repo/jest-cfg/browser"
+    "preset": "@repo/jest-config/browser"
   },
   "devDependencies": {
-    "@repo/typescript-cfg": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@types/glob": "^8.1.0",
     "@types/node": "^20.12.10",
     "commander": "^12.0.0",

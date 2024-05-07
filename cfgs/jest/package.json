@@ -1,5 +1,5 @@
 {
-  "name": "@repo/jest-cfg",
+  "name": "@repo/jest-config",
   "version": "0.0.1",
   "private": true,
   "scripts": {

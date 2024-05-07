@@ -20,14 +20,14 @@
     "test": "jest --coverage"
   },
   "jest": {
-    "preset": "@repo/jest-cfg/node",
+    "preset": "@repo/jest-config/node",
     "coverageDirectory": "../../coverage/logger",
     "collectCoverage": true
   },
   "devDependencies": {
-    "@repo/eslint-cfg": "workspace:*",
-    "@repo/jest-cfg": "workspace:*",
-    "@repo/typescript-cfg": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/jest-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@turbo/gen": "^1.13.3",
     "@types/eslint": "^8.56.10",
     "@types/jest": "^29.5.12",
