@@ -11,7 +11,7 @@ interface NavSiteProps {
 export function NavSite({ className, siteSettings }: NavSiteProps) {
   return (
     <div className={cn('space-x-2', className)}>
-      <Link className="flex items-center gap-4" href="#">
+      <Link className="flex items-center gap-4" href="/">
         {siteSettings.icon ? (
           <Icon path={siteSettings.icon} className="text-primary h-6 w-6" />
         ) : null}
