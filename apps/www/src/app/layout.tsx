@@ -33,7 +33,7 @@ export default function RootLayout({
               siteSettings={siteSettings}
               mobileSettings={mobileSettings}
             />
-            <div className="flex-1">{children}</div>
+            <div className="flex-1 p-10">{children}</div>
             <SiteFooter siteSettings={siteSettings} />
           </div>
           <Breakpoints />
