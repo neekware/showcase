@@ -1,6 +1,7 @@
+import { NavDesktop } from './nav-desktop';
 import { NavMobile } from './nav-mobile';
 import { NavOption } from './nav-options';
-import { NavTop } from './nav-top';
+import { NavSite } from './nav-site';
 import { type MobileSettings } from './nav-types';
 import { type SiteSettings } from './site-types';
 import { ThemeSelector } from './theme-selector';
@@ -20,25 +21,29 @@ export function SiteHeader({
 }: MainHeaderProps) {
   return (
     <header className="supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-50 w-full border-b backdrop-blur">
-      <div className="container flex h-14 items-center">
-        {/* Top Center Nav - Desktop mode nav, hides when not in desktop mode */}
-        <NavTop />
+      <nav className="px-0 py-4">
+        <div className="container flex items-center justify-between">
+          {/* Burger Menu and Slider */}
+          <NavMobile
+            mobileSettings={mobileSettings}
+            siteSettings={siteSettings}
+            className="md:hidden"
+          />
 
-        {/* Mobile Nav - Clicking on hamburger icon will bring out a slider */}
-        <NavMobile
-          mobileSettings={mobileSettings}
-          siteSettings={siteSettings}
-        />
+          {/* Site Name and Logo */}
+          <NavSite siteSettings={siteSettings} />
 
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none" />
-          <nav className="flex items-center">
-            <ThemeModeToggle />
-            <ThemeSelector themes={themes} />
-            <NavOption />
-          </nav>
+          {/* Top Center Nav - Desktop mode nav, hides when not in desktop mode */}
+          <NavDesktop siteSettings={siteSettings} className="hidden md:flex" />
+
+          {/* Option Menu */}
+          <div className="flex">
+            <ThemeModeToggle className="hidden md:flex" />
+            <ThemeSelector themes={themes} className="hidden md:flex" />
+            <NavOption siteSettings={siteSettings} />
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }

@@ -2,7 +2,7 @@ export { Link } from './src/Link';
 export { CounterButton } from './src/CounterButton';
 export * from './src/breakpoints';
 export * from './src/nav-mobile';
-export * from './src/nav-top';
+export * from './src/nav-desktop';
 export * from './src/nav-types';
 export * from './src/site-footer';
 export * from './src/site-header';

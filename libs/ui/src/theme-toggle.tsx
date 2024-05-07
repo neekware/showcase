@@ -4,9 +4,14 @@ import * as React from 'react';
 import { useTheme } from 'next-themes';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
 import { Icon } from '@mdi/react';
+import { cn } from '@repo/util';
 import { Button } from '@repo/vendor-ui';
 
-export function ThemeModeToggle() {
+interface ThemeModeToggleProps {
+  className?: string;
+}
+
+export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
   const { theme = 'system', setTheme } = useTheme();
 
   const toggleTheme = () => {
@@ -14,7 +19,7 @@ export function ThemeModeToggle() {
   };
 
   return (
-    <div className="text-primary relative w-9 px-0">
+    <div className={cn('text-primary relative w-9 px-0', className)}>
       <Button
         onClick={toggleTheme}
         variant="ghost"

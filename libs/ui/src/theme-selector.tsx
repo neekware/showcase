@@ -24,11 +24,12 @@ import { type Theme } from './theme-types';
 
 interface ThemeSelectorProps {
   themes: Theme[];
+  className?: string;
 }
 
-export function ThemeSelector({ themes }: ThemeSelectorProps) {
+export function ThemeSelector({ themes, className }: ThemeSelectorProps) {
   return (
-    <div className="flex items-center space-x-2">
+    <div className={cn('flex items-center space-x-2', className)}>
       <div className="md:flex">
         <Popover>
           <PopoverTrigger asChild>

@@ -1,4 +1,9 @@
-import { mdiBriefcaseAccountOutline, mdiGithub, mdiTwitter } from '@mdi/js';
+import {
+  mdiBriefcaseAccountOutline,
+  mdiGithub,
+  mdiLogout,
+  mdiTwitter,
+} from '@mdi/js';
 import { type SiteSettings } from '@repo/ui';
 
 export const siteSettings: SiteSettings = {
@@ -7,7 +12,50 @@ export const siteSettings: SiteSettings = {
   url: 'https://showcase.io',
   ogImage: 'https://showcase.io/og.jpg',
   description: 'Showcase your political self beautify on a unified portal.',
-  socials: [
+  navTopLinks: [
+    {
+      title: 'Home',
+      href: '/',
+    },
+    {
+      title: 'About',
+      href: '/about',
+    },
+    {
+      title: 'Products',
+      href: '/products',
+    },
+  ],
+  navOptionLinks: [
+    {
+      title: 'Settings',
+      href: '/settings',
+    },
+    {
+      title: 'Support',
+      href: '/support',
+    },
+    {
+      title: 'Logout',
+      href: '/logout',
+      icon: mdiLogout,
+    },
+  ],
+  footerLinks: [
+    {
+      title: 'Home',
+      href: '/',
+    },
+    {
+      title: 'About',
+      href: '/about',
+    },
+    {
+      title: 'Contact',
+      href: '/contact',
+    },
+  ],
+  footerSocialLinks: [
     {
       title: 'X',
       href: 'https://twitter.com/',

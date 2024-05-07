@@ -1,4 +1,4 @@
-export interface SocialItem {
+export interface LinkItem {
   title: string;
   href: string;
   disabled?: boolean;
@@ -12,5 +12,8 @@ export interface SiteSettings {
   url: string;
   ogImage: string;
   description: string;
-  socials: SocialItem[];
+  navTopLinks: LinkItem[];
+  navOptionLinks: LinkItem[];
+  footerLinks: LinkItem[];
+  footerSocialLinks: LinkItem[];
 }

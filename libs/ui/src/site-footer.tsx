@@ -14,7 +14,7 @@ export function SiteFooter({ siteSettings }: MainHeaderProps) {
       <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
         <p className="text-muted-foreground text-center text-sm leading-loose md:text-left">
           Built by Showcase UI, A Neekware Inc. Project.
-          {siteSettings.socials.map((sItem) => {
+          {siteSettings.footerSocialLinks.map((sItem) => {
             return (
               <Link
                 key={sItem.title}
