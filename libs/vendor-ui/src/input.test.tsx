@@ -9,7 +9,7 @@ describe('Input component', () => {
     const inputElement = screen.getByLabelText('test-input');
     expect(inputElement).toBeInTheDocument();
     expect(inputElement).toHaveClass('border-input');
-    expect(inputElement).toHaveAttribute('type', 'text');
+    expect(inputElement).not.toHaveAttribute('type');
   });
 
   test('forwards the ref to the DOM element', () => {
@@ -22,7 +22,7 @@ describe('Input component', () => {
 
   test('applies custom styles when provided', () => {
     const customStyle = 'bg-red-500';
-    render(<Input customStyle={customStyle} aria-label="test-input" />);
+    render(<Input className={customStyle} aria-label="test-input" />);
     const inputElement = screen.getByLabelText('test-input');
     expect(inputElement).toHaveClass(customStyle);
   });

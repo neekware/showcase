@@ -1,4 +1,6 @@
-export type ThemeMode = 'dark' | 'light' | 'system';
+import { type Toaster } from 'sonner';
+
+export type ThemeMode = 'dark' | 'light' | 'system' | undefined;
 export interface ThemeColor {
   light: string;
   dark: string;
@@ -14,3 +16,5 @@ export interface ThemeSettings {
   theme: Theme['name'];
   radius: number;
 }
+
+export type ToasterProps = React.ComponentProps<typeof Toaster>;

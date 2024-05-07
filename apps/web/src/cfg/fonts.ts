@@ -1,9 +1,9 @@
 // Inter is a variable font and doesn't need weight
 import {
   JetBrains_Mono as FontMono,
+  Roboto as FontRoboto,
   Inter as FontSans,
 } from 'next/font/google';
-import { Roboto } from 'next/font/google';
 
 export const fontSans = FontSans({
   subsets: ['latin'],
@@ -15,7 +15,7 @@ export const fontMono = FontMono({
   variable: '--font-mono',
 });
 
-export const fontRoboto = Roboto({
+export const fontRoboto = FontRoboto({
   weight: ['400', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],

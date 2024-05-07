@@ -24,16 +24,22 @@ import { type Theme } from './theme-types';
 
 interface ThemeSelectorProps {
   themes: Theme[];
+  className?: string;
 }
 
-export function ThemeSelector({ themes }: ThemeSelectorProps) {
+export function ThemeSelector({ themes, className }: ThemeSelectorProps) {
   return (
-    <div className="flex items-center space-x-2">
+    <div className={cn('flex items-center space-x-2', className)}>
       <div className="md:flex">
         <Popover>
           <PopoverTrigger asChild>
-            <Button variant="ghost" className="">
-              <Icon path={mdiPalette} className="text-primary h-6 w-6" />
+            <Button
+              variant="ghost"
+              className="flex size-8 items-center justify-center rounded-full"
+            >
+              <div className="text-primary">
+                <Icon path={mdiPalette} size={1} />
+              </div>
               <span className="sr-only">Customize theme</span>
             </Button>
           </PopoverTrigger>
@@ -51,7 +57,7 @@ export function ThemeSelector({ themes }: ThemeSelectorProps) {
 
 function Selector({ themes }: ThemeSelectorProps) {
   const [mounted, setMounted] = React.useState(false);
-  const { setTheme: setMode, theme: mode } = useTheme();
+  const { setTheme: setMode, theme: mode = 'system' } = useTheme();
   const [theme, setThemeState] = useThemeState();
 
   React.useEffect(() => {
