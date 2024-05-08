@@ -44,10 +44,6 @@
       "cache": false,
       "persistent": true
     },
-    "clean:cache": {
-      "cache": false,
-      "persistent": true
-    },
     "loc": {
       "cache": false
     }

@@ -3,8 +3,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { type SiteSettings } from '@repo/dto';
 import { cn } from '@repo/util';
-import { type SiteSettings } from './site-types';
 
 interface NavTopProps {
   siteSettings: SiteSettings;

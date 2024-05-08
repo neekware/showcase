@@ -4,7 +4,7 @@ import {
   mdiLogout,
   mdiTwitter,
 } from '@mdi/js';
-import { type SiteSettings } from '@repo/ui';
+import { type SiteSettings } from '@repo/dto';
 
 export const siteSettings: SiteSettings = {
   name: 'Showcase UI',

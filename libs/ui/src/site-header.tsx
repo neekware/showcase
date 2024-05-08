@@ -1,13 +1,11 @@
+import { type MobileSettings, type SiteSettings, type Theme } from '@repo/dto';
 import { cn } from '@repo/util';
 import { NavDesktop } from './nav-desktop';
 import { NavMobile } from './nav-mobile';
 import { NavOption } from './nav-options';
 import { NavSite } from './nav-site';
-import { type MobileSettings } from './nav-types';
-import { type SiteSettings } from './site-types';
 import { ThemeSelector } from './theme-selector';
 import { ThemeModeToggle } from './theme-toggle';
-import { type Theme } from './theme-types';
 
 interface MainHeaderProps {
   themes: Theme[];

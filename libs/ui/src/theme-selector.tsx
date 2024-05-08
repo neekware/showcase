@@ -11,6 +11,7 @@ import {
   mdiWeatherSunny,
 } from '@mdi/js';
 import { Icon } from '@mdi/react';
+import { type Theme } from '@repo/dto';
 import { cn, useThemeState } from '@repo/util';
 import {
   Button,
@@ -20,7 +21,6 @@ import {
   PopoverTrigger,
   Skeleton,
 } from '@repo/vendor-ui';
-import { type Theme } from './theme-types';
 
 interface ThemeSelectorProps {
   themes: Theme[];
