@@ -9,13 +9,11 @@ export function AppInitComponent() {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    appStateStorageInit(setAppState, state);
+    appStateStorageInit(setAppState);
 
     const debounceId = setTimeout(() => {
-      console.log('1', state.theme, theme);
       if (state.theme.mode !== theme) {
-        setTheme(state.theme.mode ?? 'dark');
-        console.log('2', state.theme, theme);
+        setTheme(state.theme.mode ?? 'system');
       }
     }, 300);
 
@@ -24,23 +22,15 @@ export function AppInitComponent() {
     };
   }, [state]); // keep the theme mode in app state, give it to auth-theme on change
 
-  // useEffect(() => {
-  //   appStateStorageInit(setAppState, state);
-  // }, []); // run once on start
-
   return null; // This component does not render anything
 }
 
-function appStateStorageInit(
-  setAppState: (state: AppState) => void,
-  state?: AppState
-) {
+function appStateStorageInit(setAppState: (state: AppState) => void) {
   const storedState = localStorage.getItem(APP_STATE_NAME);
   if (!storedState) {
     const mode = isSystemTheme();
     setAppState({
       ...DefaultStateSettings,
-      ...(state ?? {}),
       ...{
         theme: { ...DefaultStateSettings.theme, mode },
       },

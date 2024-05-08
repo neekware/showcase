@@ -21,7 +21,6 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <AppInitComponent />
       <body className={fontRoboto.className}>
         <ThemeProvider
           attribute="class"
@@ -29,6 +28,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <AppInitComponent />
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader
               themes={availableThemes}
