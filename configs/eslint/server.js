@@ -48,6 +48,8 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'import/no-default-export': 'off',
+    'eslint-comments/require-description': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'import/order': 'off',
   },
 };

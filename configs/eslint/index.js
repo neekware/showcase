@@ -28,6 +28,8 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'eslint-comments/require-description': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'import/no-default-export': 'off',
     'import/order': 'off',
   },

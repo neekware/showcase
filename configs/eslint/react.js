@@ -71,6 +71,8 @@ module.exports = {
     'import/no-default-export': 'off',
     'react/prop-types': 'off', // Example rule, disable if using TypeScript for prop validation
     'react/react-in-jsx-scope': 'off', // Not needed for React 17+
+    'eslint-comments/require-description': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'import/order': 'off',
   },
 };

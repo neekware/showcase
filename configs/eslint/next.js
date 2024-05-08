@@ -60,11 +60,13 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'import/no-default-export': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     '@next/next/no-html-link-for-pages': 'off',
     'tailwindcss/no-custom-classname': 'off',
     'tailwindcss/classnames-order': 'off',
     'tailwindcss/enforces-shorthand': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
+    'eslint-comments/require-description': 'off',
     'import/order': 'off',
   },
 };
