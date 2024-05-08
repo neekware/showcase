@@ -1,34 +1,15 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-
-export interface AuthType {
-  token: string;
-  isLoggedIn: boolean;
-  ['id']?: unknown;
-}
-
-export interface ThemeType {
-  name: string;
-  radius: number;
-  [id: string]: unknown;
-}
-
-export interface ProfileType {
-  username: string;
-  email: string;
-  [id: string]: unknown;
-}
-
-export interface StateSettings {
-  auth: AuthType;
-  theme: ThemeType;
-  profile: ProfileType;
-  [id: string]: unknown;
-}
+import {
+  type AuthType,
+  type ProfileType,
+  type StateSettings,
+  type ThemeType,
+} from '@repo/dto';
 
 export const DefaultStateSettings: StateSettings = {
   auth: { token: '', isLoggedIn: false },
-  theme: { name: 'zinc', radius: 0.5 },
+  theme: { name: 'zinc', mode: 'system', radius: 0.5 },
   profile: { username: '', email: '' },
 };
 

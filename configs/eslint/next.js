@@ -65,23 +65,6 @@ module.exports = {
     'tailwindcss/classnames-order': 'off',
     'tailwindcss/enforces-shorthand': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
-    'import/order': [
-      'warn',
-      {
-        'newlines-between': 'never',
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-        ],
-        alphabetize: {
-          // order: 'asc', // Sort in ascending order
-          caseInsensitive: true, // Ignore the case of imports
-        },
-      },
-    ],
+    'import/order': 'off',
   },
 };

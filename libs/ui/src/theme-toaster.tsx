@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
-import { type ThemeMode, type ToasterProps } from '@repo/dto';
 import { Toaster } from 'sonner';
+import { type ThemeMode, type ToasterProps } from '@repo/dto';
 
 function ThemeToaster({ ...props }: ToasterProps) {
   const { theme = 'system' } = useTheme();

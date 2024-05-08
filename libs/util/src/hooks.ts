@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai';
-import { DefaultStateSettings, type ThemeType, themeAtom } from './state';
+import { type ThemeType } from '@repo/dto';
+import { DefaultStateSettings, themeAtom } from './state';
 
 export function useThemeState() {
   const [theme, setTheme] = useAtom(themeAtom);

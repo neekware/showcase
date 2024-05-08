@@ -3,10 +3,10 @@
 import * as React from 'react';
 import { mdiArrowLeft, mdiArrowRight } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { cn } from '@repo/util';
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react';
+import { cn } from '@repo/util';
 import { Button } from './button';
 
 type CarouselApi = UseEmblaCarouselType[1];

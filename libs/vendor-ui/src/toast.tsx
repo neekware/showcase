@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as ToastPrimitives from '@radix-ui/react-toast';
 import { mdiClose } from '@mdi/js';
 import { Icon } from '@mdi/react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@repo/util';
-import { type VariantProps, cva } from 'class-variance-authority';
 
 const ToastProvider = ToastPrimitives.Provider;
 
