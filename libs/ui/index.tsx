@@ -1,3 +1,4 @@
+export * from './src/app-init';
 export * from './src/breakpoints';
 export * from './src/nav-mobile';
 export * from './src/nav-desktop';

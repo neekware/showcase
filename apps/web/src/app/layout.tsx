@@ -1,4 +1,5 @@
 import {
+  AppInitComponent,
   Breakpoints,
   SiteFooter,
   SiteHeader,
@@ -20,6 +21,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
+      <AppInitComponent />
       <body className={fontRoboto.className}>
         <ThemeProvider
           attribute="class"

@@ -1,14 +1,14 @@
 import React from 'react';
-import { useTheme } from 'next-themes';
 import { Toaster } from 'sonner';
-import { type ThemeMode, type ToasterProps } from '@repo/dto';
+import { type ToasterProps } from '@repo/dto';
+import { useThemeState } from '@repo/util';
 
 function ThemeToaster({ ...props }: ToasterProps) {
-  const { theme = 'system' } = useTheme();
+  const [theme] = useThemeState();
 
   return (
     <Toaster
-      theme={theme as ThemeMode}
+      theme={theme.mode}
       className="toaster group"
       toastOptions={{
         classNames: {

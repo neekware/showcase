@@ -1,5 +1,7 @@
 import { ThemeMode } from './theme';
 
+export const APP_STATE_NAME = 'appState';
+
 export interface AuthType {
   token: string;
   isLoggedIn: boolean;
@@ -19,7 +21,7 @@ export interface ProfileType {
   [id: string]: unknown;
 }
 
-export interface StateSettings {
+export interface AppState {
   auth: AuthType;
   theme: ThemeType;
   profile: ProfileType;

@@ -1,43 +1,44 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import {
+  APP_STATE_NAME,
+  type AppState,
   type AuthType,
   type ProfileType,
-  type StateSettings,
   type ThemeType,
 } from '@repo/dto';
 
-export const DefaultStateSettings: StateSettings = {
+export const DefaultStateSettings: AppState = {
   auth: { token: '', isLoggedIn: false },
   theme: { name: 'zinc', mode: 'system', radius: 0.5 },
   profile: { username: '', email: '' },
 };
 
-const globalStateAtom = atomWithStorage<StateSettings>(
-  'globalStateAtom',
+export const appStateAtom = atomWithStorage<AppState>(
+  APP_STATE_NAME,
   DefaultStateSettings
 );
 
 export const themeAtom = atom(
-  (get) => get(globalStateAtom).theme,
+  (get) => get(appStateAtom).theme,
   (get, set, update: ThemeType) => {
-    const newState = { ...get(globalStateAtom), theme: update };
-    set(globalStateAtom, newState);
+    const newState = { ...get(appStateAtom), theme: update };
+    set(appStateAtom, newState);
   }
 );
 
 export const authAtom = atom(
-  (get) => get(globalStateAtom).auth,
+  (get) => get(appStateAtom).auth,
   (get, set, update: AuthType) => {
-    const newState = { ...get(globalStateAtom), auth: update };
-    set(globalStateAtom, newState);
+    const newState = { ...get(appStateAtom), auth: update };
+    set(appStateAtom, newState);
   }
 );
 
 export const profileAtom = atom(
-  (get) => get(globalStateAtom).profile,
+  (get) => get(appStateAtom).profile,
   (get, set, update: ProfileType) => {
-    const newState = { ...get(globalStateAtom), profile: update };
-    set(globalStateAtom, newState);
+    const newState = { ...get(appStateAtom), profile: update };
+    set(appStateAtom, newState);
   }
 );
