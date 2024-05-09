@@ -4,6 +4,12 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
+  ...{
+    moduleNameMapper: {
+      '^lodash-es$': 'lodash',
+      '^crypto-es$': 'crypto-js',
+    },
+  },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   modulePathIgnorePatterns: [
     '<rootDir>/test/__fixtures__',

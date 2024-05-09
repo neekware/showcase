@@ -351,6 +351,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      crypto-js:
+        specifier: ^4.2.0
+        version: 4.2.0
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.8)(ts-node@10.9.2(@types/node@20.12.8)(typescript@5.4.5))
@@ -2829,6 +2832,9 @@ packages:
 
   crypto-es@2.1.0:
     resolution: {integrity: sha512-C5Dbuv4QTPGuloy5c5Vv/FZHtmK+lobLAypFfuRaBbwCsk3qbCWWESCH3MUcBsrgXloRNMrzwUAiPg4U6+IaKA==}
+
+  crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   css.escape@1.5.1:
     resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
@@ -8870,6 +8876,8 @@ snapshots:
       which: 2.0.2
 
   crypto-es@2.1.0: {}
+
+  crypto-js@4.2.0: {}
 
   css.escape@1.5.1: {}
 
