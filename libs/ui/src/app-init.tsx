@@ -30,7 +30,7 @@ export function AppInitComponent() {
       if (state.theme.mode !== theme) {
         setTheme(state.theme.mode ?? 'system');
       }
-    }, 300);
+    }, 150);
 
     return () => {
       clearTimeout(debounceId);
@@ -42,11 +42,18 @@ export function AppInitComponent() {
 
 function appStateStorageInit(setAppState: (state: AppState) => void) {
   const storedState = localStorage.getItem(APP_STATE_NAME);
-  const sanitizedState = sanitizeObjectOrString<AppState>(
-    storedState ? JSON.parse(storedState) : undefined
-  );
+  let sanitizedState;
 
-  // for any reason, we don't trust the state, we flip back to default
+  // sanity check on mutable state from storage
+  try {
+    sanitizedState = sanitizeObjectOrString<AppState>(
+      storedState ? JSON.parse(storedState) : undefined
+    );
+  } catch (e) {
+    sanitizedState = undefined;
+  }
+
+  // we don't trust the state, verify, and restore to default on error
   if (!sanitizedState) {
     const mode = getSystemTheme();
     const signedState = signObject<AppState>({
