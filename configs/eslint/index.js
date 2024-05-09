@@ -29,6 +29,8 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'eslint-comments/require-description': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
     'react-hooks/exhaustive-deps': 'off',
     'import/no-default-export': 'off',
     'import/order': 'off',

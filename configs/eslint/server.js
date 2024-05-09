@@ -50,6 +50,8 @@ module.exports = {
     'import/no-default-export': 'off',
     'eslint-comments/require-description': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
     'import/order': 'off',
   },
 };

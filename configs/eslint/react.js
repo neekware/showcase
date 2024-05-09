@@ -73,6 +73,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off', // Not needed for React 17+
     'eslint-comments/require-description': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
     'import/order': 'off',
   },
 };

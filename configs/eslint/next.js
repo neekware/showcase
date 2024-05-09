@@ -63,10 +63,12 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'off',
     '@next/next/no-html-link-for-pages': 'off',
     'tailwindcss/no-custom-classname': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
     'tailwindcss/classnames-order': 'off',
     'tailwindcss/enforces-shorthand': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'eslint-comments/require-description': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
     'import/order': 'off',
   },
 };

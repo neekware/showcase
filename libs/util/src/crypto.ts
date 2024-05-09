@@ -9,23 +9,21 @@ export function signObject<T extends { signature: string }>(obj: T): T {
 }
 
 export function sanitizeObjectOrString<T extends { signature: string }>(
-  obj: T | string,
-  defaultObj: T | boolean | undefined
-): T | boolean {
+  input: T | string | undefined
+): T | undefined {
   let origObj: T;
 
-  if (typeof obj === 'string') {
+  if (typeof input === 'string') {
     try {
-      origObj = JSON.parse(obj) as T;
+      origObj = JSON.parse(input) as T;
     } catch (e) {
-      return false;
+      return undefined;
     }
   } else {
-    origObj = obj;
+    origObj = input ?? ({} as T);
   }
 
   const testObj = signObject<T>(origObj);
-  return origObj.signature === testObj.signature
-    ? origObj
-    : defaultObj ?? false;
+  const result = origObj.signature === testObj.signature ? origObj : undefined;
+  return result;
 }
