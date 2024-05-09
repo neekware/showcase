@@ -1,6 +1,7 @@
 import { type Toaster } from 'sonner';
 
 export type ThemeMode = 'dark' | 'light' | 'system' | undefined;
+
 export interface ThemeColor {
   light: string;
   dark: string;

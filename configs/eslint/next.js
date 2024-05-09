@@ -60,28 +60,15 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'import/no-default-export': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     '@next/next/no-html-link-for-pages': 'off',
     'tailwindcss/no-custom-classname': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
     'tailwindcss/classnames-order': 'off',
     'tailwindcss/enforces-shorthand': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
-    'import/order': [
-      'warn',
-      {
-        'newlines-between': 'never',
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-        ],
-        alphabetize: {
-          // order: 'asc', // Sort in ascending order
-          caseInsensitive: true, // Ignore the case of imports
-        },
-      },
-    ],
+    'eslint-comments/require-description': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    'import/order': 'off',
   },
 };

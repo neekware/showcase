@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@repo/util';
 import { Drawer as DrawerPrimitive } from 'vaul';
+import { cn } from '@repo/util';
 
 function Drawer({
   shouldScaleBackground = true,

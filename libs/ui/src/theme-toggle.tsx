@@ -1,10 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { useTheme } from 'next-themes';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { cn } from '@repo/util';
+import { cn, useThemeState } from '@repo/util';
 import { Button } from '@repo/vendor-ui';
 
 interface ThemeModeToggleProps {
@@ -12,10 +11,10 @@ interface ThemeModeToggleProps {
 }
 
 export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
-  const { theme = 'system', setTheme } = useTheme();
+  const [theme, setThemeState] = useThemeState();
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setThemeState({ mode: theme.mode === 'dark' ? 'light' : 'dark' });
   };
 
   return (
@@ -27,7 +26,7 @@ export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
       >
         <div className="text-primary">
           <Icon
-            path={theme === 'dark' ? mdiWeatherSunny : mdiWeatherNight}
+            path={theme.mode === 'dark' ? mdiWeatherSunny : mdiWeatherNight}
             size={1}
           />
         </div>

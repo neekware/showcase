@@ -1,4 +1,4 @@
-import { type Theme, type ThemeSettings } from '@repo/ui';
+import { type Theme, type ThemeSettings } from '@repo/dto';
 
 export const availableThemes: Theme[] = [
   {

@@ -28,25 +28,12 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'eslint-comments/require-description': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'import/no-default-export': 'off',
-    'import/order': [
-      'warn',
-      {
-        'newlines-between': 'never',
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-        ],
-        alphabetize: {
-          // order: 'asc', // Sort in ascending order
-          caseInsensitive: true, // Ignore the case of imports
-        },
-      },
-    ],
+    'import/order': 'off',
   },
   ignorePatterns: [
     '.*.js', // Ignore specific JavaScript config files like .eslintrc.js

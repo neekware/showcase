@@ -71,23 +71,10 @@ module.exports = {
     'import/no-default-export': 'off',
     'react/prop-types': 'off', // Example rule, disable if using TypeScript for prop validation
     'react/react-in-jsx-scope': 'off', // Not needed for React 17+
-    'import/order': [
-      'warn',
-      {
-        'newlines-between': 'never',
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-        ],
-        alphabetize: {
-          // order: 'asc', // Sort in ascending order
-          caseInsensitive: true, // Ignore the case of imports
-        },
-      },
-    ],
+    'eslint-comments/require-description': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    'import/order': 'off',
   },
 };

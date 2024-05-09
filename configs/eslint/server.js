@@ -48,23 +48,10 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'import/no-default-export': 'off',
-    'import/order': [
-      'warn',
-      {
-        'newlines-between': 'never',
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-        ],
-        alphabetize: {
-          // order: 'asc', // Sort in ascending order
-          caseInsensitive: true, // Ignore the case of imports
-        },
-      },
-    ],
+    'eslint-comments/require-description': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    'import/order': 'off',
   },
 };

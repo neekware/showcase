@@ -1,62 +1,55 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
+import {
+  APP_STATE_NAME,
+  type AppState,
+  type AuthType,
+  type ProfileType,
+  type ThemeType,
+} from '@repo/dto';
+import { signObject } from './crypto';
 
-export interface AuthType {
-  token: string;
-  isLoggedIn: boolean;
-  ['id']?: unknown;
-}
-
-export interface ThemeType {
-  name: string;
-  radius: number;
-  [id: string]: unknown;
-}
-
-export interface ProfileType {
-  username: string;
-  email: string;
-  [id: string]: unknown;
-}
-
-export interface StateSettings {
-  auth: AuthType;
-  theme: ThemeType;
-  profile: ProfileType;
-  [id: string]: unknown;
-}
-
-export const DefaultStateSettings: StateSettings = {
+export const DefaultStateSettings: AppState = signObject<AppState>({
   auth: { token: '', isLoggedIn: false },
-  theme: { name: 'zinc', radius: 0.5 },
+  theme: { name: 'zinc', mode: 'system', radius: 0.5 },
   profile: { username: '', email: '' },
-};
+  signature: '',
+});
 
-const globalStateAtom = atomWithStorage<StateSettings>(
-  'globalStateAtom',
+export const appStateAtom = atomWithStorage<AppState>(
+  APP_STATE_NAME,
   DefaultStateSettings
 );
 
 export const themeAtom = atom(
-  (get) => get(globalStateAtom).theme,
+  (get) => get(appStateAtom).theme,
   (get, set, update: ThemeType) => {
-    const newState = { ...get(globalStateAtom), theme: update };
-    set(globalStateAtom, newState);
+    const newState = signObject<AppState>({
+      ...get(appStateAtom),
+      theme: update,
+    });
+    set(appStateAtom, newState);
   }
 );
 
 export const authAtom = atom(
-  (get) => get(globalStateAtom).auth,
+  (get) => get(appStateAtom).auth,
   (get, set, update: AuthType) => {
-    const newState = { ...get(globalStateAtom), auth: update };
-    set(globalStateAtom, newState);
+    const newState = signObject<AppState>({
+      ...get(appStateAtom),
+      auth: update,
+    });
+    set(appStateAtom, newState);
   }
 );
 
 export const profileAtom = atom(
-  (get) => get(globalStateAtom).profile,
+  (get) => get(appStateAtom).profile,
   (get, set, update: ProfileType) => {
-    const newState = { ...get(globalStateAtom), profile: update };
-    set(globalStateAtom, newState);
+    const newState = signObject<AppState>({
+      ...get(appStateAtom),
+      profile: update,
+    });
+    set(appStateAtom, newState);
   }
 );

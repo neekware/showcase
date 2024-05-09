@@ -21,7 +21,7 @@
       "cache": false
     },
     "lint": {
-      "dependsOn": ["^build"]
+      "cache": false
     },
     "typecheck": {
       "dependsOn": ["^build"]
@@ -37,16 +37,10 @@
       "persistent": true
     },
     "clean": {
-      "cache": false,
-      "persistent": true
+      "cache": false
     },
     "clean:mods": {
-      "cache": false,
-      "persistent": true
-    },
-    "clean:cache": {
-      "cache": false,
-      "persistent": true
+      "cache": false
     },
     "loc": {
       "cache": false

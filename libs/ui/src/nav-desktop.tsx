@@ -3,8 +3,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { type LinkItem, type SiteSettings } from '@repo/dto';
 import { cn } from '@repo/util';
-import { type SiteSettings } from './site-types';
 
 interface NavTopProps {
   siteSettings: SiteSettings;
@@ -15,7 +15,7 @@ export function NavDesktop({ className, siteSettings }: NavTopProps) {
 
   return (
     <div className={cn('space-x-4', className)}>
-      {siteSettings.navTopLinks.map((link) => (
+      {siteSettings.navTopLinks.map((link: LinkItem) => (
         <Link
           key={link.title}
           href={link.href}

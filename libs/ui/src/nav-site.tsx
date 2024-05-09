@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Icon } from '@mdi/react';
+import { type SiteSettings } from '@repo/dto';
 import { cn } from '@repo/util';
-import { type SiteSettings } from './site-types';
 
 interface NavSiteProps {
   siteSettings: SiteSettings;

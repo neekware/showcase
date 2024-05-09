@@ -1,15 +1,62 @@
 import { useAtom } from 'jotai';
-import { DefaultStateSettings, type ThemeType, themeAtom } from './state';
+import { type AppState, type ThemeType } from '@repo/dto';
+import {
+  appStateAtom,
+  authAtom,
+  DefaultStateSettings,
+  profileAtom,
+  themeAtom,
+} from './state';
+
+export function useAppState() {
+  const [state, setAppState] = useAtom(appStateAtom);
+
+  const updateImmutable = (partialConfig: Partial<AppState>) => {
+    setAppState({
+      ...DefaultStateSettings,
+      ...state,
+      ...partialConfig,
+    });
+  };
+
+  return [state, updateImmutable] as const;
+}
 
 export function useThemeState() {
-  const [theme, setTheme] = useAtom(themeAtom);
+  const [theme, setThemeState] = useAtom(themeAtom);
 
   const updateImmutable = (partialConfig: Partial<ThemeType>) => {
-    setTheme({
+    setThemeState({
       ...DefaultStateSettings.theme,
       ...partialConfig,
     });
   };
 
   return [theme, updateImmutable] as const;
+}
+
+export function useAuthState() {
+  const [auth, setAuthState] = useAtom(authAtom);
+
+  const updateImmutable = (partialConfig: Partial<ThemeType>) => {
+    setAuthState({
+      ...DefaultStateSettings.auth,
+      ...partialConfig,
+    });
+  };
+
+  return [auth, updateImmutable] as const;
+}
+
+export function useProfileState() {
+  const [profile, setAuthState] = useAtom(profileAtom);
+
+  const updateImmutable = (partialConfig: Partial<ThemeType>) => {
+    setAuthState({
+      ...DefaultStateSettings.profile,
+      ...partialConfig,
+    });
+  };
+
+  return [profile, updateImmutable] as const;
 }

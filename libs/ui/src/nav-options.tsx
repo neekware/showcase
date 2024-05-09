@@ -4,6 +4,7 @@ import * as React from 'react';
 import { usePathname } from 'next/navigation';
 import { mdiDotsVertical } from '@mdi/js';
 import { Icon } from '@mdi/react';
+import { type SiteSettings } from '@repo/dto';
 import { cn } from '@repo/util';
 import {
   Button,
@@ -14,7 +15,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@repo/vendor-ui';
-import { type SiteSettings } from './site-types';
 
 interface NavOptionProps {
   siteSettings: SiteSettings;

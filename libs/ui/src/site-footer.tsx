@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { Icon } from '@mdi/react';
+import { type LinkItem, type SiteSettings } from '@repo/dto';
 import { cn } from '@repo/util';
 import { buttonVariants } from '@repo/vendor-ui';
 import { NavSite } from './nav-site';
-import { type SiteSettings } from './site-types';
 
 interface MainHeaderProps {
   siteSettings: SiteSettings;
@@ -23,7 +23,7 @@ export function SiteFooter({ className, siteSettings }: MainHeaderProps) {
             <div>Built by Showcase UI.</div>
           </div>
           <div className="">
-            {siteSettings.footerSocialLinks.map((sItem) => {
+            {siteSettings.footerSocialLinks.map((sItem: LinkItem) => {
               return (
                 <Link
                   key={sItem.title}

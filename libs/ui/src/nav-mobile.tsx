@@ -5,6 +5,7 @@ import Link, { type LinkProps } from 'next/link';
 import { useRouter } from 'next/navigation';
 import { mdiMenu } from '@mdi/js';
 import { Icon } from '@mdi/react';
+import { type MobileSettings, type SiteSettings } from '@repo/dto';
 import { cn, hrefToString } from '@repo/util';
 import {
   Button,
@@ -13,8 +14,6 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@repo/vendor-ui';
-import { type MobileSettings } from './nav-types';
-import { type SiteSettings } from './site-types';
 
 interface LinkMobileProps extends LinkProps {
   onOpenChange?: (open: boolean) => void;

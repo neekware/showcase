@@ -1,4 +1,5 @@
 import {
+  AppInitComponent,
   Breakpoints,
   SiteFooter,
   SiteHeader,
@@ -27,6 +28,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <AppInitComponent />
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader
               themes={availableThemes}

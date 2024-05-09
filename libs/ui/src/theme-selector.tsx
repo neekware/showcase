@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { useTheme } from 'next-themes';
 import {
   mdiCheckCircle,
   mdiCircle,
@@ -11,6 +10,7 @@ import {
   mdiWeatherSunny,
 } from '@mdi/js';
 import { Icon } from '@mdi/react';
+import { type Theme } from '@repo/dto';
 import { cn, useThemeState } from '@repo/util';
 import {
   Button,
@@ -20,7 +20,6 @@ import {
   PopoverTrigger,
   Skeleton,
 } from '@repo/vendor-ui';
-import { type Theme } from './theme-types';
 
 interface ThemeSelectorProps {
   themes: Theme[];
@@ -57,7 +56,6 @@ export function ThemeSelector({ themes, className }: ThemeSelectorProps) {
 
 function Selector({ themes }: ThemeSelectorProps) {
   const [mounted, setMounted] = React.useState(false);
-  const { setTheme: setMode, theme: mode = 'system' } = useTheme();
   const [theme, setThemeState] = useThemeState();
 
   React.useEffect(() => {
@@ -102,7 +100,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                       className=" mr-1 h-6 w-6"
                       color={`hsl(${
                         nextTheme.activeColor[
-                          mode === 'dark' ? 'dark' : 'light'
+                          theme.mode === 'dark' ? 'dark' : 'light'
                         ]
                       })`}
                     />
@@ -112,7 +110,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                       className="mr-1 h-6 w-6"
                       color={`hsl(${
                         nextTheme.activeColor[
-                          mode === 'dark' ? 'dark' : 'light'
+                          theme.mode === 'dark' ? 'dark' : 'light'
                         ]
                       })`}
                     />
@@ -134,9 +132,11 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setMode('light');
+                    setThemeState({ mode: 'light' });
                   }}
-                  className={cn(mode === 'light' && 'border-primary border-2')}
+                  className={cn(
+                    theme.mode === 'light' && 'border-primary border-2'
+                  )}
                 >
                   <Icon
                     path={mdiWeatherSunny}
@@ -148,9 +148,11 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setMode('dark');
+                    setThemeState({ mode: 'dark' });
                   }}
-                  className={cn(mode === 'dark' && 'border-primary border-2')}
+                  className={cn(
+                    theme.mode === 'dark' && 'border-primary border-2'
+                  )}
                 >
                   <Icon
                     path={mdiWeatherNight}
@@ -162,9 +164,11 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setMode('system');
+                    setThemeState({ mode: 'system' });
                   }}
-                  className={cn(mode === 'system' && 'border-primary border-2')}
+                  className={cn(
+                    theme.mode === 'system' && 'border-primary border-2'
+                  )}
                 >
                   <Icon
                     path={mdiMonitor}
