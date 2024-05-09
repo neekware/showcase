@@ -67,12 +67,12 @@ export function NavMobile({
               setOpen(!open);
             }}
             variant="ghost"
-            className="px-0"
+            className="flex size-8 items-center justify-center rounded-full"
           >
             <div className="text-primary">
               <Icon path={mdiMenu} size={1} />
             </div>
-            <span className="sr-only">Toggle option Menu</span>
+            <span className="sr-only">Toggle Mobile Menu</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="border-t pr-0">
