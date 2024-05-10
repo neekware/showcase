@@ -148,22 +148,6 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setThemeState({ mode: 'dark' });
-                  }}
-                  className={cn(
-                    theme.mode === 'dark' && 'border-primary border-2'
-                  )}
-                >
-                  <Icon
-                    path={mdiWeatherNight}
-                    className="mr-1 h-6 w-6 -translate-x-1"
-                  />
-                  Dark
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
                     setThemeState({ mode: 'system' });
                   }}
                   className={cn(
@@ -175,6 +159,22 @@ function Selector({ themes }: ThemeSelectorProps) {
                     className="mr-1 h-6 w-6 -translate-x-1"
                   />
                   System
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setThemeState({ mode: 'dark' });
+                  }}
+                  className={cn(
+                    theme.mode === 'dark' && 'border-primary border-2'
+                  )}
+                >
+                  <Icon
+                    path={mdiWeatherNight}
+                    className="mr-1 h-6 w-6 -translate-x-1"
+                  />
+                  Dark
                 </Button>
               </>
             ) : (

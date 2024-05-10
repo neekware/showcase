@@ -41,30 +41,80 @@ export const siteSettings: SiteSettings = {
       icon: mdiLogout,
     },
   ],
-  footerLinks: [
-    {
-      title: 'Home',
-      href: '/',
-    },
-    {
-      title: 'About',
-      href: '/about',
-    },
-    {
-      title: 'Contact',
-      href: '/contact',
-    },
-  ],
-  footerSocialLinks: [
-    {
-      title: 'X',
-      href: 'https://twitter.com/',
-      icon: mdiTwitter,
-    },
-    {
-      title: 'GitHub',
-      href: 'https://github.com/neekware',
-      icon: mdiGithub,
-    },
-  ],
+  footer: {
+    product: [
+      {
+        title: 'Web UI',
+        href: '/product/web',
+      },
+      {
+        title: 'Email',
+        href: '/product/email',
+      },
+      {
+        title: 'SMS',
+        href: '/product/sms',
+      },
+      {
+        title: 'Legacy Mail',
+        href: '/product/mail',
+      },
+      {
+        title: 'Driving Assist',
+        href: '/product/drive-assist',
+      },
+      {
+        title: 'Sign Up Forms',
+        href: '/product/forms',
+      },
+    ],
+    resources: [
+      {
+        title: 'Docs',
+        href: '/docs',
+      },
+      {
+        title: 'Export',
+        href: '/expert',
+      },
+      {
+        title: 'Pricing',
+        href: '/pricing',
+      },
+      {
+        title: 'Guides',
+        href: '/guides',
+      },
+    ],
+    company: [
+      {
+        title: 'About',
+        href: '/about',
+      },
+      {
+        title: 'Blog',
+        href: '/blog',
+      },
+      {
+        title: 'Careers',
+        href: '/careers',
+      },
+      {
+        title: 'Contact Us',
+        href: '/contact-us',
+      },
+    ],
+    social: [
+      {
+        title: 'X',
+        href: 'https://twitter.com/',
+        icon: mdiTwitter,
+      },
+      {
+        title: 'GitHub',
+        href: 'https://github.com/neekware',
+        icon: mdiGithub,
+      },
+    ],
+  },
 };

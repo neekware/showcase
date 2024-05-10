@@ -6,6 +6,13 @@ export interface LinkItem {
   label?: string;
 }
 
+export interface footerInfo {
+  product: LinkItem[];
+  resources: LinkItem[];
+  company: LinkItem[];
+  social: LinkItem[];
+}
+
 export interface SiteSettings {
   name: string;
   icon?: string;
@@ -14,6 +21,5 @@ export interface SiteSettings {
   description: string;
   navTopLinks: LinkItem[];
   navOptionLinks: LinkItem[];
-  footerLinks: LinkItem[];
-  footerSocialLinks: LinkItem[];
+  footer: footerInfo;
 }

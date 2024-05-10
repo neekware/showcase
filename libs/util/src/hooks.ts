@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai';
 import { type AppState, type ThemeType } from '@repo/dto';
+import { signObject } from './crypto';
 import {
   appStateAtom,
   authAtom,
@@ -12,11 +13,13 @@ export function useAppState() {
   const [state, setAppState] = useAtom(appStateAtom);
 
   const updateImmutable = (partialConfig: Partial<AppState>) => {
-    setAppState({
-      ...DefaultStateSettings,
-      ...state,
-      ...partialConfig,
-    });
+    setAppState(
+      signObject<AppState>({
+        ...DefaultStateSettings,
+        ...state,
+        ...partialConfig,
+      })
+    );
   };
 
   return [state, updateImmutable] as const;
