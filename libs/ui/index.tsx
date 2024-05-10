@@ -4,7 +4,6 @@ export * from './src/nav-mobile';
 export * from './src/nav-desktop';
 export * from './src/site-footer';
 export * from './src/site-header';
-export * from './src/theme-provider';
 export * from './src/theme-selector';
 export * from './src/theme-toaster';
 export * from './src/theme-toggle';

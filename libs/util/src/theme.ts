@@ -8,7 +8,6 @@ export const getSystemThemeMode = (): ThemeMode => {
     const isDark = window.matchMedia(SYSTEM_COLOR_SCHEME_PREFERENCE).matches;
     return isDark ? 'dark' : 'light';
   }
-  return 'system';
 };
 
 export const getCurrentTheme = () => {

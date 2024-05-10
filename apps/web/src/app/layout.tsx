@@ -3,7 +3,6 @@ import {
   Breakpoints,
   SiteFooter,
   SiteHeader,
-  ThemeProvider,
 } from '@repo/ui';
 import { fontRoboto } from '../cfg/fonts';
 import { mobileSettings } from '../cfg/mobile';
@@ -21,25 +20,18 @@ export default function RootLayout({
   return (
     <html lang="en" className="system" style={{ colorScheme: 'system' }}>
       <body className={fontRoboto.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AppInitComponent />
-          <div className="relative flex min-h-screen flex-col">
-            <SiteHeader
-              themes={availableThemes}
-              siteSettings={siteSettings}
-              mobileSettings={mobileSettings}
-              className="mb-10"
-            />
-            <div className="flex-1">{children}</div>
-            <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
-          </div>
-          <Breakpoints />
-        </ThemeProvider>
+        <AppInitComponent />
+        <div className="relative flex min-h-screen flex-col">
+          <SiteHeader
+            themes={availableThemes}
+            siteSettings={siteSettings}
+            mobileSettings={mobileSettings}
+            className="mb-10"
+          />
+          <div className="flex-1">{children}</div>
+          <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
+        </div>
+        <Breakpoints />
       </body>
     </html>
   );
