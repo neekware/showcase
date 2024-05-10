@@ -1,14 +1,19 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useTheme } from 'next-themes';
 import { useAtom } from 'jotai';
 import { appStateAtom, setThemeMode, stateStorageInit } from '@repo/util';
 
 export function AppInitComponent() {
   const [state, setAppState] = useAtom(appStateAtom);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setThemeMode(state.theme.mode);
+    if (state.theme.mode !== theme) {
+      setThemeMode(state.theme.mode);
+      setTheme(state.theme.mode as string);
+    }
 
     const debounceId = setTimeout(() => {
       stateStorageInit(setAppState);

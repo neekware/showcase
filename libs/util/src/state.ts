@@ -15,7 +15,6 @@ export const DefaultStateSettings: AppState = signObject<AppState>({
   theme: {
     name: 'zinc',
     mode: 'light',
-    system: true,
     radius: 0.5,
   },
   profile: { username: '', email: '' },
