@@ -78,7 +78,6 @@ export function stateStorageInit(setAppState: (state: AppState) => void) {
   if (!sanitizedState) {
     // we don't trust the state, verify, and restore to default on error
     const mode = getSystemThemeMode();
-    console.log(mode);
     const signedState = signObject<AppState>({
       ...DefaultStateSettings,
       theme: { ...DefaultStateSettings.theme, mode },
