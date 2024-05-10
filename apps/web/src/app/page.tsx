@@ -33,15 +33,6 @@ export default function Home(): JSX.Element {
           </div>
         </div>
       </section>
-      {/* <div className="mx-auto flex max-w-5xl gap-2 text-2xl">
-        <div>
-          <Button variant="destructive">Test</Button>
-          <CounterButton />
-          <Link href="/auth/login">
-            <Button variant="default">Login</Button>
-          </Link>
-        </div>
-      </div> */}
     </div>
   );
 }
