@@ -4,7 +4,6 @@ import {
   SiteFooter,
   SiteHeader,
   ThemeProvider,
-  ThemeSwap,
 } from '@repo/ui';
 import { fontRoboto } from '../cfg/fonts';
 import { mobileSettings } from '../cfg/mobile';
@@ -20,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
+    <html lang="en" className="system" style={{ colorScheme: 'system' }}>
       <body className={fontRoboto.className}>
         <ThemeProvider
           attribute="class"
@@ -41,7 +40,6 @@ export default function RootLayout({
           </div>
           <Breakpoints />
         </ThemeProvider>
-        <ThemeSwap />
       </body>
     </html>
   );

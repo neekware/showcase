@@ -10,6 +10,7 @@ export interface AuthType {
 export interface ThemeType {
   name: string;
   mode: ThemeMode;
+  system: boolean;
   radius: number;
 }
 
