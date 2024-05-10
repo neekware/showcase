@@ -3,29 +3,14 @@
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useAtom } from 'jotai';
-import { APP_STATE_NAME, type AppState, type ThemeMode } from '@repo/dto';
-import {
-  appStateAtom,
-  DefaultStateSettings,
-  sanitizeObjectOrString,
-  signObject,
-} from '@repo/util';
-
-function getSystemTheme(): ThemeMode {
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
-  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-    return 'light';
-  }
-  return 'light'; // or return 'dark' as ThemeMode, depending on your desired default behavior
-}
+import { appStateAtom, stateStorageInit } from '@repo/util';
 
 export function AppInitComponent() {
   const [state, setAppState] = useAtom(appStateAtom);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    appStateStorageInit(setAppState);
+    stateStorageInit(setAppState);
     const debounceId = setTimeout(() => {
       if (state.theme.mode !== theme) {
         setTheme(state.theme.mode ?? 'system');
@@ -38,28 +23,4 @@ export function AppInitComponent() {
   }, [state]); // keep the theme mode in app state, give it to auth-theme on change
 
   return null; // This component does not render anything
-}
-
-function appStateStorageInit(setAppState: (state: AppState) => void) {
-  const storedState = localStorage.getItem(APP_STATE_NAME);
-  let sanitizedState;
-
-  // sanity check on mutable state from storage
-  try {
-    sanitizedState = sanitizeObjectOrString<AppState>(
-      storedState ? JSON.parse(storedState) : undefined
-    );
-  } catch (e) {
-    sanitizedState = undefined;
-  }
-
-  // we don't trust the state, verify, and restore to default on error
-  if (!sanitizedState) {
-    const mode = getSystemTheme();
-    const signedState = signObject<AppState>({
-      ...DefaultStateSettings,
-      theme: { ...DefaultStateSettings.theme, mode },
-    });
-    setAppState(signedState);
-  }
 }

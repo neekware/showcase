@@ -1,5 +1,7 @@
 import { type Toaster } from 'sonner';
 
+export const SYSTEM_COLOR_SCHEME_PREFERENCE = '(prefers-color-scheme: dark)';
+
 export type ThemeMode = 'dark' | 'light' | 'system' | undefined;
 
 export interface ThemeColor {
