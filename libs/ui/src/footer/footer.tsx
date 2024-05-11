@@ -101,7 +101,7 @@ export function SiteFooter({ siteSettings, className }: MainHeaderProps) {
           {/* <!-- Preferences Section --> */}
           <div className="flex flex-col">
             <h2 className="mb-2 text-base font-semibold">Preferences</h2>
-            <ul className="md:border-non m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2">
+            <ul className="m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:border-none md:pb-0 xl:grid-cols-2">
               <li key="theme" className="flex items-center">
                 <ThemeSelector
                   themes={siteSettings.themes}
