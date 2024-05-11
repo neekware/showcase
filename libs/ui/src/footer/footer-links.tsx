@@ -24,7 +24,7 @@ export function CategoryList({ category, listItems }: CategoryListProps) {
           setShowList(!showList);
         }}
       >
-        <div className="flex gap-2 border-b pb-2 text-left">
+        <div className="flex gap-2  border-b pb-2 text-left md:border-0">
           {category}
           <span className={cn(showList ? 'hidden' : 'block', 'md:hidden')}>
             +
