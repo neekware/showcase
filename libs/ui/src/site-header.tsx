@@ -1,14 +1,12 @@
-import { type MobileSettings, type SiteSettings, type Theme } from '@repo/dto';
+import { type MobileSettings, type SiteSettings } from '@repo/dto';
 import { cn } from '@repo/util';
 import { NavDesktop } from './nav-desktop';
 import { NavMobile } from './nav-mobile';
 import { NavOption } from './nav-options';
 import { NavSite } from './nav-site';
-import { ThemeSelector } from './theme-selector';
 import { ThemeModeToggle } from './theme-toggle';
 
 interface MainHeaderProps {
-  themes: Theme[];
   siteSettings: SiteSettings;
   mobileSettings: MobileSettings;
   className?: string;
@@ -17,7 +15,6 @@ interface MainHeaderProps {
 export function SiteHeader({
   mobileSettings,
   siteSettings,
-  themes,
   className,
 }: MainHeaderProps) {
   return (
@@ -48,8 +45,7 @@ export function SiteHeader({
 
             {/* Option Menu */}
             <div className="flex">
-              <ThemeModeToggle className="hidden md:flex" />
-              <ThemeSelector themes={themes} className="hidden md:flex" />
+              <ThemeModeToggle className="" />
               <NavOption siteSettings={siteSettings} />
             </div>
           </div>
