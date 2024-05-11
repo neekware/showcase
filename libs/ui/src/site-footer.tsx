@@ -178,7 +178,7 @@ function CategoryList({ category, listItems }: CategoryList) {
           setShowList(!showList);
         }}
       >
-        <div className="flex gap-2 text-left">
+        <div className="flex gap-2 border-b pb-2 text-left ">
           {category}
           <span className={cn(showList ? 'hidden' : 'block', 'md:hidden')}>
             +
@@ -187,7 +187,7 @@ function CategoryList({ category, listItems }: CategoryList) {
       </Link>
       <ul
         className={cn(
-          `md:border-non m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2 ${
+          `md:border-non m-0 grid list-none space-y-1 p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2 ${
             showList ? 'block' : 'hidden'
           }`,
           'md:block'
