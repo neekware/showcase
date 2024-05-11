@@ -49,7 +49,6 @@ export function SiteHeader({
             {/* Option Menu */}
             <div className="flex">
               <ThemeModeToggle className="hidden md:flex" />
-              <ThemeSelector themes={themes} className="hidden md:flex" />
               <NavOption siteSettings={siteSettings} />
             </div>
           </div>
