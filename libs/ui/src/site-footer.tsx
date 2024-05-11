@@ -31,10 +31,12 @@ export function SiteFooter({
           {/* <!-- Logo and contact section --> */}
           <div className="flex flex-col items-start gap-2">
             {/* Site Name and Logo */}
-            <NavSite siteSettings={siteSettings} />
-            <p className="whitespace-nowrap text-base text-base font-semibold leading-6">
-              © {CURRENT_YEAR}
-            </p>
+            <div className="flex md:flex-col">
+              <NavSite siteSettings={siteSettings} />
+              <p className="whitespace-nowrap p-0 pl-2 text-base text-base font-semibold leading-6">
+                © {CURRENT_YEAR}
+              </p>
+            </div>
             <Link
               href="/"
               rel="noopener"
@@ -45,7 +47,7 @@ export function SiteFooter({
               <small>All systems normal.</small>
             </Link>
             {/* <!-- Social Section Desktop --> */}
-            <span className="mb-4 mt-auto hidden md:flex">
+            <span className="mb-4 hidden md:flex">
               <ul className="m-0 inline-flex list-none items-center p-0 pl-1">
                 {siteSettings.footer.social.map((sItem: LinkItem) => {
                   return (
