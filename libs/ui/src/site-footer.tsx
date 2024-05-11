@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { Icon } from '@mdi/react';
 import { type LinkItem, type SiteSettings, type Theme } from '@repo/dto';
@@ -87,78 +88,22 @@ export function SiteFooter({
           </div>
 
           {/* <!-- Products Section --> */}
-          <div className="flex flex-col">
-            <h2 className="mb-2 text-base font-semibold">Product</h2>
-            <ul className="md:border-non m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2">
-              {siteSettings.footer.product.map((pItem: LinkItem) => {
-                return (
-                  <li key={pItem.title}>
-                    <Link
-                      href={pItem.href}
-                      className="text-foreground/60 hover:text-foreground transition-colors focus:outline-none"
-                    >
-                      {pItem.label ?? pItem.title}
-                      <div>
-                        {pItem.icon ? (
-                          <Icon path={pItem.icon} className="h-6 w-6" />
-                        ) : null}
-                      </div>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <CategoryList
+            category="Product"
+            listItems={siteSettings.footer.product}
+          />
 
-          {/* <!-- Resources Section --> */}
-          <div className="flex flex-col">
-            <h2 className="mb-2 text-base font-semibold">Resources</h2>
-            <ul className="md:border-non m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2">
-              {siteSettings.footer.resources.map((pItem: LinkItem) => {
-                return (
-                  <li key={pItem.title}>
-                    <Link
-                      href={pItem.href}
-                      className="text-foreground/60 hover:text-foreground transition-colors focus:outline-none"
-                    >
-                      {pItem.label ?? pItem.title}
-                      <div>
-                        {pItem.icon ? (
-                          <Icon path={pItem.icon} className="h-6 w-6" />
-                        ) : null}
-                      </div>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <CategoryList
+            category="Resources"
+            listItems={siteSettings.footer.resources}
+          />
 
-          {/* <!-- Company Section --> */}
-          <div className="flex flex-col">
-            <h2 className="mb-2 text-base font-semibold">Company</h2>
-            <ul className="md:border-non m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2">
-              {siteSettings.footer.company.map((pItem: LinkItem) => {
-                return (
-                  <li key={pItem.title}>
-                    <Link
-                      href={pItem.href}
-                      className="text-foreground/60 hover:text-foreground transition-colors focus:outline-none"
-                    >
-                      {pItem.label ?? pItem.title}
-                      <div>
-                        {pItem.icon ? (
-                          <Icon path={pItem.icon} className="h-6 w-6" />
-                        ) : null}
-                      </div>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <CategoryList
+            category="Company"
+            listItems={siteSettings.footer.company}
+          />
 
-          {/* <!-- Company Section --> */}
+          {/* <!-- Preferences Section --> */}
           <div className="flex flex-col">
             <h2 className="mb-2 text-base font-semibold">Preferences</h2>
             <ul className="md:border-non m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2">
@@ -213,5 +158,59 @@ export function SiteFooter({
         </div>
       </nav>
     </footer>
+  );
+}
+
+interface CategoryList {
+  category: string;
+  listItems: LinkItem[];
+}
+
+function CategoryList({ category, listItems }: CategoryList) {
+  const [showList, setShowList] = useState(false);
+
+  return (
+    <div className="flex flex-col">
+      <Link
+        href="#"
+        className="mb-2 text-base font-semibold"
+        onClick={() => {
+          setShowList(!showList);
+        }}
+      >
+        <div className="flex gap-2 text-left">
+          {category}
+          <span className={cn(showList ? 'hidden' : 'block', 'md:hidden')}>
+            +
+          </span>
+        </div>
+      </Link>
+      <ul
+        className={cn(
+          `md:border-non m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2 ${
+            showList ? 'block' : 'hidden'
+          }`,
+          'md:block'
+        )}
+      >
+        {listItems.map((item) => {
+          return (
+            <li key={`${category}-${item.title}`}>
+              <Link
+                href={item.href}
+                className="text-foreground/60 hover:text-foreground transition-colors focus:outline-none"
+              >
+                <div className="flex gap-2">
+                  {item.label ?? item.title}
+                  {item.icon ? (
+                    <Icon path={item.icon} className="h-6 w-6" />
+                  ) : null}
+                </div>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
