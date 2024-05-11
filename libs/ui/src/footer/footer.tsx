@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { Icon } from '@mdi/react';
-import { type LinkItem, type SiteSettings, type Theme } from '@repo/dto';
+import { type LinkItem, type SiteSettings } from '@repo/dto';
 import { cn } from '@repo/util';
 import { Button, buttonVariants } from '@repo/vendor-ui';
 import { NavSite } from '../nav/nav-site';

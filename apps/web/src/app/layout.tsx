@@ -9,7 +9,6 @@ import {
 import { fontRoboto } from '../cfg/fonts';
 import { mobileSettings } from '../cfg/mobile';
 import { siteSettings } from '../cfg/site';
-import { availableThemes } from '../cfg/themes';
 import '../styles/base.css';
 import '../styles/globals.css';
 import '../styles/themes.css';
