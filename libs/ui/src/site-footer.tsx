@@ -174,11 +174,12 @@ function CategoryList({ category, listItems }: CategoryList) {
       <Link
         href="#"
         className="mb-2 text-base font-semibold"
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault();
           setShowList(!showList);
         }}
       >
-        <div className="flex gap-2 border-b pb-2 text-left ">
+        <div className="flex gap-2 border-b pb-2 text-left">
           {category}
           <span className={cn(showList ? 'hidden' : 'block', 'md:hidden')}>
             +
