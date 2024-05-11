@@ -87,7 +87,7 @@ export function SiteFooter({
           {/* <!-- Products Section --> */}
           <div className="flex flex-col">
             <h2 className="mb-2 text-base font-semibold">Product</h2>
-            <ul className="md:border-non m-0 flex grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2">
+            <ul className="md:border-non m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:pb-0 xl:grid-cols-2">
               {siteSettings.footer.product.map((pItem: LinkItem) => {
                 return (
                   <li key={pItem.title}>
