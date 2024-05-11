@@ -5,6 +5,7 @@ import {
   mdiTwitter,
 } from '@mdi/js';
 import { type SiteSettings } from '@repo/dto';
+import { availableThemes } from './themes';
 
 export const siteSettings: SiteSettings = {
   name: 'Showcase UI',
@@ -12,6 +13,7 @@ export const siteSettings: SiteSettings = {
   url: 'https://showcase.io',
   ogImage: 'https://showcase.io/og.jpg',
   description: 'Showcase your political self beautify on a unified portal.',
+  themes: availableThemes,
   navTopLinks: [
     {
       title: 'Home',

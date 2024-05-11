@@ -1,10 +1,10 @@
 import { type MobileSettings, type SiteSettings } from '@repo/dto';
 import { cn } from '@repo/util';
-import { NavDesktop } from './nav-desktop';
-import { NavMobile } from './nav-mobile';
-import { NavOption } from './nav-options';
-import { NavSite } from './nav-site';
-import { ThemeModeToggle } from './theme-toggle';
+import { NavDesktop } from './nav/nav-desktop';
+import { NavMobile } from './nav/nav-mobile';
+import { NavOption } from './nav/nav-options';
+import { NavSite } from './nav/nav-site';
+import { ThemeModeToggle } from './theme/theme-toggle';
 
 interface MainHeaderProps {
   siteSettings: SiteSettings;

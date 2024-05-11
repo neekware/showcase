@@ -1,3 +1,5 @@
+import { Theme } from './theme';
+
 export interface LinkItem {
   title: string;
   href: string;
@@ -19,6 +21,7 @@ export interface SiteSettings {
   url: string;
   ogImage: string;
   description: string;
+  themes: Theme[];
   navTopLinks: LinkItem[];
   navOptionLinks: LinkItem[];
   footer: footerInfo;

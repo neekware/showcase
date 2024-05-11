@@ -31,17 +31,12 @@ export default function RootLayout({
           <AppInitComponent />
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader
-              themes={availableThemes}
               siteSettings={siteSettings}
               mobileSettings={mobileSettings}
               className="mb-10"
             />
             <div className="flex-1">{children}</div>
-            <SiteFooter
-              siteSettings={siteSettings}
-              themes={availableThemes}
-              className="mt-10 py-4"
-            />
+            <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
           </div>
           <Breakpoints />
         </ThemeProvider>
