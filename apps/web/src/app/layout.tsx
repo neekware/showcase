@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
       <body className={fontRoboto.className}>
         <ThemeProvider
           attribute="class"

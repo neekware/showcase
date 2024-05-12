@@ -6,16 +6,21 @@ import { Icon } from '@mdi/react';
 import { type LinkItem } from '@repo/dto';
 import { cn } from '@repo/util';
 
-interface CategoryListProps {
+interface FooterCategoryProps {
   category: string;
   listItems: LinkItem[];
+  className?: string;
 }
 
-export function CategoryList({ category, listItems }: CategoryListProps) {
+export function FooterCategory({
+  className,
+  category,
+  listItems,
+}: FooterCategoryProps) {
   const [showList, setShowList] = useState(false);
 
   return (
-    <div className="flex flex-col">
+    <div className={cn('flex flex-col', className)}>
       <Link
         href="#"
         className="mb-2 text-base font-semibold"

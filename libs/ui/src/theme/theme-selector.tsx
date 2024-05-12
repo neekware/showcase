@@ -44,7 +44,7 @@ export function ThemeSelector({ themes, className }: ThemeSelectorProps) {
           </PopoverTrigger>
           <PopoverContent
             align="end"
-            className="z-50 mt-3 w-[360px] rounded-[--radius]  p-4 "
+            className="z-50 mx-2 mt-3 w-[360] rounded-[--radius] p-4 sm:w-[340]"
           >
             <Selector themes={themes} />
           </PopoverContent>
