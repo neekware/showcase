@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link, { type LinkProps } from 'next/link';
 import { useRouter } from 'next/navigation';
-import { mdiMenu } from '@mdi/js';
+import { mdiClose, mdiMenu } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { type MobileSettings, type SiteSettings } from '@repo/dto';
 import { cn, hrefToString } from '@repo/util';
@@ -57,25 +57,46 @@ export function NavMobile({
   siteSettings,
 }: NavMobileProps) {
   const [open, setOpen] = React.useState(false);
+  const [clicked, setClicked] = React.useState(false);
+
+  const handleClick = () => {
+    setClicked(true);
+    setOpen(!open);
+  };
+
+  let animationClass = '';
+  if (clicked) {
+    if (open) {
+      animationClass = 'animate-spin-clockwise';
+    } else {
+      animationClass = 'animate-spin-counter-clockwise';
+    }
+  }
 
   return (
     <div className={cn('p-0', className)}>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Button
-            onClick={() => {
-              setOpen(!open);
-            }}
+            onClick={handleClick}
             variant="ghost"
             className="flex size-8 items-center justify-center rounded-full"
           >
-            <div className="text-primary">
-              <Icon path={mdiMenu} size={1} />
+            <div className={cn('text-primary', animationClass)}>
+              {open ? (
+                <Icon path={mdiClose} className="h-6 w-6" />
+              ) : (
+                <Icon path={mdiMenu} className="h-6 w-6" />
+              )}
             </div>
             <span className="sr-only">Toggle Mobile Menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="border-t pr-0">
+        <SheetContent
+          side="left"
+          className="mt-[65] border-t pr-0"
+          classNameSheetOverlay="mt-[65]"
+        >
           <LinkMobile
             href="/"
             className="mr-6 flex items-center space-x-2"

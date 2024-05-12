@@ -28,7 +28,7 @@ export function FooterSite({ className, siteSettings }: FooterSiteProps) {
       >
         {/* <!-- Status Indicator Elements --> */}
         <span className="h-2 w-2 rounded-full bg-green-500" />
-        <small>All systems normal.</small>
+        <small>All systems normal</small>
       </Link>
     </div>
   );

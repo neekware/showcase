@@ -11,8 +11,8 @@
     "typecheck": "tsc --noEmit",
     "__ACTION_RELATED__": "",
     "build": "next build",
-    "dev": "next dev --turbo -p 4200",
-    "start": "next start -p 3200",
+    "dev": "next dev --turbo -p 4200 -H 0.0.0.0",
+    "start": "next start -p 3200 -H 0.0.0.0",
     "test": "jest --coverage --passWithNoTests"
   },
   "jest": {
