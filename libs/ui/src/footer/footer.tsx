@@ -27,7 +27,7 @@ export function SiteFooter({ siteSettings, className }: MainHeaderProps) {
             {/* <!-- Desktop Social --> */}
             <FooterSocial
               listItems={siteSettings.footer.social}
-              className="hidden md:mt-auto md:block"
+              className="-mx-3.5 hidden md:mt-auto md:block"
             />
           </div>
 

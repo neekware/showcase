@@ -81,7 +81,6 @@ function Selector({ themes }: ThemeSelectorProps) {
               return mounted ? (
                 <Button
                   variant="outline"
-                  size="sm"
                   key={nextTheme.name}
                   onClick={() => {
                     setThemeState({
@@ -90,32 +89,36 @@ function Selector({ themes }: ThemeSelectorProps) {
                     });
                   }}
                   className={cn(
-                    'justify-start',
+                    'justify-start px-1',
                     isActive && 'border-primary border-2'
                   )}
                 >
-                  {isActive ? (
-                    <Icon
-                      path={mdiCheckCircle}
-                      className=" mr-1 h-6 w-6"
-                      color={`hsl(${
-                        nextTheme.activeColor[
-                          theme.mode === 'dark' ? 'dark' : 'light'
-                        ]
-                      })`}
-                    />
-                  ) : (
-                    <Icon
-                      path={mdiCircle}
-                      className="mr-1 h-6 w-6"
-                      color={`hsl(${
-                        nextTheme.activeColor[
-                          theme.mode === 'dark' ? 'dark' : 'light'
-                        ]
-                      })`}
-                    />
-                  )}
-                  {nextTheme.label}
+                  <div className="flex items-center justify-between gap-1">
+                    <div>
+                      {isActive ? (
+                        <Icon
+                          path={mdiCheckCircle}
+                          className="mr-1 h-6 w-6"
+                          color={`hsl(${
+                            nextTheme.activeColor[
+                              theme.mode === 'dark' ? 'dark' : 'light'
+                            ]
+                          })`}
+                        />
+                      ) : (
+                        <Icon
+                          path={mdiCircle}
+                          className="h-6 w-6"
+                          color={`hsl(${
+                            nextTheme.activeColor[
+                              theme.mode === 'dark' ? 'dark' : 'light'
+                            ]
+                          })`}
+                        />
+                      )}
+                    </div>
+                    <div>{nextTheme.label}</div>
+                  </div>
                 </Button>
               ) : (
                 <Skeleton className="h-8 w-full" key={nextTheme.name} />

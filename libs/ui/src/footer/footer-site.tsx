@@ -17,14 +17,14 @@ export function FooterSite({ className, siteSettings }: FooterSiteProps) {
       {/* Site Name and Logo */}
       <div className="flex md:flex-col">
         <NavSite siteSettings={siteSettings} />
-        <p className="whitespace-nowrap p-0 pl-2 text-base text-base font-semibold leading-6">
+        <p className="mx-0.5 whitespace-nowrap text-base text-base font-semibold">
           © {CURRENT_YEAR}
         </p>
       </div>
       <Link
         href="/"
         rel="noopener"
-        className="flex items-center gap-1 text-blue-500 transition-colors hover:text-blue-700"
+        className="mx-1 flex items-center gap-2 text-blue-500 transition-colors hover:text-blue-700"
       >
         {/* <!-- Status Indicator Elements --> */}
         <span className="h-2 w-2 rounded-full bg-green-500" />
