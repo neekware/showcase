@@ -94,8 +94,8 @@ export function NavMobile({
         </SheetTrigger>
         <SheetContent
           side="left"
-          className="mt-[65] border-t pr-0"
-          classNameSheetOverlay="mt-[65]"
+          className="mt-[65px] border-t pr-0"
+          classNameSheetOverlay="mt-[65px]"
         >
           <LinkMobile
             href="/"
