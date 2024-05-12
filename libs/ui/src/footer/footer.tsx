@@ -53,7 +53,7 @@ export function SiteFooter({ siteSettings, className }: MainHeaderProps) {
           {/* <!-- Mobile Social --> */}
           <FooterSocial
             listItems={siteSettings.footer.social}
-            className="-mt-4 block md:hidden"
+            className="-mx-3.5 -mt-4 block md:hidden"
           />
         </div>
       </nav>

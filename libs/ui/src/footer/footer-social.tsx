@@ -13,9 +13,9 @@ interface FooterSocialProps {
 export function FooterSocial({ listItems, className }: FooterSocialProps) {
   return (
     <div className={cn('mb-4 flex', className)}>
-      <ul className="m-0 ml-[-6] inline-flex list-none items-center p-0">
+      <ul className="mx-2.5 inline-flex list-none items-center gap-2">
         {listItems.map((sItem: LinkItem) => (
-          <li key={sItem.title} className="m-0 rounded-full p-0 pr-2">
+          <li key={sItem.title} className="m-0 rounded-full p-0">
             <Button
               variant="ghost"
               className="flex size-8 items-center justify-center rounded-full"

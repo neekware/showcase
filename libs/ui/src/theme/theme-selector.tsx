@@ -28,7 +28,7 @@ interface ThemeSelectorProps {
 
 export function ThemeSelector({ themes, className }: ThemeSelectorProps) {
   return (
-    <div className={cn('flex items-center space-x-2', className)}>
+    <div className={cn('flex items-center', className)}>
       <div className="md:flex">
         <Popover>
           <PopoverTrigger asChild>

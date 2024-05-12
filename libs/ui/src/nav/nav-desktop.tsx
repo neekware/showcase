@@ -14,7 +14,7 @@ export function NavDesktop({ className, siteSettings }: NavTopProps) {
   const pathname = usePathname();
 
   return (
-    <div className={cn('space-x-4', className)}>
+    <div className={cn('gap-4', className)}>
       {siteSettings.navTopLinks.map((link: LinkItem) => (
         <Link
           key={link.title}
