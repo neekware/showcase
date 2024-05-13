@@ -1,9 +1,4 @@
-import {
-  mdiBriefcaseAccountOutline,
-  mdiGithub,
-  mdiLogout,
-  mdiTwitter,
-} from '@mdi/js';
+import { mdiBriefcaseAccountOutline, mdiGithub, mdiLogout, mdiTwitter } from '@mdi/js';
 import { type SiteSettings } from '@repo/dto';
 import { availableThemes } from './themes';
 

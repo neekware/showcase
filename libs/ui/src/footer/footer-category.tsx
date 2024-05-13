@@ -12,11 +12,7 @@ interface FooterCategoryProps {
   className?: string;
 }
 
-export function FooterCategory({
-  className,
-  category,
-  listItems,
-}: FooterCategoryProps) {
+export function FooterCategory({ className, category, listItems }: FooterCategoryProps) {
   const [showList, setShowList] = useState(false);
 
   return (
@@ -31,9 +27,7 @@ export function FooterCategory({
       >
         <div className="flex gap-2  border-b pb-2 text-left md:border-0">
           {category}
-          <span className={cn(showList ? 'hidden' : 'block', 'md:hidden')}>
-            +
-          </span>
+          <span className={cn(showList ? 'hidden' : 'block', 'md:hidden')}>+</span>
         </div>
       </Link>
       <ul
@@ -53,9 +47,7 @@ export function FooterCategory({
               >
                 <div className="flex gap-2">
                   {item.label ?? item.title}
-                  {item.icon ? (
-                    <Icon path={item.icon} className="h-6 w-6" />
-                  ) : null}
+                  {item.icon ? <Icon path={item.icon} className="h-6 w-6" /> : null}
                 </div>
               </Link>
             </li>

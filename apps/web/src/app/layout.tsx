@@ -13,11 +13,7 @@ import '../styles/base.css';
 import '../styles/globals.css';
 import '../styles/themes.css';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html lang="en" dir="ltr">
       <body className={fontRoboto.className}>

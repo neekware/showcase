@@ -21,10 +21,7 @@ export const DefaultStateSettings: AppState = signObject<AppState>({
   signature: '',
 });
 
-export const appStateAtom = atomWithStorage<AppState>(
-  APP_STATE_NAME,
-  DefaultStateSettings
-);
+export const appStateAtom = atomWithStorage<AppState>(APP_STATE_NAME, DefaultStateSettings);
 
 export const themeAtom = atom(
   (get) => get(appStateAtom).theme,

@@ -51,31 +51,31 @@ module.exports = {
     {
       files: '**/*.html',
       options: {
+        printWidth: 120,
+      },
+    },
+    {
+      files: '**/*.tsx',
+      options: {
         printWidth: 100,
       },
     },
     {
       files: '**/*.ts',
       options: {
-        printWidth: 80,
-      },
-    },
-    {
-      files: '**/*.tsx',
-      options: {
-        printWidth: 80,
-      },
-    },
-    {
-      files: '**/*.json',
-      options: {
-        printWidth: 80,
+        printWidth: 100,
       },
     },
     {
       files: '**/*.js',
       options: {
-        printWidth: 80,
+        printWidth: 100,
+      },
+    },
+    {
+      files: '**/*.json',
+      options: {
+        printWidth: 100,
       },
     },
     {

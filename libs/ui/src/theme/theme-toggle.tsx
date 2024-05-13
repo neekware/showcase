@@ -25,10 +25,7 @@ export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
         className="flex size-8 items-center justify-center rounded-full"
       >
         <div className="text-primary">
-          <Icon
-            path={theme.mode === 'dark' ? mdiWeatherSunny : mdiWeatherNight}
-            size={1}
-          />
+          <Icon path={theme.mode === 'dark' ? mdiWeatherSunny : mdiWeatherNight} size={1} />
         </div>
         <span className="sr-only">Toggle theme</span>
       </Button>

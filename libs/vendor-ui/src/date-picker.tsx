@@ -14,11 +14,7 @@ interface DatePickerProps {
   placeholder?: string;
 }
 
-function DatePicker({
-  initialDate,
-  onSelectDate,
-  placeholder = 'Pick a date',
-}: DatePickerProps) {
+function DatePicker({ initialDate, onSelectDate, placeholder = 'Pick a date' }: DatePickerProps) {
   const [date, setDate] = React.useState<Date | undefined>(initialDate);
 
   return (
@@ -71,9 +67,7 @@ function DatePickerWithRange({
   initialDateRange = defaultDateRange,
   onDateRangeChange,
 }: DatePickerWithRangeProps) {
-  const [dateRange, setDateRange] = React.useState<DateRange | undefined>(
-    initialDateRange
-  );
+  const [dateRange, setDateRange] = React.useState<DateRange | undefined>(initialDateRange);
 
   const handleDateSelects = (range: DateRange | undefined) => {
     setDateRange(range);
@@ -90,8 +84,7 @@ function DatePickerWithRange({
     if (to) {
       return (
         <>
-          {format(from as DateFormatType, 'LLL dd, y')} -{' '}
-          {format(to, 'LLL dd, y')}
+          {format(from as DateFormatType, 'LLL dd, y')} - {format(to, 'LLL dd, y')}
         </>
       );
     }

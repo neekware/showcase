@@ -8,10 +8,7 @@ interface FooterPreferencesProps {
   className?: string;
 }
 
-export function FooterPreferences({
-  siteSettings,
-  className,
-}: FooterPreferencesProps) {
+export function FooterPreferences({ siteSettings, className }: FooterPreferencesProps) {
   return (
     <div className={cn('flex flex-col', className)}>
       <h2 className="mb-2 text-base font-semibold">Preferences</h2>

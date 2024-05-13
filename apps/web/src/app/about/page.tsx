@@ -18,9 +18,8 @@ export default function About(): JSX.Element {
               About Showcase UI
             </h1>
             <p className="text-gray-500 md:text-xl/relaxed dark:text-gray-400">
-              We are a leading provider of innovative solutions for political
-              individuals of all levels. Explore our products and services to
-              see how we can help your campaign thrive.
+              We are a leading provider of innovative solutions for political individuals of all
+              levels. Explore our products and services to see how we can help your campaign thrive.
             </p>
             <div className="flex justify-start gap-4">
               <Link href="/">

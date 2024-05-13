@@ -15,7 +15,7 @@ export function AppInitComponent() {
       if (state.theme.mode !== theme) {
         setTheme(state.theme.mode ?? 'system');
       }
-    }, 150);
+    }, 1);
 
     return () => {
       clearTimeout(debounceId);

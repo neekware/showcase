@@ -1,13 +1,7 @@
 import { useAtom } from 'jotai';
 import { type AppState, type ThemeType } from '@repo/dto';
 import { signObject } from './crypto';
-import {
-  appStateAtom,
-  authAtom,
-  DefaultStateSettings,
-  profileAtom,
-  themeAtom,
-} from './state';
+import { appStateAtom, authAtom, DefaultStateSettings, profileAtom, themeAtom } from './state';
 
 export function useAppState() {
   const [state, setAppState] = useAtom(appStateAtom);

@@ -26,15 +26,11 @@ async function combineLcovFiles(
     (mergedReport, currFile) => (mergedReport += fs.readFileSync(currFile)),
     ''
   );
-  await fs.writeFile(
-    path.resolve(coverageComboFilePath),
-    mergedReport,
-    (err) => {
-      if (err) {
-        throw err;
-      }
+  await fs.writeFile(path.resolve(coverageComboFilePath), mergedReport, (err) => {
+    if (err) {
+      throw err;
     }
-  );
+  });
 }
 
 /**
