@@ -1,9 +1,10 @@
-import { create } from 'zustand';
-import { APP_STATE_NAME, type AppStateType } from '@repo/dto';
-import { sanitizeObjectOrString, signObject } from './crypto';
+import { create, type StateCreator } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import { type AppState } from '@repo/dto';
+import { sanitize, sign } from './crypto';
 import { getSystemThemeMode } from './theme';
 
-export const DefaultStateSettings: AppStateType = signObject<AppStateType>({
+export const DefaultStateSettings: AppState = sign<AppState>({
   auth: { token: '', isLoggedIn: false },
   theme: {
     name: 'zinc',
@@ -15,40 +16,50 @@ export const DefaultStateSettings: AppStateType = signObject<AppStateType>({
 });
 
 interface AppStateStore {
-  [APP_STATE_NAME]: AppStateType;
-  setAppState: (partialState: Partial<AppStateType>) => void;
+  appState: AppState;
+  setAppState: (partialState: Partial<AppState>) => void;
 }
 
-export const useAppState = create<AppStateStore>((set) => ({
-  [APP_STATE_NAME]: DefaultStateSettings,
-  setAppState: (partialState: Partial<AppStateType>) => {
-    set((state) => ({
-      ...state,
-      [APP_STATE_NAME]: { ...state[APP_STATE_NAME], ...partialState },
-    }));
+const customStorage = createJSONStorage<AppStateStore>(() => localStorage, {
+  reviver: (key, value) => {
+    let sanitized;
+
+    // sanity check on mutable state from storage
+    try {
+      sanitized = sanitize<AppState>(JSON.parse(value as string));
+    } catch (e) {
+      sanitized = undefined;
+    }
+
+    if (!sanitized) {
+      // we don't trust the state, verify, and restore to default on error
+      const mode = getSystemThemeMode();
+      sanitized = sign<AppState>({
+        ...DefaultStateSettings,
+        theme: { ...DefaultStateSettings.theme, mode },
+      });
+    }
+
+    return sanitized;
   },
-}));
+  replacer: (key, value) => {
+    return value;
+  },
+});
 
-export function appStateStorage(setAppState: (state: AppStateType) => void) {
-  const storedState = localStorage.getItem(APP_STATE_NAME);
-  let sanitizedState;
-
-  // sanity check on mutable state from storage
-  try {
-    sanitizedState = sanitizeObjectOrString<AppStateType>(
-      storedState ? JSON.parse(storedState) : undefined
-    );
-  } catch (e) {
-    sanitizedState = undefined;
-  }
-
-  if (!sanitizedState) {
-    // we don't trust the state, verify, and restore to default on error
-    const mode = getSystemThemeMode();
-    const signedState = signObject<AppStateType>({
-      ...DefaultStateSettings,
-      theme: { ...DefaultStateSettings.theme, mode },
-    });
-    setAppState(signedState);
-  }
-}
+export const useAppState = create<AppStateStore>(
+  persist<AppStateStore>(
+    (set) => ({
+      appState: DefaultStateSettings,
+      setAppState: (partialState: Partial<AppState>) => {
+        set((state) => ({
+          appState: { ...state.appState, ...partialState },
+        }));
+      },
+    }),
+    {
+      name: 'appState',
+      storage: customStorage,
+    }
+  ) as StateCreator<AppStateStore>
+);

@@ -305,9 +305,6 @@ importers:
       '@repo/vendor-ui':
         specifier: workspace:*
         version: link:../vendor-ui
-      jotai:
-        specifier: ^2.8.0
-        version: 2.8.0(@types/react@18.3.1)(react@18.3.1)
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -366,9 +363,6 @@ importers:
       crypto-es:
         specifier: ^2.1.0
         version: 2.1.0
-      jotai:
-        specifier: ^2.8.0
-        version: 2.8.0(@types/react@18.3.1)(react@18.3.1)
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4335,18 +4329,6 @@ packages:
 
   jju@1.4.0:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
-
-  jotai@2.8.0:
-    resolution: {integrity: sha512-yZNMC36FdLOksOr8qga0yLf14miCJlEThlp5DeFJNnqzm2+ZG7wLcJzoOyij5K6U6Xlc5ljQqPDlJRgqW0Y18g==}
-    engines: {node: '>=12.20.0'}
-    peerDependencies:
-      '@types/react': '>=17.0.0'
-      react: '>=17.0.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
 
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
@@ -10886,11 +10868,6 @@ snapshots:
   jiti@1.21.0: {}
 
   jju@1.4.0: {}
-
-  jotai@2.8.0(@types/react@18.3.1)(react@18.3.1):
-    optionalDependencies:
-      '@types/react': 18.3.1
-      react: 18.3.1
 
   joycon@3.1.1: {}
 

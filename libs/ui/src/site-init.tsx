@@ -2,14 +2,14 @@
 
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { appStateStorage, useAppState } from '@repo/util';
+import { useAppState } from '@repo/util';
 
 export function AppInitComponent() {
-  const { appState, setAppState } = useAppState();
+  const { appState } = useAppState();
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    appStateStorage(setAppState);
+    // appStateStorage(setAppState);
     const debounceId = setTimeout(() => {
       if (appState.theme.mode !== theme) {
         setTheme(appState.theme.mode ?? 'system');
