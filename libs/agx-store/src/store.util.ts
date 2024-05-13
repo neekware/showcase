@@ -11,15 +11,6 @@ export function isFunction(value: unknown): value is (...args: unknown[]) => unk
 }
 
 /**
- * A high-performance, low-collision unique number generator.
- *
- * @returns A unique string.
- */
-export function getUniqueString(): string {
-  return (Date.now() + Math.random()).toString(36);
-}
-
-/**
  * Simple Object DeepFreeze implementation.
  *
  * @param obj - The object to freeze.

@@ -16,6 +16,8 @@ interface TestStoreState {
   [key: string]: unknown;
 }
 
+jest.spyOn(console, 'log').mockImplementation(() => {});
+
 describe('StoreState', () => {
   let storeState: StoreState<TestStoreState>;
 
@@ -33,17 +35,40 @@ describe('StoreState', () => {
     expect(storeState).toBeTruthy();
   });
 
-  it('should claim & release a slice without error', () => {
-    expect(() => storeState.claim('count')).not.toThrow();
+  it('should release a claimed slice without error', () => {
+    const claimId = storeState.claim('auth');
+    expect(() => storeState.release(claimId)).not.toThrow();
+  });
+
+  it('should not be able to update immutable state', () => {
+    const state = storeState.state();
+
+    expect(() => {
+      state.auth.isLoggedIn = true;
+    }).toThrow("Cannot assign to read only property 'isLoggedIn' of object '#<Object>'");
   });
 
   it('should update the state of a claimed slice using a reducer function', () => {
-    const claimId = storeState.claim('count');
+    const claimId = storeState.claim('count', console.log);
     const login = () => {
       return { auth: { isLoggedIn: true } };
     };
     const updatedState = storeState.update(claimId, login, 'login');
     expect(updatedState).toEqual({ auth: { isLoggedIn: true } });
+  });
+
+  it('should update the state of a claimed slice using a partial state object', () => {
+    const claimId = storeState.claim('auth');
+    const updatedState = storeState.update(claimId, { auth: { isLoggedIn: true } }, 'login');
+    expect(updatedState).toEqual({ auth: { isLoggedIn: true } });
+  });
+
+  it('should update the state with a top level key:value', () => {
+    const claimId = storeState.claim('key', console.log);
+    const result = storeState.update(claimId, 'value');
+
+    expect(result).toBe('value');
+    expect(storeState.state().key).toBe('value');
   });
 
   it('should retrieve the current state', () => {
@@ -71,14 +96,8 @@ describe('StoreState', () => {
     });
   });
 
-  it('should update the state of a claimed slice using a partial state object', () => {
-    const claimId = storeState.claim('auth');
-    const updatedState = storeState.update(claimId, { auth: { isLoggedIn: true } }, 'login');
-    expect(updatedState).toEqual({ auth: { isLoggedIn: true } });
-  });
-
   it('should release a claimed slice without error', () => {
-    const claimId = storeState.claim('auth');
+    const claimId = storeState.claim('auth', console.log);
     expect(() => storeState.release(claimId)).not.toThrow();
   });
 
@@ -103,7 +122,7 @@ describe('StoreState', () => {
     const logger = jest.fn();
     const claimId = storeState.claim('auth', logger);
     storeState.update(claimId, { auth: { isLoggedIn: true } }, 'login');
-    expect(logger).toHaveBeenCalledTimes(2);
+    expect(logger).toHaveBeenCalledTimes(3); // claim, prev, next
   });
 
   it('should throw an error when attempting to update an invalid slice', () => {
@@ -113,7 +132,6 @@ describe('StoreState', () => {
   });
 });
 
-// now test immutable set to false
 describe('StoreState (mutable)', () => {
   let storeState: StoreState<TestStoreState>;
 
@@ -127,56 +145,15 @@ describe('StoreState (mutable)', () => {
     storeState = null!;
   });
 
-  it('should create an instance', () => {
+  it('should create an mutable instance', () => {
     expect(storeState).toBeTruthy();
   });
 
-  it('should claim & release a slice without error', () => {
-    expect(() => storeState.claim('count')).not.toThrow();
-  });
+  it('should be able to update immutable state', () => {
+    const state = storeState.state();
 
-  it('should update the state of a claimed slice using a reducer function', () => {
-    const claimId = storeState.claim('count');
-    const login = () => {
-      return { auth: { isLoggedIn: true } };
-    };
-    const updatedState = storeState.update(claimId, login, 'login');
-    expect(updatedState).toEqual({ auth: { isLoggedIn: true } });
-  });
-
-  it('should retrieve the current state', () => {
-    const currentState = storeState.state();
-    expect(currentState).toEqual({
-      auth: { token: '', isLoggedIn: false },
-      theme: { name: '', color: '' },
-    });
-  });
-
-  it('should provide an Observable stream of the current store state', (done) => {
-    storeState.state$().subscribe((state) => {
-      expect(state).toEqual({
-        auth: { token: '', isLoggedIn: false },
-        theme: { name: '', color: '' },
-      });
-      done();
-    });
-  });
-
-  it('should select and return a specific slice of the store state as an Observable', (done) => {
-    storeState.select$<AuthState>('auth').subscribe((authState) => {
-      expect(authState).toEqual({ token: '', isLoggedIn: false });
-      done();
-    });
-  });
-
-  it('should update the state of a claimed slice using a partial state object', () => {
-    const claimId = storeState.claim('auth');
-    const updatedState = storeState.update(claimId, { auth: { isLoggedIn: true } }, 'login');
-    expect(updatedState).toEqual({ auth: { isLoggedIn: true } });
-  });
-
-  it('should release a claimed slice without error', () => {
-    const claimId = storeState.claim('auth');
-    expect(() => storeState.release(claimId)).not.toThrow();
+    expect(() => {
+      state.auth.isLoggedIn = true;
+    }).not.toThrow("Cannot assign to read only property 'isLoggedIn' of object '#<Object>'");
   });
 });

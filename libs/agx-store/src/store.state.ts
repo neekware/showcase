@@ -1,7 +1,8 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+import { v4 as uuidV4 } from 'uuid';
 import { StoreLogger, StoreRegistryEntry, StoreStateReducer, StoreStateType } from './store.model';
-import { deepFreeze, getUniqueString, isFunction } from './store.util';
+import { deepFreeze, isFunction } from './store.util';
 
 /**
  * A store that maintains its state immutably and notifies subscribers of changes.
@@ -58,7 +59,7 @@ export class StoreState<T extends StoreStateType> {
    */
   constructor(initialState: T, immutable = true) {
     this.immutable = immutable;
-    this.store$ = new ImmutableStore<T>(initialState);
+    this.store$ = new ImmutableStore<T>(immutable ? deepFreeze(initialState) : initialState);
   }
 
   /**
@@ -83,8 +84,13 @@ export class StoreState<T extends StoreStateType> {
       throw new Error(`Slice "${slice}" already claimed.`);
     }
 
-    const claimId = getUniqueString();
+    const claimId = uuidV4();
     this.registry.set(claimId, { slice, claimId, logger });
+
+    if (logger) {
+      logger(`[SLICE][CLAIMED][${slice}]:[${claimId}]`);
+    }
+
     return claimId;
   }
 
@@ -101,6 +107,11 @@ export class StoreState<T extends StoreStateType> {
     const state = this.state();
     const newState = { ...state, [entity.slice]: undefined };
     this.immutable ? this.store$.next(deepFreeze(newState)) : this.store$.next(newState);
+
+    if (entity?.logger) {
+      entity.logger(`[SLICE][RELEASED][${entity.slice}]:[${claimId}]`);
+    }
+
     this.registry.delete(claimId);
   }
 

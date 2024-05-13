@@ -1,4 +1,4 @@
-import { deepFreeze, getUniqueString, isFunction } from './store.util';
+import { deepFreeze, isFunction } from './store.util';
 
 describe('Store:Util:Freeze', () => {
   it('should mutate an unfrozen flat object', () => {
@@ -97,13 +97,5 @@ describe('Store:Util:Freeze', () => {
   it('return false for a non-function', () => {
     expect(isFunction('foo-bar')).toBeFalsy;
     expect(isFunction({})).toBeFalsy;
-  });
-
-  it('return a unique number with low collision possibility', () => {
-    const values = {
-      one: getUniqueString(),
-      two: getUniqueString(),
-    };
-    expect(values.one).not.toEqual(values.two);
   });
 });

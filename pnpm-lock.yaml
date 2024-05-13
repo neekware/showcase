@@ -174,6 +174,9 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -193,6 +196,9 @@ importers:
       '@types/node':
         specifier: ^20.12.8
         version: 20.12.8
+      '@types/uuid':
+        specifier: ^9.0.8
+        version: 9.0.8
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.8)(ts-node@10.9.2(@types/node@20.12.8)(typescript@5.4.5))
@@ -2144,6 +2150,9 @@ packages:
 
   '@types/unist@3.0.2':
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
+
+  '@types/uuid@9.0.8':
+    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -6160,6 +6169,10 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
+  uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+
   uvu@0.5.6:
     resolution: {integrity: sha512-+g8ENReyr8YsOc6fv/NVJs2vFdHBnBNdfE49rshrTzDWOlUx4Gq7KOS2GD8eqhy2j+Ejq29+SbKH8yjkAqXqoA==}
     engines: {node: '>=8'}
@@ -8063,6 +8076,8 @@ snapshots:
   '@types/unist@2.0.10': {}
 
   '@types/unist@3.0.2': {}
+
+  '@types/uuid@9.0.8': {}
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -13018,6 +13033,8 @@ snapshots:
       os-homedir: 1.0.2
 
   util-deprecate@1.0.2: {}
+
+  uuid@9.0.1: {}
 
   uvu@0.5.6:
     dependencies:
