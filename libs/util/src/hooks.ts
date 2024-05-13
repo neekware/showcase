@@ -1,59 +1,35 @@
-import { useAtom } from 'jotai';
-import { type AppState, type ThemeType } from '@repo/dto';
-import { signObject } from './crypto';
-import { appStateAtom, authAtom, DefaultStateSettings, profileAtom, themeAtom } from './state';
+import { type AuthStateType, type ProfileStateType, type ThemeStateType } from '@repo/dto';
+import { useAppState } from './state';
 
-export function useAppState() {
-  const [state, setAppState] = useAtom(appStateAtom);
-
-  const updateImmutable = (partialConfig: Partial<AppState>) => {
-    setAppState(
-      signObject<AppState>({
-        ...DefaultStateSettings,
-        ...state,
-        ...partialConfig,
-      })
-    );
+export const useAuthState = () => {
+  const auth = useAppState((state) => state.appState.auth);
+  const updateAuthState = useAppState((state) => state.setAppState);
+  return {
+    auth,
+    setAuthState: (partialAuth: Partial<AuthStateType>) => {
+      updateAuthState({ auth: { ...auth, ...partialAuth } });
+    },
   };
+};
 
-  return [state, updateImmutable] as const;
-}
-
-export function useThemeState() {
-  const [theme, setThemeState] = useAtom(themeAtom);
-
-  const updateImmutable = (partialConfig: Partial<ThemeType>) => {
-    setThemeState({
-      ...DefaultStateSettings.theme,
-      ...partialConfig,
-    });
+export const useThemeState = () => {
+  const theme = useAppState((state) => state.appState.theme);
+  const updateThemeState = useAppState((state) => state.setAppState);
+  return {
+    theme,
+    setThemeState: (partialTheme: Partial<ThemeStateType>) => {
+      updateThemeState({ theme: { ...theme, ...partialTheme } });
+    },
   };
+};
 
-  return [theme, updateImmutable] as const;
-}
-
-export function useAuthState() {
-  const [auth, setAuthState] = useAtom(authAtom);
-
-  const updateImmutable = (partialConfig: Partial<ThemeType>) => {
-    setAuthState({
-      ...DefaultStateSettings.auth,
-      ...partialConfig,
-    });
+export const useProfileState = () => {
+  const profile = useAppState((state) => state.appState.profile);
+  const updateProfileState = useAppState((state) => state.setAppState);
+  return {
+    profile,
+    setProfileState: (partialProfile: Partial<ProfileStateType>) => {
+      updateProfileState({ profile: { ...profile, ...partialProfile } });
+    },
   };
-
-  return [auth, updateImmutable] as const;
-}
-
-export function useProfileState() {
-  const [profile, setAuthState] = useAtom(profileAtom);
-
-  const updateImmutable = (partialConfig: Partial<ThemeType>) => {
-    setAuthState({
-      ...DefaultStateSettings.profile,
-      ...partialConfig,
-    });
-  };
-
-  return [profile, updateImmutable] as const;
-}
+};

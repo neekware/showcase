@@ -4,7 +4,7 @@ import { type ToasterProps } from '@repo/dto';
 import { useThemeState } from '@repo/util';
 
 function ThemeToaster({ ...props }: ToasterProps) {
-  const [theme] = useThemeState();
+  const { theme } = useThemeState();
 
   return (
     <Toaster

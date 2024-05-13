@@ -1,16 +1,9 @@
-import { atom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
-import {
-  APP_STATE_NAME,
-  type AppState,
-  type AuthType,
-  type ProfileType,
-  type ThemeType,
-} from '@repo/dto';
+import { create } from 'zustand';
+import { APP_STATE_NAME, type AppStateType } from '@repo/dto';
 import { sanitizeObjectOrString, signObject } from './crypto';
 import { getSystemThemeMode } from './theme';
 
-export const DefaultStateSettings: AppState = signObject<AppState>({
+export const DefaultStateSettings: AppStateType = signObject<AppStateType>({
   auth: { token: '', isLoggedIn: false },
   theme: {
     name: 'zinc',
@@ -21,51 +14,28 @@ export const DefaultStateSettings: AppState = signObject<AppState>({
   signature: '',
 });
 
-export const appStateAtom = atomWithStorage<AppState>(APP_STATE_NAME, DefaultStateSettings);
+interface AppStateStore {
+  [APP_STATE_NAME]: AppStateType;
+  setAppState: (partialState: Partial<AppStateType>) => void;
+}
 
-export const themeAtom = atom(
-  (get) => get(appStateAtom).theme,
-  (get, set, update: ThemeType) => {
-    const newState = signObject<AppState>({
-      ...DefaultStateSettings,
-      ...get(appStateAtom),
-      theme: update,
-    });
-    set(appStateAtom, newState);
-  }
-);
+export const useAppState = create<AppStateStore>((set) => ({
+  [APP_STATE_NAME]: DefaultStateSettings,
+  setAppState: (partialState: Partial<AppStateType>) => {
+    set((state) => ({
+      ...state,
+      [APP_STATE_NAME]: { ...state[APP_STATE_NAME], ...partialState },
+    }));
+  },
+}));
 
-export const authAtom = atom(
-  (get) => get(appStateAtom).auth,
-  (get, set, update: AuthType) => {
-    const newState = signObject<AppState>({
-      ...DefaultStateSettings,
-      ...get(appStateAtom),
-      auth: update,
-    });
-    set(appStateAtom, newState);
-  }
-);
-
-export const profileAtom = atom(
-  (get) => get(appStateAtom).profile,
-  (get, set, update: ProfileType) => {
-    const newState = signObject<AppState>({
-      ...DefaultStateSettings,
-      ...get(appStateAtom),
-      profile: update,
-    });
-    set(appStateAtom, newState);
-  }
-);
-
-export function stateStorageInit(setAppState: (state: AppState) => void) {
+export function appStateStorage(setAppState: (state: AppStateType) => void) {
   const storedState = localStorage.getItem(APP_STATE_NAME);
   let sanitizedState;
 
   // sanity check on mutable state from storage
   try {
-    sanitizedState = sanitizeObjectOrString<AppState>(
+    sanitizedState = sanitizeObjectOrString<AppStateType>(
       storedState ? JSON.parse(storedState) : undefined
     );
   } catch (e) {
@@ -75,7 +45,7 @@ export function stateStorageInit(setAppState: (state: AppState) => void) {
   if (!sanitizedState) {
     // we don't trust the state, verify, and restore to default on error
     const mode = getSystemThemeMode();
-    const signedState = signObject<AppState>({
+    const signedState = signObject<AppStateType>({
       ...DefaultStateSettings,
       theme: { ...DefaultStateSettings.theme, mode },
     });

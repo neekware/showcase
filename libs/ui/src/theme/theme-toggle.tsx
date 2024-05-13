@@ -11,7 +11,7 @@ interface ThemeModeToggleProps {
 }
 
 export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
-  const [theme, setThemeState] = useThemeState();
+  const { theme, setThemeState } = useThemeState();
 
   const toggleTheme = () => {
     setThemeState({ mode: theme.mode === 'dark' ? 'light' : 'dark' });

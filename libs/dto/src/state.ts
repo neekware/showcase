@@ -2,25 +2,25 @@ import { ThemeMode } from './theme';
 
 export const APP_STATE_NAME = 'appState';
 
-export interface AuthType {
+export interface AuthStateType {
   token: string;
   isLoggedIn: boolean;
 }
 
-export interface ThemeType {
+export interface ThemeStateType {
   name: string;
   mode: ThemeMode;
   radius: number;
 }
 
-export interface ProfileType {
+export interface ProfileStateType {
   username: string;
   email: string;
 }
 
-export interface AppState {
-  auth: AuthType;
-  theme: ThemeType;
-  profile: ProfileType;
+export interface AppStateType {
+  auth: AuthStateType;
+  theme: ThemeStateType;
+  profile: ProfileStateType;
   signature: string;
 }

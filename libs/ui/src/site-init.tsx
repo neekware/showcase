@@ -2,25 +2,24 @@
 
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { useAtom } from 'jotai';
-import { appStateAtom, stateStorageInit } from '@repo/util';
+import { appStateStorage, useAppState } from '@repo/util';
 
 export function AppInitComponent() {
-  const [state, setAppState] = useAtom(appStateAtom);
+  const { appState, setAppState } = useAppState();
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    stateStorageInit(setAppState);
+    appStateStorage(setAppState);
     const debounceId = setTimeout(() => {
-      if (state.theme.mode !== theme) {
-        setTheme(state.theme.mode ?? 'system');
+      if (appState.theme.mode !== theme) {
+        setTheme(appState.theme.mode ?? 'system');
       }
     }, 1);
 
     return () => {
       clearTimeout(debounceId);
     };
-  }, [state]); // keep the theme mode in app state, give it to auth-theme on change
+  }, [appState]); // keep the theme mode in app state, give it to auth-theme on change
 
   return null; // This component does not render anything
 }
