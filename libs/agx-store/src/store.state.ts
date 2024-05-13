@@ -62,14 +62,25 @@ export class StoreState<T extends StoreStateType> {
   }
 
   /**
+   * Releases all claimed slices and resets the store state to its initial value.
+   */
+  reset() {
+    this.registry.clear();
+  }
+
+  /**
    * Claims a slice of the store's state for exclusive modification.
    * @param slice The name of the state slice to claim.
    * @param logger Optional logger function for debugging.
    * @returns A unique claim ID used for later updates or release of the slice.
    */
   claim(slice: string, logger?: StoreLogger): string {
-    if ([...this.registry.values()].filter((entity) => entity.slice === slice)) {
-      throw new Error(`Claim "${slice}" already in use.`);
+    if (!slice) {
+      throw new Error(`Invalid slice name "${slice}".`);
+    }
+
+    if ([...this.registry.values()].some((entity) => entity.slice === slice)) {
+      throw new Error(`Slice "${slice}" already claimed.`);
     }
 
     const claimId = getUniqueString();
@@ -81,14 +92,10 @@ export class StoreState<T extends StoreStateType> {
    * Releases a previously claimed slice, reverting any exclusive modification rights.
    * @param claimId The unique ID used to claim the slice.
    */
-  release(claimId: string | undefined) {
-    if (!claimId) {
-      throw new Error(`A claim ID "${claimId}" is required.`);
-    }
-
+  release(claimId: string) {
     const entity = this.registry.get(claimId);
     if (!entity) {
-      throw new Error(`No claim found with ID "${claimId}".`);
+      throw new Error(`Slice "${claimId}" not claimed.`);
     }
 
     const state = this.state();
