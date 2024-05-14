@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { cn, useThemeState } from '@repo/util';
+import { cn, getSystemThemeMode, useThemeState } from '@repo/util';
 import { Button } from '@repo/vendor-ui';
 
 interface ThemeModeToggleProps {
@@ -17,6 +17,14 @@ export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
     setThemeState({ mode: theme.mode === 'dark' ? 'light' : 'dark' });
   };
 
+  const setIcon = () => {
+    let mode = theme.mode;
+    if (theme.mode === 'system') {
+      mode = getSystemThemeMode();
+    }
+    return mode === 'dark' ? mdiWeatherSunny : mdiWeatherNight;
+  };
+
   return (
     <div className={cn('text-primary relative w-9 px-0', className)}>
       <Button
@@ -25,7 +33,7 @@ export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
         className="flex size-8 items-center justify-center rounded-full"
       >
         <div className="text-primary">
-          <Icon path={theme.mode === 'dark' ? mdiWeatherSunny : mdiWeatherNight} size={1} />
+          <Icon path={setIcon()} size={1} />
         </div>
         <span className="sr-only">Toggle theme</span>
       </Button>

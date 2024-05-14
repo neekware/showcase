@@ -1,11 +1,4 @@
-import {
-  AppInitComponent,
-  Breakpoints,
-  SiteFooter,
-  SiteHeader,
-  ThemeProvider,
-  ThemeSwap,
-} from '@repo/ui';
+import { AppInit, Breakpoints, SiteFooter, SiteHeader, ThemeProvider, ThemeSwap } from '@repo/ui';
 import { fontRoboto } from '../cfg/fonts';
 import { mobileSettings } from '../cfg/mobile';
 import { siteSettings } from '../cfg/site';
@@ -23,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           enableSystem
           disableTransitionOnChange
         >
-          <AppInitComponent />
+          <AppInit />
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader
               siteSettings={siteSettings}
