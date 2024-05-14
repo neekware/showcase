@@ -2,7 +2,9 @@ import { create, type Mutate, type StateCreator, type StoreApi } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { type AppState } from '@repo/dto';
 import { sign, verify } from './crypto';
-import { getSystemThemeMode, isBrowser } from './theme';
+import { isBrowser } from './theme';
+
+const appStateName = 'appState';
 
 type StoreWithPersist = Mutate<StoreApi<AppStateStore>, [['zustand/persist', unknown]]>;
 
@@ -23,26 +25,33 @@ export const DefaultStateSettings: AppState = sign<AppState>({
   version: '1.0.0',
 });
 
-const setDefault = (): AppState => {
-  const mode = getSystemThemeMode();
-  const sanitized = sign<AppState>({
-    ...DefaultStateSettings,
-    theme: { ...DefaultStateSettings.theme, mode },
-  });
-  return sanitized;
-};
-
 const customStorage = createJSONStorage<AppStateStore>(() => localStorage, {
   reviver: (key, value) => {
+    if (key !== appStateName) {
+      return value;
+    }
+
     let sanitized = verify<AppState>(value as string);
 
     if (!sanitized) {
-      sanitized = setDefault();
+      sanitized = DefaultStateSettings;
     }
 
     return sanitized;
   },
-  replacer: (key, value) => value,
+  replacer: (key, value) => {
+    if (key !== appStateName) {
+      return value;
+    }
+
+    let sanitized = verify<AppState>(value as string);
+
+    if (!sanitized) {
+      sanitized = DefaultStateSettings;
+    }
+
+    return sanitized;
+  },
 });
 
 export const useAppStateStore = create<AppStateStore>(
@@ -51,12 +60,12 @@ export const useAppStateStore = create<AppStateStore>(
       appState: DefaultStateSettings,
       setAppState: (partialState: Partial<AppState>) => {
         set((state) => ({
-          appState: { ...state.appState, ...partialState },
+          appState: sign({ ...state.appState, ...partialState }),
         }));
       },
     }),
     {
-      name: 'appState',
+      name: appStateName,
       storage: customStorage,
     }
   ) as StateCreator<AppStateStore>
@@ -68,7 +77,7 @@ export const withStorageDOMEvents = (store: StoreWithPersist) => {
       let sanitized = verify<AppState>(e.newValue);
 
       if (!sanitized) {
-        sanitized = setDefault();
+        sanitized = DefaultStateSettings;
       }
       store.setState({ appState: { ...sanitized } });
     }
@@ -88,7 +97,7 @@ export const withStorageDOMEvents = (store: StoreWithPersist) => {
 // Ensure useAppStateStore matches the expected type for StoreWithPersist
 withStorageDOMEvents({
   persist: {
-    getOptions: () => ({ name: 'appState' }),
+    getOptions: () => ({ name: appStateName }),
   },
   setState: (state: AppStateStore) => {
     useAppStateStore.setState({
