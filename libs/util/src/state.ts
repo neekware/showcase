@@ -1,7 +1,7 @@
 import { create, type StateCreator } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { type AppState } from '@repo/dto';
-import { sanitize, sign } from './crypto';
+import { sign, verify } from './crypto';
 import { getSystemThemeMode } from './theme';
 
 export const DefaultStateSettings: AppState = sign<AppState>({
@@ -26,7 +26,7 @@ const customStorage = createJSONStorage<AppStateStore>(() => localStorage, {
 
     // sanity check on mutable state from storage
     try {
-      sanitized = sanitize<AppState>(JSON.parse(value as string));
+      sanitized = verify<AppState>(JSON.parse(value as string));
     } catch (e) {
       sanitized = undefined;
     }
