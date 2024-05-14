@@ -8,7 +8,7 @@ export function sign<T extends { signature: string }>(obj: T): T {
   return { ...obj, signature: hash } as T;
 }
 
-export function sanitize<T extends { signature: string }>(
+export function verify<T extends { signature: string }>(
   input: T | string | undefined
 ): T | undefined {
   let origObj: T;
