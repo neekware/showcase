@@ -1,16 +1,33 @@
 import { SYSTEM_COLOR_SCHEME_PREFERENCE, type ThemeMode } from '@repo/dto';
 
+/**
+ * A flag indicating whether the code is running on a server or not.
+ */
 export const isServer: boolean = typeof window === 'undefined';
+
+/**
+ * A flag indicating whether the code is running on a browser or not.
+ */
 export const isBrowser = !isServer;
 
-export const getSystemThemeMode = (): ThemeMode => {
+/**
+ * Gets the system theme mode (dark or light) based on the user's preference.
+ *
+ * @returns The system theme mode, or undefined if running on a server.
+ */
+export const getSystemThemeMode = (): ThemeMode | undefined => {
   if (isBrowser) {
     const isDark = window.matchMedia(SYSTEM_COLOR_SCHEME_PREFERENCE).matches;
     return isDark ? 'dark' : 'light';
   }
 };
 
-export const getDocumentCurrentTheme = () => {
+/**
+ * Gets the current theme mode of the document (dark, light, or system).
+ *
+ * @returns The current theme mode, or 'light' if running on a server.
+ */
+export const getDocumentCurrentTheme = (): ThemeMode => {
   if (isBrowser) {
     const el = document.documentElement;
     if (el.classList.contains('dark')) {
@@ -22,8 +39,14 @@ export const getDocumentCurrentTheme = () => {
     }
     return 'light';
   }
+  return 'light';
 };
 
+/**
+ * Sets the theme mode of the document (dark, light, or system).
+ *
+ * @param themeMode - The new theme mode to set.
+ */
 export function setDocumentThemeMode(themeMode: ThemeMode): void {
   if (isBrowser) {
     const el = document.documentElement;
