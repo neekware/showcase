@@ -1,107 +1,98 @@
-import { create, type Mutate, type StateCreator, type StoreApi } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
-import { type AppState } from '@repo/dto';
+// Importing necessary modules
+import { atom } from 'jotai';
+import { atomWithStorage, createJSONStorage } from 'jotai/utils';
+import {
+  APP_STATE_NAME,
+  type AppState,
+  type AuthState,
+  type ProfileState,
+  type ThemeState,
+} from '@repo/dto';
 import { sign, verify } from './crypto';
-import { isBrowser } from './theme';
 
-const appStateName = 'appState';
-
-type StoreWithPersist = Mutate<StoreApi<AppStateStore>, [['zustand/persist', unknown]]>;
-
-interface AppStateStore {
-  appState: AppState;
-  setAppState: (partialState: Partial<AppState>) => void;
-}
-
+// Defining default state settings
 export const DefaultStateSettings: AppState = sign<AppState>({
+  // Initial authentication state
   auth: { token: '', isLoggedIn: false },
+  // Initial theme settings
   theme: {
     name: 'zinc',
     mode: 'system',
     radius: 0.5,
   },
+  // Initial profile settings
   profile: { username: '', email: '' },
+  // Initial signature and version
   signature: '',
   version: '1.0.0',
 });
 
-const customStorage = createJSONStorage<AppStateStore>(() => localStorage, {
-  reviver: (key, value) => {
-    if (key !== appStateName) {
+// Creating a custom storage with JSON storage and reviver and replacer functions
+const customStorage = createJSONStorage<AppState>(
+  () => localStorage, // or sessionStorage, asyncStorage or alike
+  {
+    // Reviver function to verify the state when retrieved from storage
+    reviver: (key, value) => {
+      const rootStateKey = '';
+      if (key === rootStateKey) {
+        const signed = verify<AppState>(value as string);
+        if (!signed) {
+          return DefaultStateSettings;
+        }
+      }
       return value;
-    }
-
-    let sanitized = verify<AppState>(value as string);
-
-    if (!sanitized) {
-      sanitized = DefaultStateSettings;
-    }
-
-    return sanitized;
-  },
-  replacer: (key, value) => {
-    if (key !== appStateName) {
+    },
+    // Replacer function to sign the state before storing
+    replacer: (key, value) => {
+      const rootStateKey = '';
+      if (key === rootStateKey) {
+        const signed = sign<AppState>(value as AppState);
+        return signed;
+      }
       return value;
-    }
-
-    let sanitized = verify<AppState>(value as string);
-
-    if (!sanitized) {
-      sanitized = DefaultStateSettings;
-    }
-
-    return sanitized;
-  },
-});
-
-export const useAppStateStore = create<AppStateStore>(
-  persist<AppStateStore>(
-    (set) => ({
-      appState: DefaultStateSettings,
-      setAppState: (partialState: Partial<AppState>) => {
-        set((state) => ({
-          appState: sign({ ...state.appState, ...partialState }),
-        }));
-      },
-    }),
-    {
-      name: appStateName,
-      storage: customStorage,
-    }
-  ) as StateCreator<AppStateStore>
+    },
+  }
 );
 
-export const withStorageDOMEvents = (store: StoreWithPersist) => {
-  const storageEventCallback = (e: StorageEvent) => {
-    if (e.key === store.persist.getOptions().name && e.newValue) {
-      let sanitized = verify<AppState>(e.newValue);
+// Creating an atom with storage for the app state
+export const appStateAtom = atomWithStorage<AppState>(
+  APP_STATE_NAME,
+  DefaultStateSettings,
+  customStorage
+);
 
-      if (!sanitized) {
-        sanitized = DefaultStateSettings;
-      }
-      store.setState({ appState: { ...sanitized } });
-    }
-  };
-
-  if (typeof isBrowser !== 'undefined' && isBrowser) {
-    window.addEventListener('storage', storageEventCallback);
-  }
-
-  return () => {
-    if (typeof isBrowser !== 'undefined' && isBrowser) {
-      window.removeEventListener('storage', storageEventCallback);
-    }
-  };
-};
-
-// Ensure useAppStateStore matches the expected type for StoreWithPersist
-withStorageDOMEvents({
-  persist: {
-    getOptions: () => ({ name: appStateName }),
-  },
-  setState: (state: AppStateStore) => {
-    useAppStateStore.setState({
-      appState: { ...state.appState },
+// Creating atoms for theme with derived values and update functions
+export const themeAtom = atom(
+  (get) => get(appStateAtom).theme,
+  (get, set, update: ThemeState) => {
+    set(appStateAtom, {
+      ...DefaultStateSettings,
+      ...get(appStateAtom),
+      theme: update,
     });
-  },
-} as StoreWithPersist);
+  }
+);
+
+// Creating atoms for auth with derived values and update functions
+export const authAtom = atom(
+  (get) => get(appStateAtom).auth,
+  (get, set, update: AuthState) => {
+    set(appStateAtom, {
+      ...DefaultStateSettings,
+      ...get(appStateAtom),
+      auth: update,
+    });
+  }
+);
+
+// Creating atoms for profile with derived values and update functions
+export const profileAtom = atom(
+  (get) => get(appStateAtom).profile,
+  (get, set, update: ProfileState) => {
+    set(appStateAtom, {
+      ...DefaultStateSettings,
+      ...get(appStateAtom),
+      profile: update,
+    });
+  }
+);

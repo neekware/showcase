@@ -11,11 +11,16 @@ interface ThemeModeToggleProps {
 }
 
 export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
-  const { theme, setThemeState } = useThemeState();
+  const [theme, setThemeState] = useThemeState();
   const [icon, setIcon] = React.useState<string>(mdiWeatherSunny);
 
   const toggleTheme = () => {
-    setThemeState({ mode: theme.mode === 'dark' ? 'light' : 'dark' });
+    let mode = theme.mode;
+    if (!['light', 'dark'].includes(theme.mode as string)) {
+      mode = getSystemThemeMode();
+    }
+
+    setThemeState({ mode: mode === 'dark' ? 'light' : 'dark' });
   };
 
   React.useEffect(() => {

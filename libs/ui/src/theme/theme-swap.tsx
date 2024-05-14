@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useThemeState } from '@repo/util';
 
 export function ThemeSwap() {
-  const { theme } = useThemeState();
+  const [theme] = useThemeState();
 
   React.useEffect(() => {
     document.body.classList.forEach((className) => {

@@ -2,20 +2,15 @@
 
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { useAppStateStore } from '@repo/util';
+import { useAppState } from '@repo/util';
 
 export function AppInit() {
-  const { appState } = useAppStateStore();
+  const [state] = useAppState();
   const { setTheme } = useTheme();
 
   useEffect(() => {
-    setTheme(appState.theme.mode as string);
-    true;
-  }, []);
-
-  useEffect(() => {
-    setTheme(appState.theme.mode as string);
-  }, [appState.theme.mode]);
+    setTheme(state.theme.mode as string);
+  }, [state.theme.mode]);
 
   return null;
 }

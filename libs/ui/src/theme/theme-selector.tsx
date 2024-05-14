@@ -49,7 +49,7 @@ export function ThemeSelector({ themes, className }: ThemeSelectorProps) {
 
 function Selector({ themes }: ThemeSelectorProps) {
   const [mounted, setMounted] = React.useState(false);
-  const { theme, setThemeState } = useThemeState();
+  const [theme, setThemeState] = useThemeState();
 
   React.useEffect(() => {
     setMounted(true);
