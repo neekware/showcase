@@ -4,10 +4,10 @@ import baseConfig from '@repo/tailwind-config';
 const config: Config = {
   ...baseConfig,
   content: [
-    '../../libs/util/src/**/*.{ts,tsx}',
-    '../../libs/vendor-ui/src/**/*.{ts,tsx}',
-    '../../libs/ui/src/**/*.{ts,tsx}',
-    './src/app/**/*.{ts,tsx}',
+    './src/app/**/*.{ts,tsx,html}',
+    '../../libs/util/src/**/*.{ts,tsx,html}',
+    '../../libs/vendor-ui/src/**/*.{ts,tsx,html}',
+    '../../libs/ui/src/**/*.{ts,tsx,html}',
   ],
 };
 export default config;
