@@ -1,13 +1,7 @@
 // Importing necessary modules
 import { atom } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
-import {
-  APP_STATE_NAME,
-  type AppState,
-  type AuthState,
-  type ProfileState,
-  type ThemeState,
-} from '@repo/dto';
+import { type AppState, type AuthState, type ProfileState, type ThemeState } from '@repo/dto';
 import { sign, verify } from './crypto';
 
 // Defining default state settings
@@ -56,10 +50,29 @@ const customStorage = createJSONStorage<AppState>(
 
 // Creating an atom with storage for the app state
 export const appStateAtom = atomWithStorage<AppState>(
-  APP_STATE_NAME,
+  'appState',
   DefaultStateSettings,
   customStorage
 );
+
+// Set up the onMount method to listen to custom storage changes
+appStateAtom.onMount = (setAtom) => {
+  const handleStorageChange = (event: StorageEvent) => {
+    if (event.key === 'appState' && event.newValue !== null) {
+      const signed = verify<AppState>(event.newValue);
+      if (!signed) {
+        setAtom(DefaultStateSettings);
+      }
+    }
+  };
+
+  window.addEventListener('storage', handleStorageChange);
+
+  // Cleanup function to remove the event listener
+  return () => {
+    window.removeEventListener('storage', handleStorageChange);
+  };
+};
 
 // Creating atoms for theme with derived values and update functions
 export const themeAtom = atom(

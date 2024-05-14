@@ -1,7 +1,5 @@
 import { ThemeMode } from './theme';
 
-export const APP_STATE_NAME = 'appState';
-
 export interface AuthState {
   token: string;
   isLoggedIn: boolean;
