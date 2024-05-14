@@ -23,4 +23,5 @@ export interface AppState {
   theme: ThemeState;
   profile: ProfileState;
   signature: string;
+  version: string;
 }

@@ -2,14 +2,13 @@
 
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { useAppState } from '@repo/util';
+import { useAppStateStore } from '@repo/util';
 
 export function AppInitComponent() {
-  const { appState } = useAppState();
+  const { appState } = useAppStateStore();
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    // appStateStorage(setAppState);
     const debounceId = setTimeout(() => {
       if (appState.theme.mode !== theme) {
         setTheme(appState.theme.mode ?? 'system');
@@ -19,7 +18,7 @@ export function AppInitComponent() {
     return () => {
       clearTimeout(debounceId);
     };
-  }, [appState]); // keep the theme mode in app state, give it to auth-theme on change
+  }, [appState]);
 
-  return null; // This component does not render anything
+  return null;
 }

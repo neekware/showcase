@@ -1,9 +1,9 @@
 import { type AuthState, type ProfileState, type ThemeState } from '@repo/dto';
-import { useAppState } from './state';
+import { useAppStateStore } from './state';
 
 export const useAuthState = () => {
-  const auth = useAppState((state) => state.appState.auth);
-  const updateAuthState = useAppState((state) => state.setAppState);
+  const auth = useAppStateStore((state) => state.appState.auth);
+  const updateAuthState = useAppStateStore((state) => state.setAppState);
   return {
     auth,
     setAuthState: (partialAuth: Partial<AuthState>) => {
@@ -13,8 +13,8 @@ export const useAuthState = () => {
 };
 
 export const useThemeState = () => {
-  const theme = useAppState((state) => state.appState.theme);
-  const updateThemeState = useAppState((state) => state.setAppState);
+  const theme = useAppStateStore((state) => state.appState.theme);
+  const updateThemeState = useAppStateStore((state) => state.setAppState);
   return {
     theme,
     setThemeState: (partialTheme: Partial<ThemeState>) => {
@@ -24,8 +24,8 @@ export const useThemeState = () => {
 };
 
 export const useProfileState = () => {
-  const profile = useAppState((state) => state.appState.profile);
-  const updateProfileState = useAppState((state) => state.setAppState);
+  const profile = useAppStateStore((state) => state.appState.profile);
+  const updateProfileState = useAppStateStore((state) => state.setAppState);
   return {
     profile,
     setProfileState: (partialProfile: Partial<ProfileState>) => {
