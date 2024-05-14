@@ -4,7 +4,7 @@ export const isServer: boolean = typeof window === 'undefined';
 export const isBrowser = !isServer;
 
 export const getSystemThemeMode = (): ThemeMode => {
-  if (!isServer) {
+  if (isBrowser) {
     const isDark = window.matchMedia(SYSTEM_COLOR_SCHEME_PREFERENCE).matches;
     return isDark ? 'dark' : 'light';
   }

@@ -48,7 +48,7 @@ const customStorage = createJSONStorage<AppStateStore>(() => localStorage, {
 export const useAppStateStore = create<AppStateStore>(
   persist<AppStateStore>(
     (set) => ({
-      appState: setDefault(),
+      appState: DefaultStateSettings,
       setAppState: (partialState: Partial<AppState>) => {
         set((state) => ({
           appState: { ...state.appState, ...partialState },
