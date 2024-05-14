@@ -5,13 +5,8 @@ import { useTheme } from 'next-themes';
 import { useAppState } from '@repo/util';
 
 export function AppInit() {
-  const [state, setAppState] = useAppState();
+  const [state] = useAppState();
   const { setTheme } = useTheme();
-
-  useEffect(() => {
-    setTheme(state.theme.mode as string);
-    true;
-  }, []);
 
   useEffect(() => {
     setTheme(state.theme.mode as string);
