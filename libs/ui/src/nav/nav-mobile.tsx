@@ -7,13 +7,7 @@ import { mdiClose, mdiMenu } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { type MobileSettings, type SiteSettings } from '@repo/dto';
 import { cn, hrefToString } from '@repo/util';
-import {
-  Button,
-  ScrollArea,
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from '@repo/vendor-ui';
+import { Button, ScrollArea, Sheet, SheetContent, SheetTrigger } from '@repo/vendor-ui';
 
 interface LinkMobileProps extends LinkProps {
   onOpenChange?: (open: boolean) => void;
@@ -21,13 +15,7 @@ interface LinkMobileProps extends LinkProps {
   className?: string;
 }
 
-function LinkMobile({
-  href,
-  onOpenChange,
-  className,
-  children,
-  ...props
-}: LinkMobileProps) {
+function LinkMobile({ href, onOpenChange, className, children, ...props }: LinkMobileProps) {
   const router = useRouter();
 
   return (
@@ -51,11 +39,7 @@ interface NavMobileProps {
   className?: string;
 }
 
-export function NavMobile({
-  className,
-  mobileSettings,
-  siteSettings,
-}: NavMobileProps) {
+export function NavMobile({ className, mobileSettings, siteSettings }: NavMobileProps) {
   const [open, setOpen] = React.useState(false);
   const [clicked, setClicked] = React.useState(false);
 
@@ -97,14 +81,8 @@ export function NavMobile({
           className="mt-[65px] border-t pr-0"
           classNameSheetOverlay="mt-[65px]"
         >
-          <LinkMobile
-            href="/"
-            className="mr-6 flex items-center space-x-2"
-            onOpenChange={setOpen}
-          >
-            {siteSettings.icon ? (
-              <Icon path={siteSettings.icon} className="h-6 w-6" />
-            ) : null}
+          <LinkMobile href="/" className="mr-6 flex items-center space-x-2" onOpenChange={setOpen}>
+            {siteSettings.icon ? <Icon path={siteSettings.icon} className="h-6 w-6" /> : null}
             <span className="font-bold">{siteSettings.name}</span>
           </LinkMobile>
           <ScrollArea className="my-4 h-[calc(100vh-2rem)] pb-10 pl-1">
@@ -112,11 +90,7 @@ export function NavMobile({
               {mobileSettings.topNav.map(
                 (item) =>
                   item.href && (
-                    <LinkMobile
-                      key={item.href}
-                      href={item.href}
-                      onOpenChange={setOpen}
-                    >
+                    <LinkMobile key={item.href} href={item.href} onOpenChange={setOpen}>
                       {item.title}
                     </LinkMobile>
                   )

@@ -5,9 +5,7 @@ export default function Login() {
     <div className="mx-auto max-w-md space-y-6">
       <div className="space-y-2 text-center">
         <h1 className="text-3xl font-bold">Sign Up</h1>
-        <p className="text-gray-500 dark:text-gray-400">
-          Create your account to get started.
-        </p>
+        <p className="text-gray-500 dark:text-gray-400">Create your account to get started.</p>
       </div>
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
@@ -22,12 +20,7 @@ export default function Login() {
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            placeholder="john@example.com"
-            required
-            type="email"
-          />
+          <Input id="email" placeholder="john@example.com" required type="email" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="password">Password</Label>

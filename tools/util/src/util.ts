@@ -23,18 +23,14 @@ export const projPkgJson = require(path.join(projDir, 'package.json'));
  */
 export function execute(script: string, debug = false): Promise<any> {
   return new Promise((resolvePromise, rejectPromise) => {
-    childProcess.exec(
-      script,
-      { maxBuffer: 1024 * 1000 },
-      (error, stdout, stderr) => {
-        if (error) {
-          console.error(error);
-          rejectPromise(stderr);
-        } else {
-          resolvePromise(stdout);
-        }
+    childProcess.exec(script, { maxBuffer: 1024 * 1000 }, (error, stdout, stderr) => {
+      if (error) {
+        console.error(error);
+        rejectPromise(stderr);
+      } else {
+        resolvePromise(stdout);
       }
-    );
+    });
   });
 }
 

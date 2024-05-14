@@ -18,24 +18,21 @@ export default function More(): JSX.Element {
               About Showcase UI
             </h1>
             <p className="text-gray-500 md:text-xl/relaxed dark:text-gray-400">
-              We are a premier provider of innovative solutions tailored for
-              political figures at all levels. Our extensive range of products
-              and services is designed to empower your campaign with advanced
-              web presence capabilities and comprehensive outreach tools.
+              We are a premier provider of innovative solutions tailored for political figures at
+              all levels. Our extensive range of products and services is designed to empower your
+              campaign with advanced web presence capabilities and comprehensive outreach tools.
             </p>
             <p>
-              By partnering with us, you gain access to user-friendly websites
-              that showcase your political platform, integrated communication
-              tools for email, SMS, and mail campaigns, and customizable forms
-              that allow supporters to subscribe for updates.
+              By partnering with us, you gain access to user-friendly websites that showcase your
+              political platform, integrated communication tools for email, SMS, and mail campaigns,
+              and customizable forms that allow supporters to subscribe for updates.
             </p>
             <p>
-              Additionally, our secure forms can collect vital supporter
-              information, save it, and seamlessly redirect users to your
-              official party website. We also offer robust functionalities to
-              accept donations, making it easier for your campaign to garner
-              financial support. Explore our offerings to see how we can elevate
-              your campaign&apos;s effectiveness and reach.
+              Additionally, our secure forms can collect vital supporter information, save it, and
+              seamlessly redirect users to your official party website. We also offer robust
+              functionalities to accept donations, making it easier for your campaign to garner
+              financial support. Explore our offerings to see how we can elevate your
+              campaign&apos;s effectiveness and reach.
             </p>
             <div className="flex justify-start gap-4">
               <Link href="/">

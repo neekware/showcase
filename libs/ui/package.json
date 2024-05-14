@@ -47,7 +47,6 @@
     "@repo/dto": "workspace:*",
     "@repo/util": "workspace:*",
     "@repo/vendor-ui": "workspace:*",
-    "jotai": "^2.8.0",
     "next": "^14.2.3",
     "next-themes": "^0.3.0",
     "sonner": "^1.4.41"

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { cn, useThemeState } from '@repo/util';
+import { cn, getSystemThemeMode, useThemeState } from '@repo/util';
 import { Button } from '@repo/vendor-ui';
 
 interface ThemeModeToggleProps {
@@ -11,11 +11,20 @@ interface ThemeModeToggleProps {
 }
 
 export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
-  const [theme, setThemeState] = useThemeState();
+  const { theme, setThemeState } = useThemeState();
+  const [icon, setIcon] = React.useState<string>(mdiWeatherSunny);
 
   const toggleTheme = () => {
     setThemeState({ mode: theme.mode === 'dark' ? 'light' : 'dark' });
   };
+
+  React.useEffect(() => {
+    let mode = theme.mode;
+    if (mode === 'system') {
+      mode = getSystemThemeMode();
+    }
+    setIcon(mode === 'dark' ? mdiWeatherSunny : mdiWeatherNight);
+  }, [theme]);
 
   return (
     <div className={cn('text-primary relative w-9 px-0', className)}>
@@ -25,10 +34,7 @@ export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
         className="flex size-8 items-center justify-center rounded-full"
       >
         <div className="text-primary">
-          <Icon
-            path={theme.mode === 'dark' ? mdiWeatherSunny : mdiWeatherNight}
-            size={1}
-          />
+          <Icon path={icon} size={1} />
         </div>
         <span className="sr-only">Toggle theme</span>
       </Button>

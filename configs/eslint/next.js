@@ -41,13 +41,7 @@ module.exports = {
     },
     tailwindcss: {
       callees: ['classnames', 'clsx', 'ctl'],
-      cssFiles: [
-        '**/*.css',
-        '!**/node_modules',
-        '!**/.*',
-        '!**/dist',
-        '!**/build',
-      ],
+      cssFiles: ['**/*.css', '!**/node_modules', '!**/.*', '!**/dist', '!**/build'],
       cssFilesRefreshRate: 5_000,
       removeDuplicates: true,
       skipClassAttribute: false,

@@ -32,29 +32,17 @@ export function SiteFooter({ siteSettings, className }: MainHeaderProps) {
           </div>
 
           {/* <!-- Products Section --> */}
-          <FooterCategory
-            category="Product"
-            listItems={siteSettings.footer.product}
-          />
+          <FooterCategory category="Product" listItems={siteSettings.footer.product} />
 
-          <FooterCategory
-            category="Resources"
-            listItems={siteSettings.footer.resources}
-          />
+          <FooterCategory category="Resources" listItems={siteSettings.footer.resources} />
 
-          <FooterCategory
-            category="Company"
-            listItems={siteSettings.footer.company}
-          />
+          <FooterCategory category="Company" listItems={siteSettings.footer.company} />
 
           {/* <!-- Preferences Section --> */}
           <FooterPreferences siteSettings={siteSettings} />
 
           {/* <!-- Mobile Social --> */}
-          <FooterSocial
-            listItems={siteSettings.footer.social}
-            className="-mx-5 block md:hidden"
-          />
+          <FooterSocial listItems={siteSettings.footer.social} className="-mx-5 block md:hidden" />
         </div>
       </nav>
     </footer>

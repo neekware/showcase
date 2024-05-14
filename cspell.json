@@ -16,6 +16,7 @@
     "headlessui",
     "heroicons",
     "ianvs",
+    "implemention",
     "jestconfig",
     "lcov",
     "lucide",
@@ -42,6 +43,7 @@
     "typecheck",
     "vaul",
     "vercel",
-    "Xmark"
+    "Xmark",
+    "zustand"
   ]
 }

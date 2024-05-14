@@ -26,18 +26,9 @@ export function FooterSocial({ listItems, className }: FooterSocialProps) {
                 rel="noreferrer"
                 className="focus:outline-none"
               >
-                <div
-                  className={cn(
-                    buttonVariants({ variant: 'link' }),
-                    'w-9 px-0'
-                  )}
-                >
-                  {sItem.icon ? (
-                    <Icon path={sItem.icon} className="h-6 w-6" />
-                  ) : null}
-                  {sItem.label ? (
-                    <span className="sr-only">{sItem.label}</span>
-                  ) : null}
+                <div className={cn(buttonVariants({ variant: 'link' }), 'w-9 px-0')}>
+                  {sItem.icon ? <Icon path={sItem.icon} className="h-6 w-6" /> : null}
+                  {sItem.label ? <span className="sr-only">{sItem.label}</span> : null}
                 </div>
               </Link>
             </Button>

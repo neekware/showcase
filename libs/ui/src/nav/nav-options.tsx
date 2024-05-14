@@ -28,10 +28,7 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
     <div className={className}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="flex size-8 items-center justify-center rounded-full"
-          >
+          <Button variant="ghost" className="flex size-8 items-center justify-center rounded-full">
             <div className="text-primary">
               <Icon path={mdiDotsVertical} size={1} />
             </div>
@@ -46,24 +43,17 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
               <DropdownMenuLabel
                 className={cn(
                   'hover:text-foreground/80 transition-colors',
-                  pathname.startsWith(oItem.href)
-                    ? 'text-foreground'
-                    : 'text-foreground/60'
+                  pathname.startsWith(oItem.href) ? 'text-foreground' : 'text-foreground/60'
                 )}
               >
                 <div className="flex items-center">
                   {oItem.icon ? (
-                    <Icon
-                      path={oItem.icon}
-                      className="text-primary mr-1 h-6 w-6"
-                    />
+                    <Icon path={oItem.icon} className="text-primary mr-1 h-6 w-6" />
                   ) : null}
                   <span>{oItem.title}</span>
                 </div>
               </DropdownMenuLabel>
-              {idx < siteSettings.navOptionLinks.length && (
-                <DropdownMenuSeparator />
-              )}
+              {idx < siteSettings.navOptionLinks.length && <DropdownMenuSeparator />}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>

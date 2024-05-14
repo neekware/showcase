@@ -12,11 +12,7 @@ interface MainHeaderProps {
   className?: string;
 }
 
-export function SiteHeader({
-  mobileSettings,
-  siteSettings,
-  className,
-}: MainHeaderProps) {
+export function SiteHeader({ mobileSettings, siteSettings, className }: MainHeaderProps) {
   return (
     <div
       className={cn(
@@ -38,10 +34,7 @@ export function SiteHeader({
             <NavSite siteSettings={siteSettings} />
 
             {/* Top Center Nav - Desktop mode nav, hides when not in desktop mode */}
-            <NavDesktop
-              siteSettings={siteSettings}
-              className="hidden md:flex"
-            />
+            <NavDesktop siteSettings={siteSettings} className="hidden md:flex" />
 
             {/* Option Menu */}
             <div className="flex">

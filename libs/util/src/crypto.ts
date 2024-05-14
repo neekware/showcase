@@ -1,6 +1,6 @@
 import crypto from 'crypto-es';
 
-export function signObject<T extends { signature: string }>(obj: T): T {
+export function sign<T extends { signature: string }>(obj: T): T {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { signature, ...newObj } = obj;
   const hash = crypto.MD5(JSON.stringify(newObj)).toString();
@@ -8,7 +8,7 @@ export function signObject<T extends { signature: string }>(obj: T): T {
   return { ...obj, signature: hash } as T;
 }
 
-export function sanitizeObjectOrString<T extends { signature: string }>(
+export function verify<T extends { signature: string }>(
   input: T | string | undefined
 ): T | undefined {
   let origObj: T;
@@ -23,7 +23,7 @@ export function sanitizeObjectOrString<T extends { signature: string }>(
     origObj = input ?? ({} as T);
   }
 
-  const testObj = signObject<T>(origObj);
+  const testObj = sign<T>(origObj);
   const result = origObj.signature === testObj.signature ? origObj : undefined;
   return result;
 }
