@@ -1,3 +1,4 @@
+// Importing necessary modules
 import { atom } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 import {
@@ -9,23 +10,28 @@ import {
 } from '@repo/dto';
 import { sign, verify } from './crypto';
 
+// Defining default state settings
 export const DefaultStateSettings: AppState = sign<AppState>({
+  // Initial authentication state
   auth: { token: '', isLoggedIn: false },
+  // Initial theme settings
   theme: {
     name: 'zinc',
     mode: 'system',
     radius: 0.5,
   },
+  // Initial profile settings
   profile: { username: '', email: '' },
+  // Initial signature and version
   signature: '',
   version: '1.0.0',
 });
 
+// Creating a custom storage with JSON storage and reviver and replacer functions
 const customStorage = createJSONStorage<AppState>(
   () => localStorage, // or sessionStorage, asyncStorage or alike
   {
-    // triggers on storage events to verify the state: storage state -> app state
-    // shared storage between tabs and devtools and works with SSR and initial state
+    // Reviver function to verify the state when retrieved from storage
     reviver: (key, value) => {
       const rootStateKey = '';
       if (key === rootStateKey) {
@@ -36,7 +42,7 @@ const customStorage = createJSONStorage<AppState>(
       }
       return value;
     },
-    // triggers on app events to sign the state before storage: app state -> storage state
+    // Replacer function to sign the state before storing
     replacer: (key, value) => {
       const rootStateKey = '';
       if (key === rootStateKey) {
@@ -48,12 +54,14 @@ const customStorage = createJSONStorage<AppState>(
   }
 );
 
+// Creating an atom with storage for the app state
 export const appStateAtom = atomWithStorage<AppState>(
   APP_STATE_NAME,
   DefaultStateSettings,
   customStorage
 );
 
+// Creating atoms for theme with derived values and update functions
 export const themeAtom = atom(
   (get) => get(appStateAtom).theme,
   (get, set, update: ThemeState) => {
@@ -65,6 +73,7 @@ export const themeAtom = atom(
   }
 );
 
+// Creating atoms for auth with derived values and update functions
 export const authAtom = atom(
   (get) => get(appStateAtom).auth,
   (get, set, update: AuthState) => {
@@ -76,6 +85,7 @@ export const authAtom = atom(
   }
 );
 
+// Creating atoms for profile with derived values and update functions
 export const profileAtom = atom(
   (get) => get(appStateAtom).profile,
   (get, set, update: ProfileState) => {
