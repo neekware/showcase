@@ -115,7 +115,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setThemeState({ mode: 'light' });
+                    setThemeState({ ...theme, mode: 'light' });
                   }}
                   className={cn(theme.mode === 'light' && 'border-primary border-2')}
                 >
@@ -126,7 +126,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setThemeState({ mode: 'system' });
+                    setThemeState({ ...theme, mode: 'system' });
                   }}
                   className={cn(theme.mode === 'system' && 'border-primary border-2')}
                 >
@@ -137,7 +137,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setThemeState({ mode: 'dark' });
+                    setThemeState({ ...theme, mode: 'dark' });
                   }}
                   className={cn(theme.mode === 'dark' && 'border-primary border-2')}
                 >

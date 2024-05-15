@@ -20,7 +20,7 @@ export function ThemeModeToggle({ className }: ThemeModeToggleProps) {
       mode = getSystemThemeMode();
     }
 
-    setThemeState({ mode: mode === 'dark' ? 'light' : 'dark' });
+    setThemeState({ ...theme, mode: mode === 'dark' ? 'light' : 'dark' });
   };
 
   React.useEffect(() => {
