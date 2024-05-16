@@ -117,33 +117,38 @@ export const siteSettings: SiteSettings = {
 };
 
 export const metaSettings = {
-  title: 'ShowU',
-  description: 'Showcase Yourself',
+  name: 'Showcase',
+  short_name: 'ShowU',
+  description: 'Showcase You',
+  start_url: '/?source=pwa',
+  orientation: 'portrait',
+  scope: '/',
   icons: [
     {
-      url: '/icon-192x192.png',
+      url: '/images/icons/icon-192x192.png',
       width: 192,
       height: 192,
     },
     {
-      url: '/icon-256x256.png',
+      url: '/images/icons/icon-256x256.png',
       width: 256,
       height: 256,
     },
     {
-      url: '/icon-384x384.png',
+      url: '/images/icons/icon-384x384.png',
       width: 384,
       height: 384,
     },
     {
-      url: '/icon-512x512.png',
+      url: '/images/icons/icon-512x512.png',
       width: 512,
       height: 512,
     },
     {
-      url: '/favicon.ico',
+      url: '/images/icons/favicon.ico',
       width: 32,
       height: 32,
     },
   ],
+  display: 'standalone',
 };

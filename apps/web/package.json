@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "__ACTION_RELATED__": "",
     "build": "next build",
-    "dev": "next dev --turbo -p 4200 -H 0.0.0.0",
+    "dev": "next dev -p 4200 -H 0.0.0.0",
     "start": "next start -p 3200 -H 0.0.0.0",
     "test": "jest --coverage --passWithNoTests"
   },
@@ -27,8 +27,8 @@
     "@repo/util": "workspace:*",
     "@repo/vendor-ui": "workspace:*",
     "autoprefixer": "^10.4.19",
+    "jotai": "^2.8.0",
     "next": "^14.2.3",
-    "next-pwa": "^5.6.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

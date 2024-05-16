@@ -1,3 +1,4 @@
+import { Provider as StateStoreProvider } from 'jotai';
 import { AppInit, Breakpoints, SiteFooter, SiteHeader, ThemeProvider, ThemeSwap } from '@repo/ui';
 import { fontRoboto } from '../cfg/fonts';
 import { mobileSettings } from '../cfg/mobile';
@@ -13,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
     <html lang="en" dir="ltr">
       <head>
         <meta charSet="utf-8" />
-        <link rel="icon" type="image/png" href="/image/favicon.png" />
+        <link rel="icon" type="image/png" href="/image/icons/favicon.png" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, user-scalable=0, viewport-fit=cover"
@@ -21,25 +22,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={fontRoboto.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AppInit />
-          <div className="relative flex min-h-screen flex-col">
-            <SiteHeader
-              siteSettings={siteSettings}
-              mobileSettings={mobileSettings}
-              className="mb-10"
-            />
-            <div className="flex-1">{children}</div>
-            <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
-          </div>
-          <Breakpoints />
-        </ThemeProvider>
-        <ThemeSwap />
+        <StateStoreProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <AppInit />
+            <div className="relative flex min-h-screen flex-col">
+              <SiteHeader
+                siteSettings={siteSettings}
+                mobileSettings={mobileSettings}
+                className="mb-10"
+              />
+              <div className="flex-1">{children}</div>
+              <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
+            </div>
+            <Breakpoints />
+          </ThemeProvider>
+          <ThemeSwap />
+        </StateStoreProvider>
       </body>
     </html>
   );
