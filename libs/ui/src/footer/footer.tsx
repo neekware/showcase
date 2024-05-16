@@ -4,7 +4,7 @@ import { cn } from '@repo/util';
 import { FooterCategory } from './footer-category';
 import { FooterSite } from './footer-site';
 import { FooterSocial } from './footer-social';
-import { FooterPreferences } from './footer.reference';
+import { FooterPreferences } from './footer.preference';
 
 interface MainHeaderProps {
   siteSettings: SiteSettings;

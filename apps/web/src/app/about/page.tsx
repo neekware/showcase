@@ -3,7 +3,7 @@ import { log } from '@repo/logger';
 import { Button } from '@repo/vendor-ui';
 
 export const metadata = {
-  title: 'Home | Showcase',
+  title: 'About | Showcase',
 };
 
 export default function About(): JSX.Element {
@@ -23,7 +23,7 @@ export default function About(): JSX.Element {
             </p>
             <div className="flex justify-start gap-4">
               <Link href="/">
-                <Button variant="destructive">Home</Button>
+                <Button>Home</Button>
               </Link>
             </div>
           </div>

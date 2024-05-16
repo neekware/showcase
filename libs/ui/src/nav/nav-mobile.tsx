@@ -8,6 +8,7 @@ import { Icon } from '@mdi/react';
 import { type MobileSettings, type SiteSettings } from '@repo/dto';
 import { cn, hrefToString } from '@repo/util';
 import { Button, ScrollArea, Sheet, SheetContent, SheetTrigger } from '@repo/vendor-ui';
+import { NavSite } from './nav-site';
 
 interface LinkMobileProps extends LinkProps {
   onOpenChange?: (open: boolean) => void;
@@ -81,9 +82,12 @@ export function NavMobile({ className, mobileSettings, siteSettings }: NavMobile
           className="mt-[65px] border-t pr-0"
           classNameSheetOverlay="mt-[65px]"
         >
-          <LinkMobile href="/" className="mr-6 flex items-center space-x-2" onOpenChange={setOpen}>
-            {siteSettings.icon ? <Icon path={siteSettings.icon} className="h-6 w-6" /> : null}
-            <span className="font-bold">{siteSettings.name}</span>
+          <LinkMobile
+            href="/"
+            className="mr-6 flex items-center space-x-2 pb-4"
+            onOpenChange={setOpen}
+          >
+            <NavSite siteSettings={siteSettings} className="pr-20" />
           </LinkMobile>
           <ScrollArea className="my-4 h-[calc(100vh-2rem)] pb-10 pl-1">
             <div className="flex flex-col space-y-3">

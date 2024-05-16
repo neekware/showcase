@@ -16,23 +16,28 @@ import { Button, Label, Popover, PopoverContent, PopoverTrigger, Skeleton } from
 
 interface ThemeSelectorProps {
   themes: Theme[];
+  name?: string;
   className?: string;
 }
 
-export function ThemeSelector({ themes, className }: ThemeSelectorProps) {
+export function ThemeSelector({ themes, name, className }: ThemeSelectorProps) {
   return (
     <div className={cn('flex items-center', className)}>
       <div className="md:flex">
         <Popover>
           <PopoverTrigger asChild>
             <Button
-              variant="ghost"
-              className="flex size-8 items-center justify-center rounded-full"
+              variant="outline"
+              className="flex items-center gap-2 border-none px-2 hover:bg-transparent"
             >
-              <div className="text-primary">
+              <div className="text-primary hover:text-foreground/80 h-full rounded-full">
                 <Icon path={mdiPalette} size={1} />
               </div>
-              <span className="sr-only">Customize theme</span>
+              {name ? (
+                <div className="capitalize">{name}</div>
+              ) : (
+                <span className="sr-only">Customize theme</span>
+              )}
             </Button>
           </PopoverTrigger>
           <PopoverContent
