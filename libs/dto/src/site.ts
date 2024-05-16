@@ -15,12 +15,15 @@ export interface footerInfo {
   social: LinkItem[];
 }
 
-export interface SiteSettings {
+export interface SiteMetadata {
   name: string;
   icon?: string;
   url: string;
   ogImage: string;
   description: string;
+}
+
+export interface SiteSettings extends SiteMetadata {
   themes: Theme[];
   navTopLinks: LinkItem[];
   navOptionLinks: LinkItem[];

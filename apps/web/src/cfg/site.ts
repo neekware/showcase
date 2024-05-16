@@ -2,12 +2,16 @@ import { mdiBriefcaseAccountOutline, mdiGithub, mdiLogout, mdiTwitter } from '@m
 import { type SiteSettings } from '@repo/dto';
 import { availableThemes } from './themes';
 
-export const siteSettings: SiteSettings = {
+export const metaSettings = {
   name: 'Showcase UI',
   icon: mdiBriefcaseAccountOutline,
   url: 'https://showcase.io',
   ogImage: 'https://showcase.io/og.jpg',
   description: 'Showcase your political self beautify on a unified portal.',
+};
+
+export const siteSettings: SiteSettings = {
+  ...metaSettings,
   themes: availableThemes,
   navTopLinks: [
     {

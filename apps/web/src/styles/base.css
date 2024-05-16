@@ -55,10 +55,16 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground min-h-screen select-none antialiased;
+
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
+
+    /* PWA enhancements */
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
   }
 }
 
