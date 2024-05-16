@@ -13,13 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
     <html lang="en" dir="ltr">
       <head>
         <meta charSet="utf-8" />
-        <link rel="icon" type="image/ico" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/image/favicon.png" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, user-scalable=0, viewport-fit=cover"
         />
-        {/* <meta name="theme-color" content="#18181b" media="(prefers-color-scheme: dark)" />
-        <meta name="theme-color" content="#f4f4f5" /> */}
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={fontRoboto.className}>
