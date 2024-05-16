@@ -50,47 +50,50 @@ You can format all files of a specific type:
 
 ```bash
 # Example: Format all .ts, .tsx, .json, .html, .css, .scss files
-pnpm format
+pnpm run format
 ```
 
 To run lint, build and test.
 
 ```bash
 # lint all apps/packages
-turbo lint
+pnpm run lint
 
 # build all apps/packages
-turbo build
+pnpm run build
 
 # test all apps/packages
-turbo test
+pnpm run test
 ```
 
 To run code coverage, coveralls (note: ci/cd).
 
 ```bash
 # run test with coverage for all apps/packages
-turbo coverage
+pnpm run coverage
 
 # combine test coverage for all apps/packages
-turbo coveralls
+pnpm run coveralls
 ```
 
 To clean build,test,lint cache artifact.
 
 ```bash
 # clean all lint, build, test, ... etc. artifacts
-turbo clean
+pnpm run clean # clean all artifacts
+pnpm run clean:mods # clean all node_modules
 ```
 
 To execute long-running processes.
 
 ```bash
 # run the apps in development (watch mode)
-turbo dev
+pnpm run dev # run dev mode with watch enabled
 
 # run the apps from the `build` artifacts (prod mode)
-turbo start
+pnpm run build #  build the web, then
+
+pnpm run start # run prod mode, after build
 ```
 
 ### To Install New Packages
