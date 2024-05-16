@@ -1,12 +1,11 @@
 {
-  "theme_color": "#f69435",
-  "background_color": "#f69435",
-  "display": "browser",
-  "scope": "/",
-  "start_url": "/",
   "name": "Showcase",
   "short_name": "ShowU",
   "description": "Showcase You",
+  "start_url": "/?source=pwa",
+  "orientation": "portrait",
+  "display": "standalone",
+  "scope": "/",
   "icons": [
     {
       "src": "/icon-192x192.png",
