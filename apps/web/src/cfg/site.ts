@@ -115,3 +115,35 @@ export const siteSettings: SiteSettings = {
     ],
   },
 };
+
+export const metaSettings = {
+  title: 'ShowU',
+  description: 'Showcase Yourself',
+  icons: [
+    {
+      url: '/icon-192x192.png',
+      width: 192,
+      height: 192,
+    },
+    {
+      url: '/icon-256x256.png',
+      width: 256,
+      height: 256,
+    },
+    {
+      url: '/icon-384x384.png',
+      width: 384,
+      height: 384,
+    },
+    {
+      url: '/icon-512x512.png',
+      width: 512,
+      height: 512,
+    },
+    {
+      url: '/favicon.ico',
+      width: 32,
+      height: 32,
+    },
+  ],
+};
