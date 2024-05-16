@@ -1,10 +1,10 @@
-import { mdiBriefcaseAccountOutline, mdiGithub, mdiLogout, mdiTwitter } from '@mdi/js';
+import { mdiGithub, mdiLogout, mdiTwitter } from '@mdi/js';
 import { type SiteSettings } from '@repo/dto';
 import { availableThemes } from './themes';
 
 export const metaSettings = {
   name: 'Showcase UI',
-  icon: mdiBriefcaseAccountOutline,
+  icon: '/images/phoenix.svg',
   url: 'https://showcase.io',
   ogImage: 'https://showcase.io/og.jpg',
   description: 'Showcase your political self beautify on a unified portal.',
