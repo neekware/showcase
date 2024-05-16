@@ -82,6 +82,7 @@ To clean build,test,lint cache artifact.
 # clean all lint, build, test, ... etc. artifacts
 pnpm run clean # clean all artifacts
 pnpm run clean:mods # clean all node_modules
+pnpm i # install all dependencies again after clean
 ```
 
 To execute long-running processes.
