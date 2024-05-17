@@ -34,8 +34,8 @@ export const availableThemes: Theme[] = [
     },
   },
   {
-    name: 'neutral',
-    label: 'Neutral',
+    name: 'gold',
+    label: 'Gold',
     activeColor: {
       light: '0 0% 45.1%',
       dark: '0 0% 32.2%',
