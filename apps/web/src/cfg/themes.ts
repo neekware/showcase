@@ -5,7 +5,7 @@ export const availableThemes: Theme[] = [
     name: 'zinc',
     label: 'Zinc',
     activeColor: {
-      light: '240 5.9% 10%',
+      light: '240 8.1% 19.34%',
       dark: '240 5.2% 33.9%',
     },
   },
