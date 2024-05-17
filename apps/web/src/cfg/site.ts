@@ -1,6 +1,6 @@
 import { mdiGithub, mdiLogout, mdiTwitter } from '@mdi/js';
 import { type SiteSettings } from '@repo/dto';
-import { availableThemes } from './themes';
+import { availableThemes } from './theme';
 
 export const metaSettings = {
   name: 'Showcase UI',

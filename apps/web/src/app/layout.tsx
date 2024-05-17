@@ -1,11 +1,9 @@
 import { Provider as StateStoreProvider } from 'jotai';
 import { AppInit, Breakpoints, SiteFooter, SiteHeader, ThemeProvider, ThemeSwap } from '@repo/ui';
-import { fontRoboto } from '../cfg/fonts';
-import { mobileSettings } from '../cfg/mobile';
-import { metaSettings, siteSettings } from '../cfg/site';
-import '../styles/base.css';
-import '../styles/globals.css';
-import '../styles/themes.css';
+import { fontRoboto, metaSettings, mobileSettings, siteSettings } from '@web/cfg';
+import '@web/styles/base.css';
+import '@web/styles/globals.css';
+import '@web/styles/themes.css';
 
 export const generateMetadata = () => metaSettings;
 

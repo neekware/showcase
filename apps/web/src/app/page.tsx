@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { log } from '@repo/logger';
 import { Button } from '@repo/vendor-ui';
-import { siteSettings } from '../cfg/site';
+import { siteSettings } from '@web/cfg';
 
 export const metadata = {
   title: 'Home | Showcase',
