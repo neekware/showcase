@@ -17,7 +17,8 @@
     "dev": "turbo dev",
     "dev:turbo": "turbo dev",
     "test": "turbo run test",
-    "coveralls": "turbo coveralls"
+    "coveralls": "turbo coveralls",
+    "codemod": "npx @next/codemod -- "
   },
   "devDependencies": {
     "@softonus/prettier-plugin-duplicate-remover": "^1.0.1",
