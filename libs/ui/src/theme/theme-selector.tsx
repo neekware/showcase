@@ -42,7 +42,7 @@ export function ThemeSelector({ themes, name, className }: ThemeSelectorProps) {
           </PopoverTrigger>
           <PopoverContent
             align="end"
-            className="z-50 mx-2 mt-3 w-[360] rounded-[--radius] p-4 sm:w-[340]"
+            className="z-50 mx-2 mt-3 min-w-[340px] rounded-[--radius] p-4"
           >
             <Selector themes={themes} />
           </PopoverContent>
@@ -113,7 +113,7 @@ function Selector({ themes }: ThemeSelectorProps) {
         </div>
         <div className="space-y-1.5">
           <Label className="text-xs">Mode</Label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="py2 grid grid-cols-3 gap-2">
             {mounted ? (
               <>
                 <Button
@@ -124,8 +124,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                   }}
                   className={cn(theme.mode === 'light' && 'border-primary border-2')}
                 >
-                  <Icon path={mdiWeatherSunny} className="mr-1 h-6 w-6 -translate-x-1" />
-                  Light
+                  <Icon path={mdiWeatherSunny} className="h-6 w-6 -translate-x-1" />
                 </Button>
                 <Button
                   variant="outline"
@@ -135,8 +134,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                   }}
                   className={cn(theme.mode === 'system' && 'border-primary border-2')}
                 >
-                  <Icon path={mdiMonitor} className="mr-1 h-6 w-6 -translate-x-1" />
-                  System
+                  <Icon path={mdiMonitor} className="h-6 w-6 -translate-x-1" />
                 </Button>
                 <Button
                   variant="outline"
@@ -146,8 +144,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                   }}
                   className={cn(theme.mode === 'dark' && 'border-primary border-2')}
                 >
-                  <Icon path={mdiWeatherNight} className="mr-1 h-6 w-6 -translate-x-1" />
-                  Dark
+                  <Icon path={mdiWeatherNight} className="h-6 w-6 -translate-x-1" />
                 </Button>
               </>
             ) : (
