@@ -84,11 +84,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                   <div className="flex items-center justify-between gap-1">
                     <div>
                       {isActive ? (
-                        <Icon
-                          path={mdiCheckCircle}
-                          className="mr-1 h-6 w-6"
-                          color={`hsl(${nextTheme.activeColor[theme.mode === 'dark' ? 'dark' : 'light']})`}
-                        />
+                        <Icon path={mdiCheckCircle} className="text-primary mr-1 h-6 w-6" />
                       ) : (
                         <Icon
                           path={mdiCircle}
