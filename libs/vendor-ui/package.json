@@ -82,7 +82,7 @@
     "cmdk": "^1.0.0",
     "command": "^0.0.5",
     "date-fns": "^3.6.0",
-    "embla-carousel-react": "^8.0.4",
+    "embla-carousel-react": "^8.1.0",
     "input-otp": "^1.2.4",
     "react-day-picker": "^8.10.1",
     "react-hook-form": "^7.51.4",
