@@ -26,8 +26,8 @@ export const availableThemes: Theme[] = [
     },
   },
   {
-    name: 'gray',
-    label: 'Gray',
+    name: 'brown',
+    label: 'Brown',
     activeColor: {
       light: '220 8.9% 46.1%',
       dark: '215 13.8% 34.1%',
