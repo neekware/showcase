@@ -40,6 +40,7 @@ pnpm install
 ### Verify the patch
 
 Look at the `package.json` file and you should see something like this:
+
 ```json
   "pnpm": {
     "patchedDependencies": {
