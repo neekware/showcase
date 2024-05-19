@@ -2,14 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { log } from '@repo/logger';
 import { Button } from '@repo/vendor-ui';
+import { auth } from '@web/auth';
 import { siteSettings } from '@web/cfg';
 
 export const metadata = {
   title: 'Home | Showcase',
 };
 
-export default function Home(): JSX.Element {
+export default async function Home() {
   log('Hey! This is the Store page.');
+  const session = await auth();
 
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
@@ -17,6 +19,8 @@ export default function Home(): JSX.Element {
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl space-y-6 text-left">
             <div className="flex items-center justify-center">
+              <pre>{JSON.stringify(session, null, 2)}</pre>
+
               {siteSettings.icon ? (
                 <div className="w-120 sm:w-160 md:w-200 lg:w-200 relative">
                   <Image
@@ -68,7 +72,7 @@ export default function Home(): JSX.Element {
               ensures that your campaign will thrive. Let’s build a stronger future together.
             </p>
             <div className="mx-auto flex w-full items-center justify-center gap-6 pt-8 sm:w-auto md:w-auto lg:w-auto">
-              <Link href="/more">
+              <Link href="/auth/login">
                 <Button variant="default" className="w-20 sm:w-32 md:w-48 lg:w-64">
                   Login
                 </Button>

@@ -7,9 +7,10 @@
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
     "paths": {
-      "@web/auth": ["./auth.ts"],
-      "@web/cfg": ["src/cfg/index.ts"],
+      "@web/auth": ["src/auth"],
+      "@web/cfg": ["src/cfg"],
       "@web/app/*": ["src/app/*"],
+      "@web/components": ["src/components"],
       "@web/hooks/*": ["src/hooks/*"],
       "@web/styles/*": ["src/styles/*"]
     }

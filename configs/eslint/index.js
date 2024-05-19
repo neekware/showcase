@@ -34,6 +34,12 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'off',
     'import/no-default-export': 'off',
     'import/order': 'off',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: false,
+      },
+    ],
   },
   ignorePatterns: [
     '.*.js', // Ignore specific JavaScript config files like .eslintrc.js
