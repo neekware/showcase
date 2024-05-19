@@ -13,7 +13,7 @@ export function FooterPreferences({ siteSettings, className }: FooterPreferences
     <div className={cn('flex flex-col', className)}>
       <h2 className="mb-2 text-base font-semibold">Preferences</h2>
       <ul className="m-0 grid list-none space-y-1 border-t p-0 pb-2 pt-4 md:flex-col md:border-none md:pb-0 xl:grid-cols-2">
-        <li key="theme" className="-mx-2 flex items-center ">
+        <li key="theme" className="-mx-2 flex items-center">
           <ThemeSelector
             name="Themes"
             themes={siteSettings.themes}

@@ -17,9 +17,7 @@ export function FooterSite({ className, siteSettings }: FooterSiteProps) {
       {/* Site Name and Logo */}
       <div className="flex md:flex-col">
         <NavSite siteSettings={siteSettings} />
-        <p className="mx-0.5 whitespace-nowrap text-base text-base font-semibold">
-          © {CURRENT_YEAR}
-        </p>
+        <p className="mx-0.5 whitespace-nowrap text-base font-semibold">© {CURRENT_YEAR}</p>
       </div>
       <Link
         href="/"
