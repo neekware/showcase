@@ -1,7 +1,6 @@
 'use client';
 
-import * as React from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   mdiAccount,
   mdiCog,
@@ -35,6 +34,8 @@ interface NavOptionProps {
 export function NavOption({ className, siteSettings }: NavOptionProps) {
   const [auth] = useAuthState();
   const pathname = usePathname();
+  const router = useRouter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -71,17 +72,27 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <Link href="/auth/login" className="flex items-center justify-between">
+          <DropdownMenuItem
+            onClick={() => {
+              router.push('/auth/login');
+            }}
+            className="cursor-pointer"
+          >
+            <div className="flex items-center justify-between">
               <Icon path={mdiLogin} className="mr-2 h-4 w-4" />
               <span>Login</span>
-            </Link>
+            </div>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/auth/logout" className="flex items-center justify-between">
+          <DropdownMenuItem
+            onClick={() => {
+              router.push('/auth/logout');
+            }}
+            className="cursor-pointer"
+          >
+            <div className="flex items-center justify-between">
               <Icon path={mdiLogout} className="mr-2 h-4 w-4" />
               <span>Logout</span>
-            </Link>
+            </div>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
@@ -114,12 +125,12 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
 //                   pathname.startsWith(oItem.href) ? 'text-foreground' : 'text-foreground/60'
 //                 )}
 //               >
-//                 <Link href=" className="flex items-center justify-between">
+//                 <div " className="flex items-center justify-between">
 //                   {oItem.icon ? (
 //                     <Icon path={oItem.icon} className="text-primary -ml-2 h-6 w-6 pr-1" />
 //                   ) : null}
 //                   <div className="">{oItem.title}</div>
-//                 </Link>
+//                 </div>
 //               </DropdownMenuLabel>
 //               {idx < siteSettings.navOptionLinks.length && <DropdownMenuSeparator />}
 //             </DropdownMenuItem>
