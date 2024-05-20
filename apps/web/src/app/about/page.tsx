@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 export default function About(): JSX.Element {
-  log('Hey! This is the Store page.');
+  log('Hey! This is the About page.');
 
   return (
     <div className="flex flex-col items-center space-y-2 p-2">

@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default async function Home() {
-  log('Hey! This is the Store page.');
+  log('Hey! This is the Home page.');
   const session = await auth();
 
   return (

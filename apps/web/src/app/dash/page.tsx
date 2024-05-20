@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 export default function Dash(): JSX.Element {
-  log('Hey! This is the Store page.');
+  log('Hey! This is the Dash page.');
 
   return (
     <div className="flex min-h-screen flex-col items-center space-y-2 p-2">
