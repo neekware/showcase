@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { type AppState, type ThemeState } from '@repo/dto';
+import { type ProfileState, type AppState, type ThemeState, type AuthState } from '@repo/dto';
 import { appStateAtom, authAtom, DefaultStateSettings, profileAtom, themeAtom } from './state';
 
 /**
@@ -7,7 +7,7 @@ import { appStateAtom, authAtom, DefaultStateSettings, profileAtom, themeAtom } 
  *
  * @returns An array containing the current state and an update function
  */
-export function useAppState() {
+export function useAppState(): readonly [AppState, (partialConfig: Partial<AppState>) => void] {
   const [state, setAppState] = useAtom(appStateAtom);
 
   /**
@@ -31,7 +31,10 @@ export function useAppState() {
  *
  * @returns An array containing the current theme and an update function
  */
-export function useThemeState() {
+export function useThemeState(): readonly [
+  ThemeState,
+  (partialConfig: Partial<ThemeState>) => void,
+] {
   const [theme, setThemeState] = useAtom(themeAtom);
 
   /**
@@ -54,7 +57,7 @@ export function useThemeState() {
  *
  * @returns An array containing the current auth state and an update function
  */
-export function useAuthState() {
+export function useAuthState(): readonly [AuthState, (partialConfig: Partial<AuthState>) => void] {
   const [auth, setAuthState] = useAtom(authAtom);
 
   /**
@@ -62,7 +65,7 @@ export function useAuthState() {
    *
    * @param partialConfig - Partial configuration to update the auth state
    */
-  const updateImmutable = (partialConfig: Partial<ThemeState>) => {
+  const updateImmutable = (partialConfig: Partial<AuthState>) => {
     setAuthState({
       ...DefaultStateSettings.auth,
       ...partialConfig,
@@ -77,7 +80,10 @@ export function useAuthState() {
  *
  * @returns An array containing the current profile and an update function
  */
-export function useProfileState() {
+export function useProfileState(): readonly [
+  ProfileState,
+  (partialConfig: Partial<ProfileState>) => void,
+] {
   const [profile, setAuthState] = useAtom(profileAtom);
 
   /**
@@ -85,7 +91,7 @@ export function useProfileState() {
    *
    * @param partialConfig - Partial configuration to update the profile
    */
-  const updateImmutable = (partialConfig: Partial<ThemeState>) => {
+  const updateImmutable = (partialConfig: Partial<ProfileState>) => {
     setAuthState({
       ...DefaultStateSettings.profile,
       ...partialConfig,

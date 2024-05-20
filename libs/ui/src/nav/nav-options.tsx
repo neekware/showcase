@@ -2,19 +2,30 @@
 
 import * as React from 'react';
 import { usePathname } from 'next/navigation';
-import { mdiDotsVertical } from '@mdi/js';
+import {
+  mdiAccount,
+  mdiCog,
+  mdiCreditCard,
+  mdiDotsVertical,
+  mdiKeyboard,
+  mdiLogin,
+  mdiLogout,
+} from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { type SiteSettings } from '@repo/dto';
-import { cn } from '@repo/util';
+import { cn, useAuthState } from '@repo/util';
 import {
   Button,
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@repo/vendor-ui';
+import Link from 'next/link';
 
 interface NavOptionProps {
   siteSettings: SiteSettings;
@@ -22,42 +33,99 @@ interface NavOptionProps {
 }
 
 export function NavOption({ className, siteSettings }: NavOptionProps) {
+  const [auth] = useAuthState();
   const pathname = usePathname();
-
   return (
-    <div className={className}>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="flex size-8 items-center justify-center rounded-full">
-            <div className="text-primary">
-              <Icon path={mdiDotsVertical} size={1} />
-            </div>
-            <span className="sr-only">Toggle option Menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          {siteSettings.navOptionLinks.map((oItem, idx) => (
-            <DropdownMenuItem key={`${oItem.title}-${oItem.href}`}>
-              <DropdownMenuLabel
-                className={cn(
-                  'hover:text-foreground/80 transition-colors',
-                  pathname.startsWith(oItem.href) ? 'text-foreground' : 'text-foreground/60'
-                )}
-              >
-                <div className="flex items-center">
-                  {oItem.icon ? (
-                    <Icon path={oItem.icon} className="text-primary mr-1 h-6 w-6" />
-                  ) : null}
-                  <span>{oItem.title}</span>
-                </div>
-              </DropdownMenuLabel>
-              {idx < siteSettings.navOptionLinks.length && <DropdownMenuSeparator />}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="flex size-8 items-center justify-center rounded-full">
+          <div className="text-primary">
+            <Icon path={mdiDotsVertical} size={1} />
+          </div>
+          <span className="sr-only">Toggle option Menu</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>{auth.isLoggedIn ? 'My Account' : 'Options'}</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <Icon path={mdiAccount} className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Icon path={mdiCreditCard} className="mr-2 h-4 w-4" />
+            <span>Billing</span>
+            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Icon path={mdiCog} className="mr-2 h-4 w-4" />
+            <span>Settings</span>
+            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Icon path={mdiKeyboard} className="mr-2 h-4 w-4" />
+            <span>Keyboard shortcuts</span>
+            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <Link href="/auth/login" className="flex items-center justify-between">
+              <Icon path={mdiLogin} className="mr-2 h-4 w-4" />
+              <span>Login</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/auth/logout" className="flex items-center justify-between">
+              <Icon path={mdiLogout} className="mr-2 h-4 w-4" />
+              <span>Logout</span>
+            </Link>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
+
+// export function NavOptions({ className, siteSettings }: NavOptionProps) {
+//   const pathname = usePathname();
+
+//   return (
+//     <div className={className}>
+//       <DropdownMenu>
+//         <DropdownMenuTrigger asChild>
+//           <Button variant="ghost" className="flex size-8 items-center justify-center rounded-full">
+//             <div className="text-primary">
+//               <Icon path={mdiDotsVertical} size={1} />
+//             </div>
+//             <span className="sr-only">Toggle option Menu</span>
+//           </Button>
+//         </DropdownMenuTrigger>
+//         <DropdownMenuContent align="end">
+//           <DropdownMenuLabel>My Account</DropdownMenuLabel>
+//           <DropdownMenuSeparator />
+//           {siteSettings.navOptionLinks.map((oItem, idx) => (
+//             <DropdownMenuItem key={`${oItem.title}-${oItem.href}`}>
+//               <DropdownMenuLabel
+//                 className={cn(
+//                   'hover:text-foreground/80 transition-colors',
+//                   pathname.startsWith(oItem.href) ? 'text-foreground' : 'text-foreground/60'
+//                 )}
+//               >
+//                 <Link href=" className="flex items-center justify-between">
+//                   {oItem.icon ? (
+//                     <Icon path={oItem.icon} className="text-primary -ml-2 h-6 w-6 pr-1" />
+//                   ) : null}
+//                   <div className="">{oItem.title}</div>
+//                 </Link>
+//               </DropdownMenuLabel>
+//               {idx < siteSettings.navOptionLinks.length && <DropdownMenuSeparator />}
+//             </DropdownMenuItem>
+//           ))}
+//         </DropdownMenuContent>
+//       </DropdownMenu>
+//     </div>
+//   );
+// }
