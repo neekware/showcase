@@ -5,10 +5,11 @@ import { signOut } from '@web/auth';
 
 export function LogoutForm() {
   const onSubmit = async () => {
-    await signOut({
+    const result = await signOut({
       redirect: true,
       redirectTo: '/',
     });
+    console.log(result);
   };
 
   return (

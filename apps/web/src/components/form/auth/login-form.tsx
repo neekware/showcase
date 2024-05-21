@@ -24,6 +24,7 @@ export function LoginForm() {
       callbackUrl: '/dash',
     });
 
+    console.log(result);
     if (result?.error) {
       // Handle login error
     } else {
