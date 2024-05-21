@@ -1,15 +1,18 @@
-import { drizzle } from 'drizzle-orm/pg';
-import { Client } from 'pg';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import * as schema from './schema';
+import { dbEnv } from '../env';
 
-const client = new Client({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT, // Add this if you have a custom port
+export const connection = postgres(dbEnv.DATABASE_URL, {
+  max: dbEnv.DB_MIGRATING || dbEnv.DB_SEEDING ? 1 : undefined,
+  onnotice: dbEnv.DB_SEEDING ? () => undefined : undefined,
 });
 
-await client.connect();
+export const db = drizzle(connection, {
+  schema,
+  logger: true,
+});
 
-export const db = drizzle(client, { schema });
+export type DbType = typeof db;
+
+export default db;

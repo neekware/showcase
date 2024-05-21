@@ -1,35 +1,20 @@
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { migrate } from 'drizzle-orm/node-postgres/migrator';
-import { Pool } from 'pg';
-import path from 'node:path';
-import fs from 'node:fs';
+import { migrate } from 'drizzle-orm/postgres-js/migrator';
+import { dbConfig } from './config';
+import { db, connection } from './db';
+import { dbEnv } from '../env';
 
-const pool = new Pool({
-  connectionString: process.env.DB_URL,
-});
-
-const db = drizzle(pool);
+if (!dbEnv.DB_MIGRATING) {
+  throw new Error('You must set DB_MIGRATING to "true" when running migrations');
+}
 
 async function main() {
-  const migrationsFolder = path.join(__dirname, 'migrations');
-  const journalPath = path.join(migrationsFolder, '_journal.json');
+  await migrate(db, { migrationsFolder: dbConfig.out ?? '' });
 
-  if (!fs.existsSync(journalPath)) {
-    throw new Error(`Can't find ${journalPath} file`);
-  }
-
-  const start = Date.now();
-  await migrate(db, { migrationsFolder });
-  const end = Date.now();
-
-  // eslint-disable-next-line no-console
-  console.log(`✅ Migrations completed in ${(end - start).toString()}ms`);
-
-  process.exit(0);
+  await connection.end();
 }
 
 main().catch((error: unknown) => {
   // eslint-disable-next-line no-console
-  console.error('❌ Migration failed', error);
+  console.error(error);
   process.exit(1);
 });

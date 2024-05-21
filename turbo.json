@@ -4,7 +4,7 @@
   "globalEnv": [
     "PORT",
     "NODE_ENV",
-    "DB_URL",
+    "DATABASE_URL",
     "DB_HOST",
     "DB_PORT",
     "DB_USER",

@@ -22,7 +22,7 @@ const EnvSchema = z.object({
   DB_SEEDING: stringBoolean,
 });
 
-export type EnvSchema = z.infer<typeof EnvSchema>;
+type EnvSchema = z.infer<typeof EnvSchema>;
 
 expand(config());
 
@@ -43,4 +43,4 @@ try {
   }
 }
 
-export default EnvSchema.parse(process.env);
+export const dbEnv = EnvSchema.parse(process.env);
