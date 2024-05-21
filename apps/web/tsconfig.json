@@ -4,7 +4,11 @@
   "compilerOptions": {
     "outDir": "dist",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "plugins": [{ "name": "next" }]
+    "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
+    "paths": {
+      "@web/*": ["src/*"]
+    }
   },
   "include": [
     "src",
@@ -12,6 +16,7 @@
     "tailwind.config.ts",
     "next.config.js",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/env/**/*.ts"
   ]
 }
