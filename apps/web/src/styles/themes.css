@@ -23,8 +23,8 @@
   --accent: 240 4.8% 95.9%;
   --accent-foreground: 240 5.9% 10%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 0 0% 98%;
 
   --ring: 240 5.9% 10%;
   --radius: 0.5rem;
@@ -55,8 +55,8 @@
   --accent: 240 3.7% 15.9%;
   --accent-foreground: 0 0% 98%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 240 4.9% 83.9%;
   --radius: 0.5rem;
@@ -87,8 +87,8 @@
   --accent: 220 14.3% 95.9%;
   --accent-foreground: 220.9 39.3% 11%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 20% 98%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 210 20% 98%;
 
   --ring: 224 71.4% 4.1%;
   --radius: 0.5rem;
@@ -119,8 +119,8 @@
   --accent: 215 27.9% 16.9%;
   --accent-foreground: 210 20% 98%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 216 12.2% 83.9%;
   --radius: 0.5rem;
@@ -151,8 +151,8 @@
   --accent: 60 4.8% 95.9%;
   --accent-foreground: 24 9.8% 10%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 20 14.3% 4.1%;
   --radius: 0.5rem;
@@ -183,8 +183,8 @@
   --accent: 12 6.5% 15.1%;
   --accent-foreground: 60 9.1% 97.8%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 24 5.7% 82.9%;
   --radius: 0.5rem;
@@ -215,8 +215,8 @@
   --accent: 30 30% 85%;
   --accent-foreground: 30 30% 20%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 0 0% 98%;
 
   --ring: 30 60% 40%;
   --radius: 0.5rem;
@@ -247,8 +247,8 @@
   --accent: 30 30% 20%;
   --accent-foreground: 30 30% 95%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 30 60% 40%;
   --radius: 0.5rem;
@@ -279,8 +279,8 @@
   --accent: 0 0% 96.1%;
   --accent-foreground: 0 0% 9%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 0 0% 98%;
 
   --ring: 0 0% 3.9%;
   --radius: 0.5rem;
@@ -311,8 +311,8 @@
   --accent: 0 0% 14.9%;
   --accent-foreground: 0 0% 98%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 0 0% 83.1%;
   --radius: 0.5rem;
@@ -343,8 +343,8 @@
   --accent: 0 0% 96.1%;
   --accent-foreground: 0 0% 9%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 0 0% 98%;
 
   --ring: 0 72.2% 50.6%;
   --radius: 0.5rem;
@@ -375,8 +375,8 @@
   --accent: 0 0% 14.9%;
   --accent-foreground: 0 0% 98%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
+  --danger: 0 62.8% 30.6%;
+  --danger-foreground: 0 0% 98%;
 
   --ring: 0 72.2% 50.6%;
   --radius: 0.5rem;
@@ -407,8 +407,8 @@
   --accent: 240 4.8% 95.9%;
   --accent-foreground: 240 5.9% 10%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 0 0% 98%;
 
   --ring: 346.8 77.2% 49.8%;
   --radius: 0.5rem;
@@ -439,8 +439,8 @@
   --accent: 12 6.5% 15.1%;
   --accent-foreground: 0 0% 98%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 346.8 77.2% 49.8%;
   --radius: 0.5rem;
@@ -471,8 +471,8 @@
   --accent: 60 4.8% 95.9%;
   --accent-foreground: 24 9.8% 10%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 24.6 95% 53.1%;
   --radius: 0.5rem;
@@ -503,8 +503,8 @@
   --accent: 12 6.5% 15.1%;
   --accent-foreground: 60 9.1% 97.8%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 20.5 90.2% 48.2%;
   --radius: 0.5rem;
@@ -535,8 +535,8 @@
   --accent: 240 4.8% 95.9%;
   --accent-foreground: 240 5.9% 10%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 0 0% 98%;
 
   --ring: 142.1 76.2% 36.3%;
   --radius: 0.5rem;
@@ -567,8 +567,8 @@
   --accent: 12 6.5% 15.1%;
   --accent-foreground: 0 0% 98%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 142.4 71.8% 29.2%;
   --radius: 0.5rem;
@@ -599,8 +599,8 @@
   --accent: 210 40% 96.1%;
   --accent-foreground: 222.2 47.4% 11.2%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 210 40% 98%;
 
   --ring: 221.2 83.2% 53.3%;
 
@@ -632,8 +632,8 @@
   --accent: 217.2 32.6% 17.5%;
   --accent-foreground: 210 40% 98%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
+  --danger: 0 62.8% 30.6%;
+  --danger-foreground: 210 40% 98%;
 
   --ring: 224.3 76.3% 48%;
   --radius: 0.5rem;
@@ -664,8 +664,8 @@
   --accent: 60 4.8% 95.9%;
   --accent-foreground: 24 9.8% 10%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 20 14.3% 4.1%;
   --radius: 0.5rem;
@@ -696,8 +696,8 @@
   --accent: 12 6.5% 15.1%;
   --accent-foreground: 60 9.1% 97.8%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 35.5 91.7% 32.9%;
   --radius: 0.5rem;
@@ -728,8 +728,8 @@
   --accent: 220 14.3% 95.9%;
   --accent-foreground: 220.9 39.3% 11%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 20% 98%;
+  --danger: 0 84.2% 60.2%;
+  --danger-foreground: 210 20% 98%;
 
   --ring: 262.1 83.3% 57.8%;
   --radius: 0.5rem;
@@ -760,8 +760,8 @@
   --accent: 215 27.9% 16.9%;
   --accent-foreground: 210 20% 98%;
 
-  --destructive: 0 72.2% 50.6%;
-  --destructive-foreground: 60 9.1% 97.8%;
+  --danger: 0 72.2% 50.6%;
+  --danger-foreground: 60 9.1% 97.8%;
 
   --ring: 263.4 70% 50.4%;
   --radius: 0.5rem;

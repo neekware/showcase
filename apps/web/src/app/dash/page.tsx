@@ -18,7 +18,7 @@ export default function Dash(): JSX.Element {
           <Button variant="default">Login</Button>
         </Link>
         <Link href="/products">
-          <Button variant="destructive">Products</Button>
+          <Button variant="danger">Products</Button>
         </Link>
 
         <LogoutForm />

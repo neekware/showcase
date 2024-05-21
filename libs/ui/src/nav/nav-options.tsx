@@ -46,7 +46,7 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
           <span className="sr-only">Toggle option Menu</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="mx-2 w-48">
         <DropdownMenuLabel>{auth.isLoggedIn ? 'My Account' : 'Options'}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
@@ -66,7 +66,7 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Icon path={mdiKeyboard} className="mr-2 h-4 w-4" />
-            <span>Keyboard shortcuts</span>
+            <span>Shortcuts</span>
             <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -90,7 +90,7 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
             className="cursor-pointer"
           >
             <div className="flex items-center justify-between">
-              <Icon path={mdiLogout} className="mr-2 h-4 w-4" />
+              <Icon path={mdiLogout} className="text-danger mr-2 h-4 w-4" />
               <span>Logout</span>
             </div>
           </DropdownMenuItem>

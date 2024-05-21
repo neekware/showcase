@@ -78,7 +78,7 @@ export default async function Home() {
                 </Button>
               </Link>
               <Link href="/products">
-                <Button variant="destructive" className="w-20 sm:w-32 md:w-48 lg:w-64">
+                <Button variant="danger" className="w-20 sm:w-32 md:w-48 lg:w-64">
                   Products
                 </Button>
               </Link>
