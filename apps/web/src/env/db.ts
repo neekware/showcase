@@ -1,7 +1,6 @@
 import { config } from 'dotenv';
 import { expand } from 'dotenv-expand';
-
-import { ZodError, z } from 'zod';
+import { z, ZodError } from 'zod';
 
 const stringBoolean = z.coerce
   .string()
