@@ -1,5 +1,5 @@
 {
-  "id": "cb928e80-960d-4836-8427-710fe02df442",
+  "id": "1e4d76c4-d840-40f8-85d0-f2b42f3125e8",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -59,8 +59,12 @@
           "name": "account_userId_user_id_fk",
           "tableFrom": "account",
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -149,7 +153,12 @@
     "public.Role": {
       "name": "Role",
       "schema": "public",
-      "values": ["USER", "STAFF", "ADMIN", "SUPERUSER"]
+      "values": [
+        "USER",
+        "STAFF",
+        "ADMIN",
+        "SUPERUSER"
+      ]
     }
   },
   "schemas": {},

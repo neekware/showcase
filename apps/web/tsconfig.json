@@ -7,8 +7,10 @@
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
     "paths": {
-      "@web/auth": ["src/auth"],
+      "@web/env": ["src/env"],
+      "@web/db": ["src/db"],
       "@web/cfg": ["src/cfg"],
+      "@web/auth": ["src/auth"],
       "@web/app/*": ["src/app/*"],
       "@web/components": ["src/components"],
       "@web/hooks/*": ["src/hooks/*"],

@@ -1,7 +1,7 @@
 import { migrate } from 'drizzle-orm/postgres-js/migrator';
-import { dbEnv } from '../env';
+import { dbEnv } from '@web/env';
 import config from './config';
-import { connection, db } from './db';
+import { connection, db } from './drizzle';
 
 if (!dbEnv.DB_MIGRATING) {
   throw new Error('You must set DB_MIGRATING to "true" when running migrations');
