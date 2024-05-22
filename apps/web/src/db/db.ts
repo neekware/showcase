@@ -5,7 +5,7 @@ import { dbEnv } from '../env';
 
 export const connection = postgres(dbEnv.DATABASE_URL, {
   max: dbEnv.DB_MIGRATING || dbEnv.DB_SEEDING ? 1 : undefined,
-  onnotice: dbEnv.DB_SEEDING ? () => undefined : undefined,
+  onnotice: dbEnv.DB_SEEDING ? () => {} : undefined,
 });
 
 export const db = drizzle(connection, {

@@ -1,14 +1,12 @@
 import { defineConfig } from 'drizzle-kit';
-// import { dbEnv } from '../env';
+import { dbEnv } from '../env';
 
-// console.log('DB URL:', dbEnv.DATABASE_URL); // Debug log
-
-export const dbConfig = defineConfig({
-  schema: './schema/index.ts',
-  out: './migrations',
+export default defineConfig({
+  schema: './src/db/schema/index.ts',
+  out: './src/db/migrations',
   dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.DATABASE_URL ?? '',
+    url: dbEnv.DATABASE_URL,
   },
   verbose: true,
   strict: true,
