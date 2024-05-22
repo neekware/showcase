@@ -21,6 +21,8 @@
     "tailwind.config.ts",
     "next.config.js",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/env/**/*.ts",
+    "sdrizzle.config.ts"
   ]
 }

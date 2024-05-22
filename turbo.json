@@ -1,7 +1,18 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "globalEnv": ["PORT", "NODE_ENV", "AUTH_SECRET"],
+  "globalEnv": [
+    "AUTH_SECRET",
+    "PORT",
+    "NODE_ENV",
+    "DATABASE_URL",
+    "DB_HOST",
+    "DB_PORT",
+    "DB_USER",
+    "DB_PASSWORD",
+    "DB_NAME",
+    "DB_SSL"
+  ],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -45,7 +56,13 @@
     "loc": {
       "cache": false
     },
-    "codemode": {
+    "web:db:gen": {
+      "cache": false
+    },
+    "web:db:sync": {
+      "cache": false
+    },
+    "web:db:show": {
       "cache": false
     }
   }

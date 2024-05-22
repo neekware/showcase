@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { type ProfileState, type AppState, type ThemeState, type AuthState } from '@repo/dto';
+import { type AppState, type AuthState, type ProfileState, type ThemeState } from '@repo/dto';
 import { appStateAtom, authAtom, DefaultStateSettings, profileAtom, themeAtom } from './state';
 
 /**

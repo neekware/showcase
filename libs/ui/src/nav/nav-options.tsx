@@ -12,7 +12,7 @@ import {
 } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { type SiteSettings } from '@repo/dto';
-import { cn, useAuthState } from '@repo/util';
+import { useAuthState } from '@repo/util';
 import {
   Button,
   DropdownMenu,
@@ -24,7 +24,6 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@repo/vendor-ui';
-import Link from 'next/link';
 
 interface NavOptionProps {
   siteSettings: SiteSettings;

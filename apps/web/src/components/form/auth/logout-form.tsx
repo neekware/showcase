@@ -9,6 +9,7 @@ export function LogoutForm() {
       redirect: true,
       redirectTo: '/',
     });
+    // eslint-disable-next-line no-console
     console.log(result);
   };
 

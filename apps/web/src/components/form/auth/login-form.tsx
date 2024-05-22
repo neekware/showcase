@@ -24,6 +24,7 @@ export function LoginForm() {
       callbackUrl: '/dash',
     });
 
+    // eslint-disable-next-line no-console
     console.log(result);
     if (result?.error) {
       // Handle login error
