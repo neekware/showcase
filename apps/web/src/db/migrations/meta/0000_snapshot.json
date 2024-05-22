@@ -1,5 +1,5 @@
 {
-  "id": "81465224-34ad-48f1-8340-24f4dad6dcf2",
+  "id": "bc349bd5-8711-492a-b142-383137fe8380",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -10,15 +10,15 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
-          "primaryKey": true,
+          "type": "varchar(36)",
+          "primaryKey": false,
           "notNull": true
         },
         "name": {
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "email": {
           "name": "email",
@@ -30,20 +30,20 @@
           "name": "emailVerified",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": false
         },
         "phone": {
           "name": "phone",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "phoneVerified": {
           "name": "phoneVerified",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": false
         },
         "avatar": {
@@ -54,35 +54,34 @@
         },
         "password": {
           "name": "password",
-          "type": "text",
+          "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": false,
-          "default": "gen_random_uuid()"
+          "notNull": true
         },
         "role": {
           "name": "role",
           "type": "Role",
           "typeSchema": "public",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'USER'"
         },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "CURRENT_TIMESTAMP"
-        },
-        "updated_at": {
-          "name": "updated_at",
+        "createdAt": {
+          "name": "createdAt",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
         },
-        "last_login_at": {
-          "name": "last_login_at",
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "lastLoginAt": {
+          "name": "lastLoginAt",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
@@ -93,6 +92,16 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
+        "user_id_unique": {
+          "name": "user_id_unique",
+          "nullsNotDistinct": false,
+          "columns": ["id"]
+        },
+        "user_email_unique": {
+          "name": "user_email_unique",
+          "nullsNotDistinct": false,
+          "columns": ["email"]
+        },
         "user_phone_unique": {
           "name": "user_phone_unique",
           "nullsNotDistinct": false,
@@ -106,37 +115,37 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
-          "primaryKey": true,
+          "type": "varchar(36)",
+          "primaryKey": false,
           "notNull": true
         },
-        "refresh_token": {
-          "name": "refresh_token",
+        "refreshToken": {
+          "name": "refreshToken",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "access_token": {
-          "name": "access_token",
+        "accessToken": {
+          "name": "accessToken",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "expires_at": {
-          "name": "expires_at",
-          "type": "integer",
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": false
         },
-        "created_at": {
-          "name": "created_at",
+        "createdAt": {
+          "name": "createdAt",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
-          "default": "CURRENT_TIMESTAMP"
+          "default": "now()"
         },
-        "updated_at": {
-          "name": "updated_at",
+        "updatedAt": {
+          "name": "updatedAt",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
@@ -144,7 +153,7 @@
         },
         "userId": {
           "name": "userId",
-          "type": "text",
+          "type": "varchar(36)",
           "primaryKey": false,
           "notNull": true
         }
@@ -162,7 +171,13 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "auth_id_unique": {
+          "name": "auth_id_unique",
+          "nullsNotDistinct": false,
+          "columns": ["id"]
+        }
+      }
     }
   },
   "enums": {

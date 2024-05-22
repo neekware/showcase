@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1716414291181,
-      "tag": "0000_fair_typhoid_mary",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1716415530594,
-      "tag": "0001_worried_annihilus",
+      "when": 1716421758446,
+      "tag": "0000_handy_zaladane",
       "breakpoints": true
     }
   ]

@@ -1,5 +1,7 @@
-import { type User } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import { compare } from 'bcrypt';
+import { type User } from '../db/schema';
+import { UserDbService } from '../db/services/user.service';
 
 export default Credentials({
   name: 'Credentials',
@@ -8,21 +10,22 @@ export default Credentials({
     password: { label: 'Password', type: 'password' },
   },
 
-  async authorize(credentials): Promise<User | null> {
+  async authorize(credentials) {
     const { email, password } = credentials;
-    const user = await getUser(email, password);
-    return user;
+    const user = await getUser(email as string, password as string);
+    return user as User;
   },
 });
 
-const getUser = async (email: unknown, password: unknown) => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 500);
-  });
+const getUser = async (email: string, password: string) => {
+  const user = await UserDbService.getUserByEmailQuery(email);
 
-  if (email === 'mike@tyson.com' && password === 'pass') {
-    return { id: '1', name: 'Mike Tyson', email: 'mike@tyson.com' };
+  if (user) {
+    const isValid = await compare(password, user.password);
+    if (isValid) {
+      return user;
+    }
   }
 
-  return null;
+  return user;
 };

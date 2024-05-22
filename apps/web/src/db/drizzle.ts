@@ -3,6 +3,8 @@ import postgres from 'postgres';
 import { dbEnv } from '@web/env';
 import * as schema from './schema';
 
+const DEBUG = false;
+
 // if in migration or seeding mode, only allow one connection, otherwise use the default
 const maxConnection = dbEnv.DB_MIGRATING || dbEnv.DB_SEEDING ? 1 : undefined;
 // if in seeding mode, suppress notices
@@ -17,7 +19,7 @@ export const connection = postgres(dbEnv.DATABASE_URL, {
 // create a new instance of Drizzle
 export const dB = drizzle(connection, {
   schema,
-  logger: true,
+  logger: DEBUG,
 });
 
 // export the database object type

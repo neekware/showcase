@@ -7,12 +7,12 @@
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
     "paths": {
-      "@web/env": ["src/env"],
-      "@web/db": ["src/db"],
-      "@web/cfg": ["src/cfg"],
-      "@web/auth": ["src/auth"],
+      "@web/env": ["src/env/index.ts"],
+      "@web/cfg": ["src/cfg/index.ts"],
+      "@web/auth": ["src/auth/index.ts"],
+      "@web/components": ["src/components/index.ts"],
+      "@web/db/*": ["src/db/*"],
       "@web/app/*": ["src/app/*"],
-      "@web/components": ["src/components"],
       "@web/hooks/*": ["src/hooks/*"],
       "@web/styles/*": ["src/styles/*"]
     }

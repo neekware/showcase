@@ -128,9 +128,6 @@ importers:
       '@types/node':
         specifier: ^20.12.12
         version: 20.12.12
-      '@types/pg':
-        specifier: ^8.11.6
-        version: 8.11.6
       '@types/react':
         specifier: ^18.3.2
         version: 18.3.2
@@ -9065,6 +9062,7 @@ snapshots:
       '@types/node': 20.12.12
       pg-protocol: 1.6.1
       pg-types: 4.0.2
+    optional: true
 
   '@types/prop-types@15.7.12': {}
 
@@ -12987,7 +12985,8 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.0.0
 
-  obuf@1.1.2: {}
+  obuf@1.1.2:
+    optional: true
 
   oidc-token-hash@5.0.3: {}
 
@@ -13143,16 +13142,19 @@ snapshots:
   pg-connection-string@2.6.4:
     optional: true
 
-  pg-int8@1.0.1: {}
+  pg-int8@1.0.1:
+    optional: true
 
-  pg-numeric@1.0.2: {}
+  pg-numeric@1.0.2:
+    optional: true
 
   pg-pool@3.6.2(pg@8.11.5):
     dependencies:
       pg: 8.11.5
     optional: true
 
-  pg-protocol@1.6.1: {}
+  pg-protocol@1.6.1:
+    optional: true
 
   pg-types@2.2.0:
     dependencies:
@@ -13172,6 +13174,7 @@ snapshots:
       postgres-date: 2.1.0
       postgres-interval: 3.0.0
       postgres-range: 1.1.4
+    optional: true
 
   pg@8.11.5:
     dependencies:
@@ -13413,7 +13416,8 @@ snapshots:
   postgres-array@2.0.0:
     optional: true
 
-  postgres-array@3.0.2: {}
+  postgres-array@3.0.2:
+    optional: true
 
   postgres-bytea@1.0.0:
     optional: true
@@ -13421,20 +13425,24 @@ snapshots:
   postgres-bytea@3.0.0:
     dependencies:
       obuf: 1.1.2
+    optional: true
 
   postgres-date@1.0.7:
     optional: true
 
-  postgres-date@2.1.0: {}
+  postgres-date@2.1.0:
+    optional: true
 
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
     optional: true
 
-  postgres-interval@3.0.0: {}
+  postgres-interval@3.0.0:
+    optional: true
 
-  postgres-range@1.1.4: {}
+  postgres-range@1.1.4:
+    optional: true
 
   postgres@3.4.4: {}
 
