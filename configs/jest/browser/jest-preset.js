@@ -8,6 +8,7 @@ module.exports = {
     moduleNameMapper: {
       '^lodash-es$': 'lodash',
       '^crypto-es$': 'crypto-js',
+      '^uuid$': 'uuid',
     },
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

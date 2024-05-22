@@ -15,10 +15,10 @@ export const connection = postgres(dbEnv.DATABASE_URL, {
 });
 
 // create a new instance of Drizzle
-export const db = drizzle(connection, {
+export const dB = drizzle(connection, {
   schema,
   logger: true,
 });
 
 // export the database object type
-export type DbType = typeof db;
+export type DbType = typeof dB;

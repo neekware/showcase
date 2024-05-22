@@ -1,6 +1,6 @@
 {
-  "id": "81465224-34ad-48f1-8340-24f4dad6dcf2",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "abed93f7-6096-430e-a901-106c4310b127",
+  "prevId": "81465224-34ad-48f1-8340-24f4dad6dcf2",
   "version": "6",
   "dialect": "postgresql",
   "tables": {
@@ -10,9 +10,9 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true
+          "type": "varchar(128)",
+          "primaryKey": false,
+          "notNull": false
         },
         "name": {
           "name": "name",
