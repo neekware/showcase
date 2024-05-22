@@ -40,7 +40,6 @@ module.exports = {
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
   plugins: [
     require.resolve('@trivago/prettier-plugin-sort-imports'),
-    // these two @softonus don't work at this time https://github.com/tailwindlabs/tailwindcss/discussions/13630
     require.resolve('@softonus/prettier-plugin-whitespace-remover'),
     require.resolve('@softonus/prettier-plugin-duplicate-remover'),
     require.resolve('prettier-plugin-tailwindcss'),

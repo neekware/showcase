@@ -13,8 +13,9 @@
     "server.js"
   ],
   "devDependencies": {
-    "@typescript-eslint/parser": "^7.9.0",
+    "@typescript-eslint/parser": "^7.10.0",
     "@vercel/style-guide": "^6.0.0",
+    "eslint": "8.57.0",
     "eslint-config-next": "14.2.3",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-turbo": "^1.13.3",
@@ -22,6 +23,6 @@
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "eslint-plugin-storybook": "^0.8.0",
-    "eslint-plugin-tailwindcss": "^3.15.1"
+    "eslint-plugin-tailwindcss": "^3.15.2"
   }
 }
