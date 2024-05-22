@@ -17,7 +17,11 @@
     "dev": "turbo dev",
     "dev:turbo": "turbo dev",
     "test": "turbo run test",
-    "coveralls": "turbo coveralls"
+    "coveralls": "turbo coveralls",
+    "__DATABASE_RELATED__": "",
+    "web:db:gen": "turbo web:db:gen",
+    "web:db:sync": "turbo web:db:sync",
+    "web:db:show": "turbo web:db:show"
   },
   "devDependencies": {
     "@softonus/prettier-plugin-duplicate-remover": "^1.0.1",

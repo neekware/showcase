@@ -54,6 +54,15 @@
     },
     "loc": {
       "cache": false
+    },
+    "web:db:gen": {
+      "cache": false
+    },
+    "web:db:sync": {
+      "cache": false
+    },
+    "web:db:show": {
+      "cache": false
     }
   }
 }

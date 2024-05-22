@@ -15,9 +15,9 @@
     "start": "next start -p 3200 -H 0.0.0.0",
     "test": "jest --coverage --passWithNoTests",
     "__DATABASE_RELATED__": "",
-    "db:gen": "drizzle-kit generate --config  ./src/db/config.ts",
-    "db:push": "DB_MIGRATING=true node -r esbuild-register ./src/db/migrate.ts",
-    "db:show": "drizzle-kit studio --config  ./src/db/config.ts --port 5555"
+    "web:db:gen": "drizzle-kit generate --config  ./src/db/config.ts",
+    "web:db:sync": "DB_MIGRATING=true node -r esbuild-register ./src/db/migrate.ts",
+    "web:db:show": "drizzle-kit studio --config  ./src/db/config.ts --port 5555"
   },
   "jest": {
     "preset": "@repo/jest-presets/browser"
