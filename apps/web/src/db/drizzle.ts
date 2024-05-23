@@ -11,7 +11,7 @@ const maxConnection = dbEnv.DB_MIGRATING || dbEnv.DB_SEEDING ? 1 : undefined;
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const quiteMode = dbEnv.DB_SEEDING ? () => {} : undefined;
 
-export const connection = postgres(`${dbEnv.DATABASE_URL}?sslmode=require`, {
+export const connection = postgres(`${dbEnv.DB_URL}?sslmode=require`, {
   max: maxConnection,
   onnotice: quiteMode,
 });

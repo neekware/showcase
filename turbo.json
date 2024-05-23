@@ -5,7 +5,7 @@
     "AUTH_SECRET",
     "PORT",
     "NODE_ENV",
-    "DATABASE_URL",
+    "DB_URL",
     "DB_HOST",
     "DB_PORT",
     "DB_USER",

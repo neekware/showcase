@@ -25,6 +25,6 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "src/env/**/*.ts",
-    "sdrizzle.config.ts"
+    "middleware.ts"
   ]
 }

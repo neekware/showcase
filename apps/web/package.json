@@ -28,6 +28,7 @@
     "@mdi/react": "^1.6.1",
     "@repo/ag-dto": "workspace:*",
     "@repo/ag-logger": "workspace:*",
+    "@repo/nx-auth": "workspace:*",
     "@repo/nx-ui": "workspace:*",
     "@repo/nx-util": "workspace:*",
     "@repo/nx-ui-vendor": "workspace:*",
