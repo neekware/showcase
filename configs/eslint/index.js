@@ -34,6 +34,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'off',
     'import/no-default-export': 'off',
     'import/order': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
       {

@@ -105,7 +105,7 @@ export class StoreState<T extends StoreStateType> {
     }
 
     const state = this.state();
-    const newState = { ...state, [entity.slice]: undefined };
+    const newState: T = { ...state, [entity.slice]: undefined } as T;
     this.immutable ? this.store$.next(deepFreeze(newState)) : this.store$.next(newState);
 
     if (entity?.logger) {

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useAppState } from '@repo/util';
 
-export function AppInit() {
+export function AppInit(): null {
   const [state] = useAppState();
   const { setTheme } = useTheme();
 
