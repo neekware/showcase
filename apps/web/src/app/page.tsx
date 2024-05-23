@@ -2,16 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { log } from '@repo/logger';
 import { Button } from '@repo/vendor-ui';
-import { auth } from '@web/auth';
 import { siteSettings } from '@web/cfg';
 
 export const metadata = {
   title: 'Home | Showcase',
 };
 
-export default async function Home() {
+export default function Home() {
   log('Hey! This is the Home page.');
-  const session = await auth();
 
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
@@ -19,8 +17,6 @@ export default async function Home() {
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl space-y-6 text-left">
             <div className="flex items-center justify-center">
-              <pre>{JSON.stringify(session, null, 2)}</pre>
-
               {siteSettings.icon ? (
                 <div className="w-120 sm:w-160 md:w-200 lg:w-200 relative">
                   <Image

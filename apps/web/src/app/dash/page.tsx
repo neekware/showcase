@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { log } from '@repo/logger';
 import { Button } from '@repo/vendor-ui';
-import { LogoutForm } from '@web/components';
 
 export const metadata = {
   title: 'Dash | Showcase',
@@ -20,8 +19,6 @@ export default function Dash(): JSX.Element {
         <Link href="/products">
           <Button variant="danger">Products</Button>
         </Link>
-
-        <LogoutForm />
       </div>
     </div>
   );

@@ -1,25 +1,25 @@
-'use client';
+// 'use client';
 
-import { Button } from '@repo/vendor-ui';
-import { signOut } from '@web/auth';
+// import { Button } from '@repo/vendor-ui';
+// import { signOut } from '@web/auth';
 
-export function LogoutForm() {
-  const onSubmit = async () => {
-    const result = await signOut({
-      redirect: true,
-      redirectTo: '/',
-    });
-    // eslint-disable-next-line no-console
-    console.log(result);
-  };
+// export function LogoutForm() {
+//   const onSubmit = async () => {
+//     const result = await signOut({
+//       redirect: true,
+//       redirectTo: '/',
+//     });
+//     // eslint-disable-next-line no-console
+//     console.log(result);
+//   };
 
-  return (
-    <div className="mx-auto max-w-md space-y-6 rounded-lg bg-white p-6 shadow-md">
-      <form onSubmit={onSubmit}>
-        <Button type="submit" className="mt-4 w-full py-2">
-          Logout
-        </Button>
-      </form>
-    </div>
-  );
-}
+//   return (
+//     <div className="mx-auto max-w-md space-y-6 rounded-lg bg-white p-6 shadow-md">
+//       <form onSubmit={onSubmit}>
+//         <Button type="submit" className="mt-4 w-full py-2">
+//           Logout
+//         </Button>
+//       </form>
+//     </div>
+//   );
+// }
