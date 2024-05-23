@@ -21,7 +21,7 @@ const getUser = async (email: string, password: string) => {
   const user = await UserDbService.getUserByEmailQuery(email);
 
   if (user) {
-    const isValid = await compare(password, user.password);
+    const isValid = await compare(password, user.password ?? '');
     if (isValid) {
       return user;
     }
