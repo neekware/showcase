@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { log } from '@repo/ag-logger';
-import { Button } from '@repo/vendor-ui';
+import { Button } from '@repo/nx-ui-vendor';
 import { siteSettings } from '@web/cfg';
 
 export const metadata = {

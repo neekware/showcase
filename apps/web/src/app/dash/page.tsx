@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { log } from '@repo/ag-logger';
-import { Button } from '@repo/vendor-ui';
+import { Button } from '@repo/nx-ui-vendor';
 
 export const metadata = {
   title: 'Dash | Showcase',

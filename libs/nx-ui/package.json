@@ -46,7 +46,7 @@
     "@mdi/react": "^1.6.1",
     "@repo/ag-dto": "workspace:*",
     "@repo/nx-util": "workspace:*",
-    "@repo/vendor-ui": "workspace:*",
+    "@repo/nx-ui-vendor": "workspace:*",
     "next": "^14.2.3",
     "next-themes": "^0.3.0",
     "sonner": "^1.4.41"

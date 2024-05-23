@@ -55,12 +55,12 @@ importers:
       '@repo/nx-ui':
         specifier: workspace:*
         version: link:../../libs/nx-ui
+      '@repo/nx-ui-vendor':
+        specifier: workspace:*
+        version: link:../../libs/nx-ui-vendor
       '@repo/nx-util':
         specifier: workspace:*
         version: link:../../libs/nx-util
-      '@repo/vendor-ui':
-        specifier: workspace:*
-        version: link:../../libs/vendor-ui
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
@@ -346,12 +346,12 @@ importers:
       '@repo/ag-dto':
         specifier: workspace:*
         version: link:../ag-dto
+      '@repo/nx-ui-vendor':
+        specifier: workspace:*
+        version: link:../nx-ui-vendor
       '@repo/nx-util':
         specifier: workspace:*
         version: link:../nx-util
-      '@repo/vendor-ui':
-        specifier: workspace:*
-        version: link:../vendor-ui
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -399,68 +399,7 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
-  libs/nx-util:
-    dependencies:
-      '@repo/ag-dto':
-        specifier: workspace:*
-        version: link:../ag-dto
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      crypto-es:
-        specifier: ^2.1.0
-        version: 2.1.0
-      jotai:
-        specifier: ^2.8.1
-        version: 2.8.1(@types/react@18.3.2)(react@18.3.1)
-      next:
-        specifier: ^14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      tailwind-merge:
-        specifier: ^2.3.0
-        version: 2.3.0
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../configs/eslint
-      '@repo/jest-presets':
-        specifier: workspace:*
-        version: link:../../configs/jest
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../configs/typescript
-      '@types/jest':
-        specifier: ^29.5.12
-        version: 29.5.12
-      '@types/node':
-        specifier: ^20.12.12
-        version: 20.12.12
-      '@types/react':
-        specifier: ^18.3.2
-        version: 18.3.2
-      '@types/react-dom':
-        specifier: ^18.3.0
-        version: 18.3.0
-      crypto-js:
-        specifier: ^4.2.0
-        version: 4.2.0
-      jest:
-        specifier: ^29.7.0
-        version: 29.7.0(@types/node@20.12.12)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
-      tsup:
-        specifier: ^8.0.2
-        version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-
-  libs/vendor-ui:
+  libs/nx-ui-vendor:
     dependencies:
       '@mdi/js':
         specifier: ^7.4.47
@@ -622,6 +561,67 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@20.12.12)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
+  libs/nx-util:
+    dependencies:
+      '@repo/ag-dto':
+        specifier: workspace:*
+        version: link:../ag-dto
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      crypto-es:
+        specifier: ^2.1.0
+        version: 2.1.0
+      jotai:
+        specifier: ^2.8.1
+        version: 2.8.1(@types/react@18.3.2)(react@18.3.1)
+      next:
+        specifier: ^14.2.3
+        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tailwind-merge:
+        specifier: ^2.3.0
+        version: 2.3.0
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint
+      '@repo/jest-presets':
+        specifier: workspace:*
+        version: link:../../configs/jest
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript
+      '@types/jest':
+        specifier: ^29.5.12
+        version: 29.5.12
+      '@types/node':
+        specifier: ^20.12.12
+        version: 20.12.12
+      '@types/react':
+        specifier: ^18.3.2
+        version: 18.3.2
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      crypto-js:
+        specifier: ^4.2.0
+        version: 4.2.0
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.12.12)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))

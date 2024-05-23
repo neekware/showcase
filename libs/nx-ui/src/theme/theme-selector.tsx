@@ -11,8 +11,15 @@ import {
 } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { type Theme } from '@repo/ag-dto';
+import {
+  Button,
+  Label,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Skeleton,
+} from '@repo/nx-ui-vendor';
 import { cn, useThemeState } from '@repo/nx-util';
-import { Button, Label, Popover, PopoverContent, PopoverTrigger, Skeleton } from '@repo/vendor-ui';
 
 interface ThemeSelectorProps {
   themes: Theme[];

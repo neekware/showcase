@@ -2,8 +2,8 @@ import * as React from 'react';
 import Link from 'next/link';
 import { Icon } from '@mdi/react';
 import { type LinkItem } from '@repo/ag-dto';
+import { Button, buttonVariants } from '@repo/nx-ui-vendor';
 import { cn } from '@repo/nx-util';
-import { Button, buttonVariants } from '@repo/vendor-ui';
 
 interface FooterSocialProps {
   listItems: LinkItem[];

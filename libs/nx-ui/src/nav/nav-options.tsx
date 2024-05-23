@@ -12,7 +12,6 @@ import {
 } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { type SiteSettings } from '@repo/ag-dto';
-import { useAuthState } from '@repo/nx-util';
 import {
   Button,
   DropdownMenu,
@@ -23,7 +22,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '@repo/vendor-ui';
+} from '@repo/nx-ui-vendor';
+import { useAuthState } from '@repo/nx-util';
 
 interface NavOptionProps {
   siteSettings: SiteSettings;
