@@ -37,7 +37,7 @@ function FormField<
 }
 
 const useFormField = () => {
-  const fieldContext = React.useContext(FormFieldContext); // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- Disable this check because the type definitions guarantee non-null but we enforce this for future safety.
+  const fieldContext = React.useContext(FormFieldContext);
   if (!fieldContext) {
     throw new Error('useFormField should be used within <FormField>');
   }

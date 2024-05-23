@@ -54,6 +54,7 @@ module.exports = {
     '@typescript-eslint/no-unsafe-argument': 'off',
     'import/order': 'off',
     '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    '@typescript-eslint/no-unnecessary-condition': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
       {
