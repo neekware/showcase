@@ -5,10 +5,10 @@ export function SignIn({
   provider,
   ...props
 }: { provider?: string } & React.ComponentPropsWithRef<typeof Button>) {
-  const handleSignIn = async () => {
+  async function handleSignIn() {
     'use server';
     await signIn(provider);
-  };
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -1,4 +1,4 @@
-import { genSaltSync, hashSync } from 'bcryptjs';
+import { genSaltSync, hashSync } from 'bcrypt-ts';
 import { eq, inArray, or } from 'drizzle-orm';
 import { dB } from '../drizzle';
 import { type User, user } from '../schema';

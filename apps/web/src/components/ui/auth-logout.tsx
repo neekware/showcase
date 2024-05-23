@@ -14,7 +14,7 @@ export function SignOut({ ...props }: React.ComponentPropsWithRef<typeof Button>
 
   return (
     <form onSubmit={handleSubmit}>
-      <Button {...props}>Sign In</Button>
+      <Button {...props}>Sign Out</Button>
     </form>
   );
 }
