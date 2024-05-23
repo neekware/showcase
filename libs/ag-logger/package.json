@@ -1,6 +1,6 @@
 {
-  "name": "@repo/logger",
-  "version": "0.0.0",
+  "name": "@repo/ag-logger",
+  "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

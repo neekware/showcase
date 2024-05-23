@@ -27,7 +27,7 @@
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@repo/ag-dto": "workspace:*",
-    "@repo/logger": "workspace:*",
+    "@repo/ag-logger": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/util": "workspace:*",
     "@repo/vendor-ui": "workspace:*",

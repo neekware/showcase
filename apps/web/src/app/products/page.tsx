@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { log } from '@repo/logger';
+import { log } from '@repo/ag-logger';
 import { Button } from '@repo/vendor-ui';
 
 export const metadata = {

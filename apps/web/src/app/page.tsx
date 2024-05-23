@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { log } from '@repo/logger';
+import { log } from '@repo/ag-logger';
 import { Button } from '@repo/vendor-ui';
 import { siteSettings } from '@web/cfg';
 
