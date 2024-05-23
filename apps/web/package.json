@@ -28,7 +28,7 @@
     "@mdi/react": "^1.6.1",
     "@repo/ag-dto": "workspace:*",
     "@repo/ag-logger": "workspace:*",
-    "@repo/ui": "workspace:*",
+    "@repo/nx-ui": "workspace:*",
     "@repo/util": "workspace:*",
     "@repo/vendor-ui": "workspace:*",
     "autoprefixer": "^10.4.19",

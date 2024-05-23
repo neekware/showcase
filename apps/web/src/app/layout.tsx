@@ -1,5 +1,12 @@
 import { Provider as StateStoreProvider } from 'jotai';
-import { AppInit, Breakpoints, SiteFooter, SiteHeader, ThemeProvider, ThemeSwap } from '@repo/ui';
+import {
+  AppInit,
+  Breakpoints,
+  SiteFooter,
+  SiteHeader,
+  ThemeProvider,
+  ThemeSwap,
+} from '@repo/nx-ui';
 import { fontRoboto, metaSettings, mobileSettings, siteSettings } from '@web/cfg';
 import '@web/styles/base.css';
 import '@web/styles/globals.css';

@@ -52,9 +52,9 @@ importers:
       '@repo/ag-logger':
         specifier: workspace:*
         version: link:../../libs/ag-logger
-      '@repo/ui':
+      '@repo/nx-ui':
         specifier: workspace:*
-        version: link:../../libs/ui
+        version: link:../../libs/nx-ui
       '@repo/util':
         specifier: workspace:*
         version: link:../../libs/util
@@ -335,7 +335,7 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
-  libs/ui:
+  libs/nx-ui:
     dependencies:
       '@mdi/js':
         specifier: ^7.4.47
