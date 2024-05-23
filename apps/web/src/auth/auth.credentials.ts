@@ -1,5 +1,5 @@
 import Credentials from 'next-auth/providers/credentials';
-import { compare } from 'bcrypt';
+import { compare } from 'bcryptjs';
 import { type User } from '../db/schema';
 import { UserDbService } from '../db/services/user.service';
 

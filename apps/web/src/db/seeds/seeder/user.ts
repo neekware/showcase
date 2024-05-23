@@ -1,4 +1,4 @@
-import { hash } from 'bcrypt';
+import { hash } from 'bcryptjs';
 import { type DbType } from '../../drizzle';
 import { type CreateUser, user } from '../../schema/user';
 import users from '../data/users.json';
