@@ -1,31 +1,44 @@
+import { genSaltSync, hashSync } from 'bcryptjs';
 import { eq, inArray, or } from 'drizzle-orm';
 import { dB } from '../drizzle';
-import { user } from '../schema';
+import { type User, user } from '../schema';
 
 export const UserDbService = {
-  getUserByIdQuery(userId: string) {
-    return dB.query.user.findFirst({
+  async getUserByIdQuery(userId: string) {
+    return await dB.query.user.findFirst({
       where: eq(user.id, userId),
     });
   },
-  getUserByEmailQuery(email: string) {
-    return dB.query.user.findFirst({
+  async getUserByEmailQuery(email: string) {
+    return await dB.query.user.findFirst({
       where: eq(user.email, email),
     });
   },
-  getUserByPhoneQuery(phone: string) {
-    return dB.query.user.findFirst({
+  async getUserByPhoneQuery(phone: string) {
+    return await dB.query.user.findFirst({
       where: eq(user.phone, phone),
     });
   },
-  getUserByPhoneOrEmailQuery(phone: string, email: string) {
-    return dB.query.user.findFirst({
+  async getUserByPhoneOrEmailQuery(phone: string, email: string) {
+    return await dB.query.user.findFirst({
       where: or(eq(user.phone, phone), eq(user.email, email)),
     });
   },
-  getUserByIdsQuery(userIds: string[]) {
-    return dB.query.user.findMany({
+  async getUserByIdsQuery(userIds: string[]) {
+    return await dB.query.user.findMany({
       where: inArray(user.id, userIds),
     });
+  },
+  async createUser(u: Partial<User>): Promise<Partial<User>> {
+    const salt = genSaltSync(10);
+    const password = hashSync(u.password, salt);
+
+    const [newUser] = await dB
+      .insert(user)
+      .values({ ...u, password } as User)
+      .returning();
+
+    const { password: _, ...userWithoutPassword } = newUser;
+    return userWithoutPassword;
   },
 };
