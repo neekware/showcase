@@ -55,9 +55,9 @@ importers:
       '@repo/nx-ui':
         specifier: workspace:*
         version: link:../../libs/nx-ui
-      '@repo/util':
+      '@repo/nx-util':
         specifier: workspace:*
-        version: link:../../libs/util
+        version: link:../../libs/nx-util
       '@repo/vendor-ui':
         specifier: workspace:*
         version: link:../../libs/vendor-ui
@@ -346,9 +346,9 @@ importers:
       '@repo/ag-dto':
         specifier: workspace:*
         version: link:../ag-dto
-      '@repo/util':
+      '@repo/nx-util':
         specifier: workspace:*
-        version: link:../util
+        version: link:../nx-util
       '@repo/vendor-ui':
         specifier: workspace:*
         version: link:../vendor-ui
@@ -399,7 +399,7 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
-  libs/util:
+  libs/nx-util:
     dependencies:
       '@repo/ag-dto':
         specifier: workspace:*
@@ -552,9 +552,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.0.7
         version: 1.0.7(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@repo/util':
+      '@repo/nx-util':
         specifier: workspace:*
-        version: link:../util
+        version: link:../nx-util
       '@tanstack/react-table':
         specifier: ^8.17.3
         version: 8.17.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

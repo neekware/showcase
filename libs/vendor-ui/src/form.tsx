@@ -11,7 +11,7 @@ import {
 } from 'react-hook-form';
 import type * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 import { Label } from './label';
 
 const Form = FormProvider;

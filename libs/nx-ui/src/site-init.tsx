@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { useAppState } from '@repo/util';
+import { useAppState } from '@repo/nx-util';
 
 export function AppInit(): null {
   const [state] = useAppState();

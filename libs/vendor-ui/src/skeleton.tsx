@@ -1,4 +1,4 @@
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 
 function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return <div className={cn('bg-muted animate-pulse rounded-md', className)} {...props} />;

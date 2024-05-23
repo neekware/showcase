@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Icon } from '@mdi/react';
 import { type LinkItem } from '@repo/ag-dto';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 
 interface FooterCategoryProps {
   category: string;

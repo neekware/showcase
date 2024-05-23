@@ -4,7 +4,7 @@ import * as React from 'react';
 import { mdiCircleSmall } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { OTPInput, OTPInputContext } from 'input-otp';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,

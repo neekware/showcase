@@ -29,7 +29,7 @@
     "@repo/ag-dto": "workspace:*",
     "@repo/ag-logger": "workspace:*",
     "@repo/nx-ui": "workspace:*",
-    "@repo/util": "workspace:*",
+    "@repo/nx-util": "workspace:*",
     "@repo/vendor-ui": "workspace:*",
     "autoprefixer": "^10.4.19",
     "bcrypt-ts": "^5.0.2",

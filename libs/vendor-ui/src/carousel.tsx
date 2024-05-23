@@ -4,7 +4,7 @@ import * as React from 'react';
 import { mdiArrowLeft, mdiArrowRight } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 import { Button } from './button';
 
 type CarouselApi = UseEmblaCarouselType[1];

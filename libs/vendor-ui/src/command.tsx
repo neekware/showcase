@@ -5,7 +5,7 @@ import { mdiMagnify } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { type DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 import { Dialog, DialogContent } from './dialog';
 
 const Command = React.forwardRef<

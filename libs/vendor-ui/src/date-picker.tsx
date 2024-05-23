@@ -3,7 +3,7 @@ import { type DateRange } from 'react-day-picker';
 import { mdiCalendar } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { addDays, format } from 'date-fns';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 import { Button } from './button';
 import { Calendar } from './calendar';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';

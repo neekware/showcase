@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Drawer as DrawerPrimitive } from 'vaul';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 
 function Drawer({
   shouldScaleBackground = true,

@@ -3,7 +3,7 @@ import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { mdiChevronDown } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { cva } from 'class-variance-authority';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,

@@ -11,7 +11,7 @@ import {
 } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { type Theme } from '@repo/ag-dto';
-import { cn, useThemeState } from '@repo/util';
+import { cn, useThemeState } from '@repo/nx-util';
 import { Button, Label, Popover, PopoverContent, PopoverTrigger, Skeleton } from '@repo/vendor-ui';
 
 interface ThemeSelectorProps {

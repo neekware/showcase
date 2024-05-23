@@ -1,6 +1,6 @@
 {
-  "name": "@repo/util",
-  "version": "0.0.0",
+  "name": "@repo/nx-util",
+  "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "sideEffects": false,

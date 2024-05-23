@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { cn, getSystemThemeMode, useThemeState } from '@repo/util';
+import { cn, getSystemThemeMode, useThemeState } from '@repo/nx-util';
 import { Button } from '@repo/vendor-ui';
 
 interface ThemeModeToggleProps {

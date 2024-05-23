@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
 import { mdiCheck, mdiChevronRight, mdiCircleSmall } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 
 const MenubarMenu = MenubarPrimitive.Menu;
 

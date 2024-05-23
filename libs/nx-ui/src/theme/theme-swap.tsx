@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { useThemeState } from '@repo/util';
+import { useThemeState } from '@repo/nx-util';
 
 export function ThemeSwap(): null {
   const [theme] = useThemeState();

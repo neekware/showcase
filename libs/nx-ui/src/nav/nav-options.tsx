@@ -12,7 +12,7 @@ import {
 } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { type SiteSettings } from '@repo/ag-dto';
-import { useAuthState } from '@repo/util';
+import { useAuthState } from '@repo/nx-util';
 import {
   Button,
   DropdownMenu,

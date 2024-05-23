@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { type SiteSettings } from '@repo/ag-dto';
-import { cn } from '@repo/util';
+import { cn } from '@repo/nx-util';
 import { NavSite } from '../nav/nav-site';
 
 interface FooterSiteProps {
