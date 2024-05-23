@@ -95,16 +95,12 @@
         "user_id_unique": {
           "name": "user_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         },
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       }
     },
@@ -163,12 +159,8 @@
           "name": "auth_userId_user_id_fk",
           "tableFrom": "auth",
           "tableTo": "user",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -178,9 +170,7 @@
         "auth_id_unique": {
           "name": "auth_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         }
       }
     }
@@ -189,12 +179,7 @@
     "public.Role": {
       "name": "Role",
       "schema": "public",
-      "values": [
-        "USER",
-        "STAFF",
-        "ADMIN",
-        "SUPERUSER"
-      ]
+      "values": ["USER", "STAFF", "ADMIN", "SUPERUSER"]
     }
   },
   "schemas": {},
