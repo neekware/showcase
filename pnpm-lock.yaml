@@ -213,7 +213,7 @@ importers:
 
   configs/typescript: {}
 
-  libs/agx-store:
+  libs/ag-store:
     dependencies:
       '@repo/dto':
         specifier: workspace:*
