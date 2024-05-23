@@ -46,9 +46,9 @@ importers:
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
-      '@repo/dto':
+      '@repo/ag-dto':
         specifier: workspace:*
-        version: link:../../libs/dto
+        version: link:../../libs/ag-dto
       '@repo/logger':
         specifier: workspace:*
         version: link:../../libs/logger
@@ -213,11 +213,48 @@ importers:
 
   configs/typescript: {}
 
+  libs/ag-dto:
+    dependencies:
+      '@mdi/react':
+        specifier: ^1.6.1
+        version: 1.6.1
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      sonner:
+        specifier: ^1.4.41
+        version: 1.4.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript
+      '@types/eslint':
+        specifier: ^8.56.10
+        version: 8.56.10
+      '@types/node':
+        specifier: ^20.12.12
+        version: 20.12.12
+      '@types/react':
+        specifier: ^18.3.2
+        version: 18.3.2
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
   libs/ag-store:
     dependencies:
-      '@repo/dto':
+      '@repo/ag-dto':
         specifier: workspace:*
-        version: link:../dto
+        version: link:../ag-dto
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
@@ -252,43 +289,6 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
-      tsup:
-        specifier: ^8.0.2
-        version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-
-  libs/dto:
-    dependencies:
-      '@mdi/react':
-        specifier: ^1.6.1
-        version: 1.6.1
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      sonner:
-        specifier: ^1.4.41
-        version: 1.4.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../configs/eslint
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../configs/typescript
-      '@types/eslint':
-        specifier: ^8.56.10
-        version: 8.56.10
-      '@types/node':
-        specifier: ^20.12.12
-        version: 20.12.12
-      '@types/react':
-        specifier: ^18.3.2
-        version: 18.3.2
-      '@types/react-dom':
-        specifier: ^18.3.0
-        version: 18.3.0
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
@@ -343,9 +343,9 @@ importers:
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
-      '@repo/dto':
+      '@repo/ag-dto':
         specifier: workspace:*
-        version: link:../dto
+        version: link:../ag-dto
       '@repo/util':
         specifier: workspace:*
         version: link:../util
@@ -401,9 +401,9 @@ importers:
 
   libs/util:
     dependencies:
-      '@repo/dto':
+      '@repo/ag-dto':
         specifier: workspace:*
-        version: link:../dto
+        version: link:../ag-dto
       clsx:
         specifier: ^2.1.1
         version: 2.1.1

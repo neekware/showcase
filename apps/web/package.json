@@ -26,7 +26,7 @@
   "dependencies": {
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
-    "@repo/dto": "workspace:*",
+    "@repo/ag-dto": "workspace:*",
     "@repo/logger": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/util": "workspace:*",

@@ -1,4 +1,4 @@
-import { type MobileSettings, type SiteSettings } from '@repo/dto';
+import { type MobileSettings, type SiteSettings } from '@repo/ag-dto';
 import { cn } from '@repo/util';
 import { NavDesktop } from './nav/nav-desktop';
 import { NavMobile } from './nav/nav-mobile';

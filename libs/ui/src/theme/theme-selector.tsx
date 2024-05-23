@@ -10,7 +10,7 @@ import {
   mdiWeatherSunny,
 } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { type Theme } from '@repo/dto';
+import { type Theme } from '@repo/ag-dto';
 import { cn, useThemeState } from '@repo/util';
 import { Button, Label, Popover, PopoverContent, PopoverTrigger, Skeleton } from '@repo/vendor-ui';
 

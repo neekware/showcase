@@ -1,5 +1,5 @@
 import { mdiCog, mdiGithub, mdiLogin, mdiLogout, mdiTwitter, mdiWrench } from '@mdi/js';
-import { type SiteSettings } from '@repo/dto';
+import { type SiteSettings } from '@repo/ag-dto';
 import { availableThemes } from './theme';
 
 export const metaSettings = {

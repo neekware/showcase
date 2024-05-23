@@ -11,7 +11,7 @@ import {
   mdiLogout,
 } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { type SiteSettings } from '@repo/dto';
+import { type SiteSettings } from '@repo/ag-dto';
 import { useAuthState } from '@repo/util';
 import {
   Button,

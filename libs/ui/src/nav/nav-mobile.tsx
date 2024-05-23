@@ -5,7 +5,7 @@ import Link, { type LinkProps } from 'next/link';
 import { useRouter } from 'next/navigation';
 import { mdiClose, mdiMenu } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { type MobileSettings, type SiteSettings } from '@repo/dto';
+import { type MobileSettings, type SiteSettings } from '@repo/ag-dto';
 import { cn, hrefToString } from '@repo/util';
 import { Button, ScrollArea, Sheet, SheetContent, SheetTrigger } from '@repo/vendor-ui';
 import { NavSite } from './nav-site';

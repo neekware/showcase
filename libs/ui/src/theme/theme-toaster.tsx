@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toaster } from 'sonner';
-import { type ToasterProps } from '@repo/dto';
+import { type ToasterProps } from '@repo/ag-dto';
 import { useThemeState } from '@repo/util';
 
 function ThemeToaster({ ...props }: ToasterProps) {

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { type SiteSettings } from '@repo/dto';
+import { type SiteSettings } from '@repo/ag-dto';
 import { cn } from '@repo/util';
 
 interface NavSiteProps {

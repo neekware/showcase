@@ -1,7 +1,7 @@
 // Importing necessary modules
 import { atom } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
-import { type AppState, type AuthState, type ProfileState, type ThemeState } from '@repo/dto';
+import { type AppState, type AuthState, type ProfileState, type ThemeState } from '@repo/ag-dto';
 import { sign, verify } from './crypto';
 
 // Defining default state settings

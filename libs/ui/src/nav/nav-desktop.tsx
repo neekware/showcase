@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { type LinkItem, type SiteSettings } from '@repo/dto';
+import { type LinkItem, type SiteSettings } from '@repo/ag-dto';
 import { cn } from '@repo/util';
 
 interface NavTopProps {

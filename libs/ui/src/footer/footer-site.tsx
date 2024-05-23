@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { type SiteSettings } from '@repo/dto';
+import { type SiteSettings } from '@repo/ag-dto';
 import { cn } from '@repo/util';
 import { NavSite } from '../nav/nav-site';
 

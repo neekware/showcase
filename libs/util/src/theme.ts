@@ -1,4 +1,4 @@
-import { SYSTEM_COLOR_SCHEME_PREFERENCE, type ThemeMode } from '@repo/dto';
+import { SYSTEM_COLOR_SCHEME_PREFERENCE, type ThemeMode } from '@repo/ag-dto';
 
 /**
  * A flag indicating whether the code is running on a server or not.
