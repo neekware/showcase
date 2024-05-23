@@ -2,7 +2,7 @@ import { getTableName, sql, type Table } from 'drizzle-orm';
 import { PostgresError } from 'postgres';
 import { dbEnv } from '@web/env';
 import { connection, dB, type DbType } from '../drizzle';
-import { User } from '../schema';
+import { user } from '../schema';
 import { seedUser } from './seeder/user';
 
 if (!dbEnv.DB_SEEDING) {
@@ -24,7 +24,7 @@ async function resetTable(db: DbType, table: Table) {
 }
 
 const seedAll = async (db: DbType) => {
-  for (const table of [User]) {
+  for (const table of [user]) {
     // await db.delete(table); // clear tables without truncating / resetting ids
     await resetTable(db, table);
   }

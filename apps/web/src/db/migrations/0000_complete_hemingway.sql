@@ -8,18 +8,17 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"id" varchar(36) NOT NULL,
 	"name" text NOT NULL,
 	"email" text NOT NULL,
-	"emailVerified" boolean DEFAULT false NOT NULL,
-	"phone" varchar(255) NOT NULL,
-	"phoneVerified" boolean DEFAULT false NOT NULL,
+	"emailVerified" boolean DEFAULT false,
+	"phone" varchar(255),
+	"phoneVerified" boolean DEFAULT false,
 	"avatar" text,
-	"password" varchar(255) NOT NULL,
-	"role" "Role" DEFAULT 'USER' NOT NULL,
+	"password" varchar(255),
+	"role" "Role" DEFAULT 'USER',
 	"createdAt" timestamp DEFAULT now() NOT NULL,
 	"updatedAt" timestamp DEFAULT now() NOT NULL,
 	"lastLoginAt" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "user_id_unique" UNIQUE("id"),
-	CONSTRAINT "user_email_unique" UNIQUE("email"),
-	CONSTRAINT "user_phone_unique" UNIQUE("phone")
+	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "auth" (

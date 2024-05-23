@@ -1,5 +1,5 @@
 {
-  "id": "bc349bd5-8711-492a-b142-383137fe8380",
+  "id": "42247f9a-d45a-473b-ab47-0fa2b535a0d9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -30,20 +30,20 @@
           "name": "emailVerified",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": false
         },
         "phone": {
           "name": "phone",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "phoneVerified": {
           "name": "phoneVerified",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": false
         },
         "avatar": {
@@ -56,14 +56,14 @@
           "name": "password",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "role": {
           "name": "role",
           "type": "Role",
           "typeSchema": "public",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "'USER'"
         },
         "createdAt": {
@@ -95,17 +95,16 @@
         "user_id_unique": {
           "name": "user_id_unique",
           "nullsNotDistinct": false,
-          "columns": ["id"]
+          "columns": [
+            "id"
+          ]
         },
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": ["email"]
-        },
-        "user_phone_unique": {
-          "name": "user_phone_unique",
-          "nullsNotDistinct": false,
-          "columns": ["phone"]
+          "columns": [
+            "email"
+          ]
         }
       }
     },
@@ -164,8 +163,12 @@
           "name": "auth_userId_user_id_fk",
           "tableFrom": "auth",
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -175,7 +178,9 @@
         "auth_id_unique": {
           "name": "auth_id_unique",
           "nullsNotDistinct": false,
-          "columns": ["id"]
+          "columns": [
+            "id"
+          ]
         }
       }
     }
@@ -184,7 +189,12 @@
     "public.Role": {
       "name": "Role",
       "schema": "public",
-      "values": ["USER", "STAFF", "ADMIN", "SUPERUSER"]
+      "values": [
+        "USER",
+        "STAFF",
+        "ADMIN",
+        "SUPERUSER"
+      ]
     }
   },
   "schemas": {},

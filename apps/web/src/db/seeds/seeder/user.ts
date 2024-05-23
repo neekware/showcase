@@ -1,13 +1,18 @@
+import { hash } from 'bcrypt';
 import { type DbType } from '../../drizzle';
-import { User, type UserType } from '../../schema';
+import { user } from '../../schema/user';
 import users from '../data/users.json';
 
 export async function seedUser(dB: DbType) {
   await Promise.all(
-    users.map(async (user) => {
-      await dB
-        .insert(User)
-        .values(user as UserType)
+    users.map(async (u) => {
+      const password = await hash(u.password, 10);
+      const [insertedUser] = await dB
+        .insert(user)
+        .values({
+          ...u,
+          password,
+        })
         .returning();
     })
   );
