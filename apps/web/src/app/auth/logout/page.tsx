@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { mdiLogout } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import {
@@ -6,11 +5,8 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-  Input,
-  Label,
   Separator,
 } from '@repo/nx-ui-vendor';
 
