@@ -1,7 +1,7 @@
 import { getTableName, sql, type Table } from 'drizzle-orm';
 import { PostgresError } from 'postgres';
+import { connection, dB, type DbType } from '@repo/ag-db';
 import { dbEnv } from '@repo/nx-env';
-import { connection, dB, type DbType } from '../drizzle';
 import { user } from '../schema';
 import { seedUser } from './seeder/user';
 

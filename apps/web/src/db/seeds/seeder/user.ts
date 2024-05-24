@@ -1,5 +1,5 @@
 import { hash } from 'bcrypt-ts';
-import { type DbType } from '../../drizzle';
+import { type DbType } from '@repo/ag-db';
 import { type CreateUser, user } from '../../schema/user';
 import users from '../data/users.json';
 

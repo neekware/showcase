@@ -35,6 +35,9 @@ importers:
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
+      '@repo/ag-db':
+        specifier: workspace:*
+        version: link:../../libs/ag-db
       '@repo/ag-dto':
         specifier: workspace:*
         version: link:../../libs/ag-dto
@@ -207,6 +210,61 @@ importers:
         version: 1.0.7(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))
 
   configs/typescript: {}
+
+  libs/ag-db:
+    dependencies:
+      '@mdi/react':
+        specifier: ^1.6.1
+        version: 1.6.1
+      '@repo/nx-env':
+        specifier: workspace:*
+        version: link:../nx-env
+      drizzle-orm:
+        specifier: ^0.30.10
+        version: 0.30.10(@types/react@18.3.2)(postgres@3.4.4)(react@18.3.1)
+      jose:
+        specifier: ^5.3.0
+        version: 5.3.0
+      next:
+        specifier: ^14.2.3
+        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      postgres:
+        specifier: ^3.4.3
+        version: 3.4.4
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      sonner:
+        specifier: ^1.4.41
+        version: 1.4.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript
+      '@types/eslint':
+        specifier: ^8.56.10
+        version: 8.56.10
+      '@types/node':
+        specifier: ^20.12.12
+        version: 20.12.12
+      '@types/react':
+        specifier: ^18.3.2
+        version: 18.3.2
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
 
   libs/ag-dto:
     dependencies:
