@@ -12,3 +12,5 @@ server/dist
 public/dist
 coverage
 *v0*
+tmp
+temp

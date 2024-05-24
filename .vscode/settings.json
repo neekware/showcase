@@ -35,7 +35,7 @@
   "files.exclude": {
     "**/.git": true,
     "**/dist": true,
-    "**/node_modules": true,
+    "**/node_modules": false,
     "**/coverage": true,
     "**/graph": true,
     "**/out": true,
