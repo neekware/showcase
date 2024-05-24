@@ -25,21 +25,14 @@
     "web:db:show": "turbo web:db:show"
   },
   "devDependencies": {
-    "@softonus/prettier-plugin-duplicate-remover": "^1.0.1",
-    "@softonus/prettier-plugin-whitespace-remover": "^1.0.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "drizzle-kit": "^0.21.2",
+    "@upleveled/prettier-plugin-tailwindcss": "^0.6.0",
     "husky": "^9.0.11",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "0.5.14",
     "turbo": "^1.13.3"
   },
   "engines": {
     "node": ">=18"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "prettier-plugin-tailwindcss@0.5.14": ".patches/prettier-plugin-tailwindcss@0.5.14.patch"
-    }
   }
 }
