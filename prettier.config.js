@@ -40,9 +40,7 @@ module.exports = {
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
   plugins: [
     require.resolve('@trivago/prettier-plugin-sort-imports'),
-    require.resolve('@softonus/prettier-plugin-whitespace-remover'),
-    require.resolve('@softonus/prettier-plugin-duplicate-remover'),
-    require.resolve('prettier-plugin-tailwindcss'),
+    require.resolve('@upleveled/prettier-plugin-tailwindcss'),
   ],
   tailwindFunctions: ['tw', 'clsx'],
   // Optional: Specify any other configurations or overrides needed
