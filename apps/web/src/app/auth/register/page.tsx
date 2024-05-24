@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { mdiFolderPlus } from '@mdi/js';
+import { mdiLogin } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import {
   Button,
@@ -16,17 +16,36 @@ import {
 
 export default function Login() {
   return (
-    <Card className="mx-auto w-[350px]">
+    <Card className="mx-auto w-[350px] sm:w-[500px]">
       <CardHeader className="-mb-2">
         <CardTitle>Account Login</CardTitle>
         <CardDescription>Login to your account</CardDescription>
       </CardHeader>
       <Separator orientation="horizontal" />
-      <CardContent className="pt-4">
+      <CardContent className="py-4">
         <form className="space-y-4">
+          <div className="flex flex-col gap-y-4 sm:grid sm:grid-cols-2 sm:gap-2">
+            <div className="space-y-2">
+              <Label htmlFor="first-name">First Name</Label>
+              <Input id="first-name" placeholder="Enter your first name" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="last-name">Last Name</Label>
+              <Input id="last-name" placeholder="Enter your last name" />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="username">Username</Label>
+            <Input id="username" placeholder="Enter a username" />
+          </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input id="email" placeholder="Enter your email" type="email" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="phone">Phone Number</Label>
+            <Input id="phone" placeholder="Enter your phone number" type="tel" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
@@ -39,13 +58,10 @@ export default function Login() {
       </CardContent>
       <Separator orientation="horizontal" />
       <CardFooter className="-mb-2 flex justify-between pt-4">
-        Do not have an account?
-        <Link
-          href="/auth/register"
-          className="hover:text-foreground/60 flex gap-1 transition-colors"
-        >
-          <Icon path={mdiFolderPlus} size={1} />
-          Register
+        Already have an account?
+        <Link href="/auth/login" className="hover:text-foreground/60 flex gap-1 transition-colors">
+          <Icon path={mdiLogin} size={1} />
+          Login
         </Link>
       </CardFooter>
     </Card>
