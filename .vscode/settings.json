@@ -4,6 +4,12 @@
   "javascript.preferences.importModuleSpecifier": "shortest",
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.tsdk": "./node_modules/typescript/lib",
+  "search.exclude": {
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/coverage": true,
+    "**/graph": true
+  },
   "workbench.colorCustomizations": {
     "statusBar.background": "#b85833",
     "statusBarItem.hoverBackground": "#ce7350",
@@ -31,27 +37,5 @@
     {
       "mode": "auto"
     }
-  ],
-  "files.exclude": {
-    "**/.git": true,
-    "**/dist": true,
-    "**/node_modules": false,
-    "**/coverage": true,
-    "**/graph": true,
-    "**/out": true,
-    "**/.turbo": true,
-    ".husky/_": true,
-    "**/.next": true
-  },
-  "search.exclude": {
-    "**/.git": true,
-    "**/dist": true,
-    "**/node_modules": true,
-    "**/coverage": true,
-    "**/graph": true,
-    "**/out": true,
-    "**/.turbo": true,
-    ".husky/_": true,
-    "**/.next": true
-  }
+  ]
 }
