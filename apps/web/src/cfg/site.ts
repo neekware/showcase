@@ -110,7 +110,7 @@ export const siteSettings: SiteSettings = {
       },
       {
         title: 'Contact Us',
-        href: '/contact-us',
+        href: '/contact',
       },
     ],
     social: [

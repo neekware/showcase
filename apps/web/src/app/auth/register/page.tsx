@@ -17,9 +17,16 @@ import {
 export default function Login() {
   return (
     <Card className="mx-auto w-[350px] sm:w-[500px]">
-      <CardHeader className="-mb-2">
-        <CardTitle>Account Login</CardTitle>
-        <CardDescription>Login to your account</CardDescription>
+      <CardHeader className="-mb-2.5 pt-4">
+        <div className="flex">
+          <div className="flex grow flex-col gap-1.5">
+            <CardTitle>Account Registration</CardTitle>
+            <CardDescription>Register a new account</CardDescription>
+          </div>
+          <div>
+            <Icon path={mdiLogin} size={1.6} className="text-primary" />
+          </div>
+        </div>
       </CardHeader>
       <Separator orientation="horizontal" />
       <CardContent className="py-4">
@@ -34,11 +41,6 @@ export default function Login() {
               <Input id="last-name" placeholder="Enter your last name" />
             </div>
           </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
-            <Input id="username" placeholder="Enter a username" />
-          </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input id="email" placeholder="Enter your email" type="email" />
@@ -51,7 +53,7 @@ export default function Login() {
             <Label htmlFor="password">Password</Label>
             <Input id="password" placeholder="Enter a password" type="password" />
           </div>
-          <Button className="w-full" type="submit">
+          <Button className="" type="submit">
             Register
           </Button>
         </form>
