@@ -2,8 +2,8 @@ import { Button, Input, Label } from '@repo/nx-ui-vendor';
 
 export default function Login() {
   return (
-    <div className="flex min-h-dvh items-center justify-center ">
-      <div className="w-full max-w-md rounded-lg p-8 shadow-lg   ">
+    <div className="flex min-h-dvh items-center justify-center">
+      <div className="w-full max-w-md rounded-lg p-8 shadow-lg">
         <div className="space-y-4 text-center">
           <h1 className="text-3xl font-bold">Register</h1>
           <p className="text-primary-500 dark:text-primary-400">
