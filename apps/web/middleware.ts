@@ -1,9 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { AuthService } from '@repo/nx-auth';
-import { sysEnv } from '@web/env';
 
 export async function middleware(request: NextRequest) {
-  await AuthService.updateSession(sysEnv.AUTH_SECRET, request);
+  await AuthService.updateSession(request);
   if (request.nextUrl.pathname === '/about') {
     return NextResponse.redirect(new URL('/redirected', request.url));
   }

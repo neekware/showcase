@@ -1,5 +1,5 @@
 import { migrate } from 'drizzle-orm/postgres-js/migrator';
-import { dbEnv } from '@web/env';
+import { dbEnv } from '@repo/nx-env';
 import config from './config';
 import { connection, dB } from './drizzle';
 

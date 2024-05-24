@@ -1,5 +1,5 @@
 {
-  "name": "@repo/nx-auth",
+  "name": "@repo/nx-env",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",
@@ -30,11 +30,11 @@
   },
   "dependencies": {
     "@mdi/react": "^1.6.1",
-    "@repo/nx-env": "workspace:*",
+    "dotenv": "^16.4.5",
+    "dotenv-expand": "^11.0.6",
     "jose": "^5.3.0",
     "next": "^14.2.3",
     "react": "^18.3.1",
-    "sonner": "^1.4.41",
     "zod": "^3.23.8"
   }
 }

@@ -7,7 +7,6 @@
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
     "paths": {
-      "@web/env": ["src/env/index.ts"],
       "@web/cfg": ["src/cfg/index.ts"],
       "@web/auth": ["src/auth/index.ts"],
       "@web/components": ["src/components/index.ts"],
@@ -24,7 +23,6 @@
     "next.config.js",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "src/env/**/*.ts",
     "middleware.ts"
   ]
 }

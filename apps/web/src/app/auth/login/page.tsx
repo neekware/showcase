@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { mdiFolderPlus, mdiLogin } from '@mdi/js';
 import { Icon } from '@mdi/react';
+import { AuthService } from '@repo/nx-auth';
 import {
   Button,
   Card,
@@ -30,7 +32,14 @@ export default function Login() {
       </CardHeader>
       <Separator orientation="horizontal" />
       <CardContent className="pt-4">
-        <form className="space-y-4">
+        <form
+          className="space-y-4"
+          action={async (formData) => {
+            'use server';
+            // await AuthService.login();
+            redirect('/');
+          }}
+        >
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input id="email" placeholder="Enter your email" type="email" />

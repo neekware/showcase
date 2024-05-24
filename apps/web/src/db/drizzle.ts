@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import { dbEnv } from '@web/env';
+import { dbEnv } from '@repo/nx-env';
 import * as schema from './schema';
 
 const DEBUG = false;
