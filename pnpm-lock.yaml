@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   prettier-plugin-tailwindcss@0.5.14:
-    hash: mpuue4mnjm4pe3bss67f3z3cze
+    hash: kgkm63mwfhbmcdyh3mt5wljbqe
     path: .patches/prettier-plugin-tailwindcss@0.5.14.patch
 
 importers:
@@ -33,7 +33,7 @@ importers:
         version: 3.2.5
       prettier-plugin-tailwindcss:
         specifier: 0.5.14
-        version: 0.5.14(patch_hash=mpuue4mnjm4pe3bss67f3z3cze)(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.2.5))(prettier-plugin-import-sort@0.0.7(prettier@3.2.5))(prettier-plugin-organize-imports@3.2.4(prettier@3.2.5)(typescript@5.4.5))(prettier@3.2.5)
+        version: 0.5.14(patch_hash=kgkm63mwfhbmcdyh3mt5wljbqe)(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.2.5))(prettier-plugin-import-sort@0.0.7(prettier@3.2.5))(prettier-plugin-organize-imports@3.2.4(prettier@3.2.5)(typescript@5.4.5))(prettier@3.2.5)
       turbo:
         specifier: ^1.13.3
         version: 1.13.3
@@ -12946,7 +12946,7 @@ snapshots:
     optionalDependencies:
       prettier: 3.2.5
 
-  prettier-plugin-tailwindcss@0.5.14(patch_hash=mpuue4mnjm4pe3bss67f3z3cze)(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.2.5))(prettier-plugin-import-sort@0.0.7(prettier@3.2.5))(prettier-plugin-organize-imports@3.2.4(prettier@3.2.5)(typescript@5.4.5))(prettier@3.2.5):
+  prettier-plugin-tailwindcss@0.5.14(patch_hash=kgkm63mwfhbmcdyh3mt5wljbqe)(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.2.5))(prettier-plugin-import-sort@0.0.7(prettier@3.2.5))(prettier-plugin-organize-imports@3.2.4(prettier@3.2.5)(typescript@5.4.5))(prettier@3.2.5):
     dependencies:
       prettier: 3.2.5
     optionalDependencies:
