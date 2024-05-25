@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  transpilePackages: ['@repo/nx-util', '@repo/nx-ui', '@repo/ag-logger', '@repo/nx-ui-vendor'],
+  transpilePackages: [
+    '@repo/ag-db',
+    '@repo/ag-dto',
+    '@repo/ag-logger',
+    '@repo/ag-store',
+    '@repo/nx-auth',
+    '@repo/nx-env',
+    '@repo/nx-ui',
+    '@repo/nx-ui-vendor',
+    '@repo/nx-util',
+  ],
 };

@@ -14,7 +14,6 @@ const DbEnvSchema = z.object({
   DB_MIGRATING: stringBoolean,
   DB_SEEDING: stringBoolean,
   DB_DEBUG: stringBoolean,
-  DB_DIR: z.string().default(''),
 });
 
 export type DbEnv = TypeOf<typeof DbEnvSchema>;

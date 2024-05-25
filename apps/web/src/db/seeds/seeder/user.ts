@@ -1,9 +1,9 @@
 import { hash } from 'bcrypt-ts';
-import { type DbType } from '@repo/ag-db';
+import { dB } from '@repo/ag-db';
 import { type CreateUser, user } from '../../schema/user';
 import users from '../data/users.json';
 
-export async function seedUser(dB: DbType) {
+export async function seedUser() {
   await Promise.all(
     users.map(async (u) => {
       const password = await hash(u.password, 10);
