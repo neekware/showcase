@@ -58,7 +58,7 @@ export function useThemeState(): readonly [
  * @returns An array containing the current auth state and an update function
  */
 export function useAuthState(): readonly [AuthState, (partialConfig: Partial<AuthState>) => void] {
-  const [auth, setAuthState] = useAtom(authAtom);
+  const [auth, seAuthTableState] = useAtom(authAtom);
 
   /**
    * Function to update the auth state immutably
@@ -66,7 +66,7 @@ export function useAuthState(): readonly [AuthState, (partialConfig: Partial<Aut
    * @param partialConfig - Partial configuration to update the auth state
    */
   const updateImmutable = (partialConfig: Partial<AuthState>) => {
-    setAuthState({
+    seAuthTableState({
       ...DefaultStateSettings.auth,
       ...partialConfig,
     });
@@ -84,7 +84,7 @@ export function useProfileState(): readonly [
   ProfileState,
   (partialConfig: Partial<ProfileState>) => void,
 ] {
-  const [profile, setAuthState] = useAtom(profileAtom);
+  const [profile, seAuthTableState] = useAtom(profileAtom);
 
   /**
    * Function to update the profile state immutably
@@ -92,7 +92,7 @@ export function useProfileState(): readonly [
    * @param partialConfig - Partial configuration to update the profile
    */
   const updateImmutable = (partialConfig: Partial<ProfileState>) => {
-    setAuthState({
+    seAuthTableState({
       ...DefaultStateSettings.profile,
       ...partialConfig,
     });

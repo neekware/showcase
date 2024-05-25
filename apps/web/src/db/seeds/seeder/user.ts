@@ -1,16 +1,16 @@
-import { hash } from 'bcrypt-ts';
+import { hash } from 'bcryptjs';
 import { dB } from '@repo/ag-db';
-import { type CreateUser, user } from '../../schema/user';
+import { type CreateUser, UserTable } from '../../schema/user';
 import users from '../data/users.json';
 
 export async function seedUser() {
   await Promise.all(
-    users.map(async (u) => {
-      const password = await hash(u.password, 10);
+    users.map(async (user) => {
+      const password = await hash(user.password, 10);
       await dB
-        .insert(user)
+        .insert(UserTable)
         .values({
-          ...u,
+          ...user,
           password,
         } as CreateUser)
         .returning();

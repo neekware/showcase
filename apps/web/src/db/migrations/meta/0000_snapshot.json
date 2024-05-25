@@ -1,9 +1,85 @@
 {
-  "id": "2cd9e1bd-7ff1-4bb6-98cd-4da21493e1bc",
+  "id": "9bfd59f7-4bb9-4df4-bcf9-16ec37dca4a4",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
   "tables": {
+    "public.auth": {
+      "name": "auth",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(36)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "refreshToken": {
+          "name": "refreshToken",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "accessToken": {
+          "name": "accessToken",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "userId": {
+          "name": "userId",
+          "type": "varchar(36)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "auth_userId_user_id_fk": {
+          "name": "auth_userId_user_id_fk",
+          "tableFrom": "auth",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "auth_id_unique": {
+          "name": "auth_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id"
+          ]
+        }
+      }
+    },
     "public.user": {
       "name": "user",
       "schema": "",
@@ -104,82 +180,6 @@
           "nullsNotDistinct": false,
           "columns": [
             "email"
-          ]
-        }
-      }
-    },
-    "public.auth": {
-      "name": "auth",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "varchar(36)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "refreshToken": {
-          "name": "refreshToken",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "accessToken": {
-          "name": "accessToken",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "expiresAt": {
-          "name": "expiresAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "createdAt": {
-          "name": "createdAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updatedAt": {
-          "name": "updatedAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "userId": {
-          "name": "userId",
-          "type": "varchar(36)",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "auth_userId_user_id_fk": {
-          "name": "auth_userId_user_id_fk",
-          "tableFrom": "auth",
-          "tableTo": "user",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "auth_id_unique": {
-          "name": "auth_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "id"
           ]
         }
       }

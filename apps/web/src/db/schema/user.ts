@@ -1,11 +1,10 @@
 import { type InferInsertModel, type InferSelectModel } from 'drizzle-orm';
 import { boolean, pgEnum, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
-// eslint-disable-next-line import/named
 import { v4 as uuidV4 } from 'uuid';
 
 export const RoleEnum = pgEnum('Role', ['USER', 'STAFF', 'ADMIN', 'SUPERUSER']);
 
-export const user = pgTable('user', {
+export const UserTable = pgTable('user', {
   id: varchar('id', { length: 36 }).$defaultFn(uuidV4).notNull().unique(),
   name: text('name').notNull(),
   email: text('email').unique().notNull(),
@@ -20,5 +19,5 @@ export const user = pgTable('user', {
   lastLoginAt: timestamp('lastLoginAt').defaultNow().notNull(),
 });
 
-export type User = InferSelectModel<typeof user>;
-export type CreateUser = InferInsertModel<typeof user>;
+export type User = InferSelectModel<typeof UserTable>;
+export type CreateUser = InferInsertModel<typeof UserTable>;

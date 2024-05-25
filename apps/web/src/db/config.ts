@@ -2,7 +2,7 @@ import { defineConfig } from 'drizzle-kit';
 import { dbEnv } from '@repo/nx-env';
 
 export default defineConfig({
-  schema: './src/db/schema/index.ts',
+  schema: './src/db/schema',
   out: './src/db/migrations',
   dialect: 'postgresql',
   dbCredentials: {

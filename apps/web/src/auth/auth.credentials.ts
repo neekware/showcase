@@ -11,13 +11,13 @@
 
 //   async authorize(credentials) {
 //     const { email, password } = credentials;
-//     const user = await getUser(email as string, password as string);
+//     const user = await geUserTable(email as string, password as string);
 //     return user as User;
 //   },
 // });
 
-// const getUser = async (email: string, password: string) => {
-//   const user = await UserDbService.getUserByEmailQuery(email);
+// const geUserTable = async (email: string, password: string) => {
+//   const user = await UserDbService.geUserTableByEmailQuery(email);
 
 //   if (user) {
 //     const isValid = await compare(password, user.password ?? '');

@@ -4,6 +4,17 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "auth" (
+	"id" varchar(36) NOT NULL,
+	"refreshToken" text,
+	"accessToken" text,
+	"expiresAt" timestamp,
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL,
+	"userId" varchar(36) NOT NULL,
+	CONSTRAINT "auth_id_unique" UNIQUE("id")
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user" (
 	"id" varchar(36) NOT NULL,
 	"name" text NOT NULL,
@@ -19,17 +30,6 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"lastLoginAt" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "user_id_unique" UNIQUE("id"),
 	CONSTRAINT "user_email_unique" UNIQUE("email")
-);
---> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "auth" (
-	"id" varchar(36) NOT NULL,
-	"refreshToken" text,
-	"accessToken" text,
-	"expiresAt" timestamp,
-	"createdAt" timestamp DEFAULT now() NOT NULL,
-	"updatedAt" timestamp DEFAULT now() NOT NULL,
-	"userId" varchar(36) NOT NULL,
-	CONSTRAINT "auth_id_unique" UNIQUE("id")
 );
 --> statement-breakpoint
 DO $$ BEGIN
