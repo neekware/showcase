@@ -1,8 +1,8 @@
 import { defineConfig } from 'drizzle-kit';
-import { dbEnv } from '@repo/nx-env';
+import { dbEnv } from '@repo/ag-env';
 
 export default defineConfig({
-  schema: './src/db/schema',
+  schema: ['./node_modules/@repo/ag-user/src/schema'],
   out: './src/db/migrations',
   dialect: 'postgresql',
   dbCredentials: {

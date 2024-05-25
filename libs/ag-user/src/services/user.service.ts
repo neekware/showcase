@@ -1,7 +1,7 @@
 import { genSaltSync, hashSync } from 'bcryptjs';
 import { eq, inArray, or } from 'drizzle-orm';
 import { dB } from '@repo/ag-db';
-import { type User, UserTable } from '../schema/user';
+import { CreateUser, UserTable } from '../schema/user';
 
 export const UserDbService = {
   async geUserTableByIdQuery(userId: string) {
@@ -22,15 +22,16 @@ export const UserDbService = {
   async geUserTableByIdsQuery(userIds: string[]) {
     return await dB.select().from(UserTable).where(inArray(UserTable.id, userIds));
   },
-  async createUser(user: Partial<User>): Promise<Partial<User>> {
+  async createUser(user: Partial<CreateUser>): Promise<Partial<CreateUser>> {
     const salt = genSaltSync(10);
     const password = hashSync(user.password, salt);
 
     const [newUser] = await dB
       .insert(UserTable)
-      .values({ ...user, password } as User)
+      .values({ ...user, password } as CreateUser)
       .returning();
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = newUser;
     return userWithoutPassword;
   },

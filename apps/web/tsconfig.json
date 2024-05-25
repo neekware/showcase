@@ -23,6 +23,7 @@
     "next.config.js",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "middleware.ts"
+    "middleware.ts",
+    "../../libs/ag-user/src/services"
   ]
 }

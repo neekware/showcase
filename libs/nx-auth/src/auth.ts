@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { JWTPayload, jwtVerify, SignJWT } from 'jose';
-import { sysEnv } from '@repo/nx-env';
+import { sysEnv } from '@repo/ag-env';
 import { LoginInputs } from './schema';
 
 export const AuthService = {

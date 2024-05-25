@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { authEnv } from '@repo/nx-env';
+import { authEnv } from '@repo/ag-env';
 
 export const LoginFormDataSchema = z.object({
   email: z.string().email('Invalid email address'),

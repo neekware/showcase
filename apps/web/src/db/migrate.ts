@@ -1,6 +1,6 @@
 import { migrate } from 'drizzle-orm/postgres-js/migrator';
 import { connection, dB } from '@repo/ag-db';
-import { dbEnv } from '@repo/nx-env';
+import { dbEnv } from '@repo/ag-env';
 import config from '@web/db/config';
 
 if (!dbEnv.DB_MIGRATING) {

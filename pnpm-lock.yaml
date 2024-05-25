@@ -41,15 +41,18 @@ importers:
       '@repo/ag-dto':
         specifier: workspace:*
         version: link:../../libs/ag-dto
+      '@repo/ag-env':
+        specifier: workspace:*
+        version: link:../../libs/ag-env
       '@repo/ag-logger':
         specifier: workspace:*
         version: link:../../libs/ag-logger
+      '@repo/ag-user':
+        specifier: workspace:*
+        version: link:../../libs/ag-user
       '@repo/nx-auth':
         specifier: workspace:*
         version: link:../../libs/nx-auth
-      '@repo/nx-env':
-        specifier: workspace:*
-        version: link:../../libs/nx-env
       '@repo/nx-ui':
         specifier: workspace:*
         version: link:../../libs/nx-ui
@@ -219,9 +222,9 @@ importers:
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
-      '@repo/nx-env':
+      '@repo/ag-env':
         specifier: workspace:*
-        version: link:../nx-env
+        version: link:../ag-env
       drizzle-orm:
         specifier: ^0.30.10
         version: 0.30.10(@types/react@18.3.2)(postgres@3.4.4)(react@18.3.1)
@@ -280,6 +283,55 @@ importers:
       sonner:
         specifier: ^1.4.41
         version: 1.4.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript
+      '@types/eslint':
+        specifier: ^8.56.10
+        version: 8.56.10
+      '@types/node':
+        specifier: ^20.12.12
+        version: 20.12.12
+      '@types/react':
+        specifier: ^18.3.2
+        version: 18.3.2
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
+  libs/ag-env:
+    dependencies:
+      '@mdi/react':
+        specifier: ^1.6.1
+        version: 1.6.1
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
+      dotenv-expand:
+        specifier: ^11.0.6
+        version: 11.0.6
+      jose:
+        specifier: ^5.3.0
+        version: 5.3.0
+      next:
+        specifier: ^14.2.3
+        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -391,26 +443,29 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
-  libs/nx-auth:
+  libs/ag-user:
     dependencies:
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
-      '@repo/nx-env':
+      '@repo/ag-db':
         specifier: workspace:*
-        version: link:../nx-env
-      jose:
-        specifier: ^5.3.0
-        version: 5.3.0
-      next:
-        specifier: ^14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: link:../ag-db
+      '@repo/ag-env':
+        specifier: workspace:*
+        version: link:../ag-env
+      bcryptjs:
+        specifier: ^2.4.3
+        version: 2.4.3
+      drizzle-orm:
+        specifier: ^0.30.10
+        version: 0.30.10(@types/react@18.3.2)(postgres@3.4.4)(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
-      sonner:
-        specifier: ^1.4.41
-        version: 1.4.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -421,6 +476,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript
+      '@types/bcryptjs':
+        specifier: ^2.4.6
+        version: 2.4.6
       '@types/eslint':
         specifier: ^8.56.10
         version: 8.56.10
@@ -433,6 +491,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      '@types/uuid':
+        specifier: ^9.0.8
+        version: 9.0.8
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
@@ -440,17 +501,14 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
-  libs/nx-env:
+  libs/nx-auth:
     dependencies:
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
-      dotenv:
-        specifier: ^16.4.5
-        version: 16.4.5
-      dotenv-expand:
-        specifier: ^11.0.6
-        version: 11.0.6
+      '@repo/ag-env':
+        specifier: workspace:*
+        version: link:../ag-env
       jose:
         specifier: ^5.3.0
         version: 5.3.0
@@ -460,6 +518,9 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      sonner:
+        specifier: ^1.4.41
+        version: 1.4.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       zod:
         specifier: ^3.23.8
         version: 3.23.8

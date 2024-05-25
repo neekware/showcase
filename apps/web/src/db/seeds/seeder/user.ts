@@ -1,6 +1,6 @@
 import { hash } from 'bcryptjs';
 import { dB } from '@repo/ag-db';
-import { type CreateUser, UserTable } from '../../schema/user';
+import { type CreateUser, UserTable } from '@repo/ag-user';
 import users from '../data/users.json';
 
 export async function seedUser() {

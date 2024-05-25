@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import { dbEnv } from '@repo/nx-env';
+import { dbEnv } from '@repo/ag-env';
 
 // if in migration or seeding mode, only allow one connection, otherwise use the default
 const maxConnection = dbEnv.DB_MIGRATING || dbEnv.DB_SEEDING ? 1 : undefined;
