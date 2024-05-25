@@ -4,7 +4,7 @@ import { type TypeOf, z } from 'zod';
 import { getEnv } from './util';
 
 const AuthEnvSchema = z.object({
-  PASSWORD_MIN_LEN: z.number().default(8),
+  PASSWORD_MIN_LEN: z.number().default(6),
   FIRST_NAME_MIN_LEN: z.number().default(2),
   LAST_NAME_MIN_LEN: z.number().default(2),
 });

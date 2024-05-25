@@ -1,25 +1,29 @@
 import { genSaltSync, hashSync } from 'bcryptjs';
 import { eq, inArray, or } from 'drizzle-orm';
 import { dB } from '@repo/ag-db';
-import { CreateUser, UserTable } from '../schema/user';
+import { CreateUser, User, UserTable } from '../schema/user';
 
 export const UserDbService = {
-  async geUserTableByIdQuery(userId: string) {
-    return await dB.select().from(UserTable).where(eq(UserTable.id, userId));
+  async getByIdQuery(userId: string): Promise<Partial<User> | undefined> {
+    const users = await dB.select().from(UserTable).where(eq(UserTable.id, userId));
+    return users?.length ? users[0] : undefined;
   },
-  async geUserTableByEmailQuery(email: string) {
-    return await dB.select().from(UserTable).where(eq(UserTable.email, email));
+  async getByEmailQuery(email: string): Promise<Partial<User> | undefined> {
+    const users = await dB.select().from(UserTable).where(eq(UserTable.email, email));
+    return users?.length ? users[0] : undefined;
   },
-  async geUserTableByPhoneQuery(phone: string) {
-    return await dB.select().from(UserTable).where(eq(UserTable.phone, phone));
+  async getByPhoneQuery(phone: string): Promise<Partial<User> | undefined> {
+    const users = await dB.select().from(UserTable).where(eq(UserTable.phone, phone));
+    return users?.length ? users[0] : undefined;
   },
-  async geUserTableByPhoneOrEmailQuery(phone: string, email: string) {
-    return await dB
+  async getByPhoneOrEmailQuery(phone: string, email: string): Promise<Partial<User> | undefined> {
+    const users = await dB
       .select()
       .from(UserTable)
       .where(or(eq(UserTable.phone, phone), eq(UserTable.email, email)));
+    return users?.length ? users[0] : undefined;
   },
-  async geUserTableByIdsQuery(userIds: string[]) {
+  async getByIdsQuery(userIds: string[]): Promise<Partial<User>[]> {
     return await dB.select().from(UserTable).where(inArray(UserTable.id, userIds));
   },
   async createUser(user: Partial<CreateUser>): Promise<Partial<CreateUser>> {

@@ -21,6 +21,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@types/bcryptjs": "^2.4.6",
     "@types/eslint": "^8.56.10",
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.2",
@@ -31,6 +32,8 @@
   "dependencies": {
     "@mdi/react": "^1.6.1",
     "@repo/ag-env": "workspace:*",
+    "@repo/ag-user": "workspace:*",
+    "bcryptjs": "^2.4.3",
     "jose": "^5.3.0",
     "next": "^14.2.3",
     "react": "^18.3.1",

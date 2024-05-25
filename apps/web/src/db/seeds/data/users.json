@@ -1,25 +1,25 @@
 [
   {
     "name": "Mike Tyson",
-    "email": "mike.tyscon@example.com",
-    "password": "password",
+    "email": "mike@tyscon.com",
+    "password": "mike.tyson",
     "role": "ADMIN"
   },
   {
     "name": "John Smith",
-    "email": "john.smith@example.com",
-    "password": "password",
+    "email": "john@smith.com",
+    "password": "john.smith",
     "role": "STAFF"
   },
   {
     "name": "Jane Doe",
-    "email": "jane.doe@example.com",
-    "password": "password",
+    "email": "jane@doe.com",
+    "password": "jane.doe",
     "role": "USER"
   },
   {
     "name": "Michael Jones",
-    "email": "michael.jones@example.com",
-    "password": "password"
+    "email": "michael@jones.com",
+    "password": "michael.jones"
   }
 ]

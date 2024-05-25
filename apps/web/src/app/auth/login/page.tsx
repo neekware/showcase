@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { mdiFolderPlus, mdiLogin } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { AuthService } from '@repo/nx-auth';
+import { loginServerFunction } from '@repo/nx-auth';
+import { type LoginInputs } from '@repo/nx-auth/src/schema';
 import {
   Button,
   Card,
@@ -36,17 +37,24 @@ export default function Login() {
           className="space-y-4"
           action={async (formData) => {
             'use server';
-            // await AuthService.login();
-            redirect('/');
+            const result = await loginServerFunction({
+              email: formData.get('email'),
+              password: formData.get('password'),
+            } as LoginInputs);
+            if (result.success) {
+              redirect('/');
+            } else {
+              console.log(result);
+            }
           }}
         >
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" placeholder="Enter your email" type="email" />
+            <Input id="email" name="email" placeholder="Enter your email" type="email" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" placeholder="Enter a password" type="password" />
+            <Input id="password" name="password" placeholder="Enter a password" type="password" />
           </div>
           <Button className="" type="submit">
             Login
