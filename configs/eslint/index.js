@@ -10,6 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:tailwindcss/recommended',
     'prettier',
+    'eslint-config-turbo',
   ],
   plugins: ['@typescript-eslint', 'import'],
   globals: {

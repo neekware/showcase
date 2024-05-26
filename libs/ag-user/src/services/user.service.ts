@@ -28,7 +28,7 @@ export const UserDbService = {
   },
   async createUser(user: Partial<CreateUser>): Promise<Partial<CreateUser>> {
     const salt = genSaltSync(10);
-    const password = hashSync(user.password, salt);
+    const password = hashSync(user.password ?? '', salt);
 
     const [newUser] = await dB
       .insert(UserTable)
@@ -36,7 +36,7 @@ export const UserDbService = {
       .returning();
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: _, ...userWithoutPassword } = newUser;
+    const { password: _, ...userWithoutPassword } = newUser as CreateUser;
     return userWithoutPassword;
   },
 };

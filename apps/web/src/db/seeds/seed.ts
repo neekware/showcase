@@ -1,11 +1,13 @@
+import * as dotenv from 'dotenv';
 import { getTableName, sql, type Table } from 'drizzle-orm';
 import { PostgresError } from 'postgres';
 import { connection, dB } from '@repo/ag-db';
-import { dbEnv } from '@repo/ag-env';
 import { UserTable } from '@repo/ag-user';
 import { seedUser } from './seeder/user';
 
-if (!dbEnv.DB_SEEDING) {
+dotenv.config();
+
+if (!process.env.DB_SEEDING) {
   throw new Error('You must set DB_SEEDING to "true" when running seeds');
 }
 

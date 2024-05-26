@@ -1,17 +1,24 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+import * as dotenv from 'dotenv';
 import { compareSync } from 'bcryptjs';
 import { JWTPayload, jwtVerify, SignJWT } from 'jose';
-import { sysEnv } from '@repo/ag-env';
 import { UserDbService } from '@repo/ag-user';
 import { LoginInputs } from './schema';
 
+dotenv.config();
+
+// Auth secret must be set in the environment or throw an error
+if (!process.env.AUTH_SECRET) {
+  throw new Error('You must set AUTH_SECRET in your environment');
+}
+
 export const AuthService = {
-  key(secret = sysEnv.AUTH_SECRET) {
+  key(secret = process.env.AUTH_SECRET) {
     return new TextEncoder().encode(secret);
   },
   async encrypt(payload: JWTPayload) {
-    const key = AuthService.key(sysEnv.AUTH_SECRET);
+    const key = AuthService.key(process.env.AUTH_SECRET);
     return await new SignJWT(payload)
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
@@ -31,9 +38,10 @@ export const AuthService = {
       throw new Error('User not found');
     }
 
-    if (compareSync(data.password, user.password)) {
+    if (compareSync(data.password, user.password ?? 'invalid-password-hash')) {
       throw new Error('Invalid password');
     }
+
     const payload = { email: data.email };
     const expiryInMinutes = 30;
     const expires = new Date(Date.now() + expiryInMinutes * 60 * 1000);

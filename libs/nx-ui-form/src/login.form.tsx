@@ -7,22 +7,22 @@ import { type LoginFormInputs, LoginFormModel, loginServerAction } from '@repo/n
 import { Button, Input, Label } from '@repo/nx-ui-vendor';
 
 export function LoginForm() {
-  const [_data, setData] = useState<LoginFormInputs>();
+  const [data, setData] = useState<LoginFormInputs>();
 
   const {
     register,
     handleSubmit,
     // watch,
-    reset,
+    // reset,
     formState: { errors },
   } = useForm<LoginFormInputs>({
     resolver: zodResolver(LoginFormModel),
   });
 
-  const processForm: SubmitHandler<LoginFormInputs> = async (data: LoginFormInputs) => {
-    console.log('data', data);
+  const processForm: SubmitHandler<LoginFormInputs> = async (input: LoginFormInputs) => {
+    console.log('data', input, data);
 
-    const result = await loginServerAction(data);
+    const result = await loginServerAction(input);
 
     if (!result) {
       console.log('Something went wrong');
@@ -36,20 +36,14 @@ export function LoginForm() {
     console.log('Login successful!', result);
 
     // reset();
-    setData(result as LoginFormInputs);
+    setData(result.data);
   };
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit(processForm)}>
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          type="email"
-          {...register('email')}
-        />
+        <Input id="email" placeholder="Enter your email" type="email" {...register('email')} />
         {errors.email?.message ? (
           <p className="text-sm text-red-400">{errors.email.message}</p>
         ) : null}
@@ -58,7 +52,6 @@ export function LoginForm() {
         <Label htmlFor="password">Password</Label>
         <Input
           id="password"
-          name="password"
           placeholder="Enter a password"
           type="password"
           {...register('password')}

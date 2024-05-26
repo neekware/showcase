@@ -1,14 +1,16 @@
+import * as dotenv from 'dotenv';
 import { migrate } from 'drizzle-orm/postgres-js/migrator';
 import { connection, dB } from '@repo/ag-db';
-import { dbEnv } from '@repo/ag-env';
 import config from '@web/db/config';
 
-if (!dbEnv.DB_MIGRATING) {
+dotenv.config();
+
+if (!process.env.DB_MIGRATING) {
   throw new Error('You must set DB_MIGRATING to "true" when running migrations');
 }
 
 async function main() {
-  await migrate(dB, { migrationsFolder: config.out });
+  await migrate(dB, { migrationsFolder: config.out ?? '' });
   await connection.end();
 }
 

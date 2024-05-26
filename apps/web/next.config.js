@@ -3,7 +3,6 @@ module.exports = {
   reactStrictMode: true,
   transpilePackages: [
     '@repo/ag-dto',
-    '@repo/ag-env',
     '@repo/ag-db',
     '@repo/ag-logger',
     '@repo/ag-user',

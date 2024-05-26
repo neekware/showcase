@@ -2,8 +2,6 @@
   "name": "@repo/nx-ui-vendor",
   "version": "0.0.1",
   "private": true,
-  "license": "MIT",
-  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

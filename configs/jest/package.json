@@ -6,7 +6,6 @@
     "clean": "rm -rf .turbo",
     "clean:mods": "rm -rf node_modules"
   },
-  "license": "MIT",
   "files": [
     "browser/jest-preset.js",
     "node/jest-preset.js"

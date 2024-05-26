@@ -1,9 +1,7 @@
 {
   "name": "@repo/tools-util",
   "version": "0.1.0",
-  "license": "MIT",
   "private": true,
-  "sideEffects": false,
   "description": "Local tools and utils",
   "scripts": {
     "__REPO_RELATED__": "",

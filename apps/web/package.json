@@ -31,7 +31,6 @@
     "@repo/ag-logger": "workspace:*",
     "@repo/ag-user": "workspace:*",
     "@repo/nx-auth": "workspace:*",
-    "@repo/ag-env": "workspace:*",
     "@repo/nx-ui": "workspace:*",
     "@repo/nx-ui-form": "workspace:*",
     "@repo/nx-ui-vendor": "workspace:*",
