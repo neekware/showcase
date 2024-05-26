@@ -1,19 +1,14 @@
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 import { mdiFolderPlus, mdiLogin } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { loginServerFunction } from '@repo/nx-auth';
-import { type LoginInputs } from '@repo/nx-auth/src/schema';
+import { LoginForm } from '@repo/nx-ui-form';
 import {
-  Button,
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-  Input,
-  Label,
   Separator,
 } from '@repo/nx-ui-vendor';
 
@@ -33,33 +28,7 @@ export default function Login() {
       </CardHeader>
       <Separator orientation="horizontal" />
       <CardContent className="pt-4">
-        <form
-          className="space-y-4"
-          action={async (formData) => {
-            'use server';
-            const result = await loginServerFunction({
-              email: formData.get('email'),
-              password: formData.get('password'),
-            } as LoginInputs);
-            if (result.success) {
-              redirect('/');
-            } else {
-              console.log(result);
-            }
-          }}
-        >
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" placeholder="Enter your email" type="email" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" name="password" placeholder="Enter a password" type="password" />
-          </div>
-          <Button className="" type="submit">
-            Login
-          </Button>
-        </form>
+        <LoginForm />
       </CardContent>
       <Separator orientation="horizontal" />
       <CardFooter className="-mb-2 flex justify-between pt-4">

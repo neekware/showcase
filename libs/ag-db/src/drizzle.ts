@@ -15,7 +15,7 @@ export const connection = postgres(`${dbEnv.DB_URL}${dbEnv.DB_SSL ? '?sslmode=re
 
 // create a new instance of Drizzle
 export const dB = drizzle(connection, {
-  logger: dbEnv.DB_DEBUG,
+  logger: !!dbEnv.DB_DEBUG,
 });
 
 export type DbType = typeof dB;

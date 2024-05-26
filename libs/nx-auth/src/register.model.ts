@@ -1,17 +1,7 @@
 import { z } from 'zod';
 import { FIRST_NAME_MIN_LEN, LAST_NAME_MIN_LEN, PASSWORD_MIN_LEN } from '@repo/ag-dto';
 
-export const LoginFormDataSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z
-    .string()
-    .min(1, 'Password is required')
-    .min(PASSWORD_MIN_LEN, `Password must be ${PASSWORD_MIN_LEN}+ characters`),
-});
-
-export type LoginInputs = z.infer<typeof LoginFormDataSchema>;
-
-export const RegisterFormDataSchema = z.object({
+export const RegistrationFormModel = z.object({
   firstName: z
     .string()
     .min(1, 'First name is required')
@@ -32,4 +22,4 @@ export const RegisterFormDataSchema = z.object({
     .min(PASSWORD_MIN_LEN, `Password must be ${PASSWORD_MIN_LEN}+ characters`),
 });
 
-export type RegisterInputs = z.infer<typeof RegisterFormDataSchema>;
+export type RegisterFormInputs = z.infer<typeof RegistrationFormModel>;

@@ -56,6 +56,9 @@ importers:
       '@repo/nx-ui':
         specifier: workspace:*
         version: link:../../libs/nx-ui
+      '@repo/nx-ui-form':
+        specifier: workspace:*
+        version: link:../../libs/nx-ui-form
       '@repo/nx-ui-vendor':
         specifier: workspace:*
         version: link:../../libs/nx-ui-vendor
@@ -506,6 +509,9 @@ importers:
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
+      '@repo/ag-dto':
+        specifier: workspace:*
+        version: link:../ag-dto
       '@repo/ag-env':
         specifier: workspace:*
         version: link:../ag-env
@@ -524,9 +530,6 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
-      sonner:
-        specifier: ^1.4.41
-        version: 1.4.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -582,6 +585,76 @@ importers:
       next-themes:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      sonner:
+        specifier: ^1.4.41
+        version: 1.4.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint
+      '@repo/jest-presets':
+        specifier: workspace:*
+        version: link:../../configs/jest
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript
+      '@types/jest':
+        specifier: ^29.5.12
+        version: 29.5.12
+      '@types/node':
+        specifier: ^20.12.12
+        version: 20.12.12
+      '@types/react':
+        specifier: ^18.3.2
+        version: 18.3.2
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@20.12.12)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
+  libs/nx-ui-form:
+    dependencies:
+      '@hookform/resolvers':
+        specifier: ^3.4.2
+        version: 3.4.2(react-hook-form@7.51.5(react@18.3.1))
+      '@mdi/js':
+        specifier: ^7.4.47
+        version: 7.4.47
+      '@mdi/react':
+        specifier: ^1.6.1
+        version: 1.6.1
+      '@repo/ag-dto':
+        specifier: workspace:*
+        version: link:../ag-dto
+      '@repo/nx-auth':
+        specifier: workspace:*
+        version: link:../nx-auth
+      '@repo/nx-ui-vendor':
+        specifier: workspace:*
+        version: link:../nx-ui-vendor
+      '@repo/nx-util':
+        specifier: workspace:*
+        version: link:../nx-util
+      next:
+        specifier: ^14.2.3
+        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-hook-form:
+        specifier: ^7.51.5
+        version: 7.51.5(react@18.3.1)
       sonner:
         specifier: ^1.4.41
         version: 1.4.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1407,6 +1480,11 @@ packages:
 
   '@floating-ui/utils@0.2.2':
     resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
+
+  '@hookform/resolvers@3.4.2':
+    resolution: {integrity: sha512-1m9uAVIO8wVf7VCDAGsuGA0t6Z3m6jVGAN50HkV9vYLl0yixKK/Z1lr01vaRvYCkIKGoy1noVRxMzQYb4y/j1Q==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -7647,6 +7725,10 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
 
   '@floating-ui/utils@0.2.2': {}
+
+  '@hookform/resolvers@3.4.2(react-hook-form@7.51.5(react@18.3.1))':
+    dependencies:
+      react-hook-form: 7.51.5(react@18.3.1)
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:

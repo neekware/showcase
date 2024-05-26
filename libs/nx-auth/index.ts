@@ -1,3 +1,4 @@
-export * from './src/auth';
-export * from './src/schema';
-export * from './src/login-action';
+export * from './src/auth.action';
+export * from './src/login.model';
+export * from './src/auth.service';
+export * from './src/register.model';

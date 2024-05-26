@@ -33,6 +33,7 @@
     "@repo/nx-auth": "workspace:*",
     "@repo/ag-env": "workspace:*",
     "@repo/nx-ui": "workspace:*",
+    "@repo/nx-ui-form": "workspace:*",
     "@repo/nx-ui-vendor": "workspace:*",
     "@repo/nx-util": "workspace:*",
     "autoprefixer": "^10.4.19",

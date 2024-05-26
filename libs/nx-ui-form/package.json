@@ -1,8 +1,11 @@
 {
-  "name": "@repo/nx-auth",
+  "name": "@repo/nx-ui-form",
   "version": "0.0.1",
   "private": true,
+  "license": "MIT",
+  "sideEffects": false,
   "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist/**"
@@ -16,28 +19,38 @@
     "typecheck": "tsc --noEmit",
     "__ACTION_RELATED__": "",
     "build": "tsup",
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "preset": "@repo/jest-presets/browser",
+    "coverageDirectory": "../../coverage/ui",
+    "collectCoverage": true
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
+    "@repo/jest-presets": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/eslint": "^8.56.10",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
+    "jest": "^29.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.4.2",
+    "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@repo/ag-dto": "workspace:*",
-    "@repo/ag-env": "workspace:*",
-    "@repo/ag-user": "workspace:*",
-    "bcryptjs": "^2.4.3",
-    "jose": "^5.3.0",
+    "@repo/nx-util": "workspace:*",
+    "@repo/nx-auth": "workspace:*",
+    "@repo/nx-ui-vendor": "workspace:*",
     "next": "^14.2.3",
-    "react": "^18.3.1",
-    "zod": "^3.23.8"
+    "react-hook-form": "^7.51.5",
+    "sonner": "^1.4.41"
   }
 }
