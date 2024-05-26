@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type LoginFormInputs, LoginFormModel, loginServerAction } from '@repo/nx-auth';
+import { type LoginFormInputs, LoginFormModel } from '@repo/nx-auth';
 import { Button, Input, Label } from '@repo/nx-ui-vendor';
 
 export function LoginForm() {
@@ -12,8 +12,6 @@ export function LoginForm() {
   const {
     register,
     handleSubmit,
-    // watch,
-    // reset,
     formState: { errors },
   } = useForm<LoginFormInputs>({
     resolver: zodResolver(LoginFormModel),
@@ -22,9 +20,17 @@ export function LoginForm() {
   const processForm: SubmitHandler<LoginFormInputs> = async (input: LoginFormInputs) => {
     console.log('data', input, data);
 
-    const result = await loginServerAction(input);
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(input),
+    });
 
-    if (!result) {
+    const result = await response.json();
+
+    if (!response.ok) {
       console.log('Something went wrong');
       return;
     }
@@ -35,7 +41,6 @@ export function LoginForm() {
     }
     console.log('Login successful!', result);
 
-    // reset();
     setData(result.data);
   };
 

@@ -4,6 +4,10 @@ import postgres from 'postgres';
 
 dotenv.config();
 
+if (!process.env.DB_URL) {
+  throw new Error('DB_URL environment variable is required');
+}
+
 // if in migration or seeding mode, only allow one connection, otherwise use the default
 const maxConnection = process.env.DB_MIGRATING || process.env.DB_SEEDING ? 1 : undefined;
 // if in seeding mode, suppress notices
