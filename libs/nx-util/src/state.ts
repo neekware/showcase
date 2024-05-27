@@ -2,7 +2,7 @@
 import { atom } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 import { type AppState, type AuthState, type ProfileState, type ThemeState } from '@repo/ag-dto';
-import { sign, verify } from './crypto';
+import { sign, verify } from '@repo/ag-util';
 
 // Defining default state settings
 export const DefaultStateSettings: AppState = sign<AppState>({
@@ -17,8 +17,8 @@ export const DefaultStateSettings: AppState = sign<AppState>({
   // Initial profile settings
   profile: { username: '', email: '' },
   // Initial signature and version
-  signature: '',
-  version: '1.0.0',
+  signature: 'not-signed-yet',
+  version: '1.0.1',
 });
 
 // Creating a custom storage with JSON storage and reviver and replacer functions
