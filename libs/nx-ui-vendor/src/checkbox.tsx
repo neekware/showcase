@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { mdiCheck } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { cn } from '@repo/nx-util';
+import { cn } from './util';
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,

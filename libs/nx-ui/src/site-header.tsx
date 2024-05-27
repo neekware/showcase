@@ -1,5 +1,5 @@
 import { type MobileSettings, type SiteSettings } from '@repo/ag-dto';
-import { cn } from '@repo/nx-util';
+import { cn } from '@repo/nx-ui-vendor';
 import { NavDesktop } from './nav/nav-desktop';
 import { NavMobile } from './nav/nav-mobile';
 import { NavOption } from './nav/nav-options';

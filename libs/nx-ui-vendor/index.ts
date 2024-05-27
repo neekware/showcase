@@ -1,3 +1,4 @@
+export * from './src/util';
 export * from './src/button';
 export * from './src/accordion';
 export * from './src/alert-dialog';

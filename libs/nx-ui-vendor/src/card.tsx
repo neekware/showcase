@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cn } from '@repo/nx-util';
+import { cn } from './util';
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (

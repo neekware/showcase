@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { type SiteSettings } from '@repo/ag-dto';
-import { cn } from '@repo/nx-util';
+import { cn } from '@repo/nx-ui-vendor';
 import { ThemeSelector } from '../theme/theme-selector';
 
 interface FooterPreferencesProps {

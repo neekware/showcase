@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { type SiteSettings } from '@repo/ag-dto';
-import { cn } from '@repo/nx-util';
+import { cn } from '@repo/nx-ui-vendor';
 
 interface NavSiteProps {
   siteSettings: SiteSettings;

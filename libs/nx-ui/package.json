@@ -43,6 +43,7 @@
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@repo/ag-dto": "workspace:*",
+    "@repo/ag-util": "workspace:*",
     "@repo/nx-util": "workspace:*",
     "@repo/nx-ui-vendor": "workspace:*",
     "next": "^14.2.3",

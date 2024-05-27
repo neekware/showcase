@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { cn } from '@repo/nx-util';
 import { type ButtonProps, buttonVariants } from './button';
+import { cn } from './util';
 
 function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {
   return (

@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { mdiCheck } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { cn } from '@repo/nx-util';
+import { cn } from './util';
 
 const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
