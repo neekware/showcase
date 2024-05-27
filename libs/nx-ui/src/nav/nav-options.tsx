@@ -71,28 +71,31 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem
-            onClick={() => {
-              router.push('/auth/login');
-            }}
-            className="cursor-pointer"
-          >
-            <div className="flex items-center justify-between">
-              <Icon path={mdiLogin} className="mr-2 h-4 w-4" />
-              <span>Login</span>
-            </div>
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => {
-              router.push('/auth/logout');
-            }}
-            className="cursor-pointer"
-          >
-            <div className="flex items-center justify-between">
-              <Icon path={mdiLogout} className="text-danger mr-2 h-4 w-4" />
-              <span>Logout</span>
-            </div>
-          </DropdownMenuItem>
+          {auth.isLoggedIn ? (
+            <DropdownMenuItem
+              onClick={() => {
+                router.push('/auth/logout');
+              }}
+              className="cursor-pointer"
+            >
+              <div className="flex items-center justify-between">
+                <Icon path={mdiLogout} className="text-danger mr-2 h-4 w-4" />
+                <span>Logout</span>
+              </div>
+            </DropdownMenuItem>
+          ) : (
+            <DropdownMenuItem
+              onClick={() => {
+                router.push('/auth/login');
+              }}
+              className="cursor-pointer"
+            >
+              <div className="flex items-center justify-between">
+                <Icon path={mdiLogin} className="mr-2 h-4 w-4" />
+                <span>Login</span>
+              </div>
+            </DropdownMenuItem>
+          )}
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

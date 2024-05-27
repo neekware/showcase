@@ -50,6 +50,7 @@ export const AuthService = {
   },
   async logout() {
     cookies().set('session', '', { expires: new Date(0) });
+    return undefined;
   },
   async updateSession(request: NextRequest) {
     const session = request.cookies.get('session')?.value;

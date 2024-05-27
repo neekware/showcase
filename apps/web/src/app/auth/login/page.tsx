@@ -1,4 +1,8 @@
+'use client';
+
+import { useEffect } from 'react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { mdiFolderPlus, mdiLogin } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { LoginForm } from '@repo/nx-ui-form';
@@ -11,8 +15,17 @@ import {
   CardTitle,
   Separator,
 } from '@repo/nx-ui-vendor';
+import { useAuthState } from '@repo/nx-util';
 
 export default function Login() {
+  const [auth] = useAuthState();
+
+  useEffect(() => {
+    if (auth.isLoggedIn) {
+      redirect('/');
+    }
+  }, [auth]);
+
   return (
     <Card className="mx-auto w-[350px]">
       <CardHeader className="-mb-2.5 pt-4">

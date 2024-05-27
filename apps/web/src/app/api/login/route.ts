@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
   const { password, ...userWithoutPassword } = user;
 
   return NextResponse.json(
-    { data: userWithoutPassword, message: 'Login successful!' },
+    { success: true, data: userWithoutPassword, message: 'Login successful!' },
     { status: 200 }
   );
 }

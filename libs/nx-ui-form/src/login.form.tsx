@@ -1,15 +1,14 @@
-'use client';
-
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
+// import { useRouter } from 'next/router';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type ServerResponseType } from '@repo/ag-dto';
-import { type User } from '@repo/ag-user';
+import { type AuthState, type ServerResponseType } from '@repo/ag-dto';
 import { type LoginFormInputs, LoginFormModel } from '@repo/ag-util';
 import { Button, Input, Label } from '@repo/nx-ui-vendor';
+import { useAuthState } from '@repo/nx-util';
 
 export function LoginForm() {
-  const [data, setData] = useState<User>();
+  const [auth, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
 
   const {
@@ -38,7 +37,7 @@ export function LoginForm() {
     if (result.error) {
       setError(result.message || 'An error occurred. Please try again.');
     } else if (result.success) {
-      setData(result.data as User);
+      setAuthState({ isLoggedIn: true, token: 'token' } satisfies AuthState);
     }
   };
 

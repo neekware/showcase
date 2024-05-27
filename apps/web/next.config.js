@@ -6,6 +6,7 @@ module.exports = {
     '@repo/ag-db',
     '@repo/ag-logger',
     '@repo/ag-user',
+    '@repo/ag-util',
     '@repo/ag-store',
     '@repo/nx-auth',
     '@repo/nx-util',
