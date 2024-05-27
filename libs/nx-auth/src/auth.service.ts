@@ -34,22 +34,19 @@ export const AuthService = {
   },
   async login(data: LoginInputs) {
     const user = await UserDbService.getByEmailQuery(data.email);
-    if (!user) {
-      throw new Error('User not found');
+    if (!user) return null;
+
+    const validPassword = compareSync(data.password, user.password ?? 'invalid-password-hash');
+    if (validPassword) {
+      const payload = { email: data.email };
+      const expiryInMinutes = 30;
+      const expires = new Date(Date.now() + expiryInMinutes * 60 * 1000);
+      const session = await AuthService.encrypt({ payload, expires });
+      cookies().set('session', session, { expires, httpOnly: true });
+      return user;
     }
 
-    if (compareSync(data.password, user.password ?? 'invalid-password-hash')) {
-      throw new Error('Invalid password');
-    }
-
-    const payload = { email: data.email };
-    const expiryInMinutes = 30;
-    const expires = new Date(Date.now() + expiryInMinutes * 60 * 1000);
-    const session = await AuthService.encrypt({ payload, expires });
-    cookies().set('session', session, { expires, httpOnly: true });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const rUser = { ...user, password: '' };
-    return rUser;
+    return null;
   },
   async logout() {
     cookies().set('session', '', { expires: new Date(0) });

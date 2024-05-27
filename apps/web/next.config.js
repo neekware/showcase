@@ -13,4 +13,23 @@ module.exports = {
     '@repo/nx-ui',
     '@repo/nx-ui-vendor',
   ],
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve = {
+        ...config.resolve,
+        fallback: {
+          net: false,
+          dns: false,
+          tls: false,
+          assert: false,
+          path: false,
+          fs: false,
+          events: false,
+          process: false,
+          perf_hooks: false,
+        },
+      };
+    }
+    return config;
+  },
 };

@@ -49,6 +49,7 @@
     "@repo/nx-ui-vendor": "workspace:*",
     "next": "^14.2.3",
     "react-hook-form": "^7.51.5",
-    "sonner": "^1.4.41"
+    "sonner": "^1.4.41",
+    "zod": "^3.23.8"
   }
 }

@@ -1,7 +1,7 @@
 [
   {
     "name": "Mike Tyson",
-    "email": "mike@tyscon.com",
+    "email": "mike@tyson.com",
     "password": "mike.tyson",
     "role": "ADMIN"
   },
@@ -18,8 +18,8 @@
     "role": "USER"
   },
   {
-    "name": "Michael Jones",
-    "email": "michael@jones.com",
-    "password": "michael.jones"
+    "name": "Michael Jackson",
+    "email": "michael@jackson.com",
+    "password": "michael.jackson"
   }
 ]

@@ -3,8 +3,19 @@
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type LoginFormInputs, LoginFormModel } from '@repo/nx-auth';
+import { z } from 'zod';
+import { PASSWORD_MIN_LEN } from '@repo/ag-dto';
 import { Button, Input, Label } from '@repo/nx-ui-vendor';
+
+export const LoginFormModel = z.object({
+  email: z.string().email('Invalid email address'),
+  password: z
+    .string()
+    .min(1, 'Password is required')
+    .min(PASSWORD_MIN_LEN, `Password must be ${PASSWORD_MIN_LEN}+ characters`),
+});
+
+export type LoginFormInputs = z.infer<typeof LoginFormModel>;
 
 export function LoginForm() {
   const [data, setData] = useState<LoginFormInputs>();
@@ -18,8 +29,6 @@ export function LoginForm() {
   });
 
   const processForm: SubmitHandler<LoginFormInputs> = async (input: LoginFormInputs) => {
-    console.log('data', input, data);
-
     const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
@@ -28,12 +37,12 @@ export function LoginForm() {
       body: JSON.stringify(input),
     });
 
-    const result = await response.json();
-
     if (!response.ok) {
-      console.log('Something went wrong');
-      return;
+      console.log('Something went wrong', response);
+      // return;
     }
+
+    const result = await response.json();
 
     if (result.error) {
       console.log(result.error);
@@ -68,6 +77,10 @@ export function LoginForm() {
       <Button className="" type="submit">
         Login
       </Button>
+      {/* {errors.root ? <p className="text-sm text-red-400">{errors}</p> : null} */}
+      <div className="flex-1 rounded-lg bg-cyan-600 p-8 text-white">
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      </div>
     </form>
   );
 }
