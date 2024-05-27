@@ -9,8 +9,8 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:tailwindcss/recommended',
-    'prettier',
     'eslint-config-turbo',
+    'prettier',
   ],
   plugins: ['@typescript-eslint', 'import'],
   globals: {
