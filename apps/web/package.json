@@ -29,6 +29,7 @@
     "@repo/ag-db": "workspace:*",
     "@repo/ag-dto": "workspace:*",
     "@repo/ag-logger": "workspace:*",
+    "@repo/ag-util": "workspace:*",
     "@repo/ag-user": "workspace:*",
     "@repo/nx-auth": "workspace:*",
     "@repo/nx-ui": "workspace:*",

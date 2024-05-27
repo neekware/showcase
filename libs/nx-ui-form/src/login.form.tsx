@@ -3,22 +3,14 @@
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { PASSWORD_MIN_LEN } from '@repo/ag-dto';
+import { type ServerResponseType } from '@repo/ag-dto';
+import { type User } from '@repo/ag-user';
+import { type LoginFormInputs, LoginFormModel } from '@repo/ag-util';
 import { Button, Input, Label } from '@repo/nx-ui-vendor';
 
-export const LoginFormModel = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z
-    .string()
-    .min(1, 'Password is required')
-    .min(PASSWORD_MIN_LEN, `Password must be ${PASSWORD_MIN_LEN}+ characters`),
-});
-
-export type LoginFormInputs = z.infer<typeof LoginFormModel>;
-
 export function LoginForm() {
-  const [data, setData] = useState<LoginFormInputs>();
+  const [data, setData] = useState<User>();
+  const [error, setError] = useState<string>('');
 
   const {
     register,
@@ -38,31 +30,32 @@ export function LoginForm() {
     });
 
     if (!response.ok) {
-      console.log('Something went wrong', response);
-      // return;
+      setError('An error occurred. Please try again.');
     }
 
-    const result = await response.json();
+    const result = (await response.json()) as ServerResponseType;
 
     if (result.error) {
-      console.log(result.error);
-      return;
+      setError(result.message || 'An error occurred. Please try again.');
+    } else if (result.success) {
+      setData(result.data as User);
     }
-    console.log('Login successful!', result);
-
-    setData(result.data);
   };
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit(processForm)}>
-      <div className="space-y-2">
+    <form noValidate className="space-y-1" onSubmit={handleSubmit(processForm)}>
+      <div className="space-y-1">
         <Label htmlFor="email">Email</Label>
         <Input id="email" placeholder="Enter your email" type="email" {...register('email')} />
-        {errors.email?.message ? (
-          <p className="text-sm text-red-400">{errors.email.message}</p>
-        ) : null}
+        <div className="flex w-full text-right">
+          {errors.email?.message ? (
+            <span className="text-danger text-xs opacity-90">{errors.email.message}</span>
+          ) : (
+            <span className="text-danger text-xs opacity-90">&nbsp;</span>
+          )}
+        </div>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-1">
         <Label htmlFor="password">Password</Label>
         <Input
           id="password"
@@ -70,16 +63,19 @@ export function LoginForm() {
           type="password"
           {...register('password')}
         />
-        {errors.password?.message ? (
-          <p className="text-sm text-red-400">{errors.password.message}</p>
-        ) : null}
+        <div className="flex w-full text-right">
+          {errors.password?.message ? (
+            <span className="text-danger text-xs opacity-90">{errors.password.message}</span>
+          ) : (
+            <span className="text-danger text-xs opacity-90">&nbsp;</span>
+          )}
+        </div>
       </div>
       <Button className="" type="submit">
         Login
       </Button>
-      {/* {errors.root ? <p className="text-sm text-red-400">{errors}</p> : null} */}
       <div className="flex-1 rounded-lg bg-cyan-600 p-8 text-white">
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        {error ? <p className="text-sm text-red-400">{error}</p> : null}
       </div>
     </form>
   );

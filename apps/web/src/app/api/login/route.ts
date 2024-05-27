@@ -1,9 +1,11 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { AuthService, type LoginFormInputs, loginServerAction } from '@repo/nx-auth';
+import { type LoginFormInputs, LoginFormModel, validateForm } from '@repo/ag-util';
+import { AuthService } from '@repo/nx-auth';
 
+// POST /api/login
 export async function POST(req: NextRequest) {
-  const data = await req.json();
-  const result = await loginServerAction(data);
+  const data = (await req.json()) as LoginFormInputs;
+  const result = await validateForm<LoginFormInputs>(LoginFormModel, data);
 
   if (result?.error) {
     // input data validation error

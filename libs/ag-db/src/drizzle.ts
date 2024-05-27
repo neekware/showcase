@@ -4,8 +4,6 @@ import postgres from 'postgres';
 
 dotenv.config();
 
-console.log('DB_URL', process.env.DB_URL, process.env.DB_SSL);
-
 if (!process.env.DB_URL) {
   throw new Error(`DB_URL environment variable is required ${process.env}`);
 }
