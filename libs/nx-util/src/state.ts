@@ -30,6 +30,18 @@ const customStorage = createJSONStorage<AppState>(
     reviver: (key, value) => {
       const rootStateKey = '';
       if (key === rootStateKey) {
+        // if version mismatch or invalid state, reset to default
+        try {
+          const storageValue = JSON.parse(value as string) as AppState;
+          const version = storageValue.version || '';
+          if (version !== DefaultStateSettings.version) {
+            return DefaultStateSettings;
+          }
+        } catch (error) {
+          return DefaultStateSettings;
+        }
+
+        // if invalid signature, reset to default
         const signed = verify<AppState>(value as string);
         if (!signed) {
           return DefaultStateSettings;
@@ -60,11 +72,25 @@ export const appStateAtom = atomWithStorage<AppState>(
 appStateAtom.onMount = (setAtom) => {
   const handleStorageChange = (event: StorageEvent) => {
     if (event.key === 'appState' && event.newValue !== null) {
-      const newValue = JSON.parse(event.newValue) as AppState;
-      const oldValue = JSON.parse(localStorage.getItem('appState') || '{}') as AppState;
+      let newValue: AppState;
+      let oldValue: AppState;
 
+      // parse the new and old values
+      try {
+        newValue = JSON.parse(event.newValue) as AppState;
+        oldValue = JSON.parse(event.oldValue || '{}') as AppState;
+      } catch (error) {
+        // invalid state, reset to default
+        setAtom(DefaultStateSettings);
+        return;
+      }
+
+      // get the versions
       const newVersion = newValue.version || '';
       const oldVersion = oldValue.version || '';
+
+      // sometimes the old value can be saved in cache by the browser, web workers, etc.
+      // we need to verify the best value we've got
 
       // assume the new value is the one to verify
       let valueToVerify = newValue;
