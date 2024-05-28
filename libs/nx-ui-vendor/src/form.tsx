@@ -10,6 +10,8 @@ import {
   useFormContext,
 } from 'react-hook-form';
 import type * as LabelPrimitive from '@radix-ui/react-label';
+import { mdiAlertOutline, mdiInformation } from '@mdi/js';
+import { Icon } from '@mdi/react';
 import { Slot } from '@radix-ui/react-slot';
 import { Label } from './label';
 import { cn } from './util';
@@ -70,7 +72,7 @@ const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 
     return (
       <FormItemContext.Provider value={{ id }}>
-        <div ref={ref} className={cn('space-y-2', className)} {...props} />
+        <div ref={ref} className={cn('mb-3 space-y-0.5', className)} {...props} />
       </FormItemContext.Provider>
     );
   }
@@ -81,16 +83,9 @@ const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => {
-  const { error, formItemId } = useFormField();
+  const { formItemId } = useFormField();
 
-  return (
-    <Label
-      ref={ref}
-      className={cn(error && 'text-danger', className)}
-      htmlFor={formItemId}
-      {...props}
-    />
-  );
+  return <Label ref={ref} className={className} htmlFor={formItemId} {...props} />;
 });
 FormLabel.displayName = 'FormLabel';
 
@@ -115,16 +110,21 @@ FormControl.displayName = 'FormControl';
 const FormDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => {
-  const { formDescriptionId } = useFormField();
+>(({ className, children, ...props }, ref) => {
+  const { error, formDescriptionId } = useFormField();
+
+  if (error) {
+    // if we have error, the message will display it
+    return null;
+  }
 
   return (
-    <p
-      ref={ref}
-      id={formDescriptionId}
-      className={cn('text-muted-foreground text-sm', className)}
-      {...props}
-    />
+    <div className="text-muted-foreground flex items-center gap-1">
+      {children ? <Icon path={mdiInformation} size={0.5} /> : null}
+      <span ref={ref} id={formDescriptionId} className={cn('text-xs', className)} {...props}>
+        {children ? children : <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />}
+      </span>
+    </div>
   );
 });
 FormDescription.displayName = 'FormDescription';
@@ -141,14 +141,17 @@ const FormMessage = React.forwardRef<
   }
 
   return (
-    <p
-      ref={ref}
-      id={formMessageId}
-      className={cn('text-danger text-sm font-medium', className)}
-      {...props}
-    >
-      {body}
-    </p>
+    <div className="text-danger flex items-center gap-1">
+      <Icon path={mdiAlertOutline} size={0.5} />
+      <span
+        ref={ref}
+        id={formMessageId}
+        className={cn('text-danger text-xs font-medium', className)}
+        {...props}
+      >
+        {body}
+      </span>
+    </div>
   );
 });
 FormMessage.displayName = 'FormMessage';

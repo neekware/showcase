@@ -1,25 +1,35 @@
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
-// import { useRouter } from 'next/router';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { type z } from 'zod';
 import { type AuthState, type ServerResponseType } from '@repo/ag-dto';
 import { type LoginFormInputs, LoginFormModel } from '@repo/ag-util';
-import { Button, Input, Label } from '@repo/nx-ui-vendor';
+import {
+  Button,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
+} from '@repo/nx-ui-vendor';
 import { useAuthState } from '@repo/nx-util';
 
 export function LoginForm() {
   const [auth, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormInputs>({
+  const form = useForm<z.infer<typeof LoginFormModel>>({
     resolver: zodResolver(LoginFormModel),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
-  const processForm: SubmitHandler<LoginFormInputs> = async (input: LoginFormInputs) => {
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (input: LoginFormInputs) => {
     const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
@@ -42,40 +52,40 @@ export function LoginForm() {
   };
 
   return (
-    <form noValidate className="space-y-1" onSubmit={handleSubmit(processForm)}>
-      <div className="space-y-1">
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" placeholder="Enter your email" type="email" {...register('email')} />
-        <div className="flex w-full text-right">
-          {errors.email?.message ? (
-            <span className="text-danger text-xs opacity-90">{errors.email.message}</span>
-          ) : (
-            <span className="text-danger text-xs opacity-90">&nbsp;</span>
+    <Form {...form}>
+      <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="email"
+          render={() => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input type="email" placeholder="Your email address" />
+              </FormControl>
+              <FormDescription className="flex w-full justify-end text-right">
+                Your account email address
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
           )}
-        </div>
-      </div>
-      <div className="space-y-1">
-        <Label htmlFor="password">Password</Label>
-        <Input
-          id="password"
-          placeholder="Enter a password"
-          type="password"
-          {...register('password')}
         />
-        <div className="flex w-full text-right">
-          {errors.password?.message ? (
-            <span className="text-danger text-xs opacity-90">{errors.password.message}</span>
-          ) : (
-            <span className="text-danger text-xs opacity-90">&nbsp;</span>
+        <FormField
+          control={form.control}
+          name="password"
+          render={() => (
+            <FormItem className="">
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input type="password" placeholder="Your account password" />
+              </FormControl>
+              <FormDescription />
+              <FormMessage />
+            </FormItem>
           )}
-        </div>
-      </div>
-      <Button className="" type="submit">
-        Login
-      </Button>
-      <div className="flex-1 rounded-lg bg-cyan-600 p-8 text-white">
-        {error ? <p className="text-sm text-red-400">{error}</p> : null}
-      </div>
-    </form>
+        />
+        <Button type="submit">Login</Button>
+      </form>
+    </Form>
   );
 }
