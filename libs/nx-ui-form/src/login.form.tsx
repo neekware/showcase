@@ -57,11 +57,17 @@ export function LoginForm() {
         <FormField
           control={form.control}
           name="email"
-          render={() => (
+          render={(field) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="Your email address" {...form.register('email')} />
+                <Input
+                  {...field}
+                  type="email"
+                  placeholder="Your email address"
+                  {...form.register('email')}
+                  onBlur={() => form.trigger('email')}
+                />
               </FormControl>
               <FormDescription className="flex w-full justify-end text-right">
                 Your account email address
@@ -73,14 +79,16 @@ export function LoginForm() {
         <FormField
           control={form.control}
           name="password"
-          render={() => (
+          render={(field) => (
             <FormItem className="">
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
+                  {...field}
                   type="password"
                   placeholder="Your account password"
                   {...form.register('password')}
+                  onBlur={() => form.trigger('password')}
                 />
               </FormControl>
               <FormDescription />
