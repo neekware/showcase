@@ -553,6 +553,43 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
+  libs/nx-state:
+    dependencies:
+      '@mdi/react':
+        specifier: ^1.6.1
+        version: 1.6.1
+      '@repo/ag-store':
+        specifier: workspace:*
+        version: link:../ag-store
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript
+      '@types/eslint':
+        specifier: ^8.56.10
+        version: 8.56.10
+      '@types/node':
+        specifier: ^20.12.12
+        version: 20.12.12
+      '@types/react':
+        specifier: ^18.3.2
+        version: 18.3.2
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
   libs/nx-ui:
     dependencies:
       '@mdi/js':

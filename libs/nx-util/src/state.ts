@@ -18,7 +18,7 @@ export const DefaultStateSettings: AppState = sign<AppState>({
   profile: { username: '', email: '' },
   // Initial signature and version
   signature: 'not-signed-yet',
-  version: '1.0.1',
+  version: '1.0.2',
 });
 
 // Creating a custom storage with JSON storage and reviver and replacer functions

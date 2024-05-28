@@ -1,0 +1,10 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "lib": ["ES2015"],
+    "outDir": "./dist",
+    "types": ["node"]
+  },
+  "include": [".", "../nx-ui-form/src/login.form.tsx"],
+  "exclude": ["node_modules", "dist"]
+}
