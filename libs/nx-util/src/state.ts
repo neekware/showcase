@@ -1,4 +1,5 @@
 // Importing necessary modules
+import * as semver from 'semver';
 import { atom } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 import { type AppState, type AuthState, type ProfileState, type ThemeState } from '@repo/ag-dto';
@@ -18,7 +19,7 @@ export const DefaultStateSettings: AppState = sign<AppState>({
   profile: { username: '', email: '' },
   // Initial signature and version
   signature: 'not-signed-yet',
-  version: '1.0.2',
+  version: '1.0.3',
 });
 
 // Creating a custom storage with JSON storage and reviver and replacer functions
@@ -59,8 +60,29 @@ export const appStateAtom = atomWithStorage<AppState>(
 appStateAtom.onMount = (setAtom) => {
   const handleStorageChange = (event: StorageEvent) => {
     if (event.key === 'appState' && event.newValue !== null) {
-      const signed = verify<AppState>(event.newValue);
+      const newValue = JSON.parse(event.newValue) as AppState;
+      const oldValue = JSON.parse(localStorage.getItem('appState') || '{}') as AppState;
+
+      const newVersion = newValue.version || '';
+      const oldVersion = oldValue.version || '';
+
+      // assume the new value is the one to verify
+      let valueToVerify = newValue;
+
+      if (semver.valid(newVersion) && semver.valid(oldVersion)) {
+        // if the old version has a higher or equal version, verify the old value instead
+        if (semver.lte(newVersion, oldVersion)) {
+          valueToVerify = oldValue;
+        }
+      } else if (!semver.valid(newVersion) && semver.valid(oldVersion)) {
+        // if the new version is invalid, verify the old value instead
+        valueToVerify = oldValue;
+      }
+
+      // verify the best version we've got
+      const signed = verify<AppState>(JSON.stringify(valueToVerify));
       if (!signed) {
+        // invalid state, reset to default
         setAtom(DefaultStateSettings);
       }
     }
