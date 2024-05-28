@@ -61,7 +61,7 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="Your email address" />
+                <Input type="email" placeholder="Your email address" {...form.register('email')} />
               </FormControl>
               <FormDescription className="flex w-full justify-end text-right">
                 Your account email address
@@ -77,7 +77,11 @@ export function LoginForm() {
             <FormItem className="">
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="Your account password" />
+                <Input
+                  type="password"
+                  placeholder="Your account password"
+                  {...form.register('password')}
+                />
               </FormControl>
               <FormDescription />
               <FormMessage />
