@@ -12,7 +12,7 @@
     "__ACTION_RELATED__": "",
     "build:main": "cp ./env/main .env && next build",
     "build:ci": "cp ./env/ci .env && next build",
-    "build:dev": "cp ./env/dev .env && next build",
+    "build": "cp ./env/dev .env && next build",
     "dev": "cp ./env/dev .env && next dev -p 4200 -H 0.0.0.0",
     "start": "next start -p 3200 -H 0.0.0.0",
     "test": "jest --coverage --passWithNoTests",

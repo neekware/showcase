@@ -13,15 +13,11 @@
   ],
   "pipeline": {
     "build:main": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build:main"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "build:ci": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
-    },
-    "build:dev": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build:ci"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "build": {
