@@ -43,7 +43,7 @@ module.exports = {
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
   plugins: [
     require.resolve('@trivago/prettier-plugin-sort-imports'),
-    require.resolve('@upleveled/prettier-plugin-tailwindcss'),
+    require.resolve('prettier-plugin-tailwindcss'),
   ],
   tailwindFunctions: ['tw', 'clsx'],
   // Optional: Specify any other configurations or overrides needed
