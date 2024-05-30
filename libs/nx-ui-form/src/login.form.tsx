@@ -9,13 +9,13 @@ import { type LoginFormInputs, LoginFormModel } from '@repo/ag-util';
 import {
   Button,
   Form,
-  FormControl,
-  FormDescription,
+  FormError,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,
-  FormSubmitError,
+  FormItemControl,
+  FormItemError,
+  FormItemInfo,
+  FormItemLabel,
   Input,
 } from '@repo/nx-ui-vendor';
 import { useAuthState } from '@repo/nx-util';
@@ -82,8 +82,8 @@ export function LoginForm() {
           name="email"
           render={(field) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
+              <FormItemLabel>Email</FormItemLabel>
+              <FormItemControl>
                 <Input
                   {...field}
                   type="email"
@@ -91,11 +91,11 @@ export function LoginForm() {
                   {...form.register('email')}
                   onBlur={() => form.trigger('email')}
                 />
-              </FormControl>
-              <FormDescription className="flex w-full justify-end text-right">
+              </FormItemControl>
+              <FormItemInfo className="flex w-full justify-end text-right">
                 Your account email address
-              </FormDescription>
-              <FormMessage />
+              </FormItemInfo>
+              <FormItemError />
             </FormItem>
           )}
         />
@@ -104,8 +104,8 @@ export function LoginForm() {
           name="password"
           render={(field) => (
             <FormItem className="">
-              <FormLabel>Password</FormLabel>
-              <FormControl>
+              <FormItemLabel>Password</FormItemLabel>
+              <FormItemControl>
                 <Input
                   {...field}
                   type="password"
@@ -113,8 +113,8 @@ export function LoginForm() {
                   {...form.register('password')}
                   onBlur={() => form.trigger('password')}
                 />
-              </FormControl>
-              <FormMessage fixedHeight />
+              </FormItemControl>
+              <FormItemError fixedHeight />
             </FormItem>
           )}
         />
@@ -125,7 +125,7 @@ export function LoginForm() {
           ) : null}
         </div>
       </form>
-      <FormSubmitError fixedHeight>{error}</FormSubmitError>
+      <FormError fixedHeight>{error}</FormError>
     </Form>
   );
 }

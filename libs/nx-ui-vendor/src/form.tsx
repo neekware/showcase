@@ -54,8 +54,8 @@ const useFormField = () => {
     id,
     name: fieldContext.name,
     formItemId: `${id}-form-item`,
-    formDescriptionId: `${id}-form-item-description`,
-    formMessageId: `${id}-form-item-message`,
+    FormItemInfoId: `${id}-form-item-description`,
+    FormItemErrorId: `${id}-form-item-message`,
     ...fieldState,
   };
 };
@@ -79,7 +79,7 @@ const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 );
 FormItem.displayName = 'FormItem';
 
-const FormLabel = React.forwardRef<
+const FormItemLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => {
@@ -87,31 +87,31 @@ const FormLabel = React.forwardRef<
 
   return <Label ref={ref} className={className} htmlFor={formItemId} {...props} />;
 });
-FormLabel.displayName = 'FormLabel';
+FormItemLabel.displayName = 'FormItemLabel';
 
-const FormControl = React.forwardRef<
+const FormItemControl = React.forwardRef<
   React.ElementRef<typeof Slot>,
   React.ComponentPropsWithoutRef<typeof Slot>
 >(({ ...props }, ref) => {
-  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
+  const { error, formItemId, FormItemInfoId, FormItemErrorId } = useFormField();
 
   return (
     <Slot
       ref={ref}
       id={formItemId}
-      aria-describedby={!error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`}
+      aria-describedby={!error ? FormItemInfoId : `${FormItemInfoId} ${FormItemErrorId}`}
       aria-invalid={Boolean(error)}
       {...props}
     />
   );
 });
-FormControl.displayName = 'FormControl';
+FormItemControl.displayName = 'FormItemControl';
 
-const FormDescription = React.forwardRef<
+const FormItemInfo = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }
 >(({ className, children, fixedHeight = false, ...props }, ref) => {
-  const { error, formDescriptionId } = useFormField();
+  const { error, FormItemInfoId } = useFormField();
 
   if (error) {
     // if we have error, the message will display it
@@ -129,19 +129,19 @@ const FormDescription = React.forwardRef<
       ) : (
         <Icon path={mdiInformation} size={0.5} className="invisible" />
       )}
-      <span ref={ref} id={formDescriptionId} className={cn('text-xs', className)} {...props}>
+      <span ref={ref} id={FormItemInfoId} className={cn('text-xs', className)} {...props}>
         {children || (fixedHeight && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
       </span>
     </p>
   );
 });
-FormDescription.displayName = 'FormDescription';
+FormItemInfo.displayName = 'FormItemInfo';
 
-const FormMessage = React.forwardRef<
+const FormItemError = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }
 >(({ className, children, fixedHeight = false, ...props }, ref) => {
-  const { error, formMessageId } = useFormField();
+  const { error, FormItemErrorId } = useFormField();
   const body = error ? String(error.message) : children;
 
   if (!body && !fixedHeight) {
@@ -153,7 +153,7 @@ const FormMessage = React.forwardRef<
       <Icon path={mdiAlertOutline} size={0.5} className={cn(body ? 'block' : 'invisible')} />
       <span
         ref={ref}
-        id={formMessageId}
+        id={FormItemErrorId}
         className={cn('text-danger text-xs font-medium', className)}
         {...props}
       >
@@ -162,9 +162,9 @@ const FormMessage = React.forwardRef<
     </p>
   );
 });
-FormMessage.displayName = 'FormMessage';
+FormItemError.displayName = 'FormItemError';
 
-const FormSubmitError = React.forwardRef<
+const FormError = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }
 >(({ className, children, fixedHeight = false }, ref) => {
@@ -181,16 +181,16 @@ const FormSubmitError = React.forwardRef<
     </p>
   );
 });
-FormSubmitError.displayName = 'FormSubmitError';
+FormError.displayName = 'FormError';
 
 export {
-  useFormField,
   Form,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-  FormSubmitError,
   FormField,
+  useFormField,
+  FormItem,
+  FormItemLabel,
+  FormItemControl,
+  FormItemInfo,
+  FormItemError,
+  FormError,
 };
