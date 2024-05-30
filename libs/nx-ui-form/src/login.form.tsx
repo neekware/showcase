@@ -13,12 +13,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormSubmitError,
   Input,
 } from '@repo/nx-ui-vendor';
 import { useAuthState } from '@repo/nx-util';
 
 export function LoginForm() {
-  const [auth, setAuthState] = useAuthState();
+  const [_, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
 
   const form = useForm<z.infer<typeof LoginFormModel>>({
@@ -53,7 +54,7 @@ export function LoginForm() {
 
   return (
     <Form {...form}>
-      <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="mb-2">
         <FormField
           control={form.control}
           name="email"
@@ -91,13 +92,13 @@ export function LoginForm() {
                   onBlur={() => form.trigger('password')}
                 />
               </FormControl>
-              <FormDescription />
-              <FormMessage />
+              <FormMessage noShift />
             </FormItem>
           )}
         />
         <Button type="submit">Login</Button>
       </form>
+      <FormSubmitError noShift>{error}</FormSubmitError>
     </Form>
   );
 }

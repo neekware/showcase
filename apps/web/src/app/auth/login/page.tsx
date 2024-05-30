@@ -40,7 +40,7 @@ export default function Login() {
         </div>
       </CardHeader>
       <Separator orientation="horizontal" />
-      <CardContent className="pt-4">
+      <CardContent className="pb-3 pt-3">
         <LoginForm />
       </CardContent>
       <Separator orientation="horizontal" />
