@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { mdiFolderPlus, mdiLogin } from '@mdi/js';
@@ -20,13 +20,20 @@ import { useAuthState } from '@repo/nx-util';
 
 export default function Login() {
   const [auth] = useAuthState();
+  const prevIsLoggedIn = useMemo(() => auth.isLoggedIn, []);
   const { toast } = useToast();
 
   useEffect(() => {
-    if (auth.isLoggedIn) {
+    // we are already logged in, login page is not available
+    // they have bookmarked the login page or manually navigated to it
+    // redirect right away without showing the login form
+    if (prevIsLoggedIn) {
+      redirect('/');
+    } else if (auth.isLoggedIn) {
       toast({
         title: 'Login Successful',
         description: 'Redirecting to home page...',
+        timeout: 3000,
       });
       redirect('/');
     }

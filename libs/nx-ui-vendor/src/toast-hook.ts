@@ -2,13 +2,14 @@ import * as React from 'react';
 import type { ToastActionElement, ToastProps } from './toast';
 
 const TOAST_LIMIT = 1;
-const TOAST_REMOVE_DELAY = 1000000;
+const TOAST_REMOVE_DELAY = 5000; // 5 seconds
 
 type ToasterToast = ToastProps & {
   id: string;
   title?: React.ReactNode;
   description?: React.ReactNode;
   action?: ToastActionElement;
+  timeout?: number;
 };
 
 const actionTypes = {
@@ -51,25 +52,26 @@ interface ToastState {
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
-const addToRemoveQueue = (toastId: string) => {
+const addToRemoveQueue = (toastId: string, timeout: number) => {
   if (toastTimeouts.has(toastId)) {
     return;
   }
 
-  const timeout = setTimeout(() => {
+  const removeTimeout = setTimeout(() => {
     toastTimeouts.delete(toastId);
     dispatch({
       type: 'REMOVE_TOAST',
       toastId,
     });
-  }, TOAST_REMOVE_DELAY);
+  }, timeout);
 
-  toastTimeouts.set(toastId, timeout);
+  toastTimeouts.set(toastId, removeTimeout);
 };
 
 export const reducer = (state: ToastState, action: Action): ToastState => {
   switch (action.type) {
     case 'ADD_TOAST':
+      addToRemoveQueue(action.toast.id, action.toast.timeout || TOAST_REMOVE_DELAY);
       return {
         ...state,
         toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT),
@@ -85,10 +87,12 @@ export const reducer = (state: ToastState, action: Action): ToastState => {
       const { toastId } = action;
 
       if (toastId) {
-        addToRemoveQueue(toastId);
+        const timeout = state.toasts.find((t) => t.id === toastId)?.timeout || TOAST_REMOVE_DELAY;
+        addToRemoveQueue(toastId, timeout);
       } else {
         state.toasts.forEach((toastObj) => {
-          addToRemoveQueue(toastObj.id);
+          const timeout = toastObj.timeout || TOAST_REMOVE_DELAY;
+          addToRemoveQueue(toastObj.id, timeout);
         });
       }
 
@@ -129,9 +133,9 @@ function dispatch(action: Action) {
   });
 }
 
-type Toast = Omit<ToasterToast, 'id'>;
+type Toast = Omit<ToasterToast, 'id'> & { timeout?: number };
 
-function toast({ ...props }: Toast) {
+function toast({ timeout, ...props }: Toast) {
   const id = genId();
 
   const update = (updateProps: ToasterToast) => {
@@ -153,6 +157,7 @@ function toast({ ...props }: Toast) {
       onOpenChange: (open) => {
         if (!open) dismiss();
       },
+      timeout,
     },
   });
 
