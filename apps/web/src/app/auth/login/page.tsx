@@ -14,14 +14,20 @@ import {
   CardHeader,
   CardTitle,
   Separator,
+  useToast,
 } from '@repo/nx-ui-vendor';
 import { useAuthState } from '@repo/nx-util';
 
 export default function Login() {
   const [auth] = useAuthState();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (auth.isLoggedIn) {
+      toast({
+        title: 'Login Successful',
+        description: 'Redirecting to home page...',
+      });
       redirect('/');
     }
   }, [auth]);

@@ -7,6 +7,7 @@ import {
   ThemeProvider,
   ThemeSwap,
 } from '@repo/nx-ui';
+import { Toaster } from '@repo/nx-ui-vendor';
 import { fontRoboto, metaSettings, mobileSettings, siteSettings } from '@web/cfg';
 import '@web/styles/base.css';
 import '@web/styles/globals.css';
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
               <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
             </div>
             <Breakpoints />
+            <Toaster />
           </ThemeProvider>
           <ThemeSwap />
         </StateStoreProvider>
