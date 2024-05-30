@@ -1,4 +1,4 @@
-import { type UrlObject } from 'node:url';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -8,6 +8,8 @@ import { twMerge } from 'tailwind-merge';
  * @param inputs - The class names to merge.
  * @returns The merged class names as a string.
  */
-export function cn(...inputs: ClassValue[]) {
+function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export { cn, cva, type VariantProps };

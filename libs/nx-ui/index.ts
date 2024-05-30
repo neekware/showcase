@@ -9,3 +9,4 @@ export * from './src/theme/theme-selector';
 export * from './src/theme/theme-toaster';
 export * from './src/theme/theme-swap';
 export * from './src/theme/theme-toggle';
+export * from './src/auth/logout';

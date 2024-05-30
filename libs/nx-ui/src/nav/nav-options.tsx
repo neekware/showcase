@@ -24,6 +24,7 @@ import {
   DropdownMenuTrigger,
 } from '@repo/nx-ui-vendor';
 import { useAuthState } from '@repo/nx-util';
+import { LogoutComponent } from '../auth/logout';
 
 interface NavOptionProps {
   siteSettings: SiteSettings;
@@ -72,15 +73,10 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {auth.isLoggedIn ? (
-            <DropdownMenuItem
-              onClick={() => {
-                router.push('/auth/logout');
-              }}
-              className="cursor-pointer"
-            >
+            <DropdownMenuItem className="cursor-pointer">
               <div className="flex items-center justify-between">
                 <Icon path={mdiLogout} className="text-danger mr-2 h-4 w-4" />
-                <span>Logout</span>
+                <LogoutComponent />
               </div>
             </DropdownMenuItem>
           ) : (
@@ -101,44 +97,3 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
     </DropdownMenu>
   );
 }
-
-// export function NavOptions({ className, siteSettings }: NavOptionProps) {
-//   const pathname = usePathname();
-
-//   return (
-//     <div className={className}>
-//       <DropdownMenu>
-//         <DropdownMenuTrigger asChild>
-//           <Button variant="ghost" className="flex size-8 items-center justify-center rounded-full">
-//             <div className="text-primary">
-//               <Icon path={mdiDotsVertical} size={1} />
-//             </div>
-//             <span className="sr-only">Toggle option Menu</span>
-//           </Button>
-//         </DropdownMenuTrigger>
-//         <DropdownMenuContent align="end">
-//           <DropdownMenuLabel>My Account</DropdownMenuLabel>
-//           <DropdownMenuSeparator />
-//           {siteSettings.navOptionLinks.map((oItem, idx) => (
-//             <DropdownMenuItem key={`${oItem.title}-${oItem.href}`}>
-//               <DropdownMenuLabel
-//                 className={cn(
-//                   'hover:text-foreground/80 transition-colors',
-//                   pathname.startsWith(oItem.href) ? 'text-foreground' : 'text-foreground/60'
-//                 )}
-//               >
-//                 <div " className="flex items-center justify-between">
-//                   {oItem.icon ? (
-//                     <Icon path={oItem.icon} className="text-primary -ml-2 h-6 w-6 pr-1" />
-//                   ) : null}
-//                   <div className="">{oItem.title}</div>
-//                 </div>
-//               </DropdownMenuLabel>
-//               {idx < siteSettings.navOptionLinks.length && <DropdownMenuSeparator />}
-//             </DropdownMenuItem>
-//           ))}
-//         </DropdownMenuContent>
-//       </DropdownMenu>
-//     </div>
-//   );
-// }
