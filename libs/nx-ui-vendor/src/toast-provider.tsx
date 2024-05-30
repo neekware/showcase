@@ -9,8 +9,14 @@ import {
   ToastViewport,
 } from './toast';
 import { useToast } from './toast-hook';
+import { cn } from './util';
 
-export function Toaster() {
+interface ToasterProps {
+  className?: string;
+  classNameViewPort?: string;
+}
+
+export function Toaster({ className, classNameViewPort }: ToasterProps): JSX.Element {
   const { toasts } = useToast();
 
   return (
@@ -18,7 +24,7 @@ export function Toaster() {
       {toasts.map(({ id, title, description, action, ...props }) => {
         return (
           <Toast key={id} {...props}>
-            <div className="grid gap-1">
+            <div className={cn('grid gap-1', className)}>
               {title ? <ToastTitle>{title}</ToastTitle> : null}
               {description ? <ToastDescription>{description}</ToastDescription> : null}
             </div>
@@ -27,7 +33,7 @@ export function Toaster() {
           </Toast>
         );
       })}
-      <ToastViewport />
+      <ToastViewport className={classNameViewPort} />
     </ToastProvider>
   );
 }

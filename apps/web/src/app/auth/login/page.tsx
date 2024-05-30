@@ -33,7 +33,7 @@ export default function Login() {
       toast({
         title: 'Login Successful',
         description: 'Redirecting to home page...',
-        timeout: 3000,
+        timeout: 30000000,
       });
       redirect('/');
     }

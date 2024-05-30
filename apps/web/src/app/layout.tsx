@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
               <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
             </div>
             <Breakpoints />
-            <Toaster />
+            <Toaster classNameViewPort="bottom-0" />
           </ThemeProvider>
           <ThemeSwap />
         </StateStoreProvider>
