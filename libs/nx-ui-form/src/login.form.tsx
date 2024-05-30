@@ -31,13 +31,15 @@ export function LoginForm() {
       email: '',
       password: '',
     },
+    mode: 'onChange', // This enables the form to be validated on each change
   });
 
-  const { watch } = form;
+  const { watch, formState } = form;
 
   // Watch all fields
   const email = watch('email');
   const password = watch('password');
+  const { isValid } = formState; // Extract isValid from formState
 
   // React to changes using useEffect
   useEffect(() => {
@@ -103,7 +105,7 @@ export function LoginForm() {
           control={form.control}
           name="password"
           render={(field) => (
-            <FormItem className="">
+            <FormItem>
               <FormItemLabel>Password</FormItemLabel>
               <FormItemControl>
                 <Input
@@ -118,8 +120,10 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <div className="flex w-full animate-spin items-center justify-between">
-          <Button type="submit">Login</Button>
+        <div className="flex w-full items-center justify-between">
+          <Button type="submit" disabled={!isValid || isLoading}>
+            Login
+          </Button>
           {isLoading ? (
             <Icon path={mdiSync} size={1} className="text-primary animate-spin" />
           ) : null}
