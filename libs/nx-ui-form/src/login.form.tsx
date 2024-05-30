@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { mdiSync } from '@mdi/js';
+import { Icon } from '@mdi/react';
 import { type z } from 'zod';
 import { type AuthState, type ServerResponseType } from '@repo/ag-dto';
 import { type LoginFormInputs, LoginFormModel } from '@repo/ag-util';
@@ -21,6 +23,7 @@ import { useAuthState } from '@repo/nx-util';
 export function LoginForm() {
   const [_, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof LoginFormModel>>({
     resolver: zodResolver(LoginFormModel),
@@ -30,25 +33,44 @@ export function LoginForm() {
     },
   });
 
+  const { watch } = form;
+
+  // Watch all fields
+  const email = watch('email');
+  const password = watch('password');
+
+  // React to changes using useEffect
+  useEffect(() => {
+    setError('');
+  }, [email, password]);
+
   const onSubmit: SubmitHandler<LoginFormInputs> = async (input: LoginFormInputs) => {
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(input),
-    });
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(input),
+      });
 
-    if (!response.ok) {
+      if (!response.ok) {
+        setError('An error occurred. Please try again.');
+      }
+
+      const result = (await response.json()) as ServerResponseType;
+
+      if (result.error) {
+        setError(result.message || 'An error occurred. Please try again.');
+      } else if (result.success) {
+        setAuthState({ isLoggedIn: true, token: 'token' } satisfies AuthState);
+      }
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+    } catch (error) {
       setError('An error occurred. Please try again.');
-    }
-
-    const result = (await response.json()) as ServerResponseType;
-
-    if (result.error) {
-      setError(result.message || 'An error occurred. Please try again.');
-    } else if (result.success) {
-      setAuthState({ isLoggedIn: true, token: 'token' } satisfies AuthState);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -92,13 +114,18 @@ export function LoginForm() {
                   onBlur={() => form.trigger('password')}
                 />
               </FormControl>
-              <FormMessage noShift />
+              <FormMessage fixedHeight />
             </FormItem>
           )}
         />
-        <Button type="submit">Login</Button>
+        <div className="flex w-full animate-spin items-center justify-between">
+          <Button type="submit">Login</Button>
+          {isLoading ? (
+            <Icon path={mdiSync} size={1} className="text-primary animate-spin" />
+          ) : null}
+        </div>
       </form>
-      <FormSubmitError noShift>{error}</FormSubmitError>
+      <FormSubmitError fixedHeight>{error}</FormSubmitError>
     </Form>
   );
 }

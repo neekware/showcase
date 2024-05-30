@@ -109,8 +109,8 @@ FormControl.displayName = 'FormControl';
 
 const FormDescription = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement> & { noShift?: boolean }
->(({ className, children, noShift = false, ...props }, ref) => {
+  React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }
+>(({ className, children, fixedHeight = false, ...props }, ref) => {
   const { error, formDescriptionId } = useFormField();
 
   if (error) {
@@ -118,7 +118,7 @@ const FormDescription = React.forwardRef<
     return null;
   }
 
-  if (!children && !noShift) {
+  if (!children && !fixedHeight) {
     return null;
   }
 
@@ -130,7 +130,7 @@ const FormDescription = React.forwardRef<
         <Icon path={mdiInformation} size={0.5} className="invisible" />
       )}
       <span ref={ref} id={formDescriptionId} className={cn('text-xs', className)} {...props}>
-        {children || (noShift && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
+        {children || (fixedHeight && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
       </span>
     </p>
   );
@@ -139,12 +139,12 @@ FormDescription.displayName = 'FormDescription';
 
 const FormMessage = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement> & { noShift?: boolean }
->(({ className, children, noShift = false, ...props }, ref) => {
+  React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }
+>(({ className, children, fixedHeight = false, ...props }, ref) => {
   const { error, formMessageId } = useFormField();
   const body = error ? String(error.message) : children;
 
-  if (!body && !noShift) {
+  if (!body && !fixedHeight) {
     return null;
   }
 
@@ -157,7 +157,7 @@ const FormMessage = React.forwardRef<
         className={cn('text-danger text-xs font-medium', className)}
         {...props}
       >
-        {body || (noShift && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
+        {body || (fixedHeight && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
       </span>
     </p>
   );
@@ -166,18 +166,18 @@ FormMessage.displayName = 'FormMessage';
 
 const FormSubmitError = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement> & { noShift?: boolean }
->(({ className, children, noShift = false }, ref) => {
-  if (!children && !noShift) {
+  React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }
+>(({ className, children, fixedHeight = false }, ref) => {
+  if (!children && !fixedHeight) {
     return null;
   }
 
   return (
     <p ref={ref} className={cn('text-danger mt-1 text-xs font-medium', className)}>
-      <div className="flex items-center gap-1">
+      <span className="flex items-center gap-1">
         <Icon path={mdiAlertOutline} size={0.5} className={cn(children ? 'block' : 'invisible')} />
-        {children || (noShift && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
-      </div>
+        {children || (fixedHeight && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
+      </span>
     </p>
   );
 });

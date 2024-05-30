@@ -74,6 +74,10 @@ const baseConfig: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        spinner: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -92,6 +96,7 @@ const baseConfig: Config = {
         },
       },
       animation: {
+        spinner: 'spinner 1s linear infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'spin-clockwise': 'spin-clockwise 0.5s ease-in-out',
@@ -101,4 +106,5 @@ const baseConfig: Config = {
   },
   plugins: [require('tailwindcss-animate')],
 };
+
 export default baseConfig;
