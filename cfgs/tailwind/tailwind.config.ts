@@ -74,17 +74,9 @@ const baseConfig: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
-        spinner: {
+        spin: {
           from: { transform: 'rotate(0deg)' },
           to: { transform: 'rotate(360deg)' },
-        },
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
         },
         'spin-clockwise': {
           from: { transform: 'rotate(0deg)' },
@@ -94,13 +86,21 @@ const baseConfig: Config = {
           from: { transform: 'rotate(0deg)' },
           to: { transform: 'rotate(-180deg)' },
         },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
       },
       animation: {
-        spinner: 'spinner 1s linear infinite',
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
+        spin: 'spin 1s linear infinite',
         'spin-clockwise': 'spin-clockwise 0.5s ease-in-out',
         'spin-counter-clockwise': 'spin-counter-clockwise 0.3s ease-in-out',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
