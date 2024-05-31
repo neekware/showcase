@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { mdiFolderPlus, mdiLogin } from '@mdi/js';
 import { Icon } from '@mdi/react';
-import { LoginForm } from '@repo/nx-ui-form';
+// import { LoginForm } from '@repo/nx-ui-form';
 import {
   Card,
   CardContent,
@@ -41,10 +41,7 @@ export default function Login() {
         </div>
       </CardHeader>
       <Separator orientation="horizontal" />
-      <CardContent className="pb-3 pt-3">
-        {' '}
-        <LoginForm />{' '}
-      </CardContent>
+      <CardContent className="pb-3 pt-3">{/* <LoginForm /> */}</CardContent>
       <Separator orientation="horizontal" />
       <CardFooter className="-mb-2 flex justify-between pt-4">
         Do not have an account?
