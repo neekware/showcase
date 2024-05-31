@@ -66,7 +66,7 @@ export function LoginForm() {
       if (result.error) {
         setError(result.message || 'An error occurred. Please try again.');
       } else if (result.success) {
-        setAuthState({ isLoggedIn: true, token: 'token' } satisfies AuthState);
+        setAuthState({ isLoggedIn: true, token: 'token' } as AuthState);
       }
       // eslint-disable-next-line @typescript-eslint/no-shadow
     } catch (error) {
