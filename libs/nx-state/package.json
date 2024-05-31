@@ -12,11 +12,11 @@
     "clean": "rm -rf .turbo && rm -rf dist && rm -rf .next && rm -rf coverage",
     "clean:mods": "rm -rf node_modules",
     "__FORMAT_RELATED__": "",
-    "lint": "eslint src/",
+    "_lint": "eslint src/",
     "typecheck": "tsc --noEmit",
     "__ACTION_RELATED__": "",
-    "build": "tsup",
-    "dev": "tsup --watch"
+    "_build": "tsup",
+    "_dev": "tsup --watch"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
