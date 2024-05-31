@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, createElement, useContext, useEffect, useState } from 'react';
 import { StoreLogger, StoreStateType } from '@repo/ag-store';
 import { getStoreInstance } from './state.store';
