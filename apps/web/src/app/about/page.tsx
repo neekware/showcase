@@ -1,13 +1,13 @@
 import Link from 'next/link';
-import { log } from '@repo/logger';
-import { Button } from '@repo/vendor-ui';
+import { log } from '@repo/ag-logger';
+import { Button } from '@repo/nx-ui-vendor';
 
 export const metadata = {
   title: 'About | Showcase',
 };
 
 export default function About(): JSX.Element {
-  log('Hey! This is the Store page.');
+  log('Hey! This is the About page.');
 
   return (
     <div className="flex flex-col items-center space-y-2 p-2">

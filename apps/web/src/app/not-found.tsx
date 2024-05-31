@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@repo/vendor-ui';
+import { Button } from '@repo/nx-ui-vendor';
 
 export default function NotFound() {
   return (

@@ -1,0 +1,6 @@
+AUTH_SECRET="some-amazing-seekret"
+
+SITE_URL="http://localhost:4200"
+
+DB_URL="postgresql://val:val@localhost:5432/showcase"
+DB_DEUBG="true"

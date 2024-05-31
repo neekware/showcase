@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { log } from '@repo/logger';
-import { Button } from '@repo/vendor-ui';
-import { siteSettings } from '../cfg/site';
+import { log } from '@repo/ag-logger';
+import { Button } from '@repo/nx-ui-vendor';
+import { siteSettings } from '@web/cfg';
 
 export const metadata = {
   title: 'Home | Showcase',
 };
 
-export default function Home(): JSX.Element {
-  log('Hey! This is the Store page.');
+export default function Home() {
+  log('Hey! This is the Home page.');
 
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
@@ -68,13 +68,13 @@ export default function Home(): JSX.Element {
               ensures that your campaign will thrive. Let’s build a stronger future together.
             </p>
             <div className="mx-auto flex w-full items-center justify-center gap-6 pt-8 sm:w-auto md:w-auto lg:w-auto">
-              <Link href="/more">
+              <Link href="/auth/login">
                 <Button variant="default" className="w-20 sm:w-32 md:w-48 lg:w-64">
                   Login
                 </Button>
               </Link>
               <Link href="/products">
-                <Button variant="destructive" className="w-20 sm:w-32 md:w-48 lg:w-64">
+                <Button variant="danger" className="w-20 sm:w-32 md:w-48 lg:w-64">
                   Products
                 </Button>
               </Link>

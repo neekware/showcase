@@ -12,18 +12,26 @@
     "lint": "turbo lint",
     "typecheck": "turbo run typecheck",
     "__ACTION_RELATED__": "",
+    "build:main": "turbo build:main",
+    "build:ci": "turbo build:ci",
+    "build:dev": "turbo build:dev",
     "build": "turbo build",
     "start": "turbo start",
-    "dev": "turbo dev",
-    "dev:turbo": "turbo dev",
+    "dev": "turbo dev --concurrency=20",
     "test": "turbo run test",
-    "coveralls": "turbo coveralls"
+    "coveralls": "turbo coveralls",
+    "__DATABASE_RELATED__": "",
+    "web:db:gen": "turbo web:db:gen",
+    "web:db:sync": "turbo web:db:sync",
+    "web:db:seed": "turbo web:db:seed",
+    "web:db:show": "turbo web:db:show"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@upleveled/prettier-plugin-tailwindcss": "^0.6.0",
+    "drizzle-kit": "^0.21.2",
     "husky": "^9.0.11",
     "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.6.0",
     "turbo": "^1.13.3"
   },
   "engines": {

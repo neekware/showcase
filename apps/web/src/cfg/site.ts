@@ -1,6 +1,6 @@
-import { mdiGithub, mdiLogout, mdiTwitter } from '@mdi/js';
-import { type SiteSettings } from '@repo/dto';
-import { availableThemes } from './themes';
+import { mdiCog, mdiGithub, mdiLogin, mdiLogout, mdiTwitter, mdiWrench } from '@mdi/js';
+import { type SiteSettings } from '@repo/ag-dto';
+import { availableThemes } from './theme';
 
 export const metaSettings = {
   name: 'Showcase UI',
@@ -29,16 +29,24 @@ export const siteSettings: SiteSettings = {
   ],
   navOptionLinks: [
     {
+      title: 'Login',
+      href: '/auth/login',
+      icon: mdiLogin,
+    },
+    {
       title: 'Settings',
       href: '/settings',
+      icon: mdiCog,
     },
     {
       title: 'Support',
       href: '/support',
+      icon: mdiWrench,
     },
+
     {
       title: 'Logout',
-      href: '/logout',
+      href: '/auth/logout',
       icon: mdiLogout,
     },
   ],
@@ -102,7 +110,7 @@ export const siteSettings: SiteSettings = {
       },
       {
         title: 'Contact Us',
-        href: '/contact-us',
+        href: '/contact',
       },
     ],
     social: [

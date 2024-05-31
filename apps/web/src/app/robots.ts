@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { siteSettings } from '../cfg/site';
+import { siteSettings } from '@web/cfg';
 
 const { url } = siteSettings;
 

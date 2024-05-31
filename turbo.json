@@ -1,8 +1,25 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
-  "globalEnv": ["PORT", "NODE_ENV"],
+  "globalDependencies": ["**/.env"],
+  "globalEnv": [
+    "AUTH_SECRET",
+    "PORT",
+    "DB_URL",
+    "DB_SSL",
+    "DB_DEBUG",
+    "DB_MIGRATING",
+    "DB_SEEDING",
+    "DB_SYNCING"
+  ],
   "pipeline": {
+    "build:main": {
+      "dependsOn": ["^build:main"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "build:ci": {
+      "dependsOn": ["^build:ci"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
@@ -31,11 +48,6 @@
       "cache": false,
       "persistent": true
     },
-    "dev:turbo": {
-      "dependsOn": ["^build"],
-      "cache": false,
-      "persistent": true
-    },
     "clean": {
       "cache": false
     },
@@ -43,6 +55,18 @@
       "cache": false
     },
     "loc": {
+      "cache": false
+    },
+    "web:db:gen": {
+      "cache": false
+    },
+    "web:db:sync": {
+      "cache": false
+    },
+    "web:db:seed": {
+      "cache": false
+    },
+    "web:db:show": {
       "cache": false
     }
   }

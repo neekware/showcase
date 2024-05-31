@@ -1,35 +1,60 @@
-import { Button, Input, Label } from '@repo/vendor-ui';
+'use client';
+
+import { useEffect } from 'react';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { mdiFolderPlus, mdiLogin } from '@mdi/js';
+import { Icon } from '@mdi/react';
+import { LoginForm } from '@repo/nx-ui-form';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Separator,
+} from '@repo/nx-ui-vendor';
+import { useAppState } from '@repo/nx-util';
 
 export default function Login() {
+  const [state] = useAppState();
+
+  useEffect(() => {
+    // redirect to home page if user is already logged in
+    if (state.auth.isLoggedIn) {
+      redirect('/');
+    }
+  }, []);
+
   return (
-    <div className="mx-auto max-w-md space-y-6">
-      <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold">Sign Up</h1>
-        <p className="text-gray-500 dark:text-gray-400">Create your account to get started.</p>
-      </div>
-      <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="first-name">First Name</Label>
-            <Input id="first-name" placeholder="John" required />
+    <Card className="mx-auto w-full md:w-[350px]">
+      <CardHeader className="-mb-2.5 pt-4">
+        <div className="flex">
+          <div className="flex grow flex-col gap-1.5">
+            <CardTitle>Account Login</CardTitle>
+            <CardDescription>Sign into your account</CardDescription>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="last-name">Last Name</Label>
-            <Input id="last-name" placeholder="Doe" required />
+          <div>
+            <Icon path={mdiLogin} size={1.6} className="text-primary" />
           </div>
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" placeholder="john@example.com" required type="email" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" required type="password" />
-        </div>
-        <Button className="w-full" type="submit">
-          Sign Up
-        </Button>
-      </div>
-    </div>
+      </CardHeader>
+      <Separator orientation="horizontal" />
+      <CardContent className="pb-3 pt-3">
+        <LoginForm />
+      </CardContent>
+      <Separator orientation="horizontal" />
+      <CardFooter className="-mb-2 flex justify-between pt-4">
+        Do not have an account?
+        <Link
+          href="/auth/register"
+          className="hover:text-foreground/60 flex gap-1 transition-colors"
+        >
+          <Icon path={mdiFolderPlus} size={1} />
+          Register
+        </Link>
+      </CardFooter>
+    </Card>
   );
 }

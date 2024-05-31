@@ -4,7 +4,17 @@
   "compilerOptions": {
     "outDir": "dist",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "plugins": [{ "name": "next" }]
+    "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
+    "paths": {
+      "@web/cfg": ["src/cfg/index.ts"],
+      "@web/auth": ["src/auth/index.ts"],
+      "@web/components": ["src/components/index.ts"],
+      "@web/db/*": ["src/db/*"],
+      "@web/app/*": ["src/app/*"],
+      "@web/hooks/*": ["src/hooks/*"],
+      "@web/styles/*": ["src/styles/*"]
+    }
   },
   "include": [
     "src",
@@ -12,6 +22,8 @@
     "tailwind.config.ts",
     "next.config.js",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "middleware.ts",
+    "../../libs/ag-user/src/services"
   ]
 }

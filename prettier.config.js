@@ -25,10 +25,13 @@ module.exports = {
     '^(next/(.*)|next-(.*))$',
 
     // Third-party libraries (anything that doesn't match the other rules)
-    '^(?!node$|node/|node:|react$|react/|react-|next$|next/|next-|@repo/|./|../)(.*)$',
+    '^(?!node$|node/|node:|react$|react/|react-|next$|next/|next-|@repo/|@web/|./|../)(.*)$',
 
     // Libs related imports (@repo)
     '^@repo/(.*)$',
+
+    // Web app related imports (@web)
+    '^@web/(.*)$',
 
     // Local imports (only match relative imports starting with ./ or ../)
     '^(?:./|../).*',
@@ -40,7 +43,7 @@ module.exports = {
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
   plugins: [
     require.resolve('@trivago/prettier-plugin-sort-imports'),
-    require.resolve('@upleveled/prettier-plugin-tailwindcss'),
+    require.resolve('prettier-plugin-tailwindcss'),
   ],
   tailwindFunctions: ['tw', 'clsx'],
   // Optional: Specify any other configurations or overrides needed
