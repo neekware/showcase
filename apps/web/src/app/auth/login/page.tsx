@@ -28,7 +28,7 @@ export default function Login() {
   }, []);
 
   return (
-    <Card className="mx-auto w-[350px]">
+    <Card className="mx-auto w-full md:w-[350px]">
       <CardHeader className="-mb-2.5 pt-4">
         <div className="flex">
           <div className="flex grow flex-col gap-1.5">
