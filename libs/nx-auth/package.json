@@ -23,8 +23,8 @@
     "@repo/typescript-config": "workspace:*",
     "@types/bcryptjs": "^2.4.6",
     "@types/eslint": "^8.56.10",
-    "@types/node": "^20.12.12",
-    "@types/react": "^18.3.2",
+    "@types/node": "^20.13.0",
+    "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5"
@@ -36,8 +36,8 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "jose": "^5.3.0",
-    "next": "^14.2.3",
-    "react": "^18.3.1",
+    "next": "15.0.0-rc.0",
+    "react": "19.0.0-rc-6d3110b4d9-20240531",
     "zod": "^3.23.8"
   }
 }

@@ -14,7 +14,7 @@ import {
   Separator,
 } from '@repo/nx-ui-vendor';
 
-export default function Login() {
+export default function Logout() {
   return (
     <Card className="mx-auto w-[350px] sm:w-[500px]">
       <CardHeader className="-mb-2.5 pt-4">

@@ -1,4 +1,5 @@
-// Importing necessary modules
+'use client';
+
 import * as semver from 'semver';
 import { atom } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
@@ -22,9 +23,17 @@ export const DefaultStateSettings: AppState = sign<AppState>({
   version: '1.0.3',
 });
 
+const dummyStorage = {
+  getItem: () => null,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setItem: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  removeItem: () => {},
+};
+
 // Creating a custom storage with JSON storage and reviver and replacer functions
 const customStorage = createJSONStorage<AppState>(
-  () => localStorage, // or sessionStorage, asyncStorage or alike
+  () => (typeof window !== 'undefined' ? localStorage : dummyStorage), // Check if window is defined
   {
     // Reviver function to verify the state when retrieved from storage
     reviver: (key, value) => {
