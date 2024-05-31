@@ -31,14 +31,14 @@ export function AppInit(): null {
         toast({
           title: 'Login Successful',
           description: 'Redirecting ...',
-          timeout: 5000,
+          timeout: 3000,
         });
         router.push('/');
       } else if (prevIsLoggedIn && !state.auth.isLoggedIn) {
         toast({
           title: 'Logout Successful',
           description: 'Redirecting ...',
-          timeout: 5000,
+          timeout: 3000,
         });
         router.push('/');
       }
