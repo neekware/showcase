@@ -29,24 +29,20 @@ const customStorage = createJSONStorage<AppState>(
     // Reviver function to verify the state when retrieved from storage
     reviver: (key, value) => {
       const rootStateKey = '';
+
       if (key === rootStateKey) {
-        // if version mismatch or invalid state, reset to default
-        try {
-          const storageValue = JSON.parse(value as string) as AppState;
-          const version = storageValue.version || '';
-          if (version !== DefaultStateSettings.version) {
-            return DefaultStateSettings;
-          }
-        } catch (error) {
+        const storageValue = value as AppState;
+
+        if (storageValue.version !== DefaultStateSettings.version) {
           return DefaultStateSettings;
         }
 
-        // if invalid signature, reset to default
         const signed = verify<AppState>(value as string);
         if (!signed) {
           return DefaultStateSettings;
         }
       }
+
       return value;
     },
     // Replacer function to sign the state before storing

@@ -8,23 +8,22 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
+  AlertDialogOverlay,
+  AlertDialogPortal,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@repo/nx-ui-vendor';
 import { useAuthState } from '@repo/nx-util';
 
 interface LogoutProps {
   className?: string;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
-export function LogoutComponent({ className }: LogoutProps) {
-  const [open, setOpen] = useState(false);
-  const handleCancel = () => {
-    setOpen(false);
-  };
-
+export function LogoutConfirmationDialog({ className, open, setOpen }: LogoutProps) {
   const router = useRouter();
   const [auth, setAuthState] = useAuthState();
+  const [initialLoad, setInitialLoad] = useState(true);
 
   const handleLogout = async () => {
     await fetch('/api/logout', {
@@ -34,33 +33,42 @@ export function LogoutComponent({ className }: LogoutProps) {
       },
       body: JSON.stringify({}),
     });
-    // fire and forget, let's log the user out and redirect
+
+    // Fire and forget, let's log the user out and redirect
     setAuthState({ isLoggedIn: false, token: '' });
     setOpen(false);
   };
 
   useEffect(() => {
-    if (!auth.isLoggedIn) {
+    if (!auth.isLoggedIn && !initialLoad) {
       router.push('/');
+    } else {
+      setInitialLoad(false);
     }
   }, [auth]);
 
   return (
     <div className={className}>
-      <AlertDialog open={open} onOpenChange={setOpen} defaultOpen>
-        <AlertDialogTrigger asChild>
-          <span>Logout</span>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Account Logout</AlertDialogTitle>
-            <AlertDialogDescription>Are you sure you want to log out?</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={handleCancel}>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleLogout}>Logout</AlertDialogAction>{' '}
-          </AlertDialogFooter>
-        </AlertDialogContent>
+      <AlertDialog open={open} onOpenChange={setOpen}>
+        <AlertDialogPortal>
+          <AlertDialogOverlay />
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Account Logout</AlertDialogTitle>
+              <AlertDialogDescription>Are you sure you want to log out?</AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={handleLogout}>Logout</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogPortal>
       </AlertDialog>
     </div>
   );

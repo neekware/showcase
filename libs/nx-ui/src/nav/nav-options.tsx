@@ -24,7 +24,6 @@ import {
   DropdownMenuTrigger,
 } from '@repo/nx-ui-vendor';
 import { useAuthState } from '@repo/nx-util';
-import { LogoutComponent } from '../auth/logout';
 
 interface NavOptionProps {
   siteSettings: SiteSettings;
@@ -32,9 +31,22 @@ interface NavOptionProps {
 }
 
 export function NavOption({ className, siteSettings }: NavOptionProps) {
-  const [auth] = useAuthState();
+  const [auth, setAuthState] = useAuthState();
   const pathname = usePathname();
   const router = useRouter();
+
+  const handleLogout = async () => {
+    await fetch('/api/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    });
+
+    // Fire and forget, let's log the user out and redirect
+    setAuthState({ isLoggedIn: false, token: '' });
+  };
 
   return (
     <DropdownMenu>
@@ -73,10 +85,10 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {auth.isLoggedIn ? (
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
               <div className="flex items-center justify-between">
-                <Icon path={mdiLogout} className="text-danger mr-2 h-4 w-4" />
-                <LogoutComponent />
+                <Icon path={mdiLogout} className="mr-2 h-4 w-4" />
+                <span>Logout</span>
               </div>
             </DropdownMenuItem>
           ) : (

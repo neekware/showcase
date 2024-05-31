@@ -1,8 +1,6 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 import { mdiFolderPlus, mdiLogin } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { LoginForm } from '@repo/nx-ui-form';
@@ -14,31 +12,9 @@ import {
   CardHeader,
   CardTitle,
   Separator,
-  useToast,
 } from '@repo/nx-ui-vendor';
-import { useAuthState } from '@repo/nx-util';
 
 export default function Login() {
-  const [auth] = useAuthState();
-  const prevIsLoggedIn = useMemo(() => auth.isLoggedIn, []);
-  const { toast } = useToast();
-
-  useEffect(() => {
-    // we are already logged in, login page is not available
-    // they have bookmarked the login page or manually navigated to it
-    // redirect right away without showing the login form
-    if (prevIsLoggedIn) {
-      redirect('/');
-    } else if (auth.isLoggedIn) {
-      toast({
-        title: 'Login Successful',
-        description: 'Redirecting to home page...',
-        timeout: 30000000,
-      });
-      redirect('/');
-    }
-  }, [auth]);
-
   return (
     <Card className="mx-auto w-[350px]">
       <CardHeader className="-mb-2.5 pt-4">
