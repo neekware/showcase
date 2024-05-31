@@ -6,7 +6,7 @@ import {
   type ControllerProps,
   type FieldPath,
   type FieldValues,
-  FormProvider,
+  FormProvider as Form,
   useFormContext,
 } from 'react-hook-form';
 import type * as LabelPrimitive from '@radix-ui/react-label';
@@ -15,8 +15,6 @@ import { Icon } from '@mdi/react';
 import { Slot } from '@radix-ui/react-slot';
 import { Label } from './label';
 import { cn } from './util';
-
-const Form = FormProvider;
 
 interface FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -114,7 +112,7 @@ const FormItemInfo = React.forwardRef<
   const { error, FormItemInfoId } = useFormField();
 
   if (error) {
-    // if we have error, the message will display it
+    // if we have error, the error will display it, we don't need to display info
     return null;
   }
 
