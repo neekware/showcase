@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
+import { debounce } from 'lodash-es';
 import { useToast } from '@repo/nx-ui-vendor';
 import { useAppState } from '@repo/nx-util';
 
@@ -14,32 +15,42 @@ export function AppInit(): null {
   const [prevIsLoggedIn, setPrevIsLoggedIn] = useState(state.auth.isLoggedIn);
   const [initialLoad, setInitialLoad] = useState(true);
 
+  // create debounced functions for setting prevIsLoggedIn and initialLoad once
+  const debouncedSetPrevIsLoggedIn = useMemo(() => debounce(setPrevIsLoggedIn, 300), []);
+  const debouncedSetInitialLoad = useMemo(() => debounce(setInitialLoad, 300), []);
+
   useEffect(() => {
     if (initialLoad) {
-      setInitialLoad(false);
       if (state.auth.isLoggedIn) {
         router.push('/');
       }
-      setPrevIsLoggedIn(state.auth.isLoggedIn);
+      debouncedSetPrevIsLoggedIn(state.auth.isLoggedIn);
+      debouncedSetInitialLoad(false);
     } else {
       if (!prevIsLoggedIn && state.auth.isLoggedIn) {
-        router.push('/');
         toast({
           title: 'Login Successful',
-          description: 'You are logged in as ...',
-          timeout: 3000,
+          description: 'Redirecting ...',
+          timeout: 5000,
         });
-      } else if (prevIsLoggedIn && !state.auth.isLoggedIn) {
         router.push('/');
+      } else if (prevIsLoggedIn && !state.auth.isLoggedIn) {
         toast({
           title: 'Logout Successful',
-          description: 'You are now logged out',
-          timeout: 3000,
+          description: 'Redirecting ...',
+          timeout: 5000,
         });
+        router.push('/');
       }
-      setPrevIsLoggedIn(state.auth.isLoggedIn);
+      debouncedSetPrevIsLoggedIn(state.auth.isLoggedIn);
     }
-  }, [state.auth]);
+  }, [
+    state.auth,
+    initialLoad,
+    prevIsLoggedIn,
+    debouncedSetPrevIsLoggedIn,
+    debouncedSetInitialLoad,
+  ]);
 
   useEffect(() => {
     setTheme(state.theme.mode as string);
