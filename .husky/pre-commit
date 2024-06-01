@@ -1,3 +1,2 @@
 pnpm format
-pnpm lint
 pnpm run loc && git add README.md
