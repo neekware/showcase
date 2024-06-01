@@ -17,7 +17,7 @@ export const generateMetadata = () => metaSettings;
 
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="en" dir="rtl">
       <head>
         <meta
           name="viewport"

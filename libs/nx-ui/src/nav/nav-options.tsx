@@ -49,7 +49,7 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu dir="ltr">
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="flex size-8 items-center justify-center rounded-full">
           <div className="text-primary">
@@ -62,46 +62,53 @@ export function NavOption({ className, siteSettings }: NavOptionProps) {
         <DropdownMenuLabel>{auth.isLoggedIn ? 'My Account' : 'Options'}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <Icon path={mdiAccount} className="mr-2 h-4 w-4" />
-            <span>Profile</span>
+          <DropdownMenuItem className="flex cursor-pointer items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Icon path={mdiAccount} className="h-4 w-4" />
+              <span>Profile</span>
+            </div>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Icon path={mdiCreditCard} className="mr-2 h-4 w-4" />
-            <span>Billing</span>
+          <DropdownMenuItem className="flex cursor-pointer items-center justify-between">
+            <div className="flex flex-1 items-center gap-2">
+              <Icon path={mdiCreditCard} className="h-4 w-4" />
+              <span>Billing</span>
+            </div>
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Icon path={mdiCog} className="mr-2 h-4 w-4" />
-            <span>Settings</span>
+          <DropdownMenuItem className="flex cursor-pointer items-center justify-between">
+            <div className="flex flex-1 items-center gap-2">
+              <Icon path={mdiCog} className="h-4 w-4" />
+              <span>Settings</span>
+            </div>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Icon path={mdiKeyboard} className="mr-2 h-4 w-4" />
-            <span>Shortcuts</span>
-            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+          <DropdownMenuItem className="flex cursor-pointer items-center justify-between">
+            <div className="flex flex-1 items-center gap-2">
+              <Icon path={mdiKeyboard} className="h-4 w-4" />
+              <span>Shortcuts</span>
+            </div>
+            <DropdownMenuShortcut className="text-right">⌘K</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {auth.isLoggedIn ? (
-            <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
-              <div className="flex items-center justify-between">
-                <Icon path={mdiLogout} className="mr-2 h-4 w-4" />
-                <span>Logout</span>
-              </div>
+            <DropdownMenuItem
+              onClick={handleLogout}
+              className="flex cursor-pointer items-center gap-2"
+            >
+              <Icon path={mdiLogout} className="h-4 w-4" />
+              <span>Logout</span>
             </DropdownMenuItem>
           ) : (
             <DropdownMenuItem
               onClick={() => {
                 router.push('/auth/login');
               }}
-              className="cursor-pointer"
+              className="flex cursor-pointer items-center gap-2"
             >
-              <div className="flex items-center justify-between">
-                <Icon path={mdiLogin} className="mr-2 h-4 w-4" />
-                <span>Login</span>
-              </div>
+              <Icon path={mdiLogin} className="h-4 w-4" />
+              <span>Login</span>
             </DropdownMenuItem>
           )}
         </DropdownMenuGroup>
