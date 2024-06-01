@@ -3,4 +3,4 @@ AUTH_SECRET="some-amazing-seekret"
 SITE_URL="http://example.com"
 
 DB_URL="postgresql://<user_name>:<user_pass>@localhost:5432/<db_name>"
-DB_DEUBG="true"
+DB_DEBUG="true"
