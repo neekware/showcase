@@ -1,3 +1,5 @@
+'use client';
+
 export * from './src/util';
 export * from './src/button';
 export * from './src/accordion';
