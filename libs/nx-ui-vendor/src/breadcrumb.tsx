@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import { mdiChevronRight, mdiDotsHorizontal } from '@mdi/js';
 import { Icon } from '@mdi/react';
