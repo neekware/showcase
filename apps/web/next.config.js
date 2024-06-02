@@ -2,10 +2,10 @@
 module.exports = {
   reactStrictMode: true,
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   transpilePackages: [
     '@repo/ag-dto',
