@@ -2,11 +2,9 @@
 module.exports = {
   reactStrictMode: true,
   typescript: {
-    ignoreDuringBuilds: true,
     ignoreBuildErrors: true,
   },
   eslint: {
-    ignoreBuildErrors: true,
     ignoreDuringBuilds: true,
   },
   transpilePackages: [
