@@ -26,6 +26,12 @@ jobs:
 
     # Steps in the job
     steps:
+      # Setup Node.js 18.x
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
       # Checkout the repository with all releases
       - uses: actions/checkout@v4
         with:
@@ -61,7 +67,7 @@ jobs:
         uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          version-file: './package.json,./pnpm-lock.json,./apps/web/src/cfg/config.json'
+          version-file: './package.json,./pnpm-lock.yaml,./apps/web/src/cfg/config.json'
           git-branch: 'release-from-${{ github.sha }}'
           skip-git-pull: true
         # This step generates the changelog using the conventional-changelog-action.
