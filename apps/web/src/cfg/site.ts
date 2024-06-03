@@ -3,6 +3,7 @@ import { type SiteSettings } from '@repo/ag-dto';
 import { availableThemes } from './theme';
 
 export const metaSettings = {
+  appVersion: '0.0.0',
   name: 'Showcase UI',
   icon: '/images/phoenix.svg',
   url: 'https://showcase.io',
