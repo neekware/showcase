@@ -1,0 +1,44 @@
+name: Deploy to Vercel
+
+# Environment variables
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }} # Retrieves the Vercel organization ID from GitHub secrets
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} # Retrieves the Vercel project ID from GitHub secrets
+
+# Trigger the workflow on the following events
+on:
+  workflow_dispatch: # Manually trigger the workflow
+  release:
+    types: [published] # Trigger on published releases
+  push:
+    branches:
+      - main # Trigger on pushes to the main branch
+    paths:
+      - 'apps/**' # Trigger on changes to apps directory
+      - 'libs/**' # Trigger on changes to libs directory
+    tags:
+      - 'v*'
+
+# Job: deploy
+jobs:
+  deploy:
+    # Only run this job if the repository is neekware/showcase, on tag creation
+    if: github.repository == 'neekware/showcase' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest # Run on an ubuntu-latest environment
+    steps:
+      - uses: actions/checkout@v4 # Checkout the code
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest # Install the Vercel CLI
+      - name: Pull Vercel environment information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }} # Retrieve Vercel environment information
+      - name: Build project artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} # Build the project artifacts
+      - name: Deploy project artifacts to Vercel
+        run: |
+          OUTPUT=$(du --inodes -d 5 .vercel/output)
+          echo "$OUTPUT"
+          LAST=$(echo "$OUTPUT" | tail -n 1)
+          PERCENTAGE=$(echo "$LAST" | awk 'BEGIN {maxtotal=15000} { printf "%.2f%%", ($1/maxtotal*100) }')
+          echo "Vercel file usage percentage" >> $GITHUB_STEP_SUMMARY
+          echo "$PERCENTAGE" >> $GITHUB_STEP_SUMMARY
+          vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}  # Deploy the artifacts to Vercel
