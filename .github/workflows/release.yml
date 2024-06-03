@@ -28,7 +28,7 @@ jobs:
     steps:
       # Setup Node.js 18.x
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18.x'
 
@@ -64,7 +64,7 @@ jobs:
       # Generate the changelog using conventional-changelog-action
       - name: Conventional Changelog Action
         id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
+        uses: TriPSs/conventional-changelog-action@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           version-file: './package.json,./pnpm-lock.yaml,./apps/web/src/cfg/config.json'
