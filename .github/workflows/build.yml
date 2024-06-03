@@ -16,44 +16,34 @@ on:
 
 jobs:
   build:
-    if: github.repository == 'neekware/showcase'
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        step: [lint, build]
-        branch: [main, ci, dev]
+        step: [lint, build, test]
       fail-fast: false
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetch all history for tags and branches
-      - name: Set up Node.js
+          fetch-depth: 0
+      - name: Set up Node.js and cache pnpm
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Ensure pnpm store directory exists
-        run: mkdir -p ~/.pnpm-store
-      - name: Cache pnpm modules
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - name: Install pnpm
-        run: npm install -g pnpm
+          node-version: '18'
+          cache: 'pnpm'
       - name: Install dependencies
         run: pnpm i
-      - name: Run lint
+
+      # Run steps
+      - name: run ${{ matrix.step }}
         if: ${{ matrix.step == 'lint' }}
         run: pnpm run lint
-      - name: Run build:main
-        if: ${{ matrix.step == 'build' && matrix.branch == 'main' && github.ref == 'refs/heads/main' }}
+      - name: run ${{ matrix.step }}
+        if: ${{ matrix.step == 'build' && github.ref == 'refs/heads/main' }}
         run: pnpm run build:main
-      - name: Run build:ci
-        if: ${{ matrix.step == 'build' && matrix.branch == 'ci' && github.ref == 'refs/heads/ci' }}
+      - name: run ${{ matrix.step }}
+        if: ${{ matrix.step == 'build' && github.ref == 'refs/heads/ci' }}
         run: pnpm run build:ci
-      - name: Run build:dev
+      - name: run ${{ matrix.step }}
         if: ${{ matrix.step == 'build' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/ci' }}
         run: pnpm run build:dev
