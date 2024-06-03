@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        step: [lint, 'build']
+        step: [lint, 'build:dev', 'build:ci', 'build:main']
       fail-fast: false
     steps:
       - name: Checkout code
@@ -48,11 +48,11 @@ jobs:
         if: ${{ matrix.step == 'lint' }}
         run: pnpm run lint
       - name: Run build:main
-        if: ${{ matrix.step == 'build' && github.ref == 'refs/heads/main' }}
+        if: ${{ matrix.step == 'build:main' && github.ref == 'refs/heads/main' }}
         run: pnpm run build:main
       - name: Run build:ci
-        if: ${{ matrix.step == 'build' && github.ref == 'refs/heads/ci' }}
+        if: ${{ matrix.step == 'build:ci' && github.ref == 'refs/heads/ci' }}
         run: pnpm run build:ci
       - name: Run build:dev
-        if: ${{ matrix.step == 'build' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/ci' }}
+        if: ${{ matrix.step == 'build:dev' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/ci' }}
         run: pnpm run build:dev
