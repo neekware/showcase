@@ -1,7 +1,8 @@
-name: Build
+name: Build Workflow
 on:
   pull_request:
     paths:
+      - '.github/workflows/build.yml'
       - 'apps/**'
       - 'libs/**'
 
