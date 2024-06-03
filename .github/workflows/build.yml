@@ -37,16 +37,32 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      # Run steps
-      - name: run ${{ matrix.step }}
-        if: ${{ matrix.step == 'lint' }}
-        run: pnpm run lint
-      - name: run ${{ matrix.step }}
-        if: ${{ matrix.step == 'build' && github.ref == 'refs/heads/main' }}
-        run: pnpm run build:main
-      - name: run ${{ matrix.step }}
-        if: ${{ matrix.step == 'build' && github.ref == 'refs/heads/ci' }}
-        run: pnpm run build:ci
-      - name: run ${{ matrix.step }}
-        if: ${{ matrix.step == 'build' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/ci' }}
-        run: pnpm run build:dev
+      - name: Run step
+        run: |
+          if [ "${{ matrix.step }}" == "lint" ]; then
+            pnpm run lint
+          elif [ "${{ matrix.step }}" == "build" ]; then
+            if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+              pnpm run build:main
+            elif [ "${{ github.ref }}" == "refs/heads/ci" ]; then
+              pnpm run build:ci
+            else
+              pnpm run build:dev
+            fi
+          else
+            pnpm run test
+          fi
+
+      # # Run steps
+      # - name: run ${{ matrix.step }}
+      #   if: ${{ matrix.step == 'lint' }}
+      #   run: pnpm run lint
+      # - name: run ${{ matrix.step }}
+      #   if: ${{ matrix.step == 'build' && github.ref == 'refs/heads/main' }}
+      #   run: pnpm run build:main
+      # - name: run ${{ matrix.step }}
+      #   if: ${{ matrix.step == 'build' && github.ref == 'refs/heads/ci' }}
+      #   run: pnpm run build:ci
+      # - name: run ${{ matrix.step }}
+      #   if: ${{ matrix.step == 'build' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/ci' }}
+      #   run: pnpm run build:dev
