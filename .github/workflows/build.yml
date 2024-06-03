@@ -20,14 +20,37 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        step: [lint, 'build:main', test]
+        step: [lint, 'build:dev', 'build:ci', 'build:main']
+      fail-fast: false
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for tags and branches
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'pnpm'
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Install dependencies
         run: pnpm i
-      - name: Run ${{ matrix.step }}
-        run: pnpm run ${{ matrix.step }}
+      - name: Run lint
+        if: ${{ matrix.step == 'lint' }}
+        run: pnpm run lint
+      - name: Run build:main
+        if: ${{ github.ref == 'refs/heads/main' && matrix.step == 'build:main' }}
+        run: pnpm run build:main
+      - name: Run build:ci
+        if: ${{ github.ref == 'refs/heads/ci' && matrix.step == 'build:ci' }}
+        run: pnpm run build:ci
+      - name: Run build:dev
+        if: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/ci' && matrix.step == 'build:dev' }}
+        run: pnpm run build:dev
