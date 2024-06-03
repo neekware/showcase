@@ -1,6 +1,14 @@
 name: Build Workflow
 on:
-  pull_request:
+  push:
+    branches:
+      - feat/*
+      - fix/*
+      - hotfix/*
+      - release/*
+      - dev
+      - ci
+      - main
     paths:
       - '.github/workflows/build.yml'
       - 'apps/**'
