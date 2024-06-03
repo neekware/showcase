@@ -52,7 +52,7 @@ jobs:
 
       # Update the app config with the version
       - name: update app config
-        run: sed -i 's/0.0.0/${{ steps.package-version.outputs.current-version}}/g' apps/web/src/cfg/site.ts
+        run: sed -i 's/0.0.0/${{ steps.package-version.outputs.current-version}}/g' apps/web/src/cfg/config.json
         # This step updates the app config with the version.
 
       # Generate the changelog using conventional-changelog-action
@@ -61,7 +61,7 @@ jobs:
         uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          version-file: './package.json,./pnpm-lock.json,./apps/web/src/cfg/site.ts'
+          version-file: './package.json,./pnpm-lock.json,./apps/web/src/cfg/config.json'
           git-branch: 'release-from-${{ github.sha }}'
           skip-git-pull: true
         # This step generates the changelog using the conventional-changelog-action.
