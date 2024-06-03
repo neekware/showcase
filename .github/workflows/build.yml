@@ -1,42 +1,61 @@
+# Name of the workflow
 name: Build Workflow
+
+# Trigger the workflow on push events to specific branches and paths
 on:
   push:
     branches:
-      - feat/*
-      - fix/*
-      - hotfix/*
-      - release/*
-      - dev
-      - ci
-      - main
+      - feat/* # Feature branches
+      - fix/* # Fix branches
+      - hotfix/* # Hotfix branches
+      - release/* # Release branches
+      - dev # Development branch
+      - ci # Continuous Integration branch
+      - main # Main branch
     paths:
-      - '.github/workflows/build.yml'
-      - 'apps/**'
-      - 'libs/**'
+      - '.github/workflows/build.yml' # Workflow file itself
+      - 'apps/**' # Apps directory
+      - 'libs/**' # Libraries directory
 
+# Job named "build"
 jobs:
   build:
+    # Run the job on an Ubuntu environment
     runs-on: ubuntu-latest
+
+    # Strategy for the job
     strategy:
       matrix:
-        step: [lint, build, test]
-      fail-fast: false
+        step: [lint, build, test] # Matrix of steps to run
+      fail-fast: false # Don't fail the job if one step fails
+
+    # Steps in the job
     steps:
+      # Install pnpm
       - name: Install pnpm
         run: npm install -g pnpm
 
+      # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+        # This step checks out the code with all history.
+
+      # Set up Node.js and cache pnpm
       - name: Set up Node.js and cache pnpm
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'pnpm'
+          node-version: '18' # Use Node.js 18
+          cache: 'pnpm' # Cache pnpm dependencies
+        # This step sets up Node.js and caches pnpm dependencies.
+
+      # Install dependencies
       - name: Install dependencies
         run: pnpm i
+        # This step installs the dependencies using pnpm.
 
+      # Run the step (lint, build, or test)
       - name: Run step
         run: |
           if [ "${{ matrix.step }}" == "lint" ]; then
@@ -52,3 +71,4 @@ jobs:
           else
             pnpm run test
           fi
+        # This step runs the selected step (lint, build, or test).
