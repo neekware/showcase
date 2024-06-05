@@ -35,13 +35,13 @@ export const siteSettings: SiteSettings = {
       icon: mdiLogin,
     },
     {
-      title: 'Settings',
-      href: '/settings',
+      title: 'More',
+      href: '/more',
       icon: mdiCog,
     },
     {
-      title: 'Support',
-      href: '/support',
+      title: 'Dashboard',
+      href: '/dash',
       icon: mdiWrench,
     },
 
@@ -55,45 +55,45 @@ export const siteSettings: SiteSettings = {
     product: [
       {
         title: 'Web UI',
-        href: '/product/web',
+        href: '/product',
       },
       {
         title: 'Email',
-        href: '/product/email',
+        href: '/product',
       },
       {
         title: 'SMS',
-        href: '/product/sms',
+        href: '/product',
       },
       {
         title: 'Legacy Mail',
-        href: '/product/mail',
+        href: '/product',
       },
       {
         title: 'Driving Assist',
-        href: '/product/drive-assist',
+        href: '/product',
       },
       {
-        title: 'Sign Up Forms',
-        href: '/product/forms',
+        title: 'Sign Up',
+        href: '/auth/login',
       },
     ],
     resources: [
       {
         title: 'Docs',
-        href: '/docs',
+        href: '/more',
       },
       {
         title: 'Export',
-        href: '/expert',
+        href: '/more',
       },
       {
         title: 'Pricing',
-        href: '/pricing',
+        href: '/more',
       },
       {
         title: 'Guides',
-        href: '/guides',
+        href: '/more',
       },
     ],
     company: [
@@ -103,11 +103,11 @@ export const siteSettings: SiteSettings = {
       },
       {
         title: 'Blog',
-        href: '/blog',
+        href: '/more',
       },
       {
         title: 'Careers',
-        href: '/careers',
+        href: '/more',
       },
       {
         title: 'Contact Us',
