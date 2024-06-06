@@ -1,5 +1,8 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "remoteCache": {
+    "enabled": false
+  },
   "globalDependencies": ["**/.env"],
   "globalEnv": [
     "NODE_ENV",
@@ -12,7 +15,7 @@
     "DB_SEEDING",
     "DB_SYNCING"
   ],
-  "pipeline": {
+  "tasks": {
     "build:main": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
