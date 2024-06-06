@@ -35,7 +35,7 @@
     "@repo/ag-db": "workspace:*",
     "bcryptjs": "^2.4.3",
     "drizzle-orm": "^0.31.1",
-    "react": "19.0.0-rc-6d3110b4d9-20240531",
+    "react": "18.3.1",
     "uuid": "^9.0.1",
     "zod": "^3.23.8"
   }

@@ -45,10 +45,10 @@
     "dotenv-expand": "^11.0.6",
     "drizzle-orm": "^0.31.1",
     "jotai": "^2.8.3",
-    "next": "15.0.0-rc.0",
+    "next": "14.2.3",
     "postgres": "^3.4.4",
-    "react": "19.0.0-rc-6d3110b4d9-20240531",
-    "react-dom": "19.0.0-rc-6d3110b4d9-20240531",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-hook-form": "^7.51.5",
     "uuid": "^9.0.1",
     "zod": "^3.23.8"
