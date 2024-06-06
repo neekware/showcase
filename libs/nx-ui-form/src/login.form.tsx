@@ -18,7 +18,7 @@ import {
   FormItemLabel,
   Input,
 } from '@repo/nx-ui-vendor';
-import { useAuthState } from '@repo/nx-util';
+import { useAuthState, useDebounce } from '@repo/nx-util';
 
 export function LoginForm() {
   const [_, setAuthState] = useAuthState();
@@ -36,15 +36,15 @@ export function LoginForm() {
 
   const { watch, formState } = form;
 
-  // Watch all fields
-  const email = watch('email');
-  const password = watch('password');
+  // Watch all fields with debouncing
+  const debouncedEmail = useDebounce(watch('email'), 500);
+  const debouncedPassword = useDebounce(watch('password'), 500);
   const { isValid } = formState; // Extract isValid from formState
 
   // React to changes using useEffect
   useEffect(() => {
     setError('');
-  }, [email, password]);
+  }, [debouncedEmail, debouncedPassword]);
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (input: LoginFormInputs) => {
     setIsLoading(true);

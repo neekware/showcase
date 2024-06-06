@@ -5,6 +5,6 @@
     "outDir": "./dist",
     "types": ["node"]
   },
-  "include": ["."],
+  "include": [".", "../nx-util/src/util.hooks.ts"],
   "exclude": ["node_modules", "dist"]
 }
