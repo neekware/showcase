@@ -7,7 +7,7 @@
     "update": "pnpm update --latest -r",
     "clean": "turbo clean; rm -rf .turbo && rm -rf dist && rm -rf coverage && rm -rf node_modules/.cache",
     "clean:mods": "turbo clean:mods; rm -rf node_modules",
-    "loc": "turbo loc",
+    "loc": "turbo loc --filter @repo/tools-util --only",
     "__FORMAT_RELATED__": "",
     "format": "prettier -w \"**/*.{ts,tsx,js,jsx,html,css,svg,yml,json,md}\"",
     "lint": "turbo lint",
@@ -33,7 +33,7 @@
     "husky": "^9.0.11",
     "prettier": "^3.3.1",
     "prettier-plugin-tailwindcss": "^0.6.1",
-    "turbo": "^2.0.1"
+    "turbo": "2.0.2-canary.1"
   },
   "engines": {
     "node": ">=18"

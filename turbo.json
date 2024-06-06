@@ -63,7 +63,8 @@
       "cache": false
     },
     "loc": {
-      "cache": false
+      "cache": false,
+      "persistent": false
     },
     "web:db:gen": {
       "cache": false

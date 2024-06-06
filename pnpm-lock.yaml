@@ -24,8 +24,8 @@ importers:
         specifier: ^0.6.1
         version: 0.6.1(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.3.1))(prettier-plugin-import-sort@0.0.7(prettier@3.3.1))(prettier-plugin-organize-imports@3.2.4(prettier@3.3.1))(prettier@3.3.1)
       turbo:
-        specifier: ^2.0.1
-        version: 2.0.1
+        specifier: 2.0.2-canary.1
+        version: 2.0.2-canary.1
 
   apps/web:
     dependencies:
@@ -149,7 +149,7 @@ importers:
         version: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.4.5))
       tailwindcss:
         specifier: ^3.4.4
-        version: 3.4.4(ts-node@10.9.2(typescript@5.4.5))
+        version: 3.4.4(ts-node@10.9.2(@types/node@20.14.2))
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.4(ts-node@10.9.2(@types/node@20.14.2)))
@@ -213,7 +213,7 @@ importers:
         version: 20.14.2
       tailwindcss:
         specifier: ^3.4.4
-        version: 3.4.4(ts-node@10.9.2(typescript@5.4.5))
+        version: 3.4.4(ts-node@10.9.2(@types/node@20.14.2))
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.4(ts-node@10.9.2(@types/node@20.14.2)))
@@ -7122,38 +7122,38 @@ packages:
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
 
-  turbo-darwin-64@2.0.1:
-    resolution: {integrity: sha512-GO391pUmI6c6l/EpUIaXNzwbVDWRvYahm5oLB176dAWRYKYO+Osqs/XBdOM0G3l7ZFdR6nUtRJc8qinJp7qDUQ==}
+  turbo-darwin-64@2.0.2-canary.1:
+    resolution: {integrity: sha512-mi8a+mRFPTLT88p4XJ4vKIfAhMqOMmDeGu/If56XdkQEW6ieGshYHAjqRE8VOect6/lPZL/OGFr+KHKG3Eu8oQ==}
     cpu: [x64]
     os: [darwin]
 
-  turbo-darwin-arm64@2.0.1:
-    resolution: {integrity: sha512-rmjJoxeq7nmH/F2aWKapahrDE2zE2Uc15rvs4Rz6qHOzSqC8R5uyLpQyTKIPIZ95O/z9nKfLfVPyiRENuk5vpw==}
+  turbo-darwin-arm64@2.0.2-canary.1:
+    resolution: {integrity: sha512-KtAKoUd3vbqva5s9Oqb2FBU7jmE5Isae/paW/Xtlbds1+ZI3IOgxHHmQ5ryy8Dhbl/oo44bXpjpFZ6cTEktUXA==}
     cpu: [arm64]
     os: [darwin]
 
-  turbo-linux-64@2.0.1:
-    resolution: {integrity: sha512-vwTOc4v4jm6tM+9WlsiDlN+zwHP8A2wlsAYiNqz2u0DZL55aCWaVdivh2VpVLN36Mr9HgREGH0Fw+jx6ObcNRg==}
+  turbo-linux-64@2.0.2-canary.1:
+    resolution: {integrity: sha512-n/HAOvfwiuavDLJg7dUYzkzzwwShZ93+Rvp5PRVXcHckJ6gT5YN/M4rVg6T+meEtRW3t4RK+vqlGPmBvk18qTQ==}
     cpu: [x64]
     os: [linux]
 
-  turbo-linux-arm64@2.0.1:
-    resolution: {integrity: sha512-DkVt76fjwY940DfmqznWhpYIlKYduvKAoTtylkERrDlcWUpDYWwqNbcf9PRRIbnjnv9lIxvuom1KZmMY+cw/Ig==}
+  turbo-linux-arm64@2.0.2-canary.1:
+    resolution: {integrity: sha512-nzZWNp7GxhGGaOgC6Ps3lG61+GuayB5uvVbpLVQcANK1rkEI0RsMP9Ziv2JU54/S45oOieF6dT5qT9wC+pOR0A==}
     cpu: [arm64]
     os: [linux]
 
-  turbo-windows-64@2.0.1:
-    resolution: {integrity: sha512-XskV34kYuXVIHbRbgH8jr35Y8uA6kJOQ0LJStU4jFk7piiyk0a4n2GNDymMtvIwAxYdbuTe+pKuPCThFdirHBQ==}
+  turbo-windows-64@2.0.2-canary.1:
+    resolution: {integrity: sha512-sdhrpX19eidjy/SYxkDJCjeQp84BAwQx8RteD9APAfL0FoR/OBPDOmeaAarMcML0HeuxfmafKLYLzX9RblCaEA==}
     cpu: [x64]
     os: [win32]
 
-  turbo-windows-arm64@2.0.1:
-    resolution: {integrity: sha512-R2/RmKr2uQxkOCtXK5LNxdD3Iv7lUm56iy2FrDwTDgPI7X7K6WRjrxdirmFIu/fABYE5n6EampU3ejbG5mmGtg==}
+  turbo-windows-arm64@2.0.2-canary.1:
+    resolution: {integrity: sha512-jp9T3qJIiifc7R3Mi79OR7SoNk2ZQiy1eB9hvr4zxw3IZfozEzAgNiwRo60CF+Kr/ijoYR3EVWIEQ0JokvKhpg==}
     cpu: [arm64]
     os: [win32]
 
-  turbo@2.0.1:
-    resolution: {integrity: sha512-sJhxfBaN14pYj//xxAG6zAyStkE2j4HI9JVXVMob35SGob6dz/HuSqV/4QlVqw0uKAkwc1lXIsnykbe8RLmOOw==}
+  turbo@2.0.2-canary.1:
+    resolution: {integrity: sha512-5/dZKOVB9LX+rQPmQcD3tMTbFGHFsqaxrfH7WYpavQ5TnZ0OAoqYaQpNX1qlAgkCB6wuqZT0w5XyG2tI6eG6tw==}
     hasBin: true
 
   type-check@0.4.0:
@@ -11124,7 +11124,7 @@ snapshots:
     dependencies:
       fast-glob: 3.3.2
       postcss: 8.4.38
-      tailwindcss: 3.4.4(ts-node@10.9.2(typescript@5.4.5))
+      tailwindcss: 3.4.4(ts-node@10.9.2(@types/node@20.14.2))
 
   eslint-plugin-testing-library@6.2.2(eslint@8.57.0)(typescript@5.4.5):
     dependencies:
@@ -13465,7 +13465,7 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.38
 
-  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(typescript@5.4.5)):
+  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.14.2)):
     dependencies:
       lilconfig: 3.1.1
       yaml: 2.4.3
@@ -14412,9 +14412,9 @@ snapshots:
 
   tailwindcss-animate@1.0.7(tailwindcss@3.4.4(ts-node@10.9.2(@types/node@20.14.2))):
     dependencies:
-      tailwindcss: 3.4.4(ts-node@10.9.2(typescript@5.4.5))
+      tailwindcss: 3.4.4(ts-node@10.9.2(@types/node@20.14.2))
 
-  tailwindcss@3.4.4(ts-node@10.9.2(typescript@5.4.5)):
+  tailwindcss@3.4.4(ts-node@10.9.2(@types/node@20.14.2)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -14433,7 +14433,7 @@ snapshots:
       postcss: 8.4.38
       postcss-import: 15.1.0(postcss@8.4.38)
       postcss-js: 4.0.1(postcss@8.4.38)
-      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(typescript@5.4.5))
+      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.14.2))
       postcss-nested: 6.0.1(postcss@8.4.38)
       postcss-selector-parser: 6.1.0
       resolve: 1.22.8
@@ -14575,7 +14575,7 @@ snapshots:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(typescript@5.4.5))
+      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.14.2))
       resolve-from: 5.0.0
       rollup: 4.18.0
       source-map: 0.8.0-beta.0
@@ -14593,32 +14593,32 @@ snapshots:
       tslib: 1.14.1
       typescript: 5.4.5
 
-  turbo-darwin-64@2.0.1:
+  turbo-darwin-64@2.0.2-canary.1:
     optional: true
 
-  turbo-darwin-arm64@2.0.1:
+  turbo-darwin-arm64@2.0.2-canary.1:
     optional: true
 
-  turbo-linux-64@2.0.1:
+  turbo-linux-64@2.0.2-canary.1:
     optional: true
 
-  turbo-linux-arm64@2.0.1:
+  turbo-linux-arm64@2.0.2-canary.1:
     optional: true
 
-  turbo-windows-64@2.0.1:
+  turbo-windows-64@2.0.2-canary.1:
     optional: true
 
-  turbo-windows-arm64@2.0.1:
+  turbo-windows-arm64@2.0.2-canary.1:
     optional: true
 
-  turbo@2.0.1:
+  turbo@2.0.2-canary.1:
     optionalDependencies:
-      turbo-darwin-64: 2.0.1
-      turbo-darwin-arm64: 2.0.1
-      turbo-linux-64: 2.0.1
-      turbo-linux-arm64: 2.0.1
-      turbo-windows-64: 2.0.1
-      turbo-windows-arm64: 2.0.1
+      turbo-darwin-64: 2.0.2-canary.1
+      turbo-darwin-arm64: 2.0.2-canary.1
+      turbo-linux-64: 2.0.2-canary.1
+      turbo-linux-arm64: 2.0.2-canary.1
+      turbo-windows-64: 2.0.2-canary.1
+      turbo-windows-arm64: 2.0.2-canary.1
 
   type-check@0.4.0:
     dependencies:
