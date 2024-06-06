@@ -40,16 +40,17 @@ const customStorage = createJSONStorage<AppState>(
       const rootStateKey = '';
 
       if (key === rootStateKey) {
-        const storageValue = value as AppState;
+        let storageValue = value as AppState;
 
         if (storageValue.version !== DefaultStateSettings.version) {
-          return DefaultStateSettings;
+          storageValue = DefaultStateSettings;
+        } else {
+          const signed = verify<AppState>(value as string);
+          if (!signed) {
+            storageValue = DefaultStateSettings;
+          }
         }
-
-        const signed = verify<AppState>(value as string);
-        if (!signed) {
-          return DefaultStateSettings;
-        }
+        return storageValue;
       }
 
       return value;
@@ -77,41 +78,7 @@ export const appStateAtom = atomWithStorage<AppState>(
 appStateAtom.onMount = (setAtom) => {
   const handleStorageChange = (event: StorageEvent) => {
     if (event.key === 'appState' && event.newValue !== null) {
-      let newValue: AppState;
-      let oldValue: AppState;
-
-      // parse the new and old values
-      try {
-        newValue = JSON.parse(event.newValue) as AppState;
-        oldValue = JSON.parse(event.oldValue || '{}') as AppState;
-      } catch (error) {
-        // invalid state, reset to default
-        setAtom(DefaultStateSettings);
-        return;
-      }
-
-      // get the versions
-      const newVersion = newValue.version || '';
-      const oldVersion = oldValue.version || '';
-
-      // sometimes the old value can be saved in cache by the browser, web workers, etc.
-      // we need to verify the best value we've got
-
-      // assume the new value is the one to verify
-      let valueToVerify = newValue;
-
-      if (semver.valid(newVersion) && semver.valid(oldVersion)) {
-        // if the old version has a higher or equal version, verify the old value instead
-        if (semver.lte(newVersion, oldVersion)) {
-          valueToVerify = oldValue;
-        }
-      } else if (!semver.valid(newVersion) && semver.valid(oldVersion)) {
-        // if the new version is invalid, verify the old value instead
-        valueToVerify = oldValue;
-      }
-
-      // verify the best version we've got
-      const signed = verify<AppState>(JSON.stringify(valueToVerify));
+      const signed = verify<AppState>(event.newValue);
       if (!signed) {
         // invalid state, reset to default
         setAtom(DefaultStateSettings);
