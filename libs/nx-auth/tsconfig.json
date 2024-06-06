@@ -5,6 +5,6 @@
     "outDir": "./dist",
     "types": ["node"]
   },
-  "include": [".", "../nx-ui-form/src/login.form.tsx"],
+  "include": ["./src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
