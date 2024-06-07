@@ -31,6 +31,10 @@ jobs:
 
     # Steps in the job
     steps:
+      # Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       # Setup Node.js 18.x
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -43,10 +47,6 @@ jobs:
         with:
           fetch-depth: 0
         # This step checks out the repository with all releases, instead of just the latest commit.
-
-      # Install pnpm
-      - name: Install pnpm
-        run: npm install -g pnpm
 
       - name: UTC time in ISO 8601 format
         id: utc-time
