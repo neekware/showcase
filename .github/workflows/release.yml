@@ -49,16 +49,20 @@ jobs:
         # This step switches to the temporary branch.
 
       # Get the version from the package.json file
-      - name: Get pnpm version
-        id: package-version
+      # This step retrieves the version from the package.json file using jq.
+      - name: Get web app package.json version
+        id: web-app
         run: |
-          LF_VERSION=$(cat package.json | jq -r '.version')
-          echo "current-version=$LF_VERSION" >> "$GITHUB_OUTPUT"
-        # This step retrieves the version from the package.json file using jq.
+          LF_VERSION=$(cat apps/web/package.json | jq -r '.version')
+          echo "version=$LF_VERSION" >> "$GITHUB_OUTPUT"
 
       # Update the app config with the version
-      - name: update app config
-        run: sed -i 's/0.0.0/${{ steps.package-version.outputs.current-version}}/g' apps/web/src/cfg/config.json
+      - name: update app config, version, hash, and date
+        run: |
+          sed -i 's/i-am-a-version/${{steps.web-app.outputs.version}}/g' apps/web/src/cfg/config.json
+          sed -i 's/i-am-a-hash/${{github.sha}}/g' apps/web/src/cfg/config.json
+          sed -i 's/i-am-a-date/$UTC_DATE/g' apps/web/src/cfg/config.json
+          echo `cat apps/web/src/cfg/config.json`
         # This step updates the app config with the version.
 
       # Generate the changelog using conventional-changelog-action
