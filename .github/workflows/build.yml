@@ -31,6 +31,23 @@ jobs:
 
     # Steps in the job
     steps:
+      # Setup Node.js 18.x
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'pnpm' # Cache pnpm dependencies
+
+      # Checkout the repository with all releases
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+        # This step checks out the repository with all releases, instead of just the latest commit.
+
+      # Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: UTC time in ISO 8601 format
         id: utc-time
         run: |
@@ -53,30 +70,6 @@ jobs:
           sed -i 's/i-am-a-hash/${{github.sha}}/g' $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
           echo `cat $GITHUB_WORKSPACE/apps/web/src/cfg/config.json`
         # This step updates the app config with the version.
-
-      # Install pnpm
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      # Checkout the code
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-        # This step checks out the code with all history.
-
-      # Set up Node.js and cache pnpm
-      - name: Set up Node.js and cache pnpm
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18' # Use Node.js 18
-          cache: 'pnpm' # Cache pnpm dependencies
-        # This step sets up Node.js and caches pnpm dependencies.
-
-      # Install dependencies
-      - name: Install dependencies
-        run: pnpm i
-        # This step installs the dependencies using pnpm.
 
       # Run the step (lint, build, or test)
       - name: Run step
