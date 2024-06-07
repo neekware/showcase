@@ -1,6 +1,5 @@
 'use client';
 
-import * as semver from 'semver';
 import { atom } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 import { type AppState, type AuthState, type ProfileState, type ThemeState } from '@repo/ag-dto';
@@ -41,7 +40,6 @@ const customStorage = createJSONStorage<AppState>(
 
       if (key === rootStateKey) {
         let storageValue = value as AppState;
-
         if (storageValue.version !== DefaultStateSettings.version) {
           storageValue = DefaultStateSettings;
         } else {
@@ -75,10 +73,12 @@ export const appStateAtom = atomWithStorage<AppState>(
 );
 
 // Set up the onMount method to listen to custom storage changes
+// If the storage is changed from another tab, or the developer tool-kit
+// the state will be examined and reset to default if invalid
 appStateAtom.onMount = (setAtom) => {
   const handleStorageChange = (event: StorageEvent) => {
-    if (event.key === 'appState' && event.newValue !== null) {
-      const signed = verify<AppState>(event.newValue);
+    if (event.key === 'appState') {
+      const signed = verify<AppState>(event.newValue || '');
       if (!signed) {
         // invalid state, reset to default
         setAtom(DefaultStateSettings);
