@@ -13,7 +13,6 @@ on:
       - ci # Continuous Integration branch
       - main # Main branch
     paths:
-      - '.github/workflows/build.yml' # Workflow file itself
       - 'apps/**' # Apps directory
       - 'libs/**' # Libraries directory
 
@@ -23,14 +22,25 @@ jobs:
     # Run the job on an Ubuntu environment
     runs-on: ubuntu-latest
 
-    # Strategy for the job
+    # Cache pnpm store directory
+    env:
+      PNP_CACHE_DIR: ~/.pnpm-store
     strategy:
       matrix:
         step: [lint, build, test] # Matrix of steps to run
-      fail-fast: false # Don't fail the job if one step fails
-
-    # Steps in the job
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Cache pnpm dependencies
+      - uses: actions/cache@v2
+        with:
+          path: ${{ env.PNP_CACHE_DIR }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
       # Install pnpm
       - name: Install pnpm
         run: npm install -g pnpm
@@ -40,13 +50,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
-          cache: 'pnpm' # Cache pnpm dependencies
-
-      # Checkout the repository with all releases
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-        # This step checks out the repository with all releases, instead of just the latest commit.
 
       - name: UTC time in ISO 8601 format
         id: utc-time
@@ -55,7 +58,6 @@ jobs:
           echo "date=$UTC_DATE" >> "$GITHUB_OUTPUT"
 
       # Get the version from the package.json file
-      # This step retrieves the version from the package.json file using jq.
       - name: Get web app package.json version
         id: web-app-package
         run: |
@@ -65,11 +67,10 @@ jobs:
       # Update the app config with the version
       - name: update app config, version, hash, and date
         run: |
-          sed -i 's/i-am-a-version/${{steps.web-app-package.outputs.version}}/g' $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
-          sed -i 's/i-am-a-date/${{steps.utc-time.outputs.date}}/g' $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
-          sed -i 's/i-am-a-hash/${{github.sha}}/g' $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
+          sed -i "s/i-am-a-version/${{steps.web-app-package.outputs.version}}/g" $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
+          sed -i "s/i-am-a-date/${{steps.utc-time.outputs.date}}/g" $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
+          sed -i "s/i-am-a-hash/${{github.sha}}/g" $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
           echo `cat $GITHUB_WORKSPACE/apps/web/src/cfg/config.json`
-        # This step updates the app config with the version.
 
       # Run the step (lint, build, or test)
       - name: Run step
@@ -87,4 +88,3 @@ jobs:
           else
             pnpm run test
           fi
-        # This step runs the selected step (lint, build, or test).
