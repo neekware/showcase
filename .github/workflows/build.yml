@@ -34,6 +34,7 @@ jobs:
       - name: UTC time in ISO 8601 format
         run: |
           UTC_DATE=$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)
+          echo "date=$UTC_DATE" >> "$GITHUB_OUTPUT"
 
       # Get the version from the package.json file
       # This step retrieves the version from the package.json file using jq.
@@ -48,7 +49,7 @@ jobs:
         run: |
           sed -i 's/i-am-a-version/${{steps.web-app.outputs.version}}/g' apps/web/src/cfg/config.json
           sed -i 's/i-am-a-hash/${{github.sha}}/g' apps/web/src/cfg/config.json
-          sed -i 's/i-am-a-date/$UTC_DATE/g' apps/web/src/cfg/config.json
+          sed -i 's/i-am-a-date/${{steps.web-app.outputs.date}}/g' apps/web/src/cfg/config.json
           echo `cat apps/web/src/cfg/config.json`
         # This step updates the app config with the version.
 
