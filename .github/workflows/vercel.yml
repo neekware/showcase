@@ -73,9 +73,6 @@ jobs:
         run: pnpm i
         # This step installs the dependencies using pnpm.
 
-      - name: Disable vercel telemetry
-        run: npx next telemetry --disable
-
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel environment information
