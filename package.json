@@ -5,7 +5,7 @@
     "__REPO_RELATED__": "",
     "prepare": "husky",
     "update": "pnpm update --latest -r",
-    "clean": "turbo clean; rm -rf .turbo && rm -rf dist && rm -rf coverage && rm -rf node_modules/.cache",
+    "clean": "turbo clean; rm -rf .turbo && rm -rf dist && rm -rf coverage && rm -rf node_modules/.cache && rm -rf .vercel",
     "clean:mods": "turbo clean:mods; rm -rf node_modules",
     "loc": "turbo loc --filter @repo/tools-util --only",
     "__FORMAT_RELATED__": "",
