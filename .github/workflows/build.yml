@@ -13,6 +13,7 @@ on:
       - ci # Continuous Integration branch
       - main # Main branch
     paths:
+      - '.github/workflows/build.yml' # Workflow file itself
       - 'apps/**' # Apps directory
       - 'libs/**' # Libraries directory
 
@@ -22,34 +23,20 @@ jobs:
     # Run the job on an Ubuntu environment
     runs-on: ubuntu-latest
 
-    # Cache pnpm store directory
-    env:
-      PNP_CACHE_DIR: ~/.pnpm-store
+    # Strategy for the job
     strategy:
       matrix:
         step: [lint, build, test] # Matrix of steps to run
+      fail-fast: false # Don't fail the job if one step fails
+
+    # Steps in the job
     steps:
-      - uses: actions/checkout@v4
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      # Cache pnpm dependencies
-      - uses: actions/cache@v2
-        with:
-          path: ${{ env.PNP_CACHE_DIR }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      # Install pnpm
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      # Setup Node.js 18.x
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
+        # This step checks out the code with all history.
 
       - name: UTC time in ISO 8601 format
         id: utc-time
@@ -58,6 +45,7 @@ jobs:
           echo "date=$UTC_DATE" >> "$GITHUB_OUTPUT"
 
       # Get the version from the package.json file
+      # This step retrieves the version from the package.json file using jq.
       - name: Get web app package.json version
         id: web-app-package
         run: |
@@ -67,10 +55,28 @@ jobs:
       # Update the app config with the version
       - name: update app config, version, hash, and date
         run: |
-          sed -i "s/i-am-a-version/${{steps.web-app-package.outputs.version}}/g" $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
-          sed -i "s/i-am-a-date/${{steps.utc-time.outputs.date}}/g" $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
-          sed -i "s/i-am-a-hash/${{github.sha}}/g" $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
-          echo `cat $GITHUB_WORKSPACE/apps/web/src/cfg/config.json`
+          sed -i 's/i-am-a-version/${{steps.web-app-package.outputs.version}}/g' apps/web/src/cfg/config.json
+          sed -i 's/i-am-a-date/${{steps.utc-time.outputs.date}}/g' apps/web/src/cfg/config.json
+          sed -i 's/i-am-a-hash/${{github.sha}}/g' apps/web/src/cfg/config.json
+          echo `cat apps/web/src/cfg/config.json`
+        # This step updates the app config with the version.
+
+      # Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # Set up Node.js and cache pnpm
+      - name: Set up Node.js and cache pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Use Node.js 18
+          cache: 'pnpm' # Cache pnpm dependencies
+        # This step sets up Node.js and caches pnpm dependencies.
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm i
+        # This step installs the dependencies using pnpm.
 
       # Run the step (lint, build, or test)
       - name: Run step
@@ -88,3 +94,4 @@ jobs:
           else
             pnpm run test
           fi
+        # This step runs the selected step (lint, build, or test).

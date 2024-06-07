@@ -16,7 +16,7 @@ export const siteSettings: SiteSettings = {
   themes: availableThemes,
   navTopLinks: [
     {
-      title: 'Home 2',
+      title: 'Home 3',
       href: '/',
     },
     {
