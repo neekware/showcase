@@ -48,10 +48,10 @@ jobs:
       # Update the app config with the version
       - name: update app config, version, hash, and date
         run: |
-          sed -i 's/i-am-a-version/${{steps.web-app-package.outputs.version}}/g' apps/web/src/cfg/config.json
-          sed -i 's/i-am-a-date/${{steps.utc-time.outputs.date}}/g' apps/web/src/cfg/config.json
-          sed -i 's/i-am-a-hash/${{github.sha}}/g' apps/web/src/cfg/config.json
-          echo `cat apps/web/src/cfg/config.json`
+          sed -i 's/i-am-a-version/${{steps.web-app-package.outputs.version}}/g' $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
+          sed -i 's/i-am-a-date/${{steps.utc-time.outputs.date}}/g' $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
+          sed -i 's/i-am-a-hash/${{github.sha}}/g' $GITHUB_WORKSPACE/apps/web/src/cfg/config.json
+          echo `cat $GITHUB_WORKSPACE/apps/web/src/cfg/config.json`
         # This step updates the app config with the version.
 
       # Install pnpm
