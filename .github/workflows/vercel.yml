@@ -32,6 +32,9 @@ jobs:
 
       - uses: actions/checkout@v4
 
+      - name: Disable vercel telemetry
+        run: npx next telemetry --disable
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel environment information
