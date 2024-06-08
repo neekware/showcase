@@ -1,29 +1,26 @@
 {
-  "exclude": ["node_modules"],
-  "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
-    "outDir": "dist",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "plugins": [{ "name": "next" }],
-    "baseUrl": ".",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
-      "@web/cfg": ["src/cfg/index.ts"],
-      "@web/auth": ["src/auth/index.ts"],
-      "@web/components": ["src/components/index.ts"],
-      "@web/db/*": ["src/db/*"],
-      "@web/app/*": ["src/app/*"],
-      "@web/hooks/*": ["src/hooks/*"],
-      "@web/styles/*": ["src/styles/*"]
+      "@show/*": ["./src/*"]
     }
   },
-  "include": [
-    "src",
-    "postcss.config.js",
-    "tailwind.config.ts",
-    "next.config.js",
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "middleware.ts",
-    "../../libs/ag-user/src/services"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

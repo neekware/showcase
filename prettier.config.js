@@ -2,7 +2,7 @@
 module.exports = {
   endOfLine: 'lf',
   semi: true,
-  singleQuote: true, // Ensuring there's no duplicate key as mentioned previously
+  singleQuote: true,
   tabWidth: 2,
   trailingComma: 'es5',
   importOrder: [

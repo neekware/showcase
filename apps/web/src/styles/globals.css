@@ -1,9 +1,0 @@
-/* For Webkit browsers like Chrome/Safari */
-button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* For Firefox */
-button:active {
-  outline: none;
-}
