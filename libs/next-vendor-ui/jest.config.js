@@ -10,7 +10,7 @@ const config = {
     '^.+\\.(t|j)sx?$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   coverageReporters: ['lcov', 'html'],
-  coverageDirectory: '../../coverage/libs/next-vendor-ui',
+  coverageDirectory: '../../.coverage/libs/next-vendor-ui',
 };
 
 module.exports = config;
