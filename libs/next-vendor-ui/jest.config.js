@@ -1,16 +1,16 @@
-module.exports = {
+/** @type {import('jest').Config} */
+
+const config = {
   displayName: 'next-vendor-ui',
-  roots: ['<rootDir>'],
+  preset: 'ts-jest',
+  testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.(t|j)sx?$': '@swc/jest',
+    '^.+\\.(t|j)sx?$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
-  extensionsToTreatAsEsm: ['.ts', '.tsx'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  modulePathIgnorePatterns: [
-    '<rootDir>/test/__fixtures__',
-    '<rootDir>/node_modules',
-    '<rootDir>/dist',
-  ],
+  coverageReporters: ['lcov', 'html'],
   coverageDirectory: '../../coverage/libs/next-vendor-ui',
 };
+
+module.exports = config;
