@@ -9,7 +9,7 @@
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
     "start": "pnpm --filter web start",
-    "lint": "pnpm --filter web lint"
+    "lint": "pnpm recursive run lint"
   },
   "dependencies": {},
   "devDependencies": {

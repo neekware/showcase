@@ -68,7 +68,7 @@ function PaginationPrevious({ className, ...props }: React.ComponentProps<typeof
       className={cn('gap-1 pl-2.5', className)}
       {...props}
     >
-      <Icon path={mdiChevronLeft} className="h-4 w-4" />
+      <Icon path={mdiChevronLeft} className="size-4" />
       <span>Previous</span>
     </PaginationLink>
   );
@@ -84,7 +84,7 @@ function PaginationNext({ className, ...props }: React.ComponentProps<typeof Pag
       {...props}
     >
       <span>Next</span>
-      <Icon path={mdiChevronRight} className="h-4 w-4" />
+      <Icon path={mdiChevronRight} className="size-4" />
     </PaginationLink>
   );
 }
@@ -97,7 +97,7 @@ function PaginationEllipsis({ className, ...props }: React.ComponentProps<'span'
       className={cn('flex h-9 w-9 items-center justify-center', className)}
       {...props}
     >
-      <Icon path={mdiDotsHorizontal} className="h-4 w-4" />
+      <Icon path={mdiDotsHorizontal} className="size-4" />
       <span className="sr-only">More pages</span>
     </span>
   );

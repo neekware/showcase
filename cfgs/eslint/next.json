@@ -1,0 +1,42 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "import", "tailwindcss", "only-warn"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "../../tsconfig.json"
+  },
+  "globals": {
+    "React": true,
+    "JSX": true
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "../../tsconfig.json"
+      }
+    },
+    "tailwindcss": {
+      "callees": ["classnames", "clsx", "ctl"],
+      "cssFiles": ["**/*.css", "!**/node_modules", "!**/.*", "!**/dist", "!**/build"],
+      "cssFilesRefreshRate": 5000,
+      "removeDuplicates": true,
+      "skipClassAttribute": false,
+      "whitelist": [],
+      "tags": [],
+      "classRegex": "^class(Name)?$"
+    }
+  },
+  "ignorePatterns": [".*.js", "node_modules/", "dist/"],
+  "rules": {
+    "no-unused-vars": "warn",
+    "import/named": "warn",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "off"
+  }
+}

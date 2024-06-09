@@ -9,10 +9,10 @@ import { cn } from './util';
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 // Define the Icon components outside the Calendar component
 function IconLeft() {
-  return <Icon path={mdiChevronLeft} className="h-6 w-6" />;
+  return <Icon path={mdiChevronLeft} className="size-6" />;
 }
 function IconRight() {
-  return <Icon path={mdiChevronRight} className="h-6 w-6" />;
+  return <Icon path={mdiChevronRight} className="size-6" />;
 }
 
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {

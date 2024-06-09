@@ -74,7 +74,7 @@ function BreadcrumbSeparator({ children, className, ...props }: React.ComponentP
       className={cn('[&>svg]:size-3.5', className)}
       {...props}
     >
-      {children ?? <Icon path={mdiChevronRight} className="h-4 w-4" />}
+      {children ?? <Icon path={mdiChevronRight} className="size-4" />}
     </li>
   );
 }
@@ -88,7 +88,7 @@ function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<'span'
       className={cn('flex h-9 w-9 items-center justify-center', className)}
       {...props}
     >
-      <Icon path={mdiDotsHorizontal} className="h-4 w-4" />
+      <Icon path={mdiDotsHorizontal} className="size-4" />
       <span className="sr-only">More</span>
     </span>
   );

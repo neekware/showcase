@@ -122,7 +122,7 @@ export const reducer = (state: ToastState, action: Action): ToastState => {
   }
 };
 
-const listeners: ((state: ToastState) => void)[] = [];
+const listeners: ((state: ToastState) => void)[] = []; // eslint-disable-line no-unused-vars
 
 let memoryState: ToastState = { toasts: [] };
 

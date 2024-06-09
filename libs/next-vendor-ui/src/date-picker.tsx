@@ -11,7 +11,7 @@ import { cn } from './util';
 
 interface DatePickerProps {
   initialDate?: Date;
-  onSelectDate: (date: Date) => void;
+  onSelectDate: (date: Date) => void; // eslint-disable-line no-unused-vars
   placeholder?: string;
 }
 
@@ -28,7 +28,7 @@ function DatePicker({ initialDate, onSelectDate, placeholder = 'Pick a date' }: 
             !date && 'text-muted-foreground'
           )}
         >
-          <Icon path={mdiCalendar} className="mr-2 h-4 w-4" />
+          <Icon path={mdiCalendar} className="mr-2 size-4" />
           {date ? format(date, 'PPP') : <span>{placeholder}</span>}
         </Button>
       </PopoverTrigger>
@@ -54,7 +54,7 @@ type DateFormatType = string | number | Date;
 interface DatePickerWithRangeProps {
   className?: string;
   initialDateRange?: DateRange;
-  onDateRangeChange?: (dateRange: DateRange) => void;
+  onDateRangeChange?: (dateRange: DateRange) => void; // eslint-disable-line no-unused-vars
 }
 
 const today = new Date();
@@ -104,7 +104,7 @@ function DatePickerWithRange({
               !dateRange && 'text-muted-foreground'
             )}
           >
-            <Icon path={mdiCalendar} className="mr-2 h-4 w-4" />
+            <Icon path={mdiCalendar} className="mr-2 size-4" />
             {renderDateLabel(dateRange)}
           </Button>
         </PopoverTrigger>

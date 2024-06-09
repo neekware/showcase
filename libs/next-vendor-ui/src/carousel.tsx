@@ -15,7 +15,7 @@ interface CarouselProps {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: 'horizontal' | 'vertical';
-  setApi?: (api: CarouselApi) => void;
+  setApi?: (api: CarouselApi) => void; // eslint-disable-line no-unused-vars
 }
 
 type CarouselContextProps = {
@@ -195,7 +195,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
         onClick={scrollPrev}
         {...props}
       >
-        <Icon path={mdiArrowLeft} className="h-4 w-4" />
+        <Icon path={mdiArrowLeft} className="size-4" />
         <span className="sr-only">Previous slide</span>
       </Button>
     );
@@ -223,7 +223,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
         onClick={scrollNext}
         {...props}
       >
-        <Icon path={mdiArrowRight} className="h-4 w-4" />
+        <Icon path={mdiArrowRight} className="size-4" />
         <span className="sr-only">Next slide</span>
       </Button>
     );
