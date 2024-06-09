@@ -1,0 +1,16 @@
+{
+  "name": "web-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean:mods": "rm -rf node_modules",
+    "lint": "next lint --no-cache",
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20",
+    "eslint-plugin-playwright": "^1.6.2",
+    "typescript": "^5"
+  }
+}

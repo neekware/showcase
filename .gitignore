@@ -12,6 +12,8 @@ server/dist
 public/dist
 coverage
 .coverage
+e2e
+.e2e
 *v0*
 tmp
 temp
