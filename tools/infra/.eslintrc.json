@@ -1,5 +1,5 @@
 {
-  "extends": ["../../cfgs/eslint/e2e.json"],
+  "extends": ["../../cfgs/eslint/node.json"],
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
@@ -10,5 +10,7 @@
       }
     }
   },
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/no-var-requires": "off"
+  }
 }

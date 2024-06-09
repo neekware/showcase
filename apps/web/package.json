@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "__REPO_RELATED__": "____________________",
     "clean": "rm -rf .next",
     "clean:mods": "rm -rf node_modules",
+    "__ACTION_RELATED__": "__________________",
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
+    "__TEST_RELATED__": "__________________",
     "lint": "next lint --no-cache"
   },
   "dependencies": {

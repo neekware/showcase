@@ -3,15 +3,23 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "__REPO_RELATED__": "____________________",
     "clean:mods": "rm -rf node_modules",
-    "lint": "next lint --no-cache",
+    "__FORMAT_RELATED__": "__________________",
+    "lint": "eslint ./src --ext .ts,.tsx",
+    "__TEST_RELATED__": "__________________",
     "e2e": "playwright test",
     "e2e:report": "playwright show-report ../../.e2e/web/reports"
+  },
+  "dependencies": {
+    "react": "^18"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.1",
     "@types/node": "^20",
     "eslint-plugin-playwright": "^1.6.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3"
   }
 }
