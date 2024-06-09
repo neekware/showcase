@@ -5,7 +5,8 @@
   "scripts": {
     "clean:mods": "rm -rf node_modules",
     "lint": "next lint --no-cache",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "e2e:report": "playwright show-report ../../.e2e/web/reports"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.1",

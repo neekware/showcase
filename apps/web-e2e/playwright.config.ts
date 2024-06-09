@@ -1,75 +1,103 @@
-import * as path from 'path';
 import { defineConfig, devices } from '@playwright/test';
 
-// Use process.env.PORT by default and fallback to port 3000
-const PORT = process.env.PORT || 3000;
-
-// Set webServer.url and use.baseURL with the location of the WebServer respecting the correct set port
-const baseURL = `http://localhost:${PORT}`;
+const targetPort = process.env.PORT || 3000;
+const targetUrl = process.env.TARGET_URL || `http://127.0.0.1:${targetPort}`;
+const isCI = !!process.env.CI;
+const baseOutputDir = '../../.e2e/web';
 
 // Reference: https://playwright.dev/docs/test-configuration
 export default defineConfig({
-  // Timeout per test
-  timeout: 30 * 1000,
-  // Test directory
-  testDir: path.join(__dirname, 'src'),
-  // If a test fails, retry it additional 2 times
-  retries: 2,
-  // Artifacts folder where screenshots, videos, and traces are stored.
-  outputDir: '../../.e2e/web/',
+  // Each test is given 30 seconds.
+  timeout: 30000,
 
-  // Run your local dev server before starting the tests:
-  // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
-  webServer: {
-    command: 'pnpm --filter web dev',
-    url: baseURL,
-    timeout: 120 * 1000,
-    reuseExistingServer: !process.env.CI,
+  testDir: 'src',
+
+  fullyParallel: true,
+
+  // Fail the build on CI if you test.only found in source code.
+  forbidOnly: isCI,
+
+  // Retry on CI only.
+  retries: isCI ? 2 : 0,
+
+  // Opt out of parallel tests on CI.
+  workers: isCI ? 1 : undefined,
+
+  // Reporter to use
+  reporter: [
+    ['html', { outputFolder: `${baseOutputDir}/reports` }],
+    ['json', { outputFile: `${baseOutputDir}/reports/results.json` }],
+  ],
+
+  // expect options
+  expect: {
+    // wait till `expect`ed result is given
+    timeout: 5000,
   },
 
   use: {
-    // Use baseURL so to make navigation relative.
-    // More information: https://playwright.dev/docs/api/class-testoptions#test-options-base-url
-    baseURL,
+    // Target URL to reach when `await page.goto('/')`.
+    baseURL: targetUrl,
 
-    // Retry a test if its failing with enabled tracing. This allows you to analyze the DOM, console logs, network traffic etc.
-    // More information: https://playwright.dev/docs/trace-viewer
-    trace: 'retry-with-trace',
+    headless: true,
 
-    // All available context options: https://playwright.dev/docs/api/class-browser#browser-new-context
-    // contextOptions: {
-    //   ignoreHTTPSErrors: true,
-    // },
+    trace: 'on-first-retry',
+
+    viewport: { width: 1280, height: 720 },
+
+    video: {
+      mode: 'on-first-retry',
+      size: { width: 640, height: 480 },
+    },
+
+    contextOptions: {
+      ignoreHTTPSErrors: true,
+      recordVideo: {
+        dir: `${baseOutputDir}/videos/`,
+      },
+    },
   },
+
+  // Run your local dev server before starting the tests.
+  webServer: {
+    command: 'pnpm --filter web dev',
+    url: targetUrl,
+    reuseExistingServer: !isCI,
+    timeout: 120 * 1000,
+  },
+
+  outputDir: baseOutputDir,
+  snapshotDir: `${baseOutputDir}/snapshots/`,
+
+  // Configure projects for major browsers.
 
   projects: [
     {
-      name: 'Desktop Chrome',
+      name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
       },
     },
-    // {
-    //   name: 'Desktop Firefox',
-    //   use: {
-    //     ...devices['Desktop Firefox'],
-    //   },
-    // },
-    // {
-    //   name: 'Desktop Safari',
-    //   use: {
-    //     ...devices['Desktop Safari'],
-    //   },
-    // },
-    // Test against mobile viewports.
     {
-      name: 'Mobile Chrome',
+      name: 'firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+      },
+    },
+    {
+      name: 'safari',
+      use: {
+        ...devices['Desktop Safari'],
+      },
+    },
+    {
+      name: 'android',
       use: {
         ...devices['Pixel 5'],
       },
     },
     {
-      name: 'Mobile Safari',
+      name: 'iphone',
       use: devices['iPhone 12'],
     },
   ],
