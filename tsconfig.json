@@ -5,7 +5,8 @@
     "rootDir": "./",
     "paths": {
       "@app/*": ["./apps/*"],
-      "@lib/*": ["./libs/*"]
+      "@lib/*": ["./libs/*"],
+      "@cfg/*": ["./cfgs/*"]
     }
   },
   "exclude": ["node_modules", "tmp", "dist", "coverage"]

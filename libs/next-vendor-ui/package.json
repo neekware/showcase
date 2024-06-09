@@ -1,8 +1,10 @@
 {
-  "name": "@libs/next-vendor-ui",
+  "name": "@lib/next-vendor-ui",
   "version": "0.0.1",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "clean:mods": "rm -rf node_modules"
+  },
   "dependencies": {
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",

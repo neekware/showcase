@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "clean": "pnpm recursive run clean",
+    "clean:mods": "pnpm recursive run clean:mods",
     "format": "prettier -w \"**/*.{ts,tsx,js,jsx,html,css,svg,yml,json,md}\"",
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
