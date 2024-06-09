@@ -9,7 +9,7 @@
     "__ACTION_RELATED__": "__________________",
     "dev": "next dev --turbo",
     "build": "next build",
-    "start": "next start",
+    "start": "pnpm build && next start",
     "__TEST_RELATED__": "__________________",
     "lint": "next lint --no-cache"
   },

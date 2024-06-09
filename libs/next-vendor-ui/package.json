@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean:mods": "rm -rf node_modules",
-    "lint": "eslint ./src --ext .ts,.tsx",
+    "lint": "eslint ./src",
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {

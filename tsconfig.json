@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "jsx": "react",
     "rootDir": "./",
     "paths": {
       "@app/*": ["./apps/*"],
