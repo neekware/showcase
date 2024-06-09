@@ -1,8 +1,8 @@
 'use client';
 
+import * as React from 'react';
 import * as ResizablePrimitive from 'react-resizable-panels';
-import { mdiPanVertical } from '@mdi/js';
-import { Icon } from '@mdi/react';
+import { Icon, mdiPanVertical } from './icons';
 import { cn } from './util';
 
 function ResizablePanelGroup({

@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
-import { mdiChevronDown } from '@mdi/js';
-import { Icon } from '@mdi/react';
+import { Icon, mdiChevronDown } from './icons';
 import { cn, cva } from './util';
 
 const NavigationMenu = React.forwardRef<

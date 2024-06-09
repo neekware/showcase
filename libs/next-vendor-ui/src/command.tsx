@@ -1,11 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import { mdiMagnify } from '@mdi/js';
-import { Icon } from '@mdi/react';
 import { type DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Dialog, DialogContent } from './dialog';
+import { Icon, mdiMagnify } from './icons';
 import { cn } from './util';
 
 const Command = React.forwardRef<

@@ -10,9 +10,8 @@ import {
   useFormContext,
 } from 'react-hook-form';
 import type * as LabelPrimitive from '@radix-ui/react-label';
-import { mdiAlertOutline, mdiInformation } from '@mdi/js';
-import { Icon } from '@mdi/react';
 import { Slot } from '@radix-ui/react-slot';
+import { Icon, mdiAlertOutline, mdiInformation } from './icons';
 import { Label } from './label';
 import { cn } from './util';
 

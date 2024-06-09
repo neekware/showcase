@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { mdiChevronDown } from '@mdi/js';
-import { Icon } from '@mdi/react';
+import { Icon, mdiChevronDown } from './icons';
 import { cn } from './util';
 
 const Accordion = AccordionPrimitive.Root;

@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
-import { mdiCheck } from '@mdi/js';
-import { Icon } from '@mdi/react';
+import { Icon, mdiCheck } from './icons';
 import { cn } from './util';
 
 const RadioGroup = React.forwardRef<

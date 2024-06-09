@@ -2,11 +2,10 @@
 
 import * as React from 'react';
 import { type DateRange } from 'react-day-picker';
-import { mdiCalendar } from '@mdi/js';
-import { Icon } from '@mdi/react';
 import { addDays, format } from 'date-fns';
 import { Button } from './button';
 import { Calendar } from './calendar';
+import { Icon, mdiCalendar } from './icons';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';
 import { cn } from './util';
 

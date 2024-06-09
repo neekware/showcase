@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
-import { mdiClose } from '@mdi/js';
-import { Icon } from '@mdi/react';
+import { Icon, mdiClose } from './icons';
 import { cn, cva, type VariantProps } from './util';
 
 const Sheet = SheetPrimitive.Root;
