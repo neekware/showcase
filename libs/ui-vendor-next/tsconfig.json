@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "rootDir": "src"
   },
+  "include": ["src"],
   "extends": "../../tsconfig.json"
 }

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Button } from '@lib/next-vendor-ui';
+import { Button } from '@lib/ui-vendor-next';
 
 export default function Home() {
   return (

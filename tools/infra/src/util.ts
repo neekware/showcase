@@ -9,7 +9,7 @@ require('dotenv').config();
 export const projName = 'showcase';
 export const projDir = path.resolve(__dirname, '../../..');
 export const readme = path.resolve(path.join(projDir, 'README.md'));
-export const coverageDir = path.resolve(path.join(projDir, '.coverage'));
+export const coverageDir = path.resolve(path.join(projDir, './tmp/coverage'));
 export const srcDir = path.resolve(path.join(projDir, 'src'));
 export const pubDir = path.resolve(path.join(projDir, 'public'));
 export const distDir = path.resolve(path.join(projDir, 'dist'));

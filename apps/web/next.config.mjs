@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@lib/next-vendor-ui', '@cfg/tailwind'],
+  reactStrictMode: true,
 };
 
 export default nextConfig;

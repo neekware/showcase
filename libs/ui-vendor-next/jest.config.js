@@ -1,7 +1,7 @@
 /** @type {import('jest').Config} */
 
 const config = {
-  displayName: 'next-vendor-ui',
+  displayName: 'ui-vendor-next',
   preset: 'ts-jest',
   testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
@@ -10,7 +10,7 @@ const config = {
     '^.+\\.(t|j)sx?$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   coverageReporters: ['lcov', 'html'],
-  coverageDirectory: '../../.coverage/libs/next-vendor-ui',
+  coverageDirectory: '../../tmp/coverage/libs/ui-vendor-next',
 };
 
 module.exports = config;

@@ -8,5 +8,6 @@
       "@cfg/*": ["./cfgs/*"]
     }
   },
-  "exclude": ["node_modules", "tmp", "dist", "coverage"]
+  "include": ["apps/**/*", "libs/**/*", "cfgs/**/*", "tools/**/*"],
+  "exclude": ["node_modules", "tmp", "dist"]
 }
