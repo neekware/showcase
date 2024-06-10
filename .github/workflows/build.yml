@@ -36,30 +36,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-        # This step checks out the code with all history.
-
-      - name: UTC time in ISO 8601 format
-        id: utc-time
-        run: |
-          UTC_DATE=$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)
-          echo "date=$UTC_DATE" >> "$GITHUB_OUTPUT"
-
-      # Get the version from the package.json file
-      # This step retrieves the version from the package.json file using jq.
-      - name: Get web app package.json version
-        id: web-app-package
-        run: |
-          LF_VERSION=$(cat apps/web/package.json | jq -r '.version')
-          echo "version=$LF_VERSION" >> "$GITHUB_OUTPUT"
-
-      # Update the app config with the version
-      - name: update app config, version, hash, and date
-        run: |
-          sed -i 's/i-am-a-version/${{steps.web-app-package.outputs.version}}/g' apps/web/src/cfg/config.json
-          sed -i 's/i-am-a-date/${{steps.utc-time.outputs.date}}/g' apps/web/src/cfg/config.json
-          sed -i 's/i-am-a-hash/${{github.sha}}/g' apps/web/src/cfg/config.json
-          echo `cat apps/web/src/cfg/config.json`
-        # This step updates the app config with the version.
 
       # Install pnpm
       - name: Install pnpm
@@ -78,10 +54,29 @@ jobs:
         run: pnpm i
         # This step installs the dependencies using pnpm.
 
-      - name: Run ${{ matrix.step }}
-        run: pnpm ${{ matrix.step }}
+      # Run linting
+      - name: Run linting
+        if: matrix.step == 'lint'
+        run: pnpm lint
 
+      # Build the application
+      - name: Build application
+        if: matrix.step == 'build'
+        run: pnpm build
+
+      # Run tests
+      - name: Run tests
+        if: matrix.step == 'test'
+        run: pnpm test
+
+      # Run end-to-end tests
+      - name: Run end-to-end tests
+        if: matrix.step == 'e2e'
+        run: pnpm e2e
+
+      # Push coverage to coveralls
       - name: Push coverage to coveralls
+        if: matrix.step == 'e2e'
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
