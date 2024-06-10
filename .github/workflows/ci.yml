@@ -8,6 +8,14 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
+  DEBUG:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
   SETUP_ENVIRONMENT:
     strategy:
       fail-fast: true
