@@ -80,4 +80,6 @@ jobs:
       # Run end-to-end tests
       - name: Run end-to-end tests
         if: matrix.step == 'e2e'
-        run: pnpm e2e
+        run: |
+          npx playwright install --with-deps
+          pnpm e2e
