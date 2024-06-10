@@ -36,6 +36,8 @@ jobs:
           fetch-depth: 1
       - name: Install pnpm
         run: npm install -g pnpm
+      - name: Add pnpm to PATH
+        run: echo "::add-path::$(npm bin -g)"
 
   SETUP_NODE:
     strategy:
