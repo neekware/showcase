@@ -25,15 +25,25 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-  CHECKOUT_CODE:
-    strategy:
-      fail-fast: true
+  SETUP_PNPM:
     runs-on: ubuntu-latest
     steps:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
+      - name: Cache pnpm
+        uses: actions/cache@v3
+        with:
+          key: pnpm-${{ github.sha }}-v9
+          path: ~/.pnpm-store
+
+  CHECKOUT_CODE:
+    strategy:
+      fail-fast: true
+    runs-on: ubuntu-latest
+    needs: [SETUP_PNPM]
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
