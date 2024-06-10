@@ -36,8 +36,6 @@ jobs:
           fetch-depth: 1
       - name: Install pnpm
         run: npm install -g pnpm
-      - name: Add pnpm to PATH
-        run: echo "::add-path::$(npm bin -g)"
 
   SETUP_NODE:
     strategy:
@@ -45,11 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [CHECKOUT_CODE]
     steps:
-      - name: Set up Node.js and cache pnpm
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'pnpm'
 
   INSTALL_DEPS:
     strategy:
