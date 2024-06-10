@@ -8,8 +8,8 @@
     "__FORMAT_RELATED__": "__________________",
     "lint": "eslint ./src",
     "__TEST_RELATED__": "__________________",
-    "e2e": "playwright test",
-    "e2e:report": "playwright show-report ../../.e2e/web/reports"
+    "e2e": "node_modules/.bin/playwright test",
+    "e2e:report": "node_modules/.bin/playwright show-report ../../.e2e/web/report"
   },
   "dependencies": {
     "playwright": "^1.44.1",
