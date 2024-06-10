@@ -1,91 +1,88 @@
-name: CI/CD
+# Name of the workflow
+name: Build Workflow
 
+# Trigger the workflow on push events to specific branches and paths
 on:
   push:
     branches:
-      - '*'
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - feat/* # Feature branches
+      - fix/* # Fix branches
+      - hotfix/* # Hotfix branches
+      - release/* # Release branches
+      - dev # Development branch
+      - ci # Continuous Integration branch
+      - main # Main branch
+    paths:
+      - '.github/workflows/build.yml' # Workflow file itself
+      - 'apps/**' # Apps directory
+      - 'libs/**' # Libraries directory
 
+# Job named "build"
 jobs:
-  DEBUG:
+  build:
+    # Run the job on an Ubuntu environment
     runs-on: ubuntu-latest
-    steps:
-      - name: Debug
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
 
-  SETUP_ENVIRONMENT:
+    # Strategy for the job
     strategy:
-      fail-fast: true
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Node.js and cache pnpm
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'pnpm'
-      - name: Install pnpm
-        run: npm install -g pnpm
+      matrix:
+        step: [lint, build, test, e2e] # Matrix of steps to run
+      fail-fast: false # Don't fail the job if one step fails
 
-  CHECKOUT_CODE:
-    strategy:
-      fail-fast: true
-    runs-on: ubuntu-latest
-    needs: SETUP_ENVIRONMENT
+    # Steps in the job
     steps:
+      # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+
+      # Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # Set up Node.js and cache pnpm
+      - name: Set up Node.js and cache pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Use Node.js 18
+          cache: 'pnpm' # Cache pnpm dependencies
+        # This step sets up Node.js and caches pnpm dependencies.
+
+      # Install dependencies
       - name: Install dependencies
         run: pnpm i
+        # This step installs the dependencies using pnpm.
 
-  LINT:
-    strategy:
-      fail-fast: true
-    runs-on: ubuntu-latest
-    needs: [SETUP_ENVIRONMENT, CHECKOUT_CODE]
-    steps:
+      # Run linting
       - name: Run linting
+        if: matrix.step == 'lint'
         run: pnpm lint
 
-  TEST:
-    strategy:
-      fail-fast: true
-    runs-on: ubuntu-latest
-    needs: [SETUP_ENVIRONMENT, CHECKOUT_CODE]
-    steps:
-      - name: Run tests
-        run: npm test
-
-  BUILD:
-    strategy:
-      fail-fast: true
-    runs-on: ubuntu-latest
-    needs: [SETUP_ENVIRONMENT, CHECKOUT_CODE]
-    steps:
-      - name: Run build
+      # Build the application
+      - name: Build application
+        if: matrix.step == 'build'
         run: pnpm build
 
-  E2E:
-    strategy:
-      fail-fast: true
-    runs-on: ubuntu-latest
-    needs: [SETUP_ENVIRONMENT, CHECKOUT_CODE]
-    steps:
-      - name: Install Playwright & Friends
-        run: pnpx playwright install --with-deps
-      - name: Run E2E tests
-        run: pnpm e2e
+      # Run tests
+      - name: Run tests
+        if: matrix.step == 'test'
+        run: pnpm test
 
-  DEPLOY:
-    strategy:
-      fail-fast: true
-    if: startsWith(github.ref, 'refs/tags/v0.0.0')
-    runs-on: ubuntu-latest
-    needs: [SETUP_ENVIRONMENT, CHECKOUT_CODE]
-    steps:
-      - name: Deploy to production
-        run: pnpm deploy
+      # Push coverage to coveralls
+      - name: Push coverage to coveralls
+        if: matrix.step == 'test'
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: './.coverage/lcov.combo.info'
+
+      # Prepare playwright for end-to-end tests
+      - name: Install Playwright & friends
+        if: matrix.step == 'e2e'
+        run: pnpx playwright install --with-deps
+
+      # Run end-to-end tests
+      - name: Run end-to-end tests
+        if: matrix.step == 'e2e'
+        run: pnpm e2e
