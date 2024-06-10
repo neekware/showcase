@@ -46,6 +46,7 @@ jobs:
         with:
           node-version: '18'
           cache: 'pnpm'
+          check-latest: true
 
   INSTALL_DEPS:
     strategy:
@@ -53,8 +54,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [SETUP_NODE]
     steps:
-      - name: Install pnpm
-        run: npm install -g pnpm
       - name: Install dependencies
         run: pnpm i
 
