@@ -69,15 +69,15 @@ jobs:
         if: matrix.step == 'test'
         run: pnpm test
 
-      # Run end-to-end tests
-      - name: Run end-to-end tests
-        if: matrix.step == 'e2e'
-        run: pnpm e2e
-
       # Push coverage to coveralls
       - name: Push coverage to coveralls
-        if: matrix.step == 'e2e'
+        if: matrix.step == 'test'
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: './.coverage/lcov.combo.info'
+
+      # Run end-to-end tests
+      - name: Run end-to-end tests
+        if: matrix.step == 'e2e'
+        run: pnpm e2e
