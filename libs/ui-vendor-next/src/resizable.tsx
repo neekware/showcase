@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as ResizablePrimitive from 'react-resizable-panels';
 import { Icon, mdiPanVertical } from '@lib/ui-icon-next';
-import { cn } from './util';
+import { cn } from '@lib/ui-util-next';
 
 function ResizablePanelGroup({
   className,

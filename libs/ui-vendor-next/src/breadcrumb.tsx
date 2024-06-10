@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { Icon, mdiChevronRight, mdiDotsHorizontal } from '@lib/ui-icon-next';
+import { cn } from '@lib/ui-util-next';
 import { Slot } from '@radix-ui/react-slot';
-import { cn } from './util';
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,

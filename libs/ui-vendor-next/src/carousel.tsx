@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { Icon, mdiArrowLeft, mdiArrowRight } from '@lib/ui-icon-next';
+import { cn } from '@lib/ui-util-next';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
 import { Button } from './button';
-import { cn } from './util';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;

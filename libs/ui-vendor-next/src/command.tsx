@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { Icon, mdiMagnify } from '@lib/ui-icon-next';
+import { cn } from '@lib/ui-util-next';
 import { type DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Dialog, DialogContent } from './dialog';
-import { cn } from './util';
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,

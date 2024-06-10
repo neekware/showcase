@@ -11,9 +11,9 @@ import {
 } from 'react-hook-form';
 import type * as LabelPrimitive from '@radix-ui/react-label';
 import { Icon, mdiAlertOutline, mdiInformation } from '@lib/ui-icon-next';
+import { cn } from '@lib/ui-util-next';
 import { Slot } from '@radix-ui/react-slot';
 import { Label } from './label';
-import { cn } from './util';
 
 interface FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,

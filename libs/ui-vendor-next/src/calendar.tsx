@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { DayPicker } from 'react-day-picker';
 import { Icon, mdiChevronLeft, mdiChevronRight } from '@lib/ui-icon-next';
+import { cn } from '@lib/ui-util-next';
 import { buttonVariants } from './button';
-import { cn } from './util';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 // Define the Icon components outside the Calendar component

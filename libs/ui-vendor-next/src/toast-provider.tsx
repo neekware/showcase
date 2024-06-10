@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@lib/ui-util-next';
 import {
   Toast,
   ToastClose,
@@ -9,7 +10,6 @@ import {
   ToastViewport,
 } from './toast';
 import { useToast } from './toast-hook';
-import { cn } from './util';
 
 interface ToasterProps {
   className?: string;

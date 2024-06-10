@@ -2,8 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "jsx": "react",
-    "outDir": "../../dist/ui-vendor-next",
     "module": "commonjs",
+    "outDir": "../../dist/ui-vendor-next",
     "types": ["jest", "node", "@testing-library/jest-dom"]
   },
   "include": [

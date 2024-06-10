@@ -44,4 +44,3 @@ export * from './src/toast';
 export * from './src/toggle-group';
 export * from './src/toggle';
 export * from './src/tooltip';
-export * from './src/util';

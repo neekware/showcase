@@ -67,7 +67,9 @@ jobs:
       # Run tests
       - name: Run tests
         if: matrix.step == 'test'
-        run: pnpm test
+        run: |
+          pnpm test
+          pnpm coverage
 
       # Push coverage to coveralls
       - name: Push coverage to coveralls

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { Icon, mdiClose } from '@lib/ui-icon-next';
-import { cn, cva, type VariantProps } from './util';
+import { cn, cva, type VariantProps } from '@lib/ui-util-next';
 
 const Sheet = SheetPrimitive.Root;
 
