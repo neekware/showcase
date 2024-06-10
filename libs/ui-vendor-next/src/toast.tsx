@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as ToastPrimitives from '@radix-ui/react-toast';
-import { Icon, mdiClose } from './icons';
+import { Icon, mdiClose } from '@lib/ui-icon-next';
 import { cn, cva, type VariantProps } from './util';
 
 const ToastProvider = ToastPrimitives.Provider;

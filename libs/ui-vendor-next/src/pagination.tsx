@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
+import { Icon, mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from '@lib/ui-icon-next';
 import { type ButtonProps, buttonVariants } from './button';
-import { Icon, mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from './icons';
 import { cn } from './util';
 
 function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {

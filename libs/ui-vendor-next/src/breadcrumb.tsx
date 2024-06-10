@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
+import { Icon, mdiChevronRight, mdiDotsHorizontal } from '@lib/ui-icon-next';
 import { Slot } from '@radix-ui/react-slot';
-import { Icon, mdiChevronRight, mdiDotsHorizontal } from './icons';
 import { cn } from './util';
 
 const Breadcrumb = React.forwardRef<

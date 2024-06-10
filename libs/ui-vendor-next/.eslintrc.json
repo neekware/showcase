@@ -1,14 +1,4 @@
 {
   "extends": ["../../cfgs/eslint/next.json"],
-  "parserOptions": {
-    "project": ["./tsconfig.json"]
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {
-        "project": ["./tsconfig.json"]
-      }
-    }
-  },
-  "rules": { "@next/next/no-html-link-for-pages": "off" }
+  "rules": {}
 }

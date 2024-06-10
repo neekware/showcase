@@ -1,13 +1,3 @@
 {
-  "extends": ["../../cfgs/eslint/next.json"],
-  "parserOptions": {
-    "project": ["./tsconfig.json"]
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {
-        "project": ["./tsconfig.json"]
-      }
-    }
-  }
+  "extends": ["../../cfgs/eslint/next.json"]
 }

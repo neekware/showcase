@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Icon, mdiAbacus } from '@lib/ui-icon-next';
 import { Button } from '@lib/ui-vendor-next';
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <Icon path={mdiAbacus} size={1} />
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"

@@ -28,7 +28,7 @@
       }
     }
   },
-  "ignorePatterns": [".*.js", "node_modules/", "dist/"],
+  "ignorePatterns": [".*.js", ".*.mjs", ".*.cjs", "node_modules/", "dist/", "tmp/", "build/"],
   "rules": {
     "no-unused-vars": "warn",
     "import/named": "warn",

@@ -32,11 +32,12 @@
       "classRegex": "^class(Name)?$"
     }
   },
-  "ignorePatterns": [".*.js", "node_modules/", "dist/"],
+  "ignorePatterns": [".*.js", ".*.mjs", ".*.cjs", "node_modules/", "dist/", "tmp/", "build/"],
   "rules": {
     "no-unused-vars": "warn",
     "import/named": "warn",
     "tailwindcss/no-custom-classname": "off",
-    "tailwindcss/classnames-order": "off"
+    "tailwindcss/classnames-order": "off",
+    "@next/next/no-html-link-for-pages": "off"
   }
 }

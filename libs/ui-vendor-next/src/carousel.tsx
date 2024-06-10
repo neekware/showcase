@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
+import { Icon, mdiArrowLeft, mdiArrowRight } from '@lib/ui-icon-next';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
 import { Button } from './button';
-import { Icon, mdiArrowLeft, mdiArrowRight } from './icons';
 import { cn } from './util';
 
 type CarouselApi = UseEmblaCarouselType[1];
