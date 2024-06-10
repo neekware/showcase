@@ -1,0 +1,88 @@
+# Name of the workflow
+name: Build Workflow
+
+# Trigger the workflow on push events to specific branches and paths
+on:
+  push:
+    branches:
+      - feat/* # Feature branches
+      - fix/* # Fix branches
+      - hotfix/* # Hotfix branches
+      - release/* # Release branches
+      - dev # Development branch
+      - ci # Continuous Integration branch
+      - main # Main branch
+    paths:
+      - '.github/workflows/build.yml' # Workflow file itself
+      - 'apps/**' # Apps directory
+      - 'libs/**' # Libraries directory
+
+# Job named "build"
+jobs:
+  build:
+    # Run the job on an Ubuntu environment
+    runs-on: ubuntu-latest
+
+    # Strategy for the job
+    strategy:
+      matrix:
+        step: [lint, build, test, e2e] # Matrix of steps to run
+      fail-fast: false # Don't fail the job if one step fails
+
+    # Steps in the job
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # Set up Node.js and cache pnpm
+      - name: Set up Node.js and cache pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Use Node.js 18
+          cache: 'pnpm' # Cache pnpm dependencies
+        # This step sets up Node.js and caches pnpm dependencies.
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm i
+        # This step installs the dependencies using pnpm.
+
+      # Run linting
+      - name: Run linting
+        if: matrix.step == 'lint'
+        run: pnpm lint
+
+      # Build the application
+      - name: Build application
+        if: matrix.step == 'build'
+        run: pnpm build
+
+      # Run tests
+      - name: Run tests
+        if: matrix.step == 'test'
+        run: pnpm test
+
+      # Push coverage to coveralls
+      - name: Push coverage to coveralls
+        if: matrix.step == 'test'
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: './.coverage/lcov.combo.info'
+
+      # Prepare playwright for end-to-end tests
+      - name: Install Playwright & friends
+        if: matrix.step == 'e2e'
+        run: pnpx playwright install --with-deps
+
+      # Run end-to-end tests
+      - name: Run end-to-end tests
+        if: matrix.step == 'e2e'
+        run: pnpm e2e
