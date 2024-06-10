@@ -34,6 +34,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+      - name: Install pnpm
+        run: npm install -g pnpm
 
   SETUP_NODE:
     strategy:
@@ -46,7 +48,6 @@ jobs:
         with:
           node-version: '18'
           cache: 'pnpm'
-          check-latest: true
 
   INSTALL_DEPS:
     strategy:
