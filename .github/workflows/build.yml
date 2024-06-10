@@ -77,9 +77,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: './.coverage/lcov.combo.info'
 
+      # Prepare playwright for end-to-end tests
+      - name: Install Playwright & friends
+        if: matrix.step == 'e2e'
+        run: npx playwright install --with-deps
+
       # Run end-to-end tests
       - name: Run end-to-end tests
         if: matrix.step == 'e2e'
-        run: |
-          npx playwright install --with-deps
-          pnpm e2e
+        run: pnpm e2e
