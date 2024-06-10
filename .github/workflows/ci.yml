@@ -1,11 +1,20 @@
-name: CI/CD
+name: CI/CD Workflow
 
+# Trigger the workflow on push events to specific branches and paths
 on:
   push:
     branches:
-      - '*'
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - feat/* # Feature branches
+      - fix/* # Fix branches
+      - hotfix/* # Hotfix branches
+      - release/* # Release branches
+      - dev # Development branch
+      - ci # Continuous Integration branch
+      - main # Main branch
+    paths:
+      - '.github/workflows/ci.yml' # Workflow file itself
+      - 'apps/**' # Apps directory
+      - 'libs/**' # Libraries directory
 
 jobs:
   DEBUG:
