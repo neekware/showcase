@@ -28,11 +28,11 @@
   "ignorePatterns": [".*.js", ".*.mjs", ".*.cjs", "node_modules/", "dist/", "tmp/", "build/"],
   "rules": {
     "import/named": "warn",
-    "no-unused-vars": "warn",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "playwright/no-skipped-test": "warn",
     "playwright/no-focused-test": "warn",
-    "playwright/max-nested-describe": ["warn", { "max": 2 }]
+    "playwright/max-nested-describe": ["warn", { "max": 2 }],
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
   }
 }

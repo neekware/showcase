@@ -15,7 +15,14 @@
     "React": true,
     "JSX": true
   },
+  "env": {
+    "browser": true,
+    "jest": true
+  },
   "settings": {
+    "react": {
+      "version": "detect"
+    },
     "import/resolver": {
       "typescript": {
         "project": "../../tsconfig.json"
@@ -35,10 +42,12 @@
   "ignorePatterns": [".*.js", ".*.mjs", ".*.cjs", "node_modules/", "dist/", "tmp/", "build/"],
   "rules": {
     "import/named": "warn",
-    "no-unused-vars": "warn",
     "@typescript-eslint/no-unused-vars": "off",
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "off",
-    "@next/next/no-html-link-for-pages": "off"
+    "@next/next/no-html-link-for-pages": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
   }
 }
