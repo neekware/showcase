@@ -1,25 +1,15 @@
 {
+  "extends": "@total-typescript/tsconfig/bundler/dom/app",
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [{ "name": "next" }],
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "@lib/*": ["../../libs/*"],
-      "@web/*": ["./src/*"]
+      "@web/*": ["src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts"],
-  "exclude": ["node_modules"],
-  "extends": "../../tsconfig.json"
+  "exclude": ["node_modules"]
 }

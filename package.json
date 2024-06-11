@@ -6,11 +6,10 @@
     "__REPO_RELATED__": "____________________",
     "prepare": "husky install",
     "loc": "pnpm --filter infra loc",
-    "update": "pnpm update --latest recursive",
+    "update": "pnpm update --latest -r",
     "clean": "pnpm recursive run clean",
-    "clean:out": "rm recursivef ./tmp/coverage && rm recursivef .e2e",
     "clean:mod": "pnpm recursive run clean:mods",
-    "reset:all": "pnpm clean && pnpm clean:out && pnpm clean:mod && pnpm i",
+    "reset": "pnpm clean && pnpm clean:mod && pnpm i",
     "__FORMAT_RELATED__": "__________________",
     "format": "prettier -w \"**/*.{ts,tsx,js,jsx,html,css,svg,yml,json,md}\"",
     "lint": "pnpm recursive run lint",
@@ -24,12 +23,13 @@
     "e2e": "pnpm recursive run e2e",
     "e2e:report": "pnpm recursive run e2e:report"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@total-typescript/tsconfig": "^1.0.4",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "husky": "^9.0.11",
     "prettier": "^3.3.1",
-    "prettier-plugin-tailwindcss": "^0.6.2"
+    "prettier-plugin-tailwindcss": "^0.6.2",
+    "typescript": "5.5.1-rc"
   },
   "engines": {
     "node": ">=18"

@@ -11,8 +11,7 @@
     "__FORMAT_RELATED__": "__________________",
     "lint": "eslint ./src",
     "__ACTION_RELATED__": "",
-    "loc": "pnpm ts-node ./src/loc.ts",
-    "coverall": "pnpm ts-node ./src/coverall.ts"
+    "loc": "pnpm ts-node ./src/loc.ts"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",

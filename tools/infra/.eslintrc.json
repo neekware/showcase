@@ -1,15 +1,5 @@
 {
   "extends": ["../../cfgs/eslint/node.json"],
-  "parserOptions": {
-    "project": ["./tsconfig.json"]
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {
-        "project": ["./tsconfig.json"]
-      }
-    }
-  },
   "rules": {
     "@typescript-eslint/no-var-requires": "off"
   }
