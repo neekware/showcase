@@ -1,21 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "jsx": "react",
-    "module": "commonjs",
+    "verbatimModuleSyntax": false,
+    "esModuleInterop": true,
     "outDir": "../../dist/ui-vendor-next",
     "types": ["jest", "node", "@testing-library/jest-dom"]
   },
-  "include": [
-    "src/**/*.d.ts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.tsx",
-    "src/**/*.spec.tsx",
-    "src/**/*.test.js",
-    "src/**/*.spec.js",
-    "src/**/*.test.jsx",
-    "src/**/*.spec.jsx",
-    "jest.config.js"
-  ]
+  "include": ["spec/**/*.spec.ts", "spec/**/*.spec.tsx"]
 }

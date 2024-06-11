@@ -7,5 +7,5 @@
       "@lib/*": ["../../libs/*"]
     }
   },
-  "include": ["src", "index.ts"]
+  "include": ["src", "index.ts", "spec/util.spec.ts"]
 }

@@ -1,4 +1,4 @@
-import { cn } from './util';
+import { cn } from '../src/util';
 
 describe('cn function', () => {
   it('should merge multiple class names into one string', () => {

@@ -1,4 +1,4 @@
-import { mdiMenu } from './icons';
+import { mdiMenu } from '../src/icons';
 
 describe('mdi icons', () => {
   test('mdiMenu is available', () => {
