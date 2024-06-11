@@ -69,7 +69,7 @@ export function getGlobFiles(globPattern: string): Promise<string[]> {
  * @param content content to write to file
  * @param charset charset to use
  */
-export function writeFileSyncRecursive(filename: string, content: string, charset = 'utf8') {
+export function writeFileSyncRecursive(filename: string, content: string) {
   fs.mkdirSync(path.dirname(filename), { recursive: true });
   fs.writeFileSync(filename, content);
 }

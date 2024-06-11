@@ -34,8 +34,9 @@
   },
   "ignorePatterns": [".*.js", ".*.mjs", ".*.cjs", "node_modules/", "dist/", "tmp/", "build/"],
   "rules": {
-    "no-unused-vars": "warn",
     "import/named": "warn",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "off",
     "@next/next/no-html-link-for-pages": "off"

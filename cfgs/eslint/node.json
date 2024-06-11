@@ -13,7 +13,8 @@
   },
   "env": {
     "node": true,
-    "es2022": true
+    "es2022": true,
+    "jest": true
   },
   "globals": {
     "process": "readonly",
@@ -30,8 +31,9 @@
   },
   "ignorePatterns": [".*.js", ".*.mjs", ".*.cjs", "node_modules/", "dist/", "tmp/", "build/"],
   "rules": {
-    "no-unused-vars": "warn",
     "import/named": "warn",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "node/no-missing-import": "warn",
     "node/no-unpublished-import": "off",

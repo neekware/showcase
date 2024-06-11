@@ -19,9 +19,6 @@
     "@total-typescript/tsconfig": "^1.0.4",
     "@playwright/test": "^1.44.1",
     "@types/node": "^20",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3",
-    "eslint-plugin-playwright": "^1.6.2",
     "typescript": "^5"
   }
 }

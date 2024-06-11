@@ -3,7 +3,7 @@
   "compilerOptions": {
     "verbatimModuleSyntax": false,
     "outDir": "../../dist/ui-vendor-next",
-    "types": ["jest", "node", "@testing-library/jest-dom"]
+    "types": ["node", "jest", "@testing-library/jest-dom"]
   },
   "include": ["spec/**/*.spec.ts", "spec/**/*.spec.tsx"]
 }

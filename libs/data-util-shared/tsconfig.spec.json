@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "verbatimModuleSyntax": false,
+    "outDir": "../../dist/data-util-shared",
+    "types": ["node", "jest"]
+  },
+  "include": ["src", "spec/**/*.spec.ts", "spec/**/*.spec.tsx"]
+}

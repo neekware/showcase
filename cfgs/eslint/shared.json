@@ -1,50 +1,36 @@
 {
   "extends": [
-    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:tailwindcss/recommended",
+    "plugin:jest/recommended",
     "prettier"
   ],
-  "plugins": ["@typescript-eslint", "import", "tailwindcss", "only-warn"],
+  "plugins": ["@typescript-eslint", "import", "only-warn"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": ["../../tsconfig.json", "./tsconfig.json"]
+    "project": ["../../tsconfig.json"],
+    "sourceType": "module"
   },
   "globals": {
     "React": "readonly",
     "JSX": "readonly"
   },
   "env": {
-    "browser": true,
-    "node": true,
-    "es2022": true
+    "shared-node-browser": true,
+    "es2022": true,
+    "jest": true
   },
   "settings": {
     "import/resolver": {
       "typescript": {
-        "project": ["../../tsconfig.json", "./tsconfig.json"]
+        "project": ["../../tsconfig.json"]
       }
-    },
-    "tailwindcss": {
-      "callees": ["classnames", "clsx", "ctl"],
-      "cssFiles": ["**/*.css", "!**/node_modules", "!**/.*", "!**/dist", "!**/build"],
-      "cssFilesRefreshRate": 5000,
-      "removeDuplicates": true,
-      "skipClassAttribute": false,
-      "whitelist": [],
-      "tags": [],
-      "classRegex": "^class(Name)?$"
     }
   },
   "ignorePatterns": [".*.js", ".*.mjs", ".*.cjs", "node_modules/", "dist/", "tmp/", "build/"],
   "rules": {
     "no-unused-vars": "warn",
-    "import/named": "warn",
-    "tailwindcss/no-custom-classname": "off",
-    "tailwindcss/classnames-order": "off",
-    "@next/next/no-html-link-for-pages": "off",
-    "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/no-unused-vars": "off",
+    "import/named": "warn"
   }
 }

@@ -5,8 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "clean:mods": "rm -rf node_modules",
-    "lint": "eslint ./src",
-    "test": "echo \"skip: jest --coverage --color --verbose\""
+    "lint": "eslint ./src"
   },
   "dependencies": {},
   "devDependencies": {

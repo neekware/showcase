@@ -2,7 +2,6 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:testing-library/react",
     "plugin:playwright/recommended",
     "prettier"
   ],
@@ -28,8 +27,9 @@
   },
   "ignorePatterns": [".*.js", ".*.mjs", ".*.cjs", "node_modules/", "dist/", "tmp/", "build/"],
   "rules": {
-    "no-unused-vars": "warn",
     "import/named": "warn",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "playwright/no-skipped-test": "warn",
     "playwright/no-focused-test": "warn",
