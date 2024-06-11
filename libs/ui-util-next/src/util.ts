@@ -12,4 +12,14 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export { cn, cva, type VariantProps };
+/**
+ * A flag indicating whether the code is running on a server or not.
+ */
+const isServer: boolean = typeof window === 'undefined';
+
+/**
+ * A flag indicating whether the code is running on a browser or not.
+ */
+const isBrowser = !isServer;
+
+export { cn, cva, type VariantProps, isBrowser, isServer };
