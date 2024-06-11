@@ -2,7 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "verbatimModuleSyntax": false,
-    "esModuleInterop": true,
     "outDir": "../../dist/ui-vendor-next",
     "types": ["jest", "node", "@testing-library/jest-dom"]
   },

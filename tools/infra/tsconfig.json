@@ -1,13 +1,8 @@
 {
+  "extends": "@total-typescript/tsconfig/tsc/no-dom/library-monorepo",
   "compilerOptions": {
-    "lib": ["es2015"],
-    "outDir": "./dist",
-    "types": ["jest", "node"],
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "target": "es6"
+    "verbatimModuleSyntax": false,
+    "esModuleInterop": true
   },
-  "include": ["./src"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"]
 }

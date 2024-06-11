@@ -48,16 +48,16 @@ export function fileExists(filePath: string): boolean {
  * Returns a list of file name
  * @param globPattern pattern for globs
  */
-export function getGlobFiles(globPattern): Promise<string[]> {
+export function getGlobFiles(globPattern: string): Promise<string[]> {
   // /**/error.log, /**/results.txt, ...etc
   return new Promise((resolve, reject) => {
-    glob(globPattern, (error, result) => {
+    glob(globPattern, (error: string, result: string) => {
       if (error) {
         console.log(error);
         reject([]); // Resolve with an empty array if there is an error.
       } else {
         console.log(result);
-        resolve(result); // Only resolve with the result if there is no error.
+        resolve([result]); // Only resolve with the result if there is no error.
       }
     });
   });
@@ -69,7 +69,7 @@ export function getGlobFiles(globPattern): Promise<string[]> {
  * @param content content to write to file
  * @param charset charset to use
  */
-export function writeFileSyncRecursive(filename, content) {
+export function writeFileSyncRecursive(filename: string, content: string, charset = 'utf8') {
   fs.mkdirSync(path.dirname(filename), { recursive: true });
   fs.writeFileSync(filename, content);
 }
@@ -79,7 +79,7 @@ export function writeFileSyncRecursive(filename, content) {
  * @param dirPath path to directory
  * @returns void
  */
-export async function removeDirectory(dirPath) {
+export async function removeDirectory(dirPath: string) {
   try {
     fs.rmSync(dirPath, { recursive: true, force: true });
   } catch (err) {

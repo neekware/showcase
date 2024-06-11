@@ -16,6 +16,7 @@
     "react": "^18"
   },
   "devDependencies": {
+    "@total-typescript/tsconfig": "^1.0.4",
     "@playwright/test": "^1.44.1",
     "@types/node": "^20",
     "eslint": "^8",
