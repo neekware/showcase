@@ -13,7 +13,7 @@ describe('LoginFormModel', () => {
 
   it('should fail with invalid email', () => {
     const invalidEmailInputs = {
-      email: 'invalidemail',
+      email: 'invalidEmail',
       password: 'password123',
     };
 

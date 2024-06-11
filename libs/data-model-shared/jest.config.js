@@ -8,7 +8,7 @@ const config = {
     '^.+\\.(t|j)sx?$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   coverageReporters: ['lcov', 'html'],
-  coverageDirectory: '../../tmp/coverage/libs/data-util-shared',
+  coverageDirectory: 'coverage',
 };
 
 module.exports = config;
