@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "verbatimModuleSyntax": false,
+    "outDir": "../../dist/data-model-shared",
+    "types": ["jest", "node", "@testing-library/jest-dom"]
+  },
+  "include": ["spec/**/*.spec.ts", "spec/**/*.spec.tsx"]
+}
