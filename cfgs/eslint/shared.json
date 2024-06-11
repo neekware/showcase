@@ -13,7 +13,8 @@
   },
   "globals": {
     "React": "readonly",
-    "JSX": "readonly"
+    "JSX": "readonly",
+    "module": "readonly"
   },
   "env": {
     "shared-node-browser": true,

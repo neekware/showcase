@@ -20,7 +20,8 @@
     "process": "readonly",
     "console": "readonly",
     "__dirname": "readonly",
-    "__filename": "readonly"
+    "__filename": "readonly",
+    "module": "readonly"
   },
   "settings": {
     "import/resolver": {

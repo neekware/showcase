@@ -1,5 +1,4 @@
 /** @type {import('jest').Config} */
-
 const config = {
   displayName: 'data-util-shared',
   preset: 'ts-jest',
@@ -9,7 +8,7 @@ const config = {
     '^.+\\.(t|j)sx?$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   coverageReporters: ['lcov', 'html'],
-  coverageDirectory: 'coverage',
+  coverageDirectory: '../../tmp/coverage/libs/data-util-shared',
 };
 
 module.exports = config;
