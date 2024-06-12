@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "verbatimModuleSyntax": false,
-    "types": ["node", "jest", "@testing-library/jest-dom"]
+    "types": ["node", "jest"]
   },
-  "include": ["spec/**/*.spec.ts", "spec/**/*.spec.tsx"]
+  "include": ["spec"]
 }

@@ -77,7 +77,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ${{ secrets.workspace }}/'lcov.combo.info'
+          path-to-lcov: lcov.combo.info
 
       # Prepare playwright for end-to-end tests
       - name: Install Playwright & friends

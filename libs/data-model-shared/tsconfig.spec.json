@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "verbatimModuleSyntax": false,
     "types": ["node", "jest"]
   },
-  "include": ["src", "spec/**/*.spec.ts", "spec/**/*.spec.tsx"]
+  "include": ["spec"]
 }

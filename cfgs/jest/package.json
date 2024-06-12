@@ -1,0 +1,9 @@
+{
+  "name": "@cfg/jest",
+  "version": "0.0.1",
+  "private": true,
+  "files": [
+    "jest-next.js",
+    "jest-server.js"
+  ]
+}

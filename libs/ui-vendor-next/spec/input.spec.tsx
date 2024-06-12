@@ -1,5 +1,5 @@
 import React from 'react';
-import '@testing-library/jest-dom';
+import { act } from 'react';
 import { render, screen } from '@testing-library/react';
 import { Input } from '../src/input';
 
@@ -22,7 +22,9 @@ describe('Input component', () => {
 
   test('applies custom styles when provided', () => {
     const customStyle = 'bg-red-500';
-    render(<Input className={customStyle} aria-label="test-input" />);
+    act(() => {
+      render(<Input className={customStyle} aria-label="test-input" />);
+    });
     const inputElement = screen.getByLabelText('test-input');
     expect(inputElement).toHaveClass(customStyle);
   });

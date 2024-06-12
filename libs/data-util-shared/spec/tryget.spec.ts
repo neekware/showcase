@@ -1,4 +1,3 @@
-import { describe, expect, it } from '@jest/globals';
 import { tg } from '../src/tryget';
 
 describe('tg', () => {

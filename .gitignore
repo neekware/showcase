@@ -18,5 +18,6 @@ e2e
 tmp
 temp
 .vercel
+lcov.info
 lcov.combo.info
 reports
