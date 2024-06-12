@@ -5,5 +5,4 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.lint.json'],
   },
-  include: ['src/', 'playwright.config.ts'],
 };
