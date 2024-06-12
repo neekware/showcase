@@ -86,7 +86,9 @@ jobs:
     needs: [INSTALL_DEPS]
     steps:
       - name: Run tests
-        run: npm test
+        run: |
+          pnpm test
+          pnpm coverage
 
   BUILD:
     strategy:

@@ -18,7 +18,7 @@
     "build": "pnpm --filter web build",
     "start": "pnpm --filter web start",
     "__TEST_RELATED__": "__________________",
-    "coverage": "find ./tmp/coverage -name lcov.info -exec cat {} + > ./tmp/coverage/lcov.combo.info",
+    "coverage": "find . -name \"lcov.info\" -exec cat {} + > \"lcov.combo.info\"",
     "test": "pnpm recursive run test",
     "e2e": "pnpm recursive run e2e",
     "e2e:report": "pnpm recursive run e2e:report"
