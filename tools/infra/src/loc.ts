@@ -1,8 +1,7 @@
 import * as fs from 'fs';
-// eslint-disable-next-line node/no-missing-import
+import { program } from 'commander';
 import { execute, projDir, readme } from './util';
 
-const { program } = require('commander');
 const replaceSection = require('markdown-replace-section');
 
 const DEBUG = false;

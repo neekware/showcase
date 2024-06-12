@@ -9,7 +9,7 @@
     "__REPO_RELATED__": "____________________",
     "clean:mods": "rm -rf node_modules",
     "__FORMAT_RELATED__": "__________________",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src --fix",
     "__ACTION_RELATED__": "",
     "loc": "pnpm ts-node ./src/loc.ts"
   },

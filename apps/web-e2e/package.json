@@ -6,7 +6,7 @@
     "__REPO_RELATED__": "____________________",
     "clean:mods": "rm -rf node_modules",
     "__FORMAT_RELATED__": "__________________",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src --fix",
     "__TEST_RELATED__": "__________________",
     "e2e": "node_modules/.bin/playwright test",
     "e2e:report": "node_modules/.bin/playwright show-report ../../.e2e/web/report"

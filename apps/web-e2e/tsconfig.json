@@ -7,5 +7,5 @@
       "@e2e/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.spec.ts"]
+  "include": ["src/"]
 }

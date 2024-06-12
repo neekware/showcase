@@ -4,6 +4,7 @@ import * as React from 'react';
 import { type Theme } from '@lib/data-model-shared';
 import { useThemeState } from '@lib/data-store-next';
 import {
+  Icon,
   mdiCheckCircle,
   mdiCircle,
   mdiMonitor,
@@ -11,7 +12,6 @@ import {
   mdiWeatherNight,
   mdiWeatherSunny,
 } from '@lib/ui-icon-next';
-import { Icon } from '@lib/ui-icon-next';
 import { cn } from '@lib/ui-util-next';
 import {
   Button,

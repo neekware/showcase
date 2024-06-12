@@ -1,3 +1,0 @@
-{
-  "extends": ["../../cfgs/eslint/e2e.json"]
-}
