@@ -21,7 +21,7 @@ export const siteSettings: SiteSettings = {
     },
     {
       title: 'About',
-      href: '/products',
+      href: '/about',
     },
     {
       title: 'Products',
@@ -36,12 +36,12 @@ export const siteSettings: SiteSettings = {
     },
     {
       title: 'More',
-      href: '/products',
+      href: '/more',
       icon: mdiCog,
     },
     {
       title: 'Dashboard',
-      href: '/products',
+      href: '/dash',
       icon: mdiWrench,
     },
 
