@@ -5,13 +5,7 @@ import {
   type ThemeState,
 } from '@lib/data-model-shared';
 import { useAtom } from 'jotai';
-import {
-  appStateAtom,
-  authAtom,
-  DefaultStateSettings,
-  profileAtom,
-  themeAtom,
-} from './store.state';
+import { appStateAtom, authAtom, getDefaultState, profileAtom, themeAtom } from './store.state';
 
 /**
  * Hook to access and update the application state
@@ -29,7 +23,7 @@ export function useAppState(): readonly [AppState, (partialConfig: Partial<AppSt
    */
   const updateImmutable = (partialConfig: Partial<AppState>) => {
     setAppState({
-      ...DefaultStateSettings,
+      ...getDefaultState(),
       ...state,
       ...partialConfig,
     });
@@ -57,7 +51,7 @@ export function useThemeState(): readonly [
    */
   const updateImmutable = (partialConfig: Partial<ThemeState>) => {
     setThemeState({
-      ...DefaultStateSettings.theme,
+      ...getDefaultState().theme,
       ...partialConfig,
     });
   };
@@ -81,7 +75,7 @@ export function useAuthState(): readonly [AuthState, (partialConfig: Partial<Aut
    */
   const updateImmutable = (partialConfig: Partial<AuthState>) => {
     seAuthTableState({
-      ...DefaultStateSettings.auth,
+      ...getDefaultState().auth,
       ...partialConfig,
     });
   };
@@ -108,7 +102,7 @@ export function useProfileState(): readonly [
    */
   const updateImmutable = (partialConfig: Partial<ProfileState>) => {
     seAuthTableState({
-      ...DefaultStateSettings.profile,
+      ...getDefaultState().profile,
       ...partialConfig,
     });
   };

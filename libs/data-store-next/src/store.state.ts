@@ -7,25 +7,27 @@ import {
   type ThemeState,
 } from '@lib/data-model-shared';
 import { sign, verify } from '@lib/data-util-shared';
-import { atom } from 'jotai';
+import { atom, Provider as StateStoreProvider } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 
 // Defining default state settings
-export const DefaultStateSettings: AppState = sign<AppState>({
-  // Initial authentication state
-  auth: { token: '', isLoggedIn: false },
-  // Initial theme settings
-  theme: {
-    name: 'zinc',
-    mode: 'system',
-    radius: 0.5,
-  },
-  // Initial profile settings
-  profile: { username: '', email: '' },
-  // Initial signature and version
-  signature: 'not-signed-yet',
-  version: '1.0.3',
-});
+const getDefaultState = () => {
+  return sign<AppState>({
+    // Initial authentication state
+    auth: { token: '', isLoggedIn: false },
+    // Initial theme settings
+    theme: {
+      name: 'zinc',
+      mode: 'system',
+      radius: 0.5,
+    },
+    // Initial profile settings
+    profile: { username: '', email: '' },
+    // Initial signature and version
+    signature: 'not-signed-yet',
+    version: '1.0.3',
+  });
+};
 
 const dummyStorage = {
   getItem: () => null,
@@ -44,13 +46,14 @@ const customStorage = createJSONStorage<AppState>(
       const rootStateKey = '';
 
       if (key === rootStateKey) {
+        const defaultState = getDefaultState();
         let storageValue = value as AppState;
-        if (storageValue.version !== DefaultStateSettings.version) {
-          storageValue = DefaultStateSettings;
+        if (storageValue.version !== defaultState.version) {
+          storageValue = defaultState;
         } else {
           const signed = verify<AppState>(value as string);
           if (!signed) {
-            storageValue = DefaultStateSettings;
+            storageValue = defaultState;
           }
         }
         return storageValue;
@@ -71,11 +74,7 @@ const customStorage = createJSONStorage<AppState>(
 );
 
 // Creating an atom with storage for the app state
-export const appStateAtom = atomWithStorage<AppState>(
-  'appState',
-  DefaultStateSettings,
-  customStorage
-);
+const appStateAtom = atomWithStorage<AppState>('appState', getDefaultState(), customStorage);
 
 // Set up the onMount method to listen to custom storage changes
 // If the storage is changed from another tab, or the developer tool-kit
@@ -86,7 +85,7 @@ appStateAtom.onMount = (setAtom) => {
       const signed = verify<AppState>(event.newValue || '');
       if (!signed) {
         // invalid state, reset to default
-        setAtom(DefaultStateSettings);
+        setAtom(getDefaultState());
       }
     }
   };
@@ -100,11 +99,11 @@ appStateAtom.onMount = (setAtom) => {
 };
 
 // Creating atoms for theme with derived values and update functions
-export const themeAtom = atom(
+const themeAtom = atom(
   (get) => get(appStateAtom).theme,
   (get, set, update: ThemeState) => {
     set(appStateAtom, {
-      ...DefaultStateSettings,
+      ...getDefaultState(),
       ...get(appStateAtom),
       theme: update,
     });
@@ -112,11 +111,11 @@ export const themeAtom = atom(
 );
 
 // Creating atoms for auth with derived values and update functions
-export const authAtom = atom(
+const authAtom = atom(
   (get) => get(appStateAtom).auth,
   (get, set, update: AuthState) => {
     set(appStateAtom, {
-      ...DefaultStateSettings,
+      ...getDefaultState(),
       ...get(appStateAtom),
       auth: update,
     });
@@ -124,13 +123,15 @@ export const authAtom = atom(
 );
 
 // Creating atoms for profile with derived values and update functions
-export const profileAtom = atom(
+const profileAtom = atom(
   (get) => get(appStateAtom).profile,
   (get, set, update: ProfileState) => {
     set(appStateAtom, {
-      ...DefaultStateSettings,
+      ...getDefaultState(),
       ...get(appStateAtom),
       profile: update,
     });
   }
 );
+
+export { appStateAtom, themeAtom, authAtom, profileAtom, getDefaultState, StateStoreProvider };

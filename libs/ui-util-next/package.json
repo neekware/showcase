@@ -4,6 +4,7 @@
   "private": true,
   "main": "src/index.ts",
   "scripts": {
+    "clean": "rm -rf dist coverage",
     "clean:mods": "rm -rf node_modules",
     "lint": "eslint ./src",
     "test": "jest --coverage --color --verbose"

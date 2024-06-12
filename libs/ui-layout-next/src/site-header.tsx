@@ -40,7 +40,7 @@ export function SiteHeader({ mobileSettings, siteSettings, className }: MainHead
             {/* Option Menu */}
             <div className="flex">
               <ThemeModeToggle className="" />
-              <NavOption siteSettings={siteSettings} />
+              <NavOption />
             </div>
           </div>
         </nav>

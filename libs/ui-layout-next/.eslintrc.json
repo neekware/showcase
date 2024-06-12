@@ -1,4 +1,3 @@
 {
-  "extends": ["../../cfgs/eslint/next.json"],
-  "rules": {}
+  "extends": ["../../cfgs/eslint/next.json"]
 }

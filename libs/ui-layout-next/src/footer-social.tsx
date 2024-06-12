@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { type LinkItem } from '@lib/data-model-shared';
 import { Icon } from '@lib/ui-icon-next';
 import { cn } from '@lib/ui-util-next';
-import { Button, buttonVariants } from '@lib/ui-vendor-next';
+import { Button } from '@lib/ui-vendor-next';
 
 interface FooterSocialProps {
   listItems: LinkItem[];
@@ -26,7 +26,7 @@ export function FooterSocial({ listItems, className }: FooterSocialProps) {
                 rel="noreferrer"
                 className="focus:outline-none"
               >
-                <div className={cn(buttonVariants({ variant: 'link' }), 'w-9 px-0')}>
+                <div className="w-9 px-0">
                   {sItem.icon ? <Icon path={sItem.icon} className="size-6" /> : null}
                   {sItem.label ? <span className="sr-only">{sItem.label}</span> : null}
                 </div>

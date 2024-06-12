@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "__REPO_RELATED__": "____________________",
-    "clean": "rm -rf .next",
+    "clean": "rm -rf .next coverage",
     "clean:mods": "rm -rf node_modules",
     "__ACTION_RELATED__": "__________________",
     "dev": "next dev --turbo",
@@ -14,17 +14,20 @@
     "lint": "next lint --no-cache"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.3"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@total-typescript/tsconfig": "^1.0.4",
-    "typescript": "^5",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }

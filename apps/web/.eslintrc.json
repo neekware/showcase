@@ -1,3 +1,10 @@
 {
-  "extends": ["../../cfgs/eslint/next.json"]
+  "extends": ["../../cfgs/eslint/next.json"],
+  "parser": "@typescript-eslint/parser",
+  "project": true,
+  "settings": {
+    "tailwindcss": {
+      "config": "tailwind.config.mjs"
+    }
+  }
 }
