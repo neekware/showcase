@@ -12,12 +12,13 @@
     "e2e:report": "node_modules/.bin/playwright show-report ../../.e2e/web/report"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "playwright": "^1.44.1",
     "react": "^18"
   },
   "devDependencies": {
-    "@total-typescript/tsconfig": "^1.0.4",
     "@playwright/test": "^1.44.1",
+    "@total-typescript/tsconfig": "^1.0.4",
     "@types/node": "^20",
     "typescript": "^5"
   }

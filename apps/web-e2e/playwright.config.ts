@@ -1,9 +1,12 @@
+import * as dotenv from 'dotenv';
 import { defineConfig, devices } from '@playwright/test';
+
+dotenv.config();
 
 const targetPort = process.env.PORT || 3000;
 const targetUrl = process.env.TARGET_URL || `http://127.0.0.1:${targetPort}`;
 const isCI = !!process.env.CI;
-const baseOutputDir = '../../.e2e/web';
+const baseOutputDir = 'reports';
 
 // Reference: https://playwright.dev/docs/test-configuration
 export default defineConfig({
