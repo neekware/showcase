@@ -19,7 +19,6 @@
   "devDependencies": {
     "@playwright/test": "^1.44.1",
     "@total-typescript/tsconfig": "^1.0.4",
-    "@types/node": "^20.14.2",
     "typescript": "^5.4.5"
   }
 }

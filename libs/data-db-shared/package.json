@@ -10,8 +10,7 @@
     "test": "jest --coverage --color --verbose"
   },
   "devDependencies": {
-    "@total-typescript/tsconfig": "^1.0.4",
-    "@types/node": "^20.14.2"
+    "@total-typescript/tsconfig": "^1.0.4"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
