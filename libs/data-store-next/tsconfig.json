@@ -1,5 +1,5 @@
 {
-  "extends": "../../cfgs/typescript/node.lib.json",
+  "extends": "../../cfgs/typescript/next.lib.json",
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
