@@ -1,5 +1,5 @@
 {
-  "extends": "@total-typescript/tsconfig/bundler/dom/app",
+  "extends": "../../cfgs/typescript/next.app.json",
   "compilerOptions": {
     "jsx": "preserve",
     "incremental": true,
@@ -11,5 +11,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "coverage"]
 }

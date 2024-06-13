@@ -1,5 +1,5 @@
 {
-  "extends": "@total-typescript/tsconfig/bundler/no-dom/app",
+  "extends": "../../cfgs/typescript/node.app.json",
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
@@ -7,5 +7,6 @@
       "@e2e/*": ["./src/*"]
     }
   },
-  "include": ["src/"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "coverage"]
 }

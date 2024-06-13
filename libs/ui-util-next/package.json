@@ -14,8 +14,5 @@
     "clsx": "^2.1.1",
     "react": "^18.3.1",
     "tailwind-merge": "^2.3.0"
-  },
-  "devDependencies": {
-    "@total-typescript/tsconfig": "^1.0.4"
   }
 }

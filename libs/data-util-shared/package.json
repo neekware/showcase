@@ -9,10 +9,6 @@
     "lint": "eslint ./src --fix",
     "test": "jest --coverage --color --verbose"
   },
-  "devDependencies": {
-    "@total-typescript/tsconfig": "^1.0.4",
-    "@types/node": "^20.14.2"
-  },
   "dependencies": {
     "next": "14.2.4",
     "react": "^18.3.1",

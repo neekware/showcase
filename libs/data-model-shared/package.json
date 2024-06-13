@@ -9,9 +9,6 @@
     "lint": "eslint ./src --fix",
     "test": "jest --coverage --color --verbose"
   },
-  "devDependencies": {
-    "@total-typescript/tsconfig": "^1.0.4"
-  },
   "dependencies": {
     "zod": "^3.23.8"
   }

@@ -1,8 +1,6 @@
 {
-  "extends": "@total-typescript/tsconfig/tsc/no-dom/library-monorepo",
-  "compilerOptions": {
-    "verbatimModuleSyntax": false,
-    "esModuleInterop": true
-  },
-  "include": ["src"]
+  "extends": "../../cfgs/typescript/node.tool.json",
+  "compilerOptions": { "verbatimModuleSyntax": false },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "coverage"]
 }

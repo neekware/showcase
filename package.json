@@ -26,10 +26,17 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
-    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.5.2",
-    "@total-typescript/tsconfig": "^1.0.4",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/glob": "^8.1.0",
+    "@types/jest": "^29.5.12",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.14.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
     "esbuild": "^0.21.5",
     "esbuild-jest": "^0.5.0",
     "husky": "^9.0.11",
@@ -38,16 +45,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.4",
-    "typescript": "^5.4.5",
-    "@types/node": "^20.14.2",
-    "@typescript-eslint/eslint-plugin": "^7.13.0",
-    "@typescript-eslint/parser": "^7.13.0",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@types/jest": "^29.5.12",
-    "@types/lodash-es": "^4.17.12",
-    "@types/glob": "^8.1.0"
+    "react-hooks-testing-library": "^0.6.0",
+    "typescript": "^5.4.5"
   },
   "engines": {
     "node": ">=18"
