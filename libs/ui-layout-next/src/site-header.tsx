@@ -26,6 +26,7 @@ export function SiteHeader({ mobileSettings, siteSettings, className }: MainHead
           <div className="container flex items-center justify-between">
             {/* Burger Menu and Slider */}
             <NavMobile
+              data-tag="mobile-nav"
               mobileSettings={mobileSettings}
               siteSettings={siteSettings}
               className="md:hidden"

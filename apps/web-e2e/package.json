@@ -9,7 +9,7 @@
     "lint": "eslint ./src --fix",
     "__TEST_RELATED__": "__________________",
     "e2e": "node_modules/.bin/playwright test",
-    "e2e:report": "node_modules/.bin/playwright show-report ../../.e2e/web/report"
+    "e2e:report": "node_modules/.bin/playwright show-report reports/report"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
