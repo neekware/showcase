@@ -1,7 +1,6 @@
 {
   "extends": "../../cfgs/typescript/node.app.json",
   "compilerOptions": {
-    "lib": ["esnext", "dom", "DOM.Iterable"],
     "baseUrl": "./",
     "paths": {
       "@lib/*": ["../../libs/*"],
