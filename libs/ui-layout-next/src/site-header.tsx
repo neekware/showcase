@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { type MobileSettings, type SiteSettings } from '@lib/data-model-shared';
 import { cn } from '@lib/ui-util-next';
-import { NavSite } from './nav';
 import { NavDesktop } from './nav-desktop';
 import { NavMobile } from './nav-mobile';
 import { NavOption } from './nav-options';
+import { SiteLogo } from './site-logo';
 import { ThemeModeToggle } from './theme-toggle';
 
 interface MainHeaderProps {
@@ -32,7 +32,7 @@ export function SiteHeader({ mobileSettings, siteSettings, className }: MainHead
             />
 
             {/* Site Name and Logo */}
-            <NavSite siteSettings={siteSettings} />
+            <SiteLogo siteSettings={siteSettings} />
 
             {/* Top Center Nav - Desktop mode nav, hides when not in desktop mode */}
             <NavDesktop siteSettings={siteSettings} className="hidden md:flex" />

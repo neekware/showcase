@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { type SiteSettings } from '@lib/data-model-shared';
 import { cn } from '@lib/ui-util-next';
-import { NavSite } from '../src/nav';
+import { SiteLogo } from './site-logo';
 
 interface FooterSiteProps {
   siteSettings: SiteSettings;
@@ -16,7 +16,7 @@ export function FooterSite({ className, siteSettings }: FooterSiteProps) {
     <div className={cn('flex flex-col items-start gap-2', className)}>
       {/* Site Name and Logo */}
       <div className="flex md:flex-col">
-        <NavSite siteSettings={siteSettings} />
+        <SiteLogo siteSettings={siteSettings} />
         <p className="mx-0.5 whitespace-nowrap text-base font-semibold">© {CURRENT_YEAR}</p>
       </div>
       <Link

@@ -8,7 +8,7 @@ import { hrefToString } from '@lib/data-util-shared';
 import { Icon, mdiClose, mdiMenu } from '@lib/ui-icon-next';
 import { cn } from '@lib/ui-util-next';
 import { Button, ScrollArea, Sheet, SheetContent, SheetTrigger } from '@lib/ui-vendor-next';
-import { NavSite } from './nav';
+import { SiteLogo } from './site-logo';
 
 interface LinkMobileProps extends LinkProps {
   onOpenChange?: (_open: boolean) => void;
@@ -87,7 +87,7 @@ export function NavMobile({ className, mobileSettings, siteSettings }: NavMobile
             className="mr-6 flex items-center space-x-2 pb-4"
             onOpenChange={setOpen}
           >
-            <NavSite siteSettings={siteSettings} className="pr-20" />
+            <SiteLogo siteSettings={siteSettings} className="pr-20" />
           </LinkMobile>
           <ScrollArea className="my-4 h-[calc(100vh-2rem)] pb-10 pl-1">
             <div className="flex flex-col space-y-3">
