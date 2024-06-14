@@ -15,8 +15,8 @@
     "lint": "next lint --no-cache",
     "__DATABASE_RELATED__": "",
     "db:gen": "drizzle-kit generate --config  ./src/db/config.ts",
-    "db:sync": "env-cmd -f .env DB_MIGRATING=true node -r esbuild-register ./src/db/migrate.ts",
-    "db:seed": "env-cmd -f .env DB_SEEDING=true node -r esbuild-register ./src/db/seeds/seed.ts",
+    "db:sync": "DB_MIGRATING=true node -r dotenv/config -r esbuild-register ./src/db/migrate.ts",
+    "db:seed": "DB_SEEDING=true node -r dotenv/config -r esbuild-register ./src/db/seeds/seed.ts",
     "db:show": "drizzle-kit studio --config  ./src/db/config.ts --port 5555"
   },
   "dependencies": {

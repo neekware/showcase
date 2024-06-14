@@ -2,7 +2,6 @@
   "name": "@lib/data-db-shared",
   "version": "0.0.1",
   "private": true,
-  "main": "src/index.ts",
   "scripts": {
     "clean": "rm -rf dist coverage",
     "clean:mods": "rm -rf node_modules",

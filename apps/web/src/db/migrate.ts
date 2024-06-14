@@ -1,12 +1,10 @@
 import * as dotenv from 'dotenv';
-import path from 'path';
+import { dbClient, dbConnection, migrate } from '@lib/data-db-shared';
 import config from '@web/db/config';
 
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config();
 
 async function doMigrate() {
-  const { dbClient, dbConnection, migrate } = await import('@lib/data-db-shared');
-
   await migrate(dbClient, { migrationsFolder: config.out ?? '' });
   await dbConnection.end();
 }
