@@ -28,7 +28,8 @@ export const RegistrationFormModel = z.object({
   phone: z
     .string()
     .min(1, 'Phone number is required')
-    .regex(/^\(?([2-9][0-9]{2})\)?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/, 'Invalid phone number'), // NANP format
+    .regex(/^\(?([2-9][0-9]{2})\)?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/, 'Invalid phone number')
+    .optional(), // NANP format
   password: z
     .string()
     .min(1, 'Password is required')

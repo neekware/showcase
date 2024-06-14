@@ -1,20 +1,19 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { type LoginFormInputs } from '@lib/data-model-shared';
-import { UserService } from '@lib/data-user-shared';
+import { type LoginFormInputs, type RegisterFormInputs } from '@lib/data-model-shared';
+import { type User, UserService } from '@lib/data-user-shared';
 import { compareSync } from '@lib/data-util-shared';
 import { type JWTPayload, jwtVerify, SignJWT } from 'jose';
 
-// Auth secret must be set in the environment or throw an error
 if (!process.env.AUTH_SECRET) {
   throw new Error('You must set AUTH_SECRET in your environment');
 }
 
 export const AuthService = {
-  key(secret = process.env.AUTH_SECRET) {
+  key(secret = process.env.AUTH_SECRET): Uint8Array {
     return new TextEncoder().encode(secret);
   },
-  async encrypt(payload: JWTPayload) {
+  async encrypt(payload: JWTPayload): Promise<string> {
     const key = AuthService.key(process.env.AUTH_SECRET);
     return await new SignJWT(payload)
       .setProtectedHeader({ alg: 'HS256' })
@@ -29,7 +28,7 @@ export const AuthService = {
     });
     return payload;
   },
-  async login(data: LoginFormInputs) {
+  async login(data: LoginFormInputs): Promise<User | null> {
     const user = await UserService.getByEmailQuery(data.email);
     if (!user) return null;
 
@@ -40,28 +39,45 @@ export const AuthService = {
       const expires = new Date(Date.now() + expiryInMinutes * 60 * 1000);
       const session = await AuthService.encrypt({ payload, expires });
       cookies().set('session', session, { expires, httpOnly: true });
-      return user;
+      return user as User;
     }
 
     return null;
   },
-  async logout() {
+  logout(): void {
     cookies().set('session', '', { expires: new Date(0) });
-    return undefined;
   },
-  async updateSession(request: NextRequest) {
+  async register(data: RegisterFormInputs): Promise<User | null> {
+    const user = await UserService.getByEmailQuery(data.email);
+    if (user) {
+      throw new Error('Email is already in use');
+    }
+
+    const newUser = await UserService.createUser(data);
+    if (newUser) {
+      const payload = { email: newUser.email };
+      const expiryInMinutes = 30;
+      const expires = new Date(Date.now() + expiryInMinutes * 60 * 1000);
+      const session = await AuthService.encrypt({ payload, expires });
+      cookies().set('session', session, { expires, httpOnly: true });
+      return newUser as User;
+    }
+    return null;
+  },
+  async updateSession(request: NextRequest): Promise<NextResponse | void> {
     const session = request.cookies.get('session')?.value;
-    if (!session) return;
-    const parsed = await AuthService.decrypt(session);
-    const expiryInMinutes = 30;
-    parsed.expires = new Date(Date.now() + expiryInMinutes * 60 * 1000);
-    const res = NextResponse.next();
-    res.cookies.set({
-      name: 'session',
-      value: await AuthService.encrypt(parsed),
-      httpOnly: true,
-      expires: parsed.expires as Date, // Cast expires to Date
-    });
-    return res;
+    if (session) {
+      const parsed = await AuthService.decrypt(session);
+      const expiryInMinutes = 30;
+      parsed.expires = new Date(Date.now() + expiryInMinutes * 60 * 1000);
+      const res = NextResponse.next();
+      res.cookies.set({
+        name: 'session',
+        value: await AuthService.encrypt(parsed),
+        httpOnly: true,
+        expires: parsed.expires as Date, // Cast expires to Date
+      });
+      return res;
+    }
   },
 };

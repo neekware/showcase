@@ -14,7 +14,8 @@ export const RoleEnum = pgEnum('Role', ['USER', 'STAFF', 'ADMIN', 'SUPERUSER']);
 
 export const UserTable = pgTable('user', {
   id: varchar('id', { length: 36 }).$defaultFn(uuidV4).notNull().unique(),
-  name: text('name').notNull(),
+  firstName: text('firstName').notNull(),
+  lastName: text('lastName').notNull(),
   email: text('email').unique().notNull(),
   emailVerified: boolean('emailVerified').default(false),
   phone: varchar('phone', { length: 255 }),

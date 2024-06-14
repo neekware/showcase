@@ -6,7 +6,8 @@ END $$;
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user" (
 	"id" varchar(36) NOT NULL,
-	"name" text NOT NULL,
+	"firstName" text NOT NULL,
+	"lastName" text NOT NULL,
 	"email" text NOT NULL,
 	"emailVerified" boolean DEFAULT false,
 	"phone" varchar(255),
