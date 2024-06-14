@@ -9,9 +9,9 @@ export async function POST(req: NextRequest) {
   const data = (await req.json()) as LoginFormInputs;
   const result = await validateForm<LoginFormInputs>(LoginFormModel, data);
 
-  if (result?.error) {
+  if (!result?.success) {
     // input data validation error
-    return NextResponse.json({ error: result?.error });
+    return NextResponse.json({ error: result?.message });
   }
 
   const user = { password: '' }; // await AuthService.login(data);

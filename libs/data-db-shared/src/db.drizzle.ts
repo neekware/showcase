@@ -1,8 +1,8 @@
-import * as dotenv from 'dotenv';
+import { dotEnvConfig } from '@lib/data-util-shared';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 
-dotenv.config();
+dotEnvConfig();
 
 if (!process.env.DB_URL) {
   throw new Error(`DB_URL environment variable is required ${process.env}`);

@@ -1,7 +1,7 @@
-import * as dotenv from 'dotenv';
 import { defineConfig } from '@lib/data-db-shared';
+import { dotEnvConfig } from '@lib/data-util-shared';
 
-dotenv.config();
+dotEnvConfig();
 
 // get db url or throw error
 if (!process.env.DB_URL) {

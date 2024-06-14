@@ -1,5 +1,5 @@
 {
-  "name": "@lib/data-db-shared",
+  "name": "@lib/data-auth-shared",
   "version": "0.0.1",
   "private": true,
   "main": "src/index.ts",
@@ -10,9 +10,9 @@
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {
-    "drizzle-kit": "^0.22.7",
-    "drizzle-orm": "^0.31.2",
-    "postgres": "^3.4.4",
-    "zod": "^3.23.8"
+    "jose": "^5.4.0",
+    "jotai": "2.8.0",
+    "next": "14.2.4",
+    "react": "^18.3.1"
   }
 }

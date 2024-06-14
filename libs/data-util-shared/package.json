@@ -10,6 +10,8 @@
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "next": "14.2.4",
     "react": "^18.3.1",
     "zod": "^3.23.8"

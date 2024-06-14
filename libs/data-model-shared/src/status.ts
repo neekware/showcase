@@ -1,6 +1,5 @@
-export interface ServerResponseType {
-  error?: boolean;
-  success?: boolean;
+export type ServerResponseType<T = unknown> = {
+  success: boolean;
+  data?: T;
   message?: string;
-  data?: unknown;
-}
+};

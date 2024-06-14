@@ -1,8 +1,8 @@
-import * as dotenv from 'dotenv';
 import { connection, dB, migrate } from '@lib/data-db-shared';
+import { dotEnvConfig } from '@lib/data-util-shared';
 import config from '@web/db/config';
 
-dotenv.config();
+dotEnvConfig();
 
 if (!process.env.DB_MIGRATING) {
   throw new Error('You must set DB_MIGRATING to "true" when running migrations');
