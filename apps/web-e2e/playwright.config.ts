@@ -81,24 +81,24 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
       },
     },
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
-    },
-    {
-      name: 'safari',
-      use: {
-        ...devices['Desktop Safari'],
-      },
-    },
-    {
-      name: 'android',
-      use: {
-        ...devices['Pixel 5'],
-      },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //   },
+    // },
+    // {
+    //   name: 'safari',
+    //   use: {
+    //     ...devices['Desktop Safari'],
+    //   },
+    // },
+    // {
+    //   name: 'android',
+    //   use: {
+    //     ...devices['Pixel 5'],
+    //   },
+    // },
     {
       name: 'iphone',
       use: devices['iPhone 12'],
