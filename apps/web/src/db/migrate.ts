@@ -1,14 +1,12 @@
 import * as dotenv from 'dotenv';
-import { dbClient, dbConnection, migrate } from '@lib/data-db-shared';
+import path from 'path';
 import config from '@web/db/config';
 
-dotenv.config();
-
-if (!process.env.DB_MIGRATING) {
-  throw new Error('You must set DB_MIGRATING to "true" when running migrations');
-}
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 async function doMigrate() {
+  const { dbClient, dbConnection, migrate } = await import('@lib/data-db-shared');
+
   await migrate(dbClient, { migrationsFolder: config.out ?? '' });
   await dbConnection.end();
 }

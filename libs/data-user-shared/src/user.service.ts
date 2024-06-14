@@ -1,6 +1,6 @@
 import { dbClient, eq, inArray, or, sql } from '@lib/data-db-shared';
 import { genSaltSync, hashSync } from '@lib/data-util-shared';
-import { type CreateUser, type User, UserTable } from '../src/user.model';
+import { type CreateUser, type User, UserTable } from './user.schema';
 
 export const UserService = {
   async getByIdQuery(userId: string): Promise<Partial<User> | undefined> {
