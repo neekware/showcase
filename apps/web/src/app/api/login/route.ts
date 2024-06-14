@@ -1,8 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server';
+import { AuthService } from '@lib/data-auth-shared';
 import { type LoginFormInputs, LoginFormModel } from '@lib/data-model-shared';
 import { validateForm } from '@lib/data-util-shared';
-
-// import { AuthService } from '@repo/nx-auth';
 
 // POST /api/login
 export async function POST(req: NextRequest) {
@@ -14,7 +13,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: result?.message });
   }
 
-  const user = { password: '' }; // await AuthService.login(data);
+  const user = await AuthService.login(data);
   if (!user) {
     // no such user or invalid password
     return NextResponse.json({ error: true, message: 'No such user, or invalid password' });

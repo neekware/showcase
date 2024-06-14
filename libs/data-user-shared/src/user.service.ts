@@ -1,12 +1,12 @@
-import { dB, eq, inArray, or, sql } from '@lib/data-db-shared';
-import { genSaltSync, hashSync } from 'bcryptjs';
+import { dbClient, eq, inArray, or, sql } from '@lib/data-db-shared';
+import { genSaltSync, hashSync } from '@lib/data-util-shared';
 import { type CreateUser, type User, UserTable } from '../src/user.model';
 
 export const UserService = {
   async getByIdQuery(userId: string): Promise<Partial<User> | undefined> {
     let user = undefined;
     try {
-      user = await dB
+      user = await dbClient
         .select()
         .from(UserTable)
         .where(eq(UserTable.id, userId))
@@ -22,7 +22,7 @@ export const UserService = {
   async getByEmailQuery(email: string): Promise<Partial<User> | undefined> {
     let user = undefined;
     try {
-      user = await dB
+      user = await dbClient
         .select()
         .from(UserTable)
         .where(sql`LOWER(${UserTable.email}) = LOWER(${email})`)
@@ -38,7 +38,7 @@ export const UserService = {
   async getByPhoneQuery(phone: string): Promise<Partial<User> | undefined> {
     let user = undefined;
     try {
-      user = await dB
+      user = await dbClient
         .select()
         .from(UserTable)
         .where(eq(UserTable.phone, phone))
@@ -54,7 +54,7 @@ export const UserService = {
   async getByPhoneOrEmailQuery(phone: string, email: string): Promise<Partial<User> | undefined> {
     let user = undefined;
     try {
-      user = await dB
+      user = await dbClient
         .select()
         .from(UserTable)
         .where(or(eq(UserTable.phone, phone), sql`LOWER(${UserTable.email}) = LOWER(${email})`))
@@ -70,7 +70,7 @@ export const UserService = {
   async getByIdsQuery(userIds: string[]): Promise<Partial<User>[]> {
     let users = undefined;
     try {
-      users = await dB.select().from(UserTable).where(inArray(UserTable.id, userIds));
+      users = await dbClient.select().from(UserTable).where(inArray(UserTable.id, userIds));
       if (users) {
         return users;
       }
@@ -83,7 +83,7 @@ export const UserService = {
     const salt = genSaltSync(10);
     const password = hashSync(user.password ?? '', salt);
 
-    const [newUser] = await dB
+    const [newUser] = await dbClient
       .insert(UserTable)
       .values({ ...user, password } as CreateUser)
       .returning();

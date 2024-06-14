@@ -7,16 +7,23 @@
     "clean": "rm -rf .next coverage",
     "clean:mods": "rm -rf node_modules",
     "__ACTION_RELATED__": "__________________",
-    "dev": "next dev --turbo",
-    "build": "next build",
-    "start": "pnpm build && next start",
+    "build:prod": "cp ./env/prod .env && next build",
+    "build:ci": "cp ./env/ci .env && next build",
+    "dev": "cp ./env/dev .env && next dev --turbo",
+    "start": "next build && next start",
     "__TEST_RELATED__": "__________________",
-    "lint": "next lint --no-cache"
+    "lint": "next lint --no-cache",
+    "__DATABASE_RELATED__": "",
+    "db:gen": "drizzle-kit generate --config  ./src/db/config.ts",
+    "db:sync": "DB_MIGRATING=true node -r esbuild-register ./src/db/migrate.ts",
+    "db:seed": "DB_SEEDING=true node -r esbuild-register ./src/db/seeds/seed.ts",
+    "db:show": "drizzle-kit studio --config  ./src/db/config.ts --port 5555"
   },
   "dependencies": {
     "next": "14.2.4",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "postcss": "^8.4.38",

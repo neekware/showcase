@@ -2,10 +2,8 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { type LoginFormInputs } from '@lib/data-model-shared';
 import { UserService } from '@lib/data-user-shared';
-import { compareSync, dotEnvConfig } from '@lib/data-util-shared';
+import { compareSync } from '@lib/data-util-shared';
 import { type JWTPayload, jwtVerify, SignJWT } from 'jose';
-
-dotEnvConfig();
 
 // Auth secret must be set in the environment or throw an error
 if (!process.env.AUTH_SECRET) {

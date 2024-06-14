@@ -1,4 +1,4 @@
-import { createHash } from 'crypto';
+import crypto from 'crypto-js';
 
 /**
  * Signs an object by generating a hash of its properties (excluding the signature property) and assigning it to the signature property.
@@ -10,7 +10,7 @@ import { createHash } from 'crypto';
 export function sign<T extends { signature: string }>(obj: T): T {
   // eslint-disable-next-line no-unused-vars
   const { signature, ...newObj } = obj;
-  const hash = createHash('sha256').update(JSON.stringify(newObj).toString()).digest('hex');
+  const hash = crypto.MD5(JSON.stringify(newObj)).toString();
 
   return { ...obj, signature: hash } as T;
 }

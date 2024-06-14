@@ -1,4 +1,4 @@
-import { createHash } from 'crypto';
+import crypto from 'crypto-js';
 import { sign, verify } from '../src/crypto';
 
 interface TestObject {
@@ -11,9 +11,7 @@ describe('sign', () => {
     const obj: TestObject = { data: 'test', signature: '' };
     const signedObj = sign(obj);
 
-    const hash = createHash('sha256')
-      .update(JSON.stringify({ data: 'test' }))
-      .digest('hex');
+    const hash = crypto.MD5(JSON.stringify({ data: 'test' })).toString();
     expect(signedObj.signature).toBe(hash);
   });
 

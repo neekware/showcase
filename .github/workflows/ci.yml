@@ -62,7 +62,7 @@ jobs:
       # Build the application
       - name: Build application
         if: matrix.step == 'build'
-        run: pnpm build
+        run: pnpm build:prod
 
       # Run tests
       - name: Run tests

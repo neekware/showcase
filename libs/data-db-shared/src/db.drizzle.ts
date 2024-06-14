@@ -1,30 +1,58 @@
-import { dotEnvConfig } from '@lib/data-util-shared';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 
-dotEnvConfig();
-
-if (!process.env.DB_URL) {
-  throw new Error(`DB_URL environment variable is required ${process.env}`);
+interface DatabaseConfig {
+  quiteMode?: (notice: postgres.Notice) => void;
+  maxConnection: number;
+  dbUrl: string;
+  logger: boolean;
 }
 
-// if in migration or seeding mode, only allow one connection, otherwise use the default
-const maxConnection = process.env.DB_MIGRATING || process.env.DB_SEEDING ? 1 : undefined;
-// if in seeding mode, suppress notices
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const quiteMode = process.env.DB_SEEDING ? () => {} : undefined;
-
-export const connection = postgres(
-  `${process.env.DB_URL}${process.env.DB_SSL ? '?sslmode=require' : ''}`,
-  {
-    max: maxConnection,
-    onnotice: quiteMode,
+const getDbConfig = (): DatabaseConfig => {
+  const dbUrl = process.env.DB_URL;
+  if (!dbUrl) {
+    throw new Error('DB_URL environment variable is required');
   }
-);
 
-// create a new instance of Drizzle
-export const dB = drizzle(connection, {
-  logger: !!process.env.DB_DEBUG,
-});
+  return {
+    quiteMode: process.env.DB_SEEDING
+      ? (notice: postgres.Notice) => console.log(notice)
+      : undefined,
+    maxConnection: process.env.DB_MIGRATING || process.env.DB_SEEDING ? 1 : 5, // Default max connections
+    dbUrl: `${dbUrl}${process.env.DB_SSL ? '?sslmode=require' : ''}`,
+    logger: Boolean(process.env.DB_DEBUG),
+  };
+};
 
-export type DbType = typeof dB;
+const getDbConnection = (cfg: DatabaseConfig) => {
+  return postgres(cfg.dbUrl, {
+    max: cfg.maxConnection,
+    onnotice: cfg.quiteMode,
+  });
+};
+
+const getDatabaseInfo = () => {
+  const dbCfg = getDbConfig();
+  const dbConnection = getDbConnection(dbCfg);
+  const dbClient = drizzle(dbConnection, { logger: dbCfg.logger });
+  return { dbConnection, dbClient };
+};
+
+let dbConnection: ReturnType<typeof getDbConnection>;
+let dbClient: ReturnType<typeof drizzle>;
+
+const initializeDatabase = () => {
+  if (!dbConnection || !dbClient) {
+    const dbInfo = getDatabaseInfo();
+    dbConnection = dbInfo.dbConnection;
+    dbClient = dbInfo.dbClient;
+  }
+  return { dbConnection, dbClient };
+};
+
+// Initialize database connection and client
+const { dbConnection: conn, dbClient: client } = initializeDatabase();
+type DbType = typeof client;
+
+// Export database connection and client
+export { conn as dbConnection, client as dbClient, type DbType };
