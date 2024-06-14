@@ -3,7 +3,7 @@ import {
   dbClient,
   dbConnection,
   getTableName,
-  PostgresError,
+  postgres,
   sql,
   type Table,
 } from '@lib/data-db-shared';
@@ -22,7 +22,7 @@ async function resetTable(db: any, table: Table) {
   try {
     await dbClient.execute(sql.raw(`TRUNCATE TABLE "${tableName}" RESTART IDENTITY CASCADE`));
   } catch (error: unknown) {
-    if (error instanceof PostgresError && error.message.includes('does not exist')) {
+    if (error instanceof postgres.PostgresError && error.message.includes('does not exist')) {
       // eslint-disable-next-line no-console
       console.warn(`Table "${tableName}" does not exist. Skipping truncate.`);
     } else {
