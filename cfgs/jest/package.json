@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "files": [
-    "jest-next.js",
-    "jest-server.js"
+    "next.js",
+    "node.js"
   ]
 }

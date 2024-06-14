@@ -1,5 +1,5 @@
 module.exports = {
-  ...require('./common'),
+  resetMocks: true,
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['@testing-library/jest-dom'],
   collectCoverageFrom: ['**/src/**/*.{js,ts,jsx,tsx}'],
@@ -10,4 +10,5 @@ module.exports = {
   },
   coveragePathIgnorePatterns: [],
   coverageThreshold: null,
+  moduleDirectories: ['node_modules'],
 };
