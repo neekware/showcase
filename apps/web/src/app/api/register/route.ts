@@ -5,7 +5,6 @@ import { validateForm } from '@lib/data-util-shared';
 
 // POST /api/register
 export async function POST(req: NextRequest) {
-  console.log('POST /api/register');
   const data = (await req.json()) as RegisterFormInputs;
   const result = await validateForm<RegisterFormInputs>(RegistrationFormModel, data);
 

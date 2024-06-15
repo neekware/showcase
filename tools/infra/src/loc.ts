@@ -24,8 +24,6 @@ Note: \`loc\` should be installed on your system, in order to generate the above
  * https://github.com/renke/markdown-replace-section/issues/1
  */
 async function main() {
-  console.log(projDir);
-  console.log(`Excluding: ${EXCLUDE_LIST}`);
   const cmd = `cd ${projDir} && git ls-files | grep -vE '${EXCLUDE_LIST}' | xargs loc`;
   console.log(`Running: ${cmd}`);
   const loc = await execute(cmd, !DEBUG);

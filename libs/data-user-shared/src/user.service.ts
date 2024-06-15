@@ -80,8 +80,6 @@ export const UserService = {
     return users;
   },
   async createUser(data: Partial<CreateUser>): Promise<CreateUser | undefined> {
-    console.log('Creating user', data);
-
     try {
       const user = await UserService.getByEmailQuery(data.email!);
       if (user) {
@@ -102,8 +100,6 @@ export const UserService = {
 
     const salt = genSaltSync(10);
     const passwordHashed = hashSync(data.password!, salt);
-
-    console.log('Creating user', data);
 
     let insertedUser: User | undefined;
     try {
