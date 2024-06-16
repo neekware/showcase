@@ -24,28 +24,39 @@ import {
 } from '@lib/ui-vendor-next';
 import { type z } from 'zod';
 
+const useLoginForm = () => {
+  const form = useForm<z.infer<typeof LoginFormModel>>({
+    resolver: zodResolver(LoginFormModel),
+    defaultValues: { email: '', password: '' },
+    mode: 'onChange',
+  });
+
+  const debouncedEmail = useDebounce(form.watch('email'), 500);
+  const debouncedPassword = useDebounce(form.watch('password'), 500);
+
+  return {
+    form,
+    debouncedEmail,
+    debouncedPassword,
+  };
+};
+
+const loginUser = async (input: z.infer<typeof LoginFormModel>) => {
+  const response = await fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
+  return response;
+};
+
 export const LoginForm: React.FC = () => {
   const [_, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof LoginFormModel>>({
-    resolver: zodResolver(LoginFormModel),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-    mode: 'onChange', // This enables the form to be validated on each change
-  });
+  const { form, debouncedEmail, debouncedPassword } = useLoginForm();
 
-  const { watch, formState } = form;
-
-  // Watch all fields with debouncing
-  const debouncedEmail = useDebounce(watch('email'), 500);
-  const debouncedPassword = useDebounce(watch('password'), 500);
-  const { isValid } = formState; // Extract isValid from formState
-
-  // React to changes using useEffect
   useEffect(() => {
     setError('');
   }, [debouncedEmail, debouncedPassword]);
@@ -53,14 +64,7 @@ export const LoginForm: React.FC = () => {
   const onSubmit: SubmitHandler<LoginFormInputs> = async (input: LoginFormInputs) => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(input),
-      });
-
+      const response = await loginUser(input);
       if (!response.ok) {
         setError('An error occurred. Please try again.');
       }
@@ -122,7 +126,7 @@ export const LoginForm: React.FC = () => {
           )}
         />
         <div className="flex w-full items-center justify-between">
-          <Button type="submit" disabled={!isValid || isLoading}>
+          <Button type="submit" disabled={!form.formState.isValid || isLoading}>
             Login
           </Button>
           {isLoading ? (

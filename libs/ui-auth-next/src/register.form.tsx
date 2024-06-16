@@ -24,46 +24,47 @@ import {
 } from '@lib/ui-vendor-next';
 import { type z } from 'zod';
 
+const useRegisterForm = () => {
+  const form = useForm<z.infer<typeof RegistrationFormModel>>({
+    resolver: zodResolver(RegistrationFormModel),
+    defaultValues: { email: '', password: '' },
+    mode: 'onChange',
+  });
+
+  const debouncedEmail = useDebounce(form.watch('email'), 500);
+  const debouncedPassword = useDebounce(form.watch('password'), 500);
+
+  return {
+    form,
+    debouncedEmail,
+    debouncedPassword,
+  };
+};
+
+const registerUser = async (input: z.infer<typeof RegistrationFormModel>) => {
+  const response = await fetch('/api/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
+  return response;
+};
+
 export const RegisterForm: React.FC = () => {
   const [_, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof RegistrationFormModel>>({
-    resolver: zodResolver(RegistrationFormModel),
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      password: '',
-    },
-    mode: 'onChange', // This enables the form to be validated on each change
-  });
+  const { form, debouncedEmail, debouncedPassword } = useRegisterForm();
 
-  const { watch, formState } = form;
-
-  // Watch all fields with debouncing
-  // const debouncedForm = useDebounce(watch(), 500);
-
-  const { isValid } = formState; // Extract isValid from formState
-
-  // // React to changes using useEffect
-  // useEffect(() => {
-  //   setError('');
-  // }, [debouncedForm]);
+  useEffect(() => {
+    setError('');
+  }, [debouncedEmail, debouncedPassword]);
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (input: RegisterFormInputs) => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(input),
-      });
-
+      const response = await registerUser(input);
       if (!response.ok) {
         setError('An error occurred. Please try again.');
       }
@@ -89,7 +90,7 @@ export const RegisterForm: React.FC = () => {
           <FormField
             control={form.control}
             name="firstName"
-            render={(field) => (
+            render={({ field }) => (
               <FormItem>
                 <FormItemLabel>First Name</FormItemLabel>
                 <FormItemControl>
@@ -108,7 +109,7 @@ export const RegisterForm: React.FC = () => {
           <FormField
             control={form.control}
             name="lastName"
-            render={(field) => (
+            render={({ field }) => (
               <FormItem>
                 <FormItemLabel>Last Name</FormItemLabel>
                 <FormItemControl>
@@ -128,7 +129,7 @@ export const RegisterForm: React.FC = () => {
         <FormField
           control={form.control}
           name="email"
-          render={(field) => (
+          render={({ field }) => (
             <FormItem>
               <FormItemLabel>Email</FormItemLabel>
               <FormItemControl>
@@ -148,7 +149,7 @@ export const RegisterForm: React.FC = () => {
         <FormField
           control={form.control}
           name="phone"
-          render={(field) => (
+          render={({ field }) => (
             <FormItem>
               <FormItemLabel>Phone</FormItemLabel>
               <FormItemControl>
@@ -167,7 +168,7 @@ export const RegisterForm: React.FC = () => {
         <FormField
           control={form.control}
           name="password"
-          render={(field) => (
+          render={({ field }) => (
             <FormItem>
               <FormItemLabel>Password</FormItemLabel>
               <FormItemControl>
@@ -184,7 +185,7 @@ export const RegisterForm: React.FC = () => {
           )}
         />
         <div className="flex w-full items-center justify-between">
-          <Button type="submit" disabled={!isValid || isLoading}>
+          <Button type="submit" disabled={!form.formState.isValid || isLoading}>
             Register
           </Button>
           {isLoading ? (

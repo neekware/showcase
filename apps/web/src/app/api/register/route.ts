@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { AuthService } from '@lib/data-auth-shared';
+import { logger } from '@lib/data-logger-shared';
 import { type RegisterFormInputs, RegistrationFormModel } from '@lib/data-model-shared';
 import { validateForm } from '@lib/data-util-shared';
 
@@ -16,8 +17,9 @@ export async function POST(req: NextRequest) {
   try {
     user = await AuthService.register(data);
   } catch (error) {
-    console.error('Failed to create a user', error);
-    return NextResponse.json({ error: true, message: error });
+    const { message } = error as Error;
+    logger.error('Failed to create a user: ', message);
+    return NextResponse.json({ error: true, message });
   }
 
   if (!user) {
