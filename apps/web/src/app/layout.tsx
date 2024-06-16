@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
                   mobileSettings={mobileSettings}
                   className="mb-10"
                 />
-                <div className="flex-1">{children}</div>
+                <div className="flex-1 p-2">{children}</div>
                 <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
               </div>
               <Breakpoints />

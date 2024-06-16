@@ -5,7 +5,7 @@ export const metadata = {
   title: 'About | Showcase',
 };
 
-export default function About(): JSX.Element {
+export default function About() {
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
       <section className="py-12 md:py-24 lg:py-32">

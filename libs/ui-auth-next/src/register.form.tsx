@@ -85,44 +85,46 @@ export const RegisterForm: React.FC = () => {
   return (
     <Form {...form}>
       <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="mb-2">
-        <FormField
-          control={form.control}
-          name="firstName"
-          render={(field) => (
-            <FormItem>
-              <FormItemLabel>First Name</FormItemLabel>
-              <FormItemControl>
-                <Input
-                  {...field}
-                  type="firstName"
-                  placeholder="Your first name"
-                  {...form.register('firstName')}
-                  onBlur={() => form.trigger('firstName')}
-                />
-              </FormItemControl>
-              <FormItemError />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="lastName"
-          render={(field) => (
-            <FormItem>
-              <FormItemLabel>Last Name</FormItemLabel>
-              <FormItemControl>
-                <Input
-                  {...field}
-                  type="lastName"
-                  placeholder="Your last name"
-                  {...form.register('lastName')}
-                  onBlur={() => form.trigger('lastName')}
-                />
-              </FormItemControl>
-              <FormItemError />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-col gap-y-4 sm:grid sm:grid-cols-2 sm:gap-2">
+          <FormField
+            control={form.control}
+            name="firstName"
+            render={(field) => (
+              <FormItem>
+                <FormItemLabel>First Name</FormItemLabel>
+                <FormItemControl>
+                  <Input
+                    {...field}
+                    type="firstName"
+                    placeholder="Your first name"
+                    {...form.register('firstName')}
+                    onBlur={() => form.trigger('firstName')}
+                  />
+                </FormItemControl>
+                <FormItemError fixedHeight />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="lastName"
+            render={(field) => (
+              <FormItem>
+                <FormItemLabel>Last Name</FormItemLabel>
+                <FormItemControl>
+                  <Input
+                    {...field}
+                    type="lastName"
+                    placeholder="Your last name"
+                    {...form.register('lastName')}
+                    onBlur={() => form.trigger('lastName')}
+                  />
+                </FormItemControl>
+                <FormItemError fixedHeight />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
           name="email"
@@ -158,7 +160,7 @@ export const RegisterForm: React.FC = () => {
                   onBlur={() => form.trigger('phone')}
                 />
               </FormItemControl>
-              <FormItemError />
+              <FormItemError fixedHeight />
             </FormItem>
           )}
         />

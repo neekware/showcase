@@ -16,7 +16,7 @@ import {
   Separator,
 } from '@lib/ui-vendor-next';
 
-export default function Login() {
+export default function Register() {
   const [state] = useAppState();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Login() {
   }, []);
 
   return (
-    <Card className="mx-auto w-[350px] sm:w-[500px]">
+    <Card className="mx-auto w-full sm:w-[500px]">
       <CardHeader className="-mb-2.5 pt-4">
         <div className="flex">
           <div className="flex grow flex-col gap-1.5">
