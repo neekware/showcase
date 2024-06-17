@@ -155,7 +155,7 @@ export const RegisterForm: React.FC = () => {
               <FormItemControl>
                 <Input
                   {...field}
-                  type="phone"
+                  type="tel"
                   placeholder="Your phone number"
                   {...form.register('phone')}
                   onBlur={() => form.trigger('phone')}
