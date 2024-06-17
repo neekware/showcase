@@ -31,7 +31,7 @@ export default function Register() {
       <CardHeader className="-mb-2.5 pt-4">
         <div className="flex">
           <div className="flex grow flex-col gap-1.5">
-            <CardTitle>Account Registration</CardTitle>
+            <CardTitle className="text-xl sm:text-2xl">Account Registration</CardTitle>
             <CardDescription>Create your account</CardDescription>
           </div>
           <div>

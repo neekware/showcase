@@ -31,7 +31,7 @@ export default function Login() {
       <CardHeader className="-mb-2.5 pt-4">
         <div className="flex">
           <div className="flex grow flex-col gap-1.5">
-            <CardTitle>Account Login</CardTitle>
+            <CardTitle className="text-xl sm:text-2xl">Account Login</CardTitle>
             <CardDescription>Sign into your account</CardDescription>
           </div>
           <div>
