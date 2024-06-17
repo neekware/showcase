@@ -2,7 +2,6 @@ import type { Config } from 'tailwindcss';
 
 const baseConfig: Config = {
   darkMode: ['class'],
-  important: true,
   content: [],
   theme: {
     fontSize: {
