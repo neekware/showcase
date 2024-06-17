@@ -91,7 +91,7 @@ export const LoginForm: React.FC = () => {
           name="email"
           render={(field) => (
             <FormItem>
-              <FormItemLabel>Email</FormItemLabel>
+              <FormItemLabel className="font-bold">Email</FormItemLabel>
               <FormItemControl>
                 <Input
                   {...field}
@@ -111,7 +111,7 @@ export const LoginForm: React.FC = () => {
           name="password"
           render={(field) => (
             <FormItem>
-              <FormItemLabel>Password</FormItemLabel>
+              <FormItemLabel className="font-bold">Password</FormItemLabel>
               <FormItemControl>
                 <Input
                   {...field}
@@ -126,7 +126,11 @@ export const LoginForm: React.FC = () => {
           )}
         />
         <div className="flex w-full items-center justify-between">
-          <Button type="submit" disabled={!form.formState.isValid || isLoading}>
+          <Button
+            className="font-bold"
+            type="submit"
+            disabled={!form.formState.isValid || isLoading}
+          >
             Login
           </Button>
           {isLoading ? (
