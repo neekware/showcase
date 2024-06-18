@@ -91,7 +91,7 @@ export const RegisterForm: React.FC = () => {
             control={form.control}
             name="firstName"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="-mb-3">
                 <FormItemLabel className="font-bold">First Name</FormItemLabel>
                 <FormItemControl>
                   <Input
