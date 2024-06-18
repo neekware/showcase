@@ -1,14 +1,11 @@
 import Link from 'next/link';
-import { log } from '@repo/ag-logger';
-import { Button } from '@repo/nx-ui-vendor';
+import { Button } from '@lib/ui-vendor-next';
 
 export const metadata = {
   title: 'More | Showcase',
 };
 
 export default function More(): JSX.Element {
-  log('Hey! This is the More page.');
-
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
       <section className="py-12 md:py-24 lg:py-32">

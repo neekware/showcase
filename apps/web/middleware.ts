@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { AuthService } from '@repo/nx-auth';
+import { AuthService } from '@lib/data-auth-shared';
 
 export async function middleware(request: NextRequest) {
   await AuthService.updateSession(request);

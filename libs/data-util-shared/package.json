@@ -1,0 +1,19 @@
+{
+  "name": "@lib/data-util-shared",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist coverage",
+    "clean:mods": "rm -rf node_modules",
+    "lint": "eslint ./src --fix",
+    "test": "jest --coverage --color --verbose"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "next": "14.2.4",
+    "react": "^18.3.1",
+    "zod": "^3.23.8"
+  }
+}

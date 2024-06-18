@@ -1,17 +1,15 @@
 {
-  "name": "@repo/tailwind-config",
+  "name": "@cfg/tailwind",
   "version": "0.0.1",
   "private": true,
-  "exports": {
-    ".": "./tailwind.config.ts"
-  },
   "scripts": {
     "clean:mods": "rm -rf node_modules"
   },
-  "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
-    "@types/node": "^20.14.2",
+  "dependencies": {
     "tailwindcss": "^3.4.4",
     "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
   }
 }

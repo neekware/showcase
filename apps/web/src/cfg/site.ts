@@ -1,5 +1,5 @@
-import { mdiCog, mdiGithub, mdiLogin, mdiLogout, mdiTwitter, mdiWrench } from '@mdi/js';
-import { type SiteSettings } from '@repo/ag-dto';
+import { type SiteSettings } from '@lib/data-model-shared';
+import { mdiCog, mdiGithub, mdiLogin, mdiLogout, mdiTwitter, mdiWrench } from '@lib/ui-icon-next';
 import { availableThemes } from './theme';
 
 export const metaSettings = {
@@ -16,7 +16,7 @@ export const siteSettings: SiteSettings = {
   themes: availableThemes,
   navTopLinks: [
     {
-      title: 'Home 3',
+      title: 'Home',
       href: '/',
     },
     {
@@ -55,23 +55,23 @@ export const siteSettings: SiteSettings = {
     product: [
       {
         title: 'Web UI',
-        href: '/product',
+        href: '/products',
       },
       {
         title: 'Email',
-        href: '/product',
+        href: '/products',
       },
       {
         title: 'SMS',
-        href: '/product',
+        href: '/products',
       },
       {
         title: 'Legacy Mail',
-        href: '/product',
+        href: '/products',
       },
       {
         title: 'Driving Assist',
-        href: '/product',
+        href: '/products',
       },
       {
         title: 'Sign Up',
@@ -81,37 +81,37 @@ export const siteSettings: SiteSettings = {
     resources: [
       {
         title: 'Docs',
-        href: '/more',
+        href: '/products',
       },
       {
         title: 'Export',
-        href: '/more',
+        href: '/products',
       },
       {
         title: 'Pricing',
-        href: '/more',
+        href: '/products',
       },
       {
         title: 'Guides',
-        href: '/more',
+        href: '/products',
       },
     ],
     company: [
       {
         title: 'About',
-        href: '/about',
+        href: '/products',
       },
       {
         title: 'Blog',
-        href: '/more',
+        href: '/products',
       },
       {
         title: 'Careers',
-        href: '/more',
+        href: '/products',
       },
       {
         title: 'Contact Us',
-        href: '/contact',
+        href: '/products',
       },
     ],
     social: [

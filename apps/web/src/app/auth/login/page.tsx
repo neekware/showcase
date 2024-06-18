@@ -3,9 +3,9 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { mdiFolderPlus, mdiLogin } from '@mdi/js';
-import { Icon } from '@mdi/react';
-import { LoginForm } from '@repo/nx-ui-form';
+import { useAppState } from '@lib/data-store-next';
+import { LoginForm } from '@lib/ui-auth-next';
+import { Icon, mdiFolderPlus, mdiLogin } from '@lib/ui-icon-next';
 import {
   Card,
   CardContent,
@@ -14,8 +14,7 @@ import {
   CardHeader,
   CardTitle,
   Separator,
-} from '@repo/nx-ui-vendor';
-import { useAppState } from '@repo/nx-util';
+} from '@lib/ui-vendor-next';
 
 export default function Login() {
   const [state] = useAppState();
@@ -28,11 +27,11 @@ export default function Login() {
   }, []);
 
   return (
-    <Card className="mx-auto w-[350px] sm:w-[500px]">
+    <Card className="mx-auto w-full sm:w-[500px]">
       <CardHeader className="-mb-2.5 pt-4">
         <div className="flex">
           <div className="flex grow flex-col gap-1.5">
-            <CardTitle>Account Login</CardTitle>
+            <CardTitle className="text-xl sm:text-2xl">Account Login</CardTitle>
             <CardDescription>Sign into your account</CardDescription>
           </div>
           <div>
@@ -51,7 +50,7 @@ export default function Login() {
           href="/auth/register"
           className="hover:text-foreground/60 flex gap-1 transition-colors"
         >
-          <Icon path={mdiFolderPlus} size={1} />
+          <Icon path={mdiFolderPlus} size={1} className="text-primary" />
           Register
         </Link>
       </CardFooter>

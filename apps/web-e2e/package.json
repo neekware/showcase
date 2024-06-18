@@ -1,0 +1,22 @@
+{
+  "name": "web-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "__REPO_RELATED__": "____________________",
+    "clean:mods": "rm -rf node_modules",
+    "__FORMAT_RELATED__": "__________________",
+    "lint": "eslint ./src --fix",
+    "__TEST_RELATED__": "__________________",
+    "e2e": "node_modules/.bin/playwright test",
+    "e2e:report": "node_modules/.bin/playwright show-report reports/report"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "playwright": "^1.44.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "typescript": "^5.4.5"
+  }
+}

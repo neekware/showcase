@@ -1,6 +1,7 @@
 # Showcase
 
-[![status-image]][status-link]
+<!-- [![status-image]][status-link] -->
+
 [![coverage-image]][coverage-link]
 
 ## Overview
@@ -15,10 +16,11 @@ The project has the following structure:
 ├── README.md
 ├── apps # Directory for applications
 │ └── web # Web application built using Next.js
-├── configs # tsconfig, jest, eslint, tailwind, ... etc.
+| └── web-e2e # E2E tests for the web application
+├── cfgs # tsconfig, jest, eslint, tailwind, ... etc.
 ├── libs # logger, ui, vendor, ... etc.
-├── tools # Node.js scripts and tools
-│ └── utils # Utility scripts and tools
+├── tools # Node.js scripts, infrastructure tools & utilities
+│ └── infra # Utility scripts and tools
 
 ```
 
@@ -26,11 +28,10 @@ The project has the following structure:
 
 To use this mono-repo project, please follow these steps:
 
-First, prepare your development environment. You need to install Node version 16.0.0 or higher. Additionally, install `turbo` and `pnpm` globally by running the following commands:
+First, prepare your development environment. You need to install Node version 18.0.0 or higher. Additionally, install `pnpm` globally by running the following commands:
 
 ```bash
 npm install -g pnpm
-npm install -g turbo
 ```
 
 Next, clone the mono-repo:
@@ -50,51 +51,53 @@ You can format all files of a specific type:
 
 ```bash
 # Example: Format all .ts, .tsx, .json, .html, .css, .scss files
-pnpm run format
+pnpm format
 ```
 
 To run lint, build and test.
 
 ```bash
 # lint all apps/packages
-pnpm run lint
+pnpm lint
 
 # build all apps/packages
-pnpm run build
+pnpm build
 
 # test all apps/packages
-pnpm run test
+pnpm test
 ```
 
 To run code coverage, coveralls (note: ci/cd).
 
 ```bash
 # run test with coverage for all apps/packages
-pnpm run coverage
+pnpm coverage
 
 # combine test coverage for all apps/packages
-pnpm run coveralls
+pnpm coveralls
 ```
 
 To clean build,test,lint cache artifact.
 
 ```bash
-# clean all lint, build, test, ... etc. artifacts
-pnpm run clean # clean all artifacts
-pnpm run clean:mods # clean all node_modules
-pnpm i # install all dependencies again after clean
+# clean all lint, build, test, ...
+pnpm clean
+
+pnpm clean:arts # clean all artifacts e2e, coverage, ...
+
+pnpm clean:mod # clean all node_modules
+
+pnpm reset:all # clean all node_modules, artifacts, and reinstall packages
 ```
 
 To execute long-running processes.
 
 ```bash
 # run the apps in development (watch mode)
-pnpm run dev # run dev mode with watch enabled
+pnpm dev
 
 # run the apps from the `build` artifacts (prod mode)
-pnpm run build #  build the web, then
-
-pnpm run start # run prod mode, after build
+pnpm start
 ```
 
 ### To Install New Packages
@@ -112,6 +115,24 @@ pnpm -w add -D <package-name>
 # Example: pnpm workspace web add uuid
 # (where "web" is the workspace and "uuid" is the external dependency)
 pnpm add <package-name> --filter <workspace-name>
+```
+
+To execute end-to-end tests.
+
+```bash
+# run the e2e test (headless mode)
+# Development server will be started automatically (pnpm run dev)
+pnpm e2e
+
+# run the e2e test (ui mode)
+# Development server will be started automatically (pnpm run dev)
+pnpm e2e -- --ui
+
+# run the e2e test (headless mode) against the custom target URL
+TARGET_URL=https://exmple.com; pnpm e2e
+
+# run the e2e test (ui mode) against the custom target URL
+TARGET_URL=https://exmple.com; pnpm e2e -- --ui
 ```
 
 ### Contribution
@@ -154,7 +175,7 @@ Local Development    |        |         |
                                    Production
 ```
 
-### Community Guidelines
+#### Community Guidelines
 
 - There are no guarantees that all PRs will be accepted.
 - Respect each other and be objective when raising PRs, making comments, etc.
@@ -177,16 +198,16 @@ X.Y.Z Semantic Versioning
 ```txt<br>--------------------------------------------------------------------------------
  Language             Files        Lines        Blank      Comment         Code
 --------------------------------------------------------------------------------
- Typescript JSX          76         5157          504           10         4643
- TypeScript              94         2877          309          386         2182
- JSON                    59         1645            0            0         1645
- CSS                      3          864          249            3          612
- JavaScript              22          597           20          116          461
- YAML                     5          339           41           60          238
- Markdown                 5          303           86            0          217
- SQL                      1           39            0            3           36
+ Typescript JSX          78         5315          512           11         4792
+ TypeScript              78         2872          329          263         2280
+ JSON                    82         1312            0            0         1312
+ CSS                      3          874          251            3          620
+ JavaScript              37          509           14           80          415
+ Markdown                 4          339           99            0          240
+ YAML                     3          216           24           19          173
+ SQL                      1           23            0            1           22
 --------------------------------------------------------------------------------
- Total                  265        11821         1209          578        10034
+ Total                  286        11460         1229          377         9854
 --------------------------------------------------------------------------------
 ```
 

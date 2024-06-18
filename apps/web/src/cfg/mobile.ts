@@ -1,4 +1,4 @@
-import { type MobileSettings } from '@repo/ag-dto';
+import { type MobileSettings } from '@lib/data-model-shared';
 
 export const mobileSettings: MobileSettings = {
   topNav: [

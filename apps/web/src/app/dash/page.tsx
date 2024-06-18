@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { log } from '@repo/ag-logger';
-import { Button } from '@repo/nx-ui-vendor';
+import { Button } from '@lib/ui-vendor-next';
 import buildInfo from '../../cfg/config.json';
 
 export const metadata = {
@@ -8,8 +7,6 @@ export const metadata = {
 };
 
 export default function Dash(): JSX.Element {
-  log('Hey! This is the Dash page.');
-
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
       <section className="py-12 md:py-24 lg:py-32">

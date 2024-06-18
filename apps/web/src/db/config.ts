@@ -1,7 +1,5 @@
-import * as dotenv from 'dotenv';
-import { defineConfig } from 'drizzle-kit';
-
-dotenv.config();
+import { defineConfig } from '@lib/data-db-shared';
+import path from 'path';
 
 // get db url or throw error
 if (!process.env.DB_URL) {
@@ -9,7 +7,7 @@ if (!process.env.DB_URL) {
 }
 
 export default defineConfig({
-  schema: ['./node_modules/@repo/ag-user/src/schema'],
+  schema: [path.resolve(__dirname, '../../../../libs/**/*.schema.ts')],
   out: './src/db/migrations',
   dialect: 'postgresql',
   dbCredentials: {

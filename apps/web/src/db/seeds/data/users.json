@@ -1,24 +1,28 @@
 [
   {
-    "name": "Mike Tyson",
+    "firstName": "Mike",
+    "lastName": "Tyson",
     "email": "mike@tyson.com",
     "password": "mike.tyson",
     "role": "ADMIN"
   },
   {
-    "name": "John Smith",
+    "firstName": "John",
+    "lastName": "Smith",
     "email": "john@smith.com",
     "password": "john.smith",
     "role": "STAFF"
   },
   {
-    "name": "Jane Doe",
+    "firstName": "Jane",
+    "lastName": "Doe",
     "email": "jane@doe.com",
     "password": "jane.doe",
     "role": "USER"
   },
   {
-    "name": "Michael Jackson",
+    "firstName": "Michael",
+    "lastName": "Jackson",
     "email": "michael@jackson.com",
     "password": "michael.jackson"
   }

@@ -1,0 +1,17 @@
+{
+  "name": "@lib/ui-auth-next",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist coverage",
+    "clean:mods": "rm -rf node_modules",
+    "lint": "eslint ./src --fix",
+    "test": "jest --coverage --color --verbose"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.6.0",
+    "react": "^18.3.1",
+    "react-hook-form": "^7.51.5",
+    "zod": "^3.23.8"
+  }
+}

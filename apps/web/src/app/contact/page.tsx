@@ -1,5 +1,4 @@
-import { mdiEmailFastOutline } from '@mdi/js';
-import { Icon } from '@mdi/react';
+import { Icon, mdiEmailFastOutline } from '@lib/ui-icon-next';
 import {
   Button,
   Card,
@@ -12,11 +11,11 @@ import {
   Label,
   Separator,
   Textarea,
-} from '@repo/nx-ui-vendor';
+} from '@lib/ui-vendor-next';
 
-export default function Login() {
+export default function Contact() {
   return (
-    <Card className="mx-auto w-[350px] sm:w-[500px]">
+    <Card className="mx-auto w-full sm:w-[500px]">
       <CardHeader className="-mb-2.5 pt-4">
         <div className="flex">
           <div className="flex grow flex-col gap-1.5">

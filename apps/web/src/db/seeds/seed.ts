@@ -1,8 +1,13 @@
 import * as dotenv from 'dotenv';
-import { getTableName, sql, type Table } from 'drizzle-orm';
-import { PostgresError } from 'postgres';
-import { connection, dB } from '@repo/ag-db';
-import { UserTable } from '@repo/ag-user';
+import {
+  dbClient,
+  dbConnection,
+  getTableName,
+  postgres,
+  sql,
+  type Table,
+} from '@lib/data-db-shared';
+import { UserTable } from '@lib/data-user-shared';
 import { seedUser } from './seeder/user';
 
 dotenv.config();
@@ -15,9 +20,9 @@ if (!process.env.DB_SEEDING) {
 async function resetTable(db: any, table: Table) {
   const tableName = getTableName(table);
   try {
-    await dB.execute(sql.raw(`TRUNCATE TABLE "${tableName}" RESTART IDENTITY CASCADE`));
+    await dbClient.execute(sql.raw(`TRUNCATE TABLE "${tableName}" RESTART IDENTITY CASCADE`));
   } catch (error: unknown) {
-    if (error instanceof PostgresError && error.message.includes('does not exist')) {
+    if (error instanceof postgres.PostgresError && error.message.includes('does not exist')) {
       // eslint-disable-next-line no-console
       console.warn(`Table "${tableName}" does not exist. Skipping truncate.`);
     } else {
@@ -29,16 +34,15 @@ async function resetTable(db: any, table: Table) {
 const seedAll = async () => {
   for (const table of [UserTable]) {
     // await db.delete(table); // clear tables without truncating / resetting ids
-    await resetTable(dB, table);
+    await resetTable(dbClient, table);
   }
 
   await seedUser();
 
-  await connection.end();
+  await dbConnection.end();
 };
 
-seedAll().catch((error: unknown) => {
-  // eslint-disable-next-line no-console
-  console.error(error);
-  process.exit(1);
+seedAll().catch((error) => {
+  console.error('Seeding error:', error);
+  throw error;
 });

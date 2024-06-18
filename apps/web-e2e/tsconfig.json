@@ -1,0 +1,12 @@
+{
+  "extends": "../../cfgs/typescript/node.app.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@lib/*": ["../../libs/*"],
+      "@e2e/*": ["./src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "coverage"]
+}

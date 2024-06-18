@@ -1,0 +1,17 @@
+{
+  "name": "@lib/data-db-shared",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist coverage",
+    "clean:mods": "rm -rf node_modules",
+    "lint": "eslint ./src --fix",
+    "test": "jest --coverage --color --verbose"
+  },
+  "dependencies": {
+    "drizzle-kit": "^0.22.7",
+    "drizzle-orm": "^0.31.2",
+    "postgres": "^3.4.4",
+    "zod": "^3.23.8"
+  }
+}

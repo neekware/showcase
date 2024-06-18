@@ -1,0 +1,13 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": "./",
+    "paths": {
+      "@app/*": ["./apps/*"],
+      "@lib/*": ["./libs/*"],
+      "@cfg/*": ["./cfgs/*"]
+    }
+  },
+  "include": ["apps/**/*", "libs/**/*", "cfgs/**/*", "tools/**/*"],
+  "exclude": ["node_modules", "tmp", "dist"]
+}

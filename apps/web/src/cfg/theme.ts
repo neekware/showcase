@@ -1,4 +1,4 @@
-import { type Theme, type ThemeSettings } from '@repo/ag-dto';
+import { type Theme, type ThemeSettings } from '@lib/data-model-shared';
 
 export const availableThemes: Theme[] = [
   {

@@ -1,0 +1,16 @@
+{
+  "name": "@lib/data-user-shared",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist coverage",
+    "clean:mods": "rm -rf node_modules",
+    "lint": "eslint ./src --fix",
+    "test": "jest --coverage --color --verbose"
+  },
+  "dependencies": {
+    "jotai": "2.8.0",
+    "next": "14.2.4",
+    "react": "^18.3.1"
+  }
+}

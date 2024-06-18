@@ -1,0 +1,17 @@
+{
+  "name": "@lib/ui-util-next",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist coverage",
+    "clean:mods": "rm -rf node_modules",
+    "lint": "eslint ./src --fix",
+    "test": "jest --coverage --color --verbose"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "react": "^18.3.1",
+    "tailwind-merge": "^2.3.0"
+  }
+}

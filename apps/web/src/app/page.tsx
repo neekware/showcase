@@ -1,16 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { log } from '@repo/ag-logger';
-import { Button } from '@repo/nx-ui-vendor';
+import { useTranslate } from '@lib/data-i18n-shared';
+import { Button } from '@lib/ui-vendor-next';
 import { siteSettings } from '@web/cfg';
 
-export const metadata = {
-  title: 'Home | Showcase',
-};
-
 export default function Home() {
-  log('Hey! This is the Home page.');
-
+  const t = useTranslate();
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
       <section className="py-1 md:py-24 lg:py-32">
@@ -31,6 +28,7 @@ export default function Home() {
               ) : null}
 
               <h1 className="flex flex-col items-center text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                <div>{t('welcome', 'common')}</div>
                 <div>Showcase</div>
                 <div>UI</div>
               </h1>

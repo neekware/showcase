@@ -1,11 +1,18 @@
 {
-  "name": "@repo/typescript-config",
-  "version": "0.0.0",
+  "name": "@cfg/tsconfig",
+  "version": "0.0.1",
   "private": true,
   "files": [
-    "base.json",
-    "nextjs.json",
-    "react-library.json"
+    "next.app.json",
+    "next.lib.json",
+    "node.app.json",
+    "node.lib.json",
+    "node.tool.json"
   ],
-  "license": "MIT"
+  "scripts": {
+    "clean:mods": "rm -rf node_modules"
+  },
+  "dependencies": {
+    "@total-typescript/tsconfig": "^1.0.4"
+  }
 }

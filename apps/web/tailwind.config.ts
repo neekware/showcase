@@ -1,8 +1,8 @@
 import type { Config } from 'tailwindcss';
-import baseConfig from '@repo/tailwind-config';
+import baseConfig from '../../cfgs/tailwind';
 
 const config: Config = {
   ...baseConfig,
-  content: ['./src/app/**/*.{ts,tsx,html}', '../../libs/**/src/**/*.{ts,tsx,html}'],
+  content: ['./src/**/*.{ts,tsx}', '../../libs/**/src/**/*.{ts,tsx}'],
 };
 export default config;

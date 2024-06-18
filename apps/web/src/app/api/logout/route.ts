@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { AuthService } from '@repo/nx-auth';
+import { AuthService } from '@lib/data-auth-shared';
 
 // POST /api/logout
 export async function POST() {

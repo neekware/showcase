@@ -1,19 +1,9 @@
 {
-  "name": "@repo/jest-presets",
-  "version": "0.0.0",
+  "name": "@cfg/jest",
+  "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "clean": "rm -rf .turbo",
-    "clean:mods": "rm -rf node_modules"
-  },
   "files": [
-    "browser/jest-preset.js",
-    "node/jest-preset.js"
-  ],
-  "dependencies": {
-    "ts-jest": "^29.1.4"
-  },
-  "devDependencies": {
-    "jest-environment-jsdom": "^29.7.0"
-  }
+    "next.js",
+    "node.js"
+  ]
 }

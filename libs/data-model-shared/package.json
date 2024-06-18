@@ -1,0 +1,16 @@
+{
+  "name": "@lib/data-model-shared",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist coverage",
+    "clean:mods": "rm -rf node_modules",
+    "lint": "eslint ./src --fix",
+    "test": "jest --coverage --color --verbose"
+  },
+  "dependencies": {
+    "libphonenumber-js": "^1.11.3",
+    "uuid": "^10.0.0",
+    "zod": "^3.23.8"
+  }
+}
