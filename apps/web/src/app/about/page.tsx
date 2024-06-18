@@ -20,7 +20,7 @@ export default function About() {
             </p>
             <div className="flex justify-start gap-4">
               <Link href="/">
-                <Button>Home</Button>
+                <Button variant="success">Home</Button>
               </Link>
             </div>
           </div>

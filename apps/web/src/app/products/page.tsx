@@ -58,7 +58,7 @@ export default function Products(): JSX.Element {
             </section>
             <div className="flex justify-start gap-4">
               <Link href="/">
-                <Button variant="default">Home</Button>
+                <Button variant="info">Home</Button>
               </Link>
             </div>
           </div>
