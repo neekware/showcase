@@ -1,4 +1,3 @@
-export * from './src/common';
 export * from './src/accordion';
 export * from './src/alert-dialog';
 export * from './src/alert';
