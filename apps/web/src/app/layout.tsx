@@ -10,9 +10,7 @@ import {
 } from '@lib/ui-layout-next';
 import { Toaster } from '@lib/ui-vendor-next';
 import { fontRoboto, metaSettings, mobileSettings, siteSettings } from '@web/cfg';
-import '@web/styles/base.css';
-import '@web/styles/globals.css';
-import '@web/styles/themes.css';
+import '@web/styles/styles.css';
 
 export const generateMetadata = () => metaSettings;
 

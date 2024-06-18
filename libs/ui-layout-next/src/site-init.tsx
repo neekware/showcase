@@ -30,15 +30,17 @@ export function AppInit(): null {
       if (!prevIsLoggedIn && state.auth.isLoggedIn) {
         toast({
           title: 'Login Successful',
-          description: 'Redirecting ...',
-          timeout: 2000,
+          description: 'Enjoy your tour ...',
+          timeout: 20000,
+          variant: 'success',
         });
         router.push('/');
       } else if (prevIsLoggedIn && !state.auth.isLoggedIn) {
         toast({
           title: 'Logout Successful',
-          description: 'Redirecting ...',
-          timeout: 2000,
+          description: 'See you soon ...',
+          timeout: 20000,
+          variant: 'info',
         });
         router.push('/');
       }
