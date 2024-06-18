@@ -96,7 +96,7 @@ export const RegisterForm: React.FC = () => {
                 <FormItemControl>
                   <Input
                     {...field}
-                    type="firstName"
+                    type="text"
                     placeholder="Your first name"
                     {...form.register('firstName')}
                     onBlur={() => form.trigger('firstName')}
@@ -115,7 +115,7 @@ export const RegisterForm: React.FC = () => {
                 <FormItemControl>
                   <Input
                     {...field}
-                    type="lastName"
+                    type="text"
                     placeholder="Your last name"
                     {...form.register('lastName')}
                     onBlur={() => form.trigger('lastName')}
