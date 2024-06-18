@@ -50,7 +50,7 @@ export default function Login() {
           href="/auth/register"
           className="hover:text-foreground/60 flex gap-1 transition-colors"
         >
-          <Icon path={mdiFolderPlus} size={1} />
+          <Icon path={mdiFolderPlus} size={1} className="text-primary" />
           Register
         </Link>
       </CardFooter>

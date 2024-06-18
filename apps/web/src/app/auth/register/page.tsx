@@ -47,7 +47,7 @@ export default function Register() {
       <CardFooter className="-mb-2 flex justify-between pt-4">
         Already have an account?
         <Link href="/auth/login" className="hover:text-foreground/60 flex gap-1 transition-colors">
-          <Icon path={mdiLogin} size={1} />
+          <Icon path={mdiLogin} size={1} className="text-primary" />
           Login
         </Link>
       </CardFooter>
