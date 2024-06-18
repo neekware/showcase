@@ -1,4 +1,4 @@
-import { type ServerResponseType } from '@lib/data-model-shared';
+import { type DataRetrieval } from '@lib/data-model-shared';
 import { ZodSchema } from 'zod';
 
 /**
@@ -7,10 +7,7 @@ import { ZodSchema } from 'zod';
  * @param data form data
  * @returns Promise<ServerResponseType>
  */
-export async function validateForm<T>(
-  model: ZodSchema<T>,
-  data: T
-): Promise<ServerResponseType<T>> {
+export async function validateForm<T>(model: ZodSchema<T>, data: T): Promise<DataRetrieval<T>> {
   const result = model.safeParse(data);
 
   if (result.success) {
