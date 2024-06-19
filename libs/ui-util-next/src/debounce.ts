@@ -1,26 +1,36 @@
 'use client';
 
-// Import the useEffect and useState hooks from React
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-// Define a custom hook called useDebounce
-export const useDebounce = <T>(inputValue: T, delay: number) => {
-  // Initialize the debounced value with the input value
-  const [debounced, setDebounced] = useState<T>(inputValue);
+// Debounce value hook
+export function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
-  // Use the useEffect hook to create a timeout that updates the debounced value
   useEffect(() => {
-    // Create a timeout that updates the debounced value after the specified delay
     const handler = setTimeout(() => {
-      setDebounced(inputValue);
+      setDebouncedValue(value);
     }, delay);
 
-    // Return a cleanup function that clears the timeout when the effect is re-run
     return () => {
       clearTimeout(handler);
     };
-  }, [inputValue, delay]); // Only re-run the effect when inputValue or delay changes
+  }, [value, delay]);
 
-  // Return the debounced value
-  return debounced;
-};
+  return debouncedValue;
+}
+
+export function useDebouncedCallback(callback: (...args: any[]) => void, delay: number) {
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+
+  return useCallback(
+    (...args: any[]) => {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
+      timer.current = setTimeout(() => {
+        callback(...args);
+      }, delay);
+    },
+    [callback, delay]
+  );
+}

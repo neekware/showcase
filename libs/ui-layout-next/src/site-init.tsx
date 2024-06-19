@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { useAppState } from '@lib/data-store-next';
+import { debounce } from '@lib/ui-util-next';
 import { useToast } from '@lib/ui-vendor-next';
-import { debounce as ldDebounce } from 'lodash-es';
 
 export function AppInit(): null {
   const router = useRouter();
@@ -16,8 +16,8 @@ export function AppInit(): null {
   const [initialLoad, setInitialLoad] = useState(true);
 
   // create debounced functions for setting prevIsLoggedIn and initialLoad once
-  const debouncedSetPrevIsLoggedIn = useMemo(() => ldDebounce(setPrevIsLoggedIn, 300), []);
-  const debouncedSetInitialLoad = useMemo(() => ldDebounce(setInitialLoad, 300), []);
+  const debouncedSetPrevIsLoggedIn = useMemo(() => debounce(setPrevIsLoggedIn, 300), []);
+  const debouncedSetInitialLoad = useMemo(() => debounce(setInitialLoad, 300), []);
 
   useEffect(() => {
     if (initialLoad) {

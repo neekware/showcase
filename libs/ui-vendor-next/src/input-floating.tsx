@@ -7,7 +7,7 @@ export type FloatingLabelInputProps = React.InputHTMLAttributes<HTMLInputElement
 };
 
 const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps>(
-  ({ className, label, type = 'text', ...props }, ref) => {
+  ({ type = 'text', label, className, ...props }, ref) => {
     const [value, setValue] = React.useState('');
     const [isFocused, setIsFocused] = React.useState(false);
     const inputRef = React.useRef<HTMLInputElement | null>(null);
@@ -17,19 +17,16 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
     React.useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
 
     const handleFocus = () => {
-      console.log('handleFocus');
       setIsFocused(true);
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-      console.log('handleBlur');
       setIsFocused(false);
       // Update value state to trigger placeholder position update
       setValue(e.target.value);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log('handleChange');
       setValue(e.target.value);
     };
 
