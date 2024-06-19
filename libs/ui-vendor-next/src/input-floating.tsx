@@ -36,7 +36,7 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
           type={type}
           className={cn(
             { 'border-foreground-400': !error, 'border-danger': error }, // Change border color based on error state
-            'peer w-full border-0 border-b-2 bg-transparent p-0 pb-2 pr-3 pt-4 text-sm focus:bg-transparent focus:outline-none',
+            'peer w-full border-0 border-b-2 bg-transparent p-0 pb-2 pr-3 pt-4 text-sm outline-none transition-all duration-1000 focus:bg-transparent focus:outline-none',
             className
           )}
           ref={inputRef}
@@ -48,7 +48,7 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
         />
         <label
           className={cn(
-            'text-md pointer-events-none absolute left-0 top-4 transition-all duration-200',
+            'text-md pointer-events-none absolute left-0 top-4 transition-all duration-300',
             {
               'text-primary': !error,
               'text-danger': error,
