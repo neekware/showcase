@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --info: 190 90% 50%;
+  --info-foreground: 0 0% 2%;
+
+  --success: 152 69% 31%;
+  --success-foreground: 0 0% 98%;
+
+  --warning: 49 100% 51%;
+  --warning-foreground: 0 0% 2%;
+
+  --danger: 354 70% 54%;
+  --danger-foreground: 0 0% 98%;
+
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground min-h-screen select-none antialiased;
+
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+
+    /* PWA enhancements */
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+
+    /* For Webkit browsers like Chrome/Safari */
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* For Firefox */
+    button:active {
+      outline: none;
+    }
+
+    /* Disable auto-complete on input fields */
+    input:-webkit-autofill,
+    input:-webkit-autofill:focus {
+      transition:
+        background-color 600000s 0s,
+        color 600000s 0s;
+    }
+    input[data-autocompleted] {
+      background-color: transparent !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .step {
+    counter-increment: step;
+  }
+
+  .step:before {
+    @apply border-background bg-muted absolute inline-flex h-9 w-9 items-center justify-center rounded-full border-4 text-center -indent-px font-mono text-base font-medium;
+    @apply ml-[-50px] mt-[-4px];
+    content: counter(step);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+}
