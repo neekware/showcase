@@ -18,8 +18,7 @@ import {
   FormItem,
   FormItemControl,
   FormItemInfo,
-  FormItemLabel,
-  Input,
+  InputFloating,
 } from '@lib/ui-vendor-next';
 import { type z } from 'zod';
 
@@ -91,17 +90,18 @@ export const RegisterForm: React.FC = () => {
             name="firstName"
             render={({ field }) => (
               <FormItem className="-mb-3">
-                <FormItemLabel className="font-bold">First Name</FormItemLabel>
                 <FormItemControl>
-                  <Input
+                  <InputFloating
                     {...field}
                     type="text"
-                    placeholder="Your first name"
+                    label="First Name"
                     {...form.register('firstName')}
                     onBlur={() => form.trigger('firstName')}
                   />
                 </FormItemControl>
-                <FormItemInfo />
+                <FormItemInfo end={true} className="flex w-full">
+                  Your first name
+                </FormItemInfo>{' '}
               </FormItem>
             )}
           />
@@ -110,37 +110,40 @@ export const RegisterForm: React.FC = () => {
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormItemLabel className="font-bold">Last Name</FormItemLabel>
                 <FormItemControl>
-                  <Input
+                  <InputFloating
                     {...field}
                     type="text"
-                    placeholder="Your last name"
+                    label="Last Name"
                     {...form.register('lastName')}
                     onBlur={() => form.trigger('lastName')}
                   />
                 </FormItemControl>
-                <FormItemInfo />
+                <FormItemInfo end={true} className="flex w-full">
+                  Your last name
+                </FormItemInfo>
               </FormItem>
             )}
           />
         </div>
         <FormField
+          className="mb-2"
           control={form.control}
           name="email"
-          render={({ field }) => (
+          render={(field) => (
             <FormItem>
-              <FormItemLabel className="font-bold">Email</FormItemLabel>
               <FormItemControl>
-                <Input
+                <InputFloating
                   {...field}
                   type="email"
-                  placeholder="Your email address"
+                  label="Email"
                   {...form.register('email')}
                   onBlur={() => form.trigger('email')}
                 />
               </FormItemControl>
-              <FormItemInfo className="flex w-full">Your account email address</FormItemInfo>
+              <FormItemInfo end={true} className="flex w-full">
+                Your email address
+              </FormItemInfo>
             </FormItem>
           )}
         />
@@ -149,36 +152,38 @@ export const RegisterForm: React.FC = () => {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormItemLabel className="font-bold">Phone</FormItemLabel>
               <FormItemControl>
-                <Input
+                <InputFloating
                   {...field}
                   type="tel"
-                  placeholder="Your phone number"
+                  label="Phone"
                   {...form.register('phone')}
                   onBlur={() => form.trigger('phone')}
                 />
               </FormItemControl>
-              <FormItemInfo />
+              <FormItemInfo end={true} className="flex w-full">
+                Your phone number (+1234567890)
+              </FormItemInfo>
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
           name="password"
-          render={({ field }) => (
+          render={(field) => (
             <FormItem>
-              <FormItemLabel className="font-bold">Password</FormItemLabel>
               <FormItemControl>
-                <Input
+                <InputFloating
                   {...field}
                   type="password"
-                  placeholder="Your account password"
+                  label="Password"
                   {...form.register('password')}
                   onBlur={() => form.trigger('password')}
                 />
               </FormItemControl>
-              <FormItemInfo />
+              <FormItemInfo end={true} className="flex w-full">
+                Your account password
+              </FormItemInfo>
             </FormItem>
           )}
         />
