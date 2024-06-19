@@ -17,10 +17,8 @@ import {
   FormField,
   FormItem,
   FormItemControl,
-  FormItemError,
   FormItemInfo,
-  FormItemLabel,
-  Input,
+  InputFloating,
 } from '@lib/ui-vendor-next';
 import { type z } from 'zod';
 
@@ -87,22 +85,23 @@ export const LoginForm: React.FC = () => {
     <Form {...form}>
       <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="mb-2">
         <FormField
+          className="mb-2"
           control={form.control}
           name="email"
           render={(field) => (
             <FormItem>
-              <FormItemLabel className="font-bold">Email</FormItemLabel>
               <FormItemControl>
-                <Input
+                <InputFloating
                   {...field}
                   type="email"
-                  placeholder="Your email address"
+                  label="Email"
                   {...form.register('email')}
                   onBlur={() => form.trigger('email')}
                 />
               </FormItemControl>
-              <FormItemInfo className="flex w-full">Your account email address</FormItemInfo>
-              <FormItemError />
+              <FormItemInfo end={true} className="flex w-full">
+                Your account email address
+              </FormItemInfo>
             </FormItem>
           )}
         />
@@ -111,17 +110,18 @@ export const LoginForm: React.FC = () => {
           name="password"
           render={(field) => (
             <FormItem>
-              <FormItemLabel className="font-bold">Password</FormItemLabel>
               <FormItemControl>
-                <Input
+                <InputFloating
                   {...field}
                   type="password"
-                  placeholder="Your account password"
+                  label="Password"
                   {...form.register('password')}
                   onBlur={() => form.trigger('password')}
                 />
               </FormItemControl>
-              <FormItemError fixedHeight />
+              <FormItemInfo end={true} className="flex w-full">
+                Your account password
+              </FormItemInfo>
             </FormItem>
           )}
         />

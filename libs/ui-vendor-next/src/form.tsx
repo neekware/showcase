@@ -27,11 +27,13 @@ const FormFieldContext = createContext<FormFieldContextValue>({} as FormFieldCon
 function FormField<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->({ ...props }: ControllerProps<TFieldValues, TName>) {
+>({ className, ...props }: ControllerProps<TFieldValues, TName> & { className?: string }) {
   return (
-    <FormFieldContext.Provider value={{ name: props.name }}>
-      <Controller {...props} />
-    </FormFieldContext.Provider>
+    <div className={className}>
+      <FormFieldContext.Provider value={{ name: props.name }}>
+        <Controller {...props} />
+      </FormFieldContext.Provider>
+    </div>
   );
 }
 
@@ -106,60 +108,43 @@ FormItemControl.displayName = 'FormItemControl';
 
 const FormItemInfo = forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }
->(({ className, children, fixedHeight = false, ...props }, ref) => {
+  React.HTMLAttributes<HTMLParagraphElement> & { end?: boolean }
+>(({ className, children, end = false, ...props }, ref) => {
   const { error, FormItemInfoId } = useFormField();
+  const errorMessage = error ? String(error.message) : null;
 
-  if (error) {
-    // if we have error, the error will display it, we don't need to display info
-    return null;
-  }
-
-  if (!children && !fixedHeight) {
+  if (!children && !errorMessage) {
     return null;
   }
 
   return (
-    <p className={cn('text-muted-foreground flex items-center gap-1', className)}>
-      {children ? (
-        <Icon path={mdiInformation} size={0.5} />
-      ) : (
-        <Icon path={mdiInformation} size={0.5} className="invisible" />
+    <p
+      className={cn(
+        { 'text-muted-foreground': !error, 'text-danger': error, 'justify-end': end },
+        'flex items-center gap-1',
+        className
       )}
-      <span ref={ref} id={FormItemInfoId} className="text-xs" {...props}>
-        {children || (fixedHeight && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
+      {...props}
+    >
+      <Icon
+        path={error ? mdiAlertOutline : mdiInformation}
+        size={0.5}
+        className={!children && !errorMessage ? 'invisible' : ''}
+      />
+      <span ref={ref} id={FormItemInfoId} className="text-xs">
+        {errorMessage ? (
+          errorMessage
+        ) : children ? (
+          children
+        ) : (
+          <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />
+        )}
       </span>
     </p>
   );
 });
+
 FormItemInfo.displayName = 'FormItemInfo';
-
-const FormItemError = forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }
->(({ className, children, fixedHeight = false, ...props }, ref) => {
-  const { error, FormItemErrorId } = useFormField();
-  const body = error ? String(error.message) : children;
-
-  if (!body && !fixedHeight) {
-    return null;
-  }
-
-  return (
-    <p className="text-danger flex items-center gap-1">
-      <Icon path={mdiAlertOutline} size={0.5} className={cn(body ? 'block' : 'invisible')} />
-      <span
-        ref={ref}
-        id={FormItemErrorId}
-        className={cn('text-danger text-xs font-medium', className)}
-        {...props}
-      >
-        {body || (fixedHeight && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
-      </span>
-    </p>
-  );
-});
-FormItemError.displayName = 'FormItemError';
 
 const FormError = forwardRef<
   HTMLParagraphElement,
@@ -188,6 +173,5 @@ export {
   FormItemLabel,
   FormItemControl,
   FormItemInfo,
-  FormItemError,
   FormError,
 };

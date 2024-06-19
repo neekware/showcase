@@ -17,7 +17,6 @@ import {
   FormField,
   FormItem,
   FormItemControl,
-  FormItemError,
   FormItemInfo,
   FormItemLabel,
   Input,
@@ -102,7 +101,7 @@ export const RegisterForm: React.FC = () => {
                     onBlur={() => form.trigger('firstName')}
                   />
                 </FormItemControl>
-                <FormItemError fixedHeight />
+                <FormItemInfo />
               </FormItem>
             )}
           />
@@ -121,7 +120,7 @@ export const RegisterForm: React.FC = () => {
                     onBlur={() => form.trigger('lastName')}
                   />
                 </FormItemControl>
-                <FormItemError fixedHeight />
+                <FormItemInfo />
               </FormItem>
             )}
           />
@@ -142,7 +141,6 @@ export const RegisterForm: React.FC = () => {
                 />
               </FormItemControl>
               <FormItemInfo className="flex w-full">Your account email address</FormItemInfo>
-              <FormItemError />
             </FormItem>
           )}
         />
@@ -161,7 +159,7 @@ export const RegisterForm: React.FC = () => {
                   onBlur={() => form.trigger('phone')}
                 />
               </FormItemControl>
-              <FormItemError fixedHeight />
+              <FormItemInfo />
             </FormItem>
           )}
         />
@@ -180,7 +178,7 @@ export const RegisterForm: React.FC = () => {
                   onBlur={() => form.trigger('password')}
                 />
               </FormItemControl>
-              <FormItemError fixedHeight />
+              <FormItemInfo />
             </FormItem>
           )}
         />

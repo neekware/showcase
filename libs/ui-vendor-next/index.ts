@@ -20,6 +20,7 @@ export * from './src/dropdown-menu';
 export * from './src/form';
 export * from './src/hover-card';
 export * from './src/input';
+export * from './src/input-floating';
 export * from './src/label';
 export * from './src/menubar';
 export * from './src/navigation-menu';
