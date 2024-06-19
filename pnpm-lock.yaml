@@ -194,6 +194,8 @@ importers:
         specifier: ^1.0.4
         version: 1.0.4
 
+  libs/data-asset-shared: {}
+
   libs/data-auth-shared:
     dependencies:
       jose:

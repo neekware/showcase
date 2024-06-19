@@ -18,8 +18,6 @@ const baseConfig: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-sans)'],
-        mono: ['var(--font-mono)'],
         roboto: ['var(--font-roboto)'],
       },
       colors: {
