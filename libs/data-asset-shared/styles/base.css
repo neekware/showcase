@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --info: 190 90% 50%;
-  --info-foreground: 0 0% 2%;
+  --info: #0dccf2;
+  --info-foreground: #050505;
 
-  --success: 152 69% 31%;
-  --success-foreground: 0 0% 98%;
+  --success: #198653;
+  --success-foreground: #fafafa;
 
-  --warning: 49 100% 51%;
-  --warning-foreground: 0 0% 2%;
+  --warning: #ffd105;
+  --warning-foreground: #050505;
 
-  --danger: 354 70% 54%;
-  --danger-foreground: 0 0% 98%;
+  --danger: #dc3848;
+  --danger-foreground: #fafafa;
 
   --radius: 0.5rem;
 }
