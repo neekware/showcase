@@ -9,7 +9,7 @@
     "**/node_modules": true,
     "**/coverage": true,
     "**/graph": true,
-    "**/tmp": true,
+    "**/tmp": true
   },
   "workbench.colorCustomizations": {
     "statusBar.background": "#b85833",
@@ -45,4 +45,5 @@
   "color-highlight.matchWords": true,
   "color-highlight.markRuler": true,
   "color-highlight.useARGB": false,
-  "editor.bracketPairColorization.enabled": true}
+  "editor.bracketPairColorization.enabled": true
+}
