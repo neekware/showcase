@@ -10,12 +10,6 @@
     "**/tmp": true,
     "**/graph": true
   },
-  "workbench.colorCustomizations": {
-    "statusBar.background": "#b85833",
-    "statusBarItem.hoverBackground": "#ce7350",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBar.border": "#b85833"
-  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -37,5 +31,12 @@
     {
       "mode": "auto"
     }
-  ]
+  ],
+  "color-highlight.markerType": "dot-after",
+  "color-highlight.matchHslWithNoFunction": true,
+  "color-highlight.matchRgbWithNoFunction": true,
+  "color-highlight.matchWords": true,
+  "color-highlight.markRuler": true,
+  "color-highlight.useARGB": false,
+  "editor.bracketPairColorization.enabled": true
 }
