@@ -5,96 +5,96 @@ export const availableThemes: Theme[] = [
     name: 'zinc',
     label: 'Zinc',
     activeColor: {
-      light: '240 8.1% 19.34%',
-      dark: '240 5.2% 33.9%',
+      light: '#2D2D35',
+      dark: '#52525B',
     },
   },
   {
     name: 'slate',
     label: 'Slate',
     activeColor: {
-      light: '215.4 16.3% 46.9%',
-      dark: '215.3 19.3% 34.5%',
+      light: '#64748B',
+      dark: '#475569',
     },
   },
   {
     name: 'stone',
     label: 'Stone',
     activeColor: {
-      light: '25 5.3% 44.7%',
-      dark: '33.3 5.5% 32.4%',
+      light: '#78716C',
+      dark: '#57534E',
     },
   },
   {
     name: 'brown',
     label: 'Brown',
     activeColor: {
-      light: '30 24% 30%',
-      dark: '30 24% 30%',
+      light: '#5F4D3A',
+      dark: '#5F4D3A',
     },
   },
   {
     name: 'gold',
     label: 'Gold',
     activeColor: {
-      light: '32 48% 54%',
-      dark: '32 48% 54%',
+      light: '#C28D51',
+      dark: '#C28D51',
     },
   },
   {
     name: 'red',
     label: 'Red',
     activeColor: {
-      light: '0 72.2% 50.6%',
-      dark: '0 72.2% 50.6%',
+      light: '#DC2626',
+      dark: '#DC2626',
     },
   },
   {
     name: 'rose',
     label: 'Rose',
     activeColor: {
-      light: '346.8 77.2% 49.8%',
-      dark: '346.8 77.2% 49.8%',
+      light: '#E11D48',
+      dark: '#E11D48',
     },
   },
   {
     name: 'orange',
     label: 'Orange',
     activeColor: {
-      light: '24.6 95% 53.1%',
-      dark: '20.5 90.2% 48.2%',
+      light: '#F97316',
+      dark: '#EA580C',
     },
   },
   {
     name: 'green',
     label: 'Green',
     activeColor: {
-      light: '142.1 76.2% 36.3%',
-      dark: '142.1 70.6% 45.3%',
+      light: '#16A34A',
+      dark: '#22C55E',
     },
   },
   {
     name: 'blue',
     label: 'Blue',
     activeColor: {
-      light: '221.2 83.2% 53.3%',
-      dark: '217.2 91.2% 59.8%',
+      light: '#2563EB',
+      dark: '#3B82F6',
     },
   },
   {
     name: 'yellow',
     label: 'Yellow',
     activeColor: {
-      light: '47.9 95.8% 53.1%',
-      dark: '47.9 95.8% 53.1%',
+      light: '#FACC15',
+      dark: '#FACC15',
     },
   },
   {
     name: 'violet',
     label: 'Violet',
     activeColor: {
-      light: '262.1 83.3% 57.8%',
-      dark: '263.4 70% 50.4%',
+      light: '#7C3AED',
+      dark: '#6D28D9',
     },
   },
 ] as const;

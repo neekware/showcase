@@ -102,7 +102,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                         <Icon
                           path={mdiCircle}
                           className="size-6"
-                          color={`hsl(${nextTheme.activeColor[theme.mode === 'dark' ? 'dark' : 'light']})`}
+                          color={`${nextTheme.activeColor[theme.mode === 'dark' ? 'dark' : 'light']}`}
                         />
                       )}
                     </div>
