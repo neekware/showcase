@@ -179,7 +179,7 @@
   --card: #ffffff;
   --card-foreground: #211a12;
 
-  --popover: #f6f2ee;
+  --popover: #ffffff;
   --popover-foreground: #211a12;
 
   --border: #e7e5e4;
@@ -194,13 +194,13 @@
   --primary: #a36629;
   --primary-foreground: #faf2eb;
 
-  --secondary: #423324;
+  --secondary: #645649;
   --secondary-foreground: #f6f2ee;
 
   --accent: #423324;
   --accent-foreground: #f6f2ee;
 
-  --muted: #292524;
+  --muted: #7e6b58;
   --muted-foreground: #a8a29e;
 
   --card: #0c0a09;
