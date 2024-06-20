@@ -7,8 +7,15 @@
   "search.exclude": {
     "**/dist": true,
     "**/node_modules": true,
+    "**/coverage": true,
+    "**/graph": true,
     "**/tmp": true,
-    "**/graph": true
+  },
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#b85833",
+    "statusBarItem.hoverBackground": "#ce7350",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBar.border": "#b85833"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[html]": {
@@ -38,5 +45,4 @@
   "color-highlight.matchWords": true,
   "color-highlight.markRuler": true,
   "color-highlight.useARGB": false,
-  "editor.bracketPairColorization.enabled": true
-}
+  "editor.bracketPairColorization.enabled": true}
