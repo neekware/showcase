@@ -32,7 +32,7 @@
       "mode": "auto"
     }
   ],
-  "color-highlight.markerType": "dot-after",
+  "color-highlight.markerType": "underline",
   "color-highlight.matchHslWithNoFunction": true,
   "color-highlight.matchRgbWithNoFunction": true,
   "color-highlight.matchWords": true,
