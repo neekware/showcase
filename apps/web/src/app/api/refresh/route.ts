@@ -1,32 +1,36 @@
 import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
-import { AuthService } from '@lib/data-auth-shared';
 import { JWTService } from '@lib/data-jwt-shared';
-import { type LoginFormInputs, LoginFormModel } from '@lib/data-model-shared';
-import { validateForm } from '@lib/data-util-shared';
+import { UserService } from '@lib/data-user-shared';
 import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY } from '@web/cfg/auth';
 
 if (!process.env.NODE_ENV) {
   throw new Error('You must set NODE_ENV in your environment');
 }
 
-// POST /api/login
+// POST /api/refresh
 export async function POST(req: NextRequest, res: NextResponse) {
-  const data = (await req.json()) as LoginFormInputs;
-
-  // Validate the form data
-  const validated = await validateForm<LoginFormInputs>(LoginFormModel, data);
-  if (!validated.success) {
-    return NextResponse.json(validated, { status: 400 });
+  const currentAuthToken = cookies().get(ACCESS_TOKEN_KEY)?.value;
+  if (!currentAuthToken) {
+    return NextResponse.json({ success: false, message: 'No auth token found' }, { status: 401 });
   }
 
-  // Attempt to login the user
-  const result = await AuthService.login(data);
+  const currentJwtAuthPayload = await JWTService.decrypt(currentAuthToken);
+  if (!currentJwtAuthPayload.success || !currentJwtAuthPayload.data) {
+    return NextResponse.json({ success: false, message: 'Invalid auth token' }, { status: 401 });
+  }
+
+  const { sub: userId } = currentJwtAuthPayload.data;
+  const result = await UserService.getByIdQuery(userId as string);
   if (!result.success || !result.data) {
-    return NextResponse.json(result, { status: 404 });
+    return NextResponse.json({ success: false, message: 'User not found' }, { status: 401 });
   }
 
   const { data: user } = result;
+
+  if (!user.isActive) {
+    return NextResponse.json({ success: false, message: 'User is not active' }, { status: 401 });
+  }
 
   // Create an access auth token and save it in a httpOnly cookie
   const jwtAuthPayload = await JWTService.encrypt(user.id, 30);

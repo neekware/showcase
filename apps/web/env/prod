@@ -1,4 +1,5 @@
 AUTH_SECRET="some-amazing-seekret"
+AUTH_ISSUER="http://example.com"
 
 SITE_URL="http://example.com"
 

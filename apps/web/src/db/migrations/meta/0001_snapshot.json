@@ -1,6 +1,6 @@
 {
-  "id": "35317539-bc7a-4d15-9219-9c1e14b44cd9",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "72ad8695-ad3b-47e1-a6ae-34081785b117",
+  "prevId": "35317539-bc7a-4d15-9219-9c1e14b44cd9",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -62,7 +62,7 @@
           "name": "password",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "role": {
           "name": "role",
