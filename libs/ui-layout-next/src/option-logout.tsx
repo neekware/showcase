@@ -38,7 +38,7 @@ export function LogoutConfirmationDialog({ className, open, setOpen }: LogoutPro
     });
 
     // Fire and forget, let's log the user out and redirect
-    setAuthState({ isLoggedIn: false, token: '' });
+    setAuthState({ isLoggedIn: false, accessToken: '' });
     setOpen(false);
   };
 

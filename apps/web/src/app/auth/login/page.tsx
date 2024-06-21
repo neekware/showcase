@@ -41,7 +41,7 @@ export default function Login() {
       </CardHeader>
       <Separator orientation="horizontal" />
       <CardContent className="pb-3 pt-3">
-        <LoginForm />
+        <LoginForm redirect={redirect} />
       </CardContent>
       <Separator orientation="horizontal" />
       <CardFooter className="-mb-2 flex justify-between pt-4">

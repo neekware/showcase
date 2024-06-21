@@ -14,7 +14,7 @@ import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 const getDefaultState = () => {
   return sign<AppState>({
     // Initial authentication state
-    auth: { token: '', isLoggedIn: false },
+    auth: { isLoggedIn: false, accessToken: '' },
     // Initial theme settings
     theme: {
       name: 'zinc',

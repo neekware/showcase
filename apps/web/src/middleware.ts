@@ -12,19 +12,21 @@ export async function middleware(req: NextRequest) {
     // extract the access token from the request headers
     const accessToken = req.headers.get('Authorization')?.replace('Bearer ', '');
     if (!accessToken) {
-      url.pathname = '/auth/login';
-      return Response.redirect(url);
+      const loginUrl = new URL('/auth/login', req.url);
+      loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+      return NextResponse.redirect(loginUrl);
     }
 
     // decrypt the access token to check its validity
     const jwtAccessPayload = await JWTService.decrypt(accessToken);
     if (!jwtAccessPayload.success || !jwtAccessPayload.data) {
-      url.pathname = '/auth/refresh';
-      const response = await fetch(url);
+      const refreshUrl = new URL('/auth/refresh', req.url);
+      const response = await fetch(refreshUrl);
       if (response.status === 401) {
         // auth token is expired, user must login again
-        url.pathname = '/auth/login';
-        return Response.redirect(url);
+        const loginUrl = new URL('/auth/login', req.url);
+        loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+        return NextResponse.redirect(loginUrl);
       }
       const { data: newAccessToken } = await response.json();
       req.headers.set('Authorization', `Bearer ${newAccessToken}`);

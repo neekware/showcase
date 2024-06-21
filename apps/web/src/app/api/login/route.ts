@@ -52,5 +52,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     );
   }
   const { data: accessToken } = jwtAuthPayload;
-  return NextResponse.json({ success: true, data: accessToken });
+
+  // Set the redirect URL in the response headers
+  const nextUrl = req.nextUrl.searchParams.get('nextUrl') || '/';
+  return NextResponse.json({ success: true, data: { accessToken, nextUrl } }, { status: 200 });
 }

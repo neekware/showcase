@@ -48,7 +48,11 @@ const loginUser = async (input: z.infer<typeof LoginFormModel>) => {
   return response;
 };
 
-export const LoginForm: React.FC = () => {
+export interface LoginFormProps {
+  redirect?: (path: string) => void;
+}
+
+export const LoginForm: React.FC<LoginFormProps> = ({ redirect }) => {
   const [_, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
@@ -67,12 +71,17 @@ export const LoginForm: React.FC = () => {
         setError('An error occurred. Please try again.');
       }
 
-      const result = (await response.json()) as ServerResponseType;
+      const result = (await response.json()) as ServerResponseType<{
+        accessToken: string;
+        nextUrl: string;
+      }>;
 
       if (!result.success) {
         setError(result.message || 'An error occurred. Please try again.');
       } else if (result.success) {
-        setAuthState({ isLoggedIn: true, token: 'token' } as AuthState);
+        setAuthState({ isLoggedIn: true, accessToken: result.data?.accessToken } as AuthState);
+        console.log('Login successful', result.data?.nextUrl);
+        redirect && redirect(result.data?.nextUrl || '/');
       }
     } catch (error) {
       setError('An error occurred. Please try again.');

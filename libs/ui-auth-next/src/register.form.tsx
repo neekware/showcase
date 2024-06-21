@@ -72,7 +72,11 @@ export const RegisterForm: React.FC = () => {
       if (!result.success) {
         setError(result.message || 'An error occurred. Please try again.');
       } else if (result.success) {
-        setAuthState({ isLoggedIn: true, token: 'token' } as AuthState);
+        const { data: accessToken } = result;
+        setAuthState({
+          isLoggedIn: true,
+          accessToken,
+        } as AuthState);
       }
     } catch (error) {
       setError('An error occurred. Please try again.');
