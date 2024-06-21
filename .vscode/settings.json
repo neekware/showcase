@@ -7,8 +7,9 @@
   "search.exclude": {
     "**/dist": true,
     "**/node_modules": true,
-    "**/tmp": true,
-    "**/graph": true
+    "**/coverage": true,
+    "**/graph": true,
+    "**/tmp": true
   },
   "workbench.colorCustomizations": {
     "statusBar.background": "#b85833",
@@ -37,5 +38,12 @@
     {
       "mode": "auto"
     }
-  ]
+  ],
+  "color-highlight.markerType": "underline",
+  "color-highlight.matchHslWithNoFunction": true,
+  "color-highlight.matchRgbWithNoFunction": true,
+  "color-highlight.matchWords": true,
+  "color-highlight.markRuler": true,
+  "color-highlight.useARGB": false,
+  "editor.bracketPairColorization.enabled": true
 }

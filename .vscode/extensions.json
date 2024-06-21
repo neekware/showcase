@@ -17,6 +17,7 @@
     "mike-co.import-sorter",
     "matt-meyers.vscode-dbml",
     "dotjoshjohnson.xml",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "naumovs.color-highlight"
   ]
 }

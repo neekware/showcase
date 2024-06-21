@@ -1,2 +1,3 @@
-@import './base.css';
-@import './themes.css';
+@import '../../../../libs/data-asset-shared/styles/base.css';
+@import '../../../../libs/data-asset-shared/styles/themes-hex.css';
+@import './global.css';
