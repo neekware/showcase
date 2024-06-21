@@ -8,7 +8,7 @@
     "loc": "pnpm --filter infra loc",
     "update": "pnpm update --latest -r",
     "clean": "pnpm recursive run clean",
-    "clean:mod": "pnpm recursive run clean:mods",
+    "clean:mod": "pnpm recursive run clean:mods && rm -rf node_modules",
     "reset": "pnpm clean && pnpm clean:mod && pnpm i",
     "__FORMAT_RELATED__": "__________________",
     "format": "prettier -w \"**/*.{ts,tsx,js,jsx,html,css,svg,yml,json,md}\"",
