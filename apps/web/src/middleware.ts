@@ -14,7 +14,7 @@ export async function middleware(req: NextRequest) {
     // extract the access token from the request headers
     const accessToken = req.headers.get('Authorization')?.replace('Bearer ', '');
     if (!accessToken) {
-      const loginUrl = new URL(urls.api.auth.login, req.url);
+      const loginUrl = new URL(urls.site.auth.login, req.url);
       loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
       return NextResponse.redirect(loginUrl);
     }
@@ -22,11 +22,11 @@ export async function middleware(req: NextRequest) {
     // decrypt the access token to check its validity
     const jwtAccessPayload = await JWTService.decrypt(accessToken);
     if (!jwtAccessPayload.success || !jwtAccessPayload.data) {
-      const refreshUrl = new URL('/auth/refresh', req.url);
+      const refreshUrl = new URL(urls.api.auth.refresh, req.url);
       const response = await fetch(refreshUrl);
       if (response.status === 401) {
         // auth token is expired, user must login again
-        const loginUrl = new URL(urls.api.auth.login, req.url);
+        const loginUrl = new URL(urls.site.auth.login, req.url);
         loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
         return NextResponse.redirect(loginUrl);
       }
