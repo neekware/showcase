@@ -24,10 +24,7 @@ const useLoginForm = () => {
   });
 
   // catch all watch not available, so we need to watch each field
-  const debouncedFormStates = [
-    useDebounce(form.watch('email'), 300),
-    useDebounce(form.watch('password'), 300),
-  ];
+  const debouncedFormStates = useDebounce(form.watch(['email', 'password']), 500);
 
   return {
     form,

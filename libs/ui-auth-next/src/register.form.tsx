@@ -25,13 +25,10 @@ const useRegisterForm = () => {
   });
 
   // catch all watch not available, so we need to watch each field
-  const debouncedFormStates = [
-    useDebounce(form.watch('firstName'), 300),
-    useDebounce(form.watch('lastName'), 300),
-    useDebounce(form.watch('email'), 300),
-    useDebounce(form.watch('phone'), 300),
-    useDebounce(form.watch('password'), 300),
-  ];
+  const debouncedFormStates = useDebounce(
+    form.watch(['firstName', 'lastName', 'email', 'phone', 'password']),
+    500
+  );
 
   return {
     form,
