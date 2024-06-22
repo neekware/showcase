@@ -1,16 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  type AuthState,
-  type RegisterFormInputs,
-  RegistrationFormModel,
-  type ServerResponseType,
-} from '@lib/data-model-shared';
-import { useAuthState } from '@lib/data-store-next';
+import { type RegisterFormInputs, RegistrationFormModel } from '@lib/data-model-shared';
 import { Icon, mdiSync } from '@lib/ui-icon-next';
 import { useDebounce } from '@lib/ui-util-next';
 import {
@@ -28,67 +21,44 @@ import { type z } from 'zod';
 const useRegisterForm = () => {
   const form = useForm<z.infer<typeof RegistrationFormModel>>({
     resolver: zodResolver(RegistrationFormModel),
-    defaultValues: { email: '', password: '' },
-    mode: 'onChange',
+    mode: 'all',
   });
 
-  const debouncedEmail = useDebounce(form.watch('email'), 500);
-  const debouncedPassword = useDebounce(form.watch('password'), 500);
+  // catch all watch not available, so we need to watch each field
+  const debouncedFormStates = [
+    useDebounce(form.watch('firstName'), 300),
+    useDebounce(form.watch('lastName'), 300),
+    useDebounce(form.watch('email'), 300),
+    useDebounce(form.watch('phone'), 300),
+    useDebounce(form.watch('password'), 300),
+  ];
 
   return {
     form,
-    debouncedEmail,
-    debouncedPassword,
+    debouncedFormStates,
   };
 };
 
-const registerUser = async (input: z.infer<typeof RegistrationFormModel>) => {
-  const response = await fetch('/api/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(input),
-  });
-  return response;
-};
+interface RegisterFormProps {
+  onSubmit: SubmitHandler<RegisterFormInputs>;
+  isLoading: boolean;
+  error: string;
+  clearError: () => void;
+}
 
-export const RegisterForm: React.FC = () => {
-  const router = useRouter();
-  const [_, setAuthState] = useAuthState();
-  const [error, setError] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  const { form, debouncedEmail, debouncedPassword } = useRegisterForm();
+export const RegisterForm: React.FC<RegisterFormProps> = ({
+  onSubmit,
+  isLoading,
+  error,
+  clearError,
+}) => {
+  const { form, debouncedFormStates } = useRegisterForm();
 
   useEffect(() => {
-    setError('');
-  }, [debouncedEmail, debouncedPassword]);
-
-  const onSubmit: SubmitHandler<RegisterFormInputs> = async (input: RegisterFormInputs) => {
-    setIsLoading(true);
-    try {
-      const response = await registerUser(input);
-      if (!response.ok) {
-        setError('An error occurred. Please try again.');
-      }
-
-      const result = (await response.json()) as ServerResponseType<{
-        accessToken: string;
-        nextUrl: string;
-      }>;
-
-      if (!result.success) {
-        setError(result.message || 'An error occurred. Please try again.');
-      } else if (result.success) {
-        setAuthState({ isLoggedIn: true, accessToken: result.data?.accessToken } as AuthState);
-        console.log('Login successful', result.data?.nextUrl);
-        router.push(result.data?.nextUrl || '/');
-      }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
-    } finally {
-      setIsLoading(false);
+    if (error) {
+      clearError();
     }
-  };
+  }, [...debouncedFormStates]);
 
   return (
     <Form {...form}>

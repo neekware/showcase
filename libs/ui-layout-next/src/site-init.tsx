@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { useAppState } from '@lib/data-store-next';
-import { debounce } from '@lib/ui-util-next';
 import { useToast } from '@lib/ui-vendor-next';
 
 export function AppInit(): null {
@@ -15,17 +14,14 @@ export function AppInit(): null {
   const [prevIsLoggedIn, setPrevIsLoggedIn] = useState(state.auth.isLoggedIn);
   const [initialLoad, setInitialLoad] = useState(true);
 
-  // create debounced functions for setting prevIsLoggedIn and initialLoad once
-  const debouncedSetPrevIsLoggedIn = useMemo(() => debounce(setPrevIsLoggedIn, 300), []);
-  const debouncedSetInitialLoad = useMemo(() => debounce(setInitialLoad, 300), []);
-
   useEffect(() => {
     if (initialLoad) {
       if (state.auth.isLoggedIn) {
         router.push('/');
+        router.refresh();
       }
-      debouncedSetPrevIsLoggedIn(state.auth.isLoggedIn);
-      debouncedSetInitialLoad(false);
+      setPrevIsLoggedIn(state.auth.isLoggedIn);
+      setInitialLoad(false);
     } else {
       if (prevIsLoggedIn && !state.auth.isLoggedIn) {
         toast({
@@ -35,16 +31,11 @@ export function AppInit(): null {
           variant: 'info',
         });
         router.push('/auth/login');
+        router.refresh();
       }
-      debouncedSetPrevIsLoggedIn(state.auth.isLoggedIn);
+      setPrevIsLoggedIn(state.auth.isLoggedIn);
     }
-  }, [
-    state.auth,
-    initialLoad,
-    prevIsLoggedIn,
-    debouncedSetPrevIsLoggedIn,
-    debouncedSetInitialLoad,
-  ]);
+  }, [state.auth, initialLoad, prevIsLoggedIn]);
 
   useEffect(() => {
     setTheme(state.theme.mode as string);

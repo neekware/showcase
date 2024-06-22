@@ -1,5 +1,15 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { logger } from '@lib/data-logger-shared';
+import {
+  type AuthState,
+  type LoginFormInputs,
+  type ServerResponseType,
+} from '@lib/data-model-shared';
+import { useAuthState } from '@lib/data-store-next';
 import { LoginForm } from '@lib/ui-auth-next';
 import { Icon, mdiFolderPlus, mdiLogin } from '@lib/ui-icon-next';
 import {
@@ -10,9 +20,72 @@ import {
   CardHeader,
   CardTitle,
   Separator,
+  toast,
 } from '@lib/ui-vendor-next';
 
+const loginUser = async (input: LoginFormInputs) => {
+  const response = await fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
+  return response;
+};
+
 export default function Login() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [_, setAuthState] = useAuthState();
+  const [error, setError] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const cleanupError = () => {
+    setError('');
+    logger.debug('Login: Error cleared');
+  };
+
+  const handleLogin = async (input: LoginFormInputs) => {
+    setError('');
+    setIsLoading(true);
+
+    let result: ServerResponseType = { success: false, message: '' };
+
+    // login user
+    const response = await loginUser(input);
+    if (!response.ok) {
+      setError('A server error occurred. Please try again.');
+      logger.error('Error during login');
+      setIsLoading(false);
+      return;
+    }
+
+    result = await response.json();
+    setIsLoading(false);
+
+    // handle login result
+    if (!result.success || !result.data) {
+      setError(result.message || 'Failed to register your account. Please try again.');
+      logger.error('Login unsuccessful:', result.message);
+    } else {
+      logger.info('Login successful');
+
+      const { data: accessToken } = result;
+      setAuthState({ isLoggedIn: true, accessToken } as AuthState);
+
+      toast({
+        title: 'Login Successful',
+        description: 'Enjoy your tour ...',
+        timeout: 20000,
+        variant: 'success',
+      });
+
+      const nextUrl = searchParams.get('nextUrl') || '/';
+      router.push(nextUrl);
+    }
+
+    setIsLoading(false);
+  };
+
   return (
     <Card className="mx-auto w-full sm:w-[500px]">
       <CardHeader className="-mb-2.5 pt-4">
@@ -28,7 +101,12 @@ export default function Login() {
       </CardHeader>
       <Separator orientation="horizontal" />
       <CardContent className="pb-3 pt-3">
-        <LoginForm />
+        <LoginForm
+          onSubmit={handleLogin}
+          isLoading={isLoading}
+          clearError={cleanupError}
+          error={error}
+        />
       </CardContent>
       <Separator orientation="horizontal" />
       <CardFooter className="-mb-2 flex justify-between pt-4">

@@ -23,7 +23,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   // Attempt to login the user
   const result = await AuthService.login(data);
   if (!result.success || !result.data) {
-    return NextResponse.json(result, { status: 404 });
+    return NextResponse.json(result, { status: 401 });
   }
 
   const { data: user } = result;
@@ -53,7 +53,5 @@ export async function POST(req: NextRequest, res: NextResponse) {
   }
   const { data: accessToken } = jwtAuthPayload;
 
-  // Set the redirect URL in the response headers
-  const nextUrl = req.nextUrl.searchParams.get('nextUrl') || '/';
-  return NextResponse.json({ success: true, data: { accessToken, nextUrl } }, { status: 200 });
+  return NextResponse.json({ success: true, data: accessToken });
 }
