@@ -7,6 +7,7 @@ on:
     branches:
       - feat/* # Feature branches
       - fix/* # Fix branches
+      - enah/* # Enhancement branches
       - hotfix/* # Hotfix branches
       - release/* # Release branches
       - dev # Development branch
