@@ -1,10 +1,12 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { JWTService } from '@lib/data-jwt-shared';
+import { siteSettings } from '@web/cfg';
 
 const protectedPaths = ['/admin', '/products'];
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
+  const { urls } = siteSettings;
 
   if (protectedPaths.some((path) => url.pathname.startsWith(path))) {
     // we received a request to a protected path
@@ -12,7 +14,7 @@ export async function middleware(req: NextRequest) {
     // extract the access token from the request headers
     const accessToken = req.headers.get('Authorization')?.replace('Bearer ', '');
     if (!accessToken) {
-      const loginUrl = new URL('/auth/login', req.url);
+      const loginUrl = new URL(urls.api.auth.login, req.url);
       loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
       return NextResponse.redirect(loginUrl);
     }
@@ -24,7 +26,7 @@ export async function middleware(req: NextRequest) {
       const response = await fetch(refreshUrl);
       if (response.status === 401) {
         // auth token is expired, user must login again
-        const loginUrl = new URL('/auth/login', req.url);
+        const loginUrl = new URL(urls.api.auth.login, req.url);
         loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
         return NextResponse.redirect(loginUrl);
       }

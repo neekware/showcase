@@ -22,9 +22,12 @@ import {
   Separator,
   toast,
 } from '@lib/ui-vendor-next';
+import { siteSettings } from '@web/cfg';
+
+const { urls } = siteSettings;
 
 const loginUser = async (input: LoginFormInputs) => {
-  const response = await fetch('/api/login', {
+  const response = await fetch(urls.api.auth.login, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(input),
@@ -79,7 +82,7 @@ export default function Login() {
         variant: 'success',
       });
 
-      const nextUrl = searchParams.get('nextUrl') || '/';
+      const nextUrl = searchParams.get('nextUrl') || urls.site.home;
       router.push(nextUrl);
     }
 
@@ -112,7 +115,7 @@ export default function Login() {
       <CardFooter className="-mb-2 flex justify-between pt-4">
         Do not have an account?
         <Link
-          href="/auth/register"
+          href={urls.site.auth.register}
           className="hover:text-foreground/60 flex gap-1 transition-colors"
         >
           <Icon path={mdiFolderPlus} size={1} className="text-primary" />

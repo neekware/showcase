@@ -1,6 +1,7 @@
 import { type SiteSettings } from '@lib/data-model-shared';
 import { mdiCog, mdiGithub, mdiLogin, mdiLogout, mdiTwitter, mdiWrench } from '@lib/ui-icon-next';
 import { availableThemes } from './theme';
+import { urls } from './urls';
 
 export const metaSettings = {
   appVersion: '0.0.0',
@@ -12,6 +13,7 @@ export const metaSettings = {
 };
 
 export const siteSettings: SiteSettings = {
+  urls,
   ...metaSettings,
   themes: availableThemes,
   navTopLinks: [

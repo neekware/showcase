@@ -18,9 +18,12 @@ import {
   Separator,
   toast,
 } from '@lib/ui-vendor-next';
+import { siteSettings } from '@web/cfg';
+
+const { urls } = siteSettings;
 
 const registerUser = async (input: RegisterFormInputs) => {
-  const response = await fetch('/api/register', {
+  const response = await fetch(urls.api.auth.register, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(input),
@@ -75,7 +78,7 @@ export default function Register() {
         variant: 'info',
       });
 
-      router.push('/');
+      router.push(urls.site.home);
     }
   };
 
@@ -104,7 +107,10 @@ export default function Register() {
       <Separator orientation="horizontal" />
       <CardFooter className="-mb-2 flex justify-between pt-4">
         Already have an account?
-        <Link href="/auth/login" className="hover:text-foreground/60 flex gap-1 transition-colors">
+        <Link
+          href={urls.site.auth.login}
+          className="hover:text-foreground/60 flex gap-1 transition-colors"
+        >
           <Icon path={mdiLogin} size={1} className="text-primary" />
           Login
         </Link>
