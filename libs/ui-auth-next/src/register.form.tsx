@@ -1,5 +1,8 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   type AuthState,
@@ -49,6 +52,7 @@ const registerUser = async (input: z.infer<typeof RegistrationFormModel>) => {
 };
 
 export const RegisterForm: React.FC = () => {
+  const router = useRouter();
   const [_, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
@@ -67,16 +71,17 @@ export const RegisterForm: React.FC = () => {
         setError('An error occurred. Please try again.');
       }
 
-      const result = (await response.json()) as ServerResponseType;
+      const result = (await response.json()) as ServerResponseType<{
+        accessToken: string;
+        nextUrl: string;
+      }>;
 
       if (!result.success) {
         setError(result.message || 'An error occurred. Please try again.');
       } else if (result.success) {
-        const { data: accessToken } = result;
-        setAuthState({
-          isLoggedIn: true,
-          accessToken,
-        } as AuthState);
+        setAuthState({ isLoggedIn: true, accessToken: result.data?.accessToken } as AuthState);
+        console.log('Login successful', result.data?.nextUrl);
+        router.push(result.data?.nextUrl || '/');
       }
     } catch (error) {
       setError('An error occurred. Please try again.');

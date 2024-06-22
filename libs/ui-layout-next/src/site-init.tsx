@@ -27,22 +27,14 @@ export function AppInit(): null {
       debouncedSetPrevIsLoggedIn(state.auth.isLoggedIn);
       debouncedSetInitialLoad(false);
     } else {
-      if (!prevIsLoggedIn && state.auth.isLoggedIn) {
-        toast({
-          title: 'Login Successful',
-          description: 'Enjoy your tour ...',
-          timeout: 20000,
-          variant: 'success',
-        });
-        router.push('/');
-      } else if (prevIsLoggedIn && !state.auth.isLoggedIn) {
+      if (prevIsLoggedIn && !state.auth.isLoggedIn) {
         toast({
           title: 'Logout Successful',
           description: 'See you soon ...',
           timeout: 20000,
           variant: 'info',
         });
-        router.push('/');
+        router.push('/auth/login');
       }
       debouncedSetPrevIsLoggedIn(state.auth.isLoggedIn);
     }

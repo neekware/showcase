@@ -1,5 +1,8 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   type AuthState,
@@ -19,6 +22,7 @@ import {
   FormItemControl,
   FormItemInfo,
   InputFloating,
+  toast,
 } from '@lib/ui-vendor-next';
 import { type z } from 'zod';
 
@@ -48,11 +52,10 @@ const loginUser = async (input: z.infer<typeof LoginFormModel>) => {
   return response;
 };
 
-export interface LoginFormProps {
-  redirect?: (path: string) => void;
-}
+export interface LoginFormProps {}
 
-export const LoginForm: React.FC<LoginFormProps> = ({ redirect }) => {
+export const LoginForm: React.FC<LoginFormProps> = () => {
+  const router = useRouter();
   const [_, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
@@ -80,8 +83,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ redirect }) => {
         setError(result.message || 'An error occurred. Please try again.');
       } else if (result.success) {
         setAuthState({ isLoggedIn: true, accessToken: result.data?.accessToken } as AuthState);
-        console.log('Login successful', result.data?.nextUrl);
-        redirect && redirect(result.data?.nextUrl || '/');
+        toast({
+          title: 'Login Successful',
+          description: 'Enjoy your tour ...',
+          timeout: 20000,
+          variant: 'success',
+        });
+        router.push(result.data?.nextUrl || '/');
       }
     } catch (error) {
       setError('An error occurred. Please try again.');

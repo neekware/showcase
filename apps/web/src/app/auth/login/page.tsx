@@ -1,9 +1,5 @@
-'use client';
-
-import { useEffect } from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { useAppState } from '@lib/data-store-next';
 import { LoginForm } from '@lib/ui-auth-next';
 import { Icon, mdiFolderPlus, mdiLogin } from '@lib/ui-icon-next';
 import {
@@ -17,15 +13,6 @@ import {
 } from '@lib/ui-vendor-next';
 
 export default function Login() {
-  const [state] = useAppState();
-
-  useEffect(() => {
-    // redirect to home page if user is already logged in
-    if (state.auth.isLoggedIn) {
-      redirect('/');
-    }
-  }, []);
-
   return (
     <Card className="mx-auto w-full sm:w-[500px]">
       <CardHeader className="-mb-2.5 pt-4">
@@ -41,7 +28,7 @@ export default function Login() {
       </CardHeader>
       <Separator orientation="horizontal" />
       <CardContent className="pb-3 pt-3">
-        <LoginForm redirect={redirect} />
+        <LoginForm />
       </CardContent>
       <Separator orientation="horizontal" />
       <CardFooter className="-mb-2 flex justify-between pt-4">
