@@ -4,6 +4,7 @@ import { siteSettings } from '@web/cfg';
 
 const protectedPaths = ['/admin', '/products'];
 
+// Middleware to check paths, authentication, and authorization as well as redirects
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const { urls } = siteSettings;
