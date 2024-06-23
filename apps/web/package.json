@@ -11,7 +11,7 @@
     "build:ci": "cp ./env/ci .env && next build",
     "start:prod": "cp ./env/prod .env && next build && next start",
     "start:ci": "cp ./env/ci .env && next build && next start",
-    "dev": "cp ./env/dev .env && next dev --turbo",
+    "dev": "cp ./env/dev .env && next dev",
     "start": "cp ./env/dev .env && next build && next start",
     "__TEST_RELATED__": "__________________",
     "lint": "next lint --no-cache",

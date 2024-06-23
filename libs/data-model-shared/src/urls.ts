@@ -9,6 +9,7 @@ export interface UrlTypes {
     };
   };
   site: {
+    base: string;
     home: string;
     about: string;
     more: string;

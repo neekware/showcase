@@ -7,6 +7,7 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     AUTH_SECRET: process.env.AUTH_SECRET,
+    AUTH_ISSUER: process.env.AUTH_ISSUER,
     SITE_URL: process.env.SITE_URL,
     DB_DEBUG: process.env.DB_DEBUG,
   },

@@ -3,8 +3,10 @@
 import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import type { AxiosInstance } from '@lib/data-jwt-shared';
 import { logger } from '@lib/data-logger-shared';
 import type { AuthState, RegisterFormInputs, ServerResponseType } from '@lib/data-model-shared';
+import { useAxiosAuth } from '@lib/data-net-next';
 import { useAuthState } from '@lib/data-store-next';
 import { RegisterForm } from '@lib/ui-auth-next';
 import { Icon, mdiAccountPlus, mdiLogin } from '@lib/ui-icon-next';
@@ -22,16 +24,18 @@ import { siteSettings } from '@web/cfg';
 
 const { urls } = siteSettings;
 
-const registerUser = async (input: RegisterFormInputs) => {
-  const response = await fetch(urls.api.auth.register, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(input),
-  });
-  return response;
+const registerUser = async (input: RegisterFormInputs, axiosAuth: AxiosInstance) => {
+  try {
+    const response = await axiosAuth.post(urls.api.auth.register, input);
+    return response;
+  } catch (error) {
+    logger.error('Error during registration:', error);
+    return undefined;
+  }
 };
 
 function Register() {
+  const axiosAuth = useAxiosAuth(urls.site.base, urls.api.auth.refresh);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [nextUrl, setNextUrl] = useState<string>('');
@@ -55,15 +59,15 @@ function Register() {
     let result: ServerResponseType = { success: false, message: '' };
 
     // register user
-    const response = await registerUser(input);
-    if (!response.ok) {
+    const response = await registerUser(input, axiosAuth);
+    if (!response) {
       setError('A server error occurred. Please try again.');
       logger.error('Error during registration');
       setIsLoading(false);
       return;
     }
 
-    result = await response.json();
+    result = response.data;
     setIsLoading(false);
 
     // handle register result

@@ -1,7 +1,7 @@
 AUTH_SECRET="some-amazing-seekret"
-AUTH_ISSUER="http://example.com"
+AUTH_ISSUER="http://localhost:3000"
 
-SITE_URL="http://localhost:4200"
+SITE_URL="http://localhost:3000"
 
 DB_URL="postgresql://val:val@localhost:5432/showcase"
 DEBUG="true"

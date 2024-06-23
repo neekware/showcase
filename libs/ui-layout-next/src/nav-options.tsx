@@ -2,7 +2,10 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import type { AxiosInstance } from '@lib/data-jwt-shared';
+import { logger } from '@lib/data-logger-shared';
 import type { SiteSettings } from '@lib/data-model-shared';
+import { useAxiosAuth } from '@lib/data-net-next';
 import { useAuthState } from '@lib/data-store-next';
 import {
   Icon,
@@ -26,26 +29,32 @@ import {
   DropdownMenuTrigger,
 } from '@lib/ui-vendor-next';
 
+const logoutUser = async (logoutUrl: string, axiosAuth: AxiosInstance) => {
+  try {
+    const response = await axiosAuth.post(logoutUrl);
+    return response;
+  } catch (error) {
+    logger.error('Error during logout:', error);
+    return undefined;
+  }
+};
+
 interface NavOptionProps {
   siteSettings: SiteSettings;
   className?: string;
 }
 
 export function NavOption({ siteSettings, className }: NavOptionProps): JSX.Element {
-  const [auth, setAuthState] = useAuthState();
-  const router = useRouter();
   const { urls } = siteSettings;
 
-  const handleLogout = async () => {
-    await fetch(urls.api.auth.logout, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({}),
-    });
+  const axiosAuth = useAxiosAuth(urls.site.base, urls.api.auth.refresh);
+  const [auth, setAuthState] = useAuthState();
+  const router = useRouter();
 
+  const handleLogout = async () => {
     // Fire and forget, let's log the user out and redirect
+    await logoutUser(urls.api.auth.logout, axiosAuth);
+
     setAuthState({ isLoggedIn: false, accessToken: '' });
   };
 

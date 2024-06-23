@@ -1,53 +1,58 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { JWTService } from '@lib/data-jwt-shared';
+import { logger } from '@lib/data-logger-shared';
 import { siteSettings } from '@web/cfg';
 
 const protectedPaths = ['/admin', '/products'];
+const { urls } = siteSettings;
 
-// Middleware to check paths, authentication, and authorization as well as redirects
-export async function middleware(req: NextRequest) {
+export function errorMiddleware(req: NextRequest) {
+  try {
+    return NextResponse.next();
+  } catch (error) {
+    logger.error(error);
+    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+export async function authMiddleware(req: NextRequest) {
   const url = req.nextUrl.clone();
-  const { urls } = siteSettings;
 
   if (protectedPaths.some((path) => url.pathname.startsWith(path))) {
-    // we received a request to a protected path
-
+    console.log('Protected path:', req.headers);
     // extract the access token from the request headers
     const accessToken = req.headers.get('Authorization')?.replace('Bearer ', '');
-    if (!accessToken) {
-      const loginUrl = new URL(urls.site.auth.login, req.url);
-      loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-
-    try {
+    if (accessToken) {
       // decrypt the access token to check its validity
       const jwtAccessPayload = await JWTService.decrypt(accessToken);
-      if (!jwtAccessPayload.success || !jwtAccessPayload.data) {
-        const refreshUrl = new URL(urls.api.auth.refresh, req.url);
-        const response = await fetch(refreshUrl);
-        if (response.status === 401) {
-          // auth token is expired, user must login again
-          const loginUrl = new URL(urls.site.auth.login, req.url);
-          loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
-          return NextResponse.redirect(loginUrl);
-        }
-
-        const { data: newAccessToken } = await response.json();
-        const newHeaders = new Headers(req.headers);
-        newHeaders.set('Authorization', `Bearer ${newAccessToken}`);
-        return NextResponse.next({
-          request: {
-            headers: newHeaders,
-          },
-        });
+      if (jwtAccessPayload.success) {
+        return NextResponse.next();
       }
-    } catch (error) {
-      console.error('Error during JWT decryption or token refresh:', error);
-      const loginUrl = new URL(urls.site.auth.login, req.url);
-      loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
-      return NextResponse.redirect(loginUrl);
     }
+
+    // redirect to login page if token is invalid
+    const loginUrl = new URL(urls.site.auth.login, req.url);
+    loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+    logger.debug(
+      `Middleware: Invalid access token, redirecting to login page: ${loginUrl.toString()}`
+    );
+    return NextResponse.redirect(loginUrl);
+  }
+
+  // un-protected path, continue
+  return NextResponse.next();
+}
+
+export async function middleware(request: NextRequest) {
+  // Chain the middleware functions
+  const authResponse = await authMiddleware(request);
+  if (authResponse.status !== 200) {
+    return authResponse;
+  }
+
+  const errorResponse = errorMiddleware(request);
+  if (errorResponse.status !== 200) {
+    return errorResponse;
   }
 
   return NextResponse.next();
@@ -61,6 +66,6 @@ export const config = {
      * - _next/static (static files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|favicon.ico).*)',
+    '/((?!_next/static|favicon.ico).*)',
   ],
 };

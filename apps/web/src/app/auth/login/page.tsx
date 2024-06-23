@@ -3,12 +3,14 @@
 import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import type { AxiosInstance } from '@lib/data-jwt-shared';
 import { logger } from '@lib/data-logger-shared';
 import {
   type AuthState,
   type LoginFormInputs,
   type ServerResponseType,
 } from '@lib/data-model-shared';
+import { useAxiosAuth } from '@lib/data-net-next';
 import { useAuthState } from '@lib/data-store-next';
 import { LoginForm } from '@lib/ui-auth-next';
 import { Icon, mdiFolderPlus, mdiLogin } from '@lib/ui-icon-next';
@@ -26,16 +28,18 @@ import { siteSettings } from '@web/cfg';
 
 const { urls } = siteSettings;
 
-const loginUser = async (input: LoginFormInputs) => {
-  const response = await fetch(urls.api.auth.login, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(input),
-  });
-  return response;
+const loginUser = async (input: LoginFormInputs, axiosAuth: AxiosInstance) => {
+  try {
+    const response = await axiosAuth.post(urls.api.auth.login, input);
+    return response;
+  } catch (error) {
+    logger.error('Error during login:', error);
+    return undefined;
+  }
 };
 
 function Login() {
+  const axiosAuth = useAxiosAuth(urls.site.base, urls.api.auth.refresh);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [nextUrl, setNextUrl] = useState<string>('');
@@ -59,21 +63,22 @@ function Login() {
     let result: ServerResponseType = { success: false, message: '' };
 
     // login user
-    const response = await loginUser(input);
-    if (!response.ok) {
+    const response = await loginUser(input, axiosAuth);
+    if (!response) {
       setError('A server error occurred. Please try again.');
       logger.error('Error during login');
       setIsLoading(false);
       return;
     }
 
-    result = await response.json();
+    result = response.data;
+
     setIsLoading(false);
 
     // handle login result
     if (!result.success || !result.data) {
       setError(result.message || 'Failed to register your account. Please try again.');
-      logger.error('Login unsuccessful:', result.message);
+      logger.error('Login failed:', result.message);
     } else {
       logger.info('Login successful');
 
