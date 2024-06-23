@@ -6,7 +6,6 @@ export * from './src/footer';
 export * from './src/nav-desktop';
 export * from './src/nav-mobile';
 export * from './src/nav-options';
-export * from './src/option-logout';
 export * from './src/site-header';
 export * from './src/site-init';
 export * from './src/site-logo';

@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { JWTService } from '@lib/data-jwt-shared';
+import { logger } from '@lib/data-logger-shared';
 import { siteSettings } from '@web/cfg';
 
 const protectedPaths = ['/admin', '/products'];
@@ -9,6 +10,8 @@ export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const { urls } = siteSettings;
 
+  logger.debug('Request URL:', url.pathname);
+
   if (protectedPaths.some((path) => url.pathname.startsWith(path))) {
     // we received a request to a protected path
 
@@ -17,6 +20,7 @@ export async function middleware(req: NextRequest) {
     if (!accessToken) {
       const loginUrl = new URL(urls.site.auth.login, req.url);
       loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+      logger.debug('Redirecting to login page:', loginUrl.toString());
       return NextResponse.redirect(loginUrl);
     }
 
@@ -29,9 +33,13 @@ export async function middleware(req: NextRequest) {
         // auth token is expired, user must login again
         const loginUrl = new URL(urls.site.auth.login, req.url);
         loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+        logger.debug('Redirecting to login page:', loginUrl.toString());
         return NextResponse.redirect(loginUrl);
       }
+
       const { data: newAccessToken } = await response.json();
+      logger.debug('Refreshing access token:', newAccessToken);
+
       req.headers.set('Authorization', `Bearer ${newAccessToken}`);
     }
   }

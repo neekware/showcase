@@ -25,6 +25,7 @@ export function AppInit({ siteSettings }: AppInitProps): null {
     if (initialLoad) {
       if (state.auth.isLoggedIn) {
         router.push(urls.site.home);
+        router.refresh();
       }
       setPrevIsLoggedIn(state.auth.isLoggedIn);
       setInitialLoad(false);
@@ -37,6 +38,7 @@ export function AppInit({ siteSettings }: AppInitProps): null {
           variant: 'info',
         });
         router.push(urls.site.auth.login);
+        router.refresh();
       }
       setPrevIsLoggedIn(state.auth.isLoggedIn);
     }

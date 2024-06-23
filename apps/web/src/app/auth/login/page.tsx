@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { logger } from '@lib/data-logger-shared';
@@ -38,9 +38,14 @@ const loginUser = async (input: LoginFormInputs) => {
 function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [nextUrl, setNextUrl] = useState<string>('');
   const [_, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setNextUrl(searchParams.get('nextUrl') || urls.site.home);
+  }, [searchParams]);
 
   const cleanupError = () => {
     setError('');
@@ -82,8 +87,9 @@ function Login() {
         variant: 'success',
       });
 
-      const nextUrl = searchParams.get('nextUrl') || urls.site.home;
+      logger.info('Logged In, redirecting', nextUrl);
       router.push(nextUrl);
+      router.refresh();
     }
 
     setIsLoading(false);
@@ -115,7 +121,7 @@ function Login() {
       <CardFooter className="-mb-2 flex justify-between pt-4">
         Do not have an account?
         <Link
-          href={urls.site.auth.register}
+          href={`${urls.site.auth.register}${nextUrl ? `?nextUrl=${encodeURIComponent(nextUrl)}` : ''}`}
           className="hover:text-foreground/60 flex gap-1 transition-colors"
         >
           <Icon path={mdiFolderPlus} size={1} className="text-primary" />

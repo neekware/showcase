@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { logger } from '@lib/data-logger-shared';
@@ -34,9 +34,14 @@ const registerUser = async (input: RegisterFormInputs) => {
 function Register() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [nextUrl, setNextUrl] = useState<string>('');
   const [_, setAuthState] = useAuthState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setNextUrl(searchParams.get('nextUrl') || urls.site.home);
+  }, [searchParams]);
 
   const cleanupError = () => {
     setError('');
@@ -78,7 +83,9 @@ function Register() {
         variant: 'success',
       });
 
-      router.push(urls.site.home);
+      logger.info('Registered, redirecting', nextUrl);
+      router.push(nextUrl);
+      router.refresh();
     }
   };
 
@@ -108,7 +115,7 @@ function Register() {
       <CardFooter className="-mb-2 flex justify-between pt-4">
         Already have an account?
         <Link
-          href={urls.site.auth.login}
+          href={`${urls.site.auth.login}${nextUrl ? `?nextUrl=${encodeURIComponent(nextUrl)}` : ''}`}
           className="hover:text-foreground/60 flex gap-1 transition-colors"
         >
           <Icon path={mdiLogin} size={1} className="text-primary" />
