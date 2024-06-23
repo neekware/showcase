@@ -20,20 +20,33 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
-    // decrypt the access token to check its validity
-    const jwtAccessPayload = await JWTService.decrypt(accessToken);
-    if (!jwtAccessPayload.success || !jwtAccessPayload.data) {
-      const refreshUrl = new URL(urls.api.auth.refresh, req.url);
-      const response = await fetch(refreshUrl);
-      if (response.status === 401) {
-        // auth token is expired, user must login again
-        const loginUrl = new URL(urls.site.auth.login, req.url);
-        loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
-        return NextResponse.redirect(loginUrl);
-      }
+    try {
+      // decrypt the access token to check its validity
+      const jwtAccessPayload = await JWTService.decrypt(accessToken);
+      if (!jwtAccessPayload.success || !jwtAccessPayload.data) {
+        const refreshUrl = new URL(urls.api.auth.refresh, req.url);
+        const response = await fetch(refreshUrl);
+        if (response.status === 401) {
+          // auth token is expired, user must login again
+          const loginUrl = new URL(urls.site.auth.login, req.url);
+          loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+          return NextResponse.redirect(loginUrl);
+        }
 
-      const { data: newAccessToken } = await response.json();
-      req.headers.set('Authorization', `Bearer ${newAccessToken}`);
+        const { data: newAccessToken } = await response.json();
+        const newHeaders = new Headers(req.headers);
+        newHeaders.set('Authorization', `Bearer ${newAccessToken}`);
+        return NextResponse.next({
+          request: {
+            headers: newHeaders,
+          },
+        });
+      }
+    } catch (error) {
+      console.error('Error during JWT decryption or token refresh:', error);
+      const loginUrl = new URL(urls.site.auth.login, req.url);
+      loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+      return NextResponse.redirect(loginUrl);
     }
   }
 
