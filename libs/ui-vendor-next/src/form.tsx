@@ -10,9 +10,9 @@ import {
   useFormContext,
 } from 'react-hook-form';
 import type * as LabelPrimitive from '@radix-ui/react-label';
+import { Slot } from '@radix-ui/react-slot';
 import { Icon, mdiAlertOutline, mdiInformation } from '@lib/ui-icon-next';
 import { cn } from '@lib/ui-util-next';
-import { Slot } from '@radix-ui/react-slot';
 import { Label } from './label';
 
 interface FormFieldContextValue<

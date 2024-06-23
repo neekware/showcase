@@ -1,5 +1,5 @@
-import { type DataRetrieval } from '@lib/data-model-shared';
 import { ZodSchema } from 'zod';
+import { type DataRetrieval } from '@lib/data-model-shared';
 
 /**
  * Validate form data

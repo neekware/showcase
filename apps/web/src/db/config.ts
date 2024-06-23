@@ -1,5 +1,5 @@
-import { defineConfig } from '@lib/data-db-shared';
 import path from 'path';
+import { defineConfig } from '@lib/data-db-shared';
 
 // get db url or throw error
 if (!process.env.DB_URL) {

@@ -25,10 +25,10 @@ module.exports = {
     '^(next/(.*)|next-(.*))$',
 
     // Third-party libraries (anything that doesn't match the other rules)
-    '^(?!node$|node/|node:|react$|react/|react-|next$|next/|next-|@repo/|@web/|./|../)(.*)$',
+    '^(?!node$|node/|node:|react$|react/|react-|next$|next/|next-|@lib/|@web/|./|../)(.*)$',
 
     // Libs related imports (@repo)
-    '^@repo/(.*)$',
+    '^@lib/(.*)$',
 
     // Web app related imports (@web)
     '^@web/(.*)$',

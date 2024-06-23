@@ -1,10 +1,10 @@
+import { useAtom } from 'jotai';
 import {
   type AppState,
   type AuthState,
   type ProfileState,
   type ThemeState,
 } from '@lib/data-model-shared';
-import { useAtom } from 'jotai';
 import { appStateAtom, authAtom, getDefaultState, profileAtom, themeAtom } from './store.state';
 
 /**

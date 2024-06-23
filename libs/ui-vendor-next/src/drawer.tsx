@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@lib/ui-util-next';
 import { Drawer as DrawerPrimitive } from 'vaul';
+import { cn } from '@lib/ui-util-next';
 
 function Drawer({
   shouldScaleBackground = true,

@@ -1,5 +1,7 @@
 'use client';
 
+import { atom, Provider as StateStoreProvider } from 'jotai';
+import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 import {
   type AppState,
   type AuthState,
@@ -7,8 +9,6 @@ import {
   type ThemeState,
 } from '@lib/data-model-shared';
 import { sign, verify } from '@lib/data-util-shared';
-import { atom, Provider as StateStoreProvider } from 'jotai';
-import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 
 // Defining default state settings
 const getDefaultState = () => {

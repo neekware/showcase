@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { type z } from 'zod';
 import { type LoginFormInputs, LoginFormModel } from '@lib/data-model-shared';
 import { Icon, mdiSync } from '@lib/ui-icon-next';
 import { useDebounce } from '@lib/ui-util-next';
@@ -14,7 +15,6 @@ import {
   FormItemInfo,
   InputFloating,
 } from '@lib/ui-vendor-next';
-import { type z } from 'zod';
 
 const useLoginForm = () => {
   const form = useForm<z.infer<typeof LoginFormModel>>({

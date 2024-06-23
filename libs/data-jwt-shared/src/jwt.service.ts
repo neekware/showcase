@@ -1,6 +1,6 @@
+import { type JWTPayload, jwtVerify, SignJWT } from 'jose';
 import { logger } from '@lib/data-logger-shared';
 import { type DataRetrieval } from '@lib/data-model-shared';
-import { type JWTPayload, jwtVerify, SignJWT } from 'jose';
 
 if (!process.env.AUTH_SECRET) {
   throw new Error('You must set AUTH_SECRET in your environment');

@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { type z } from 'zod';
 import { type RegisterFormInputs, RegistrationFormModel } from '@lib/data-model-shared';
 import { Icon, mdiSync } from '@lib/ui-icon-next';
 import { useDebounce } from '@lib/ui-util-next';
@@ -16,7 +17,6 @@ import {
   FormItemInfo,
   InputFloating,
 } from '@lib/ui-vendor-next';
-import { type z } from 'zod';
 
 const useRegisterForm = () => {
   const form = useForm<z.infer<typeof RegistrationFormModel>>({
