@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"avatar" text,
 	"password" varchar(255),
 	"role" "Role" DEFAULT 'USER',
+	"isActive" boolean DEFAULT false,
 	"createdAt" timestamp DEFAULT now() NOT NULL,
 	"updatedAt" timestamp DEFAULT now() NOT NULL,
 	"lastLoginAt" timestamp DEFAULT now() NOT NULL,

@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import type { SiteSettings } from '@lib/data-model-shared';
 import { useAuthState } from '@lib/data-store-next';
 import {
   Icon,
@@ -25,17 +26,18 @@ import {
   DropdownMenuTrigger,
 } from '@lib/ui-vendor-next';
 
-// interface NavOptionProps {
-//   siteSettings: SiteSettings;
-//   className?: string;
-// }
+interface NavOptionProps {
+  siteSettings: SiteSettings;
+  className?: string;
+}
 
-export function NavOption() {
+export function NavOption({ siteSettings, className }: NavOptionProps): JSX.Element {
   const [auth, setAuthState] = useAuthState();
   const router = useRouter();
+  const { urls } = siteSettings;
 
   const handleLogout = async () => {
-    await fetch('/api/logout', {
+    await fetch(urls.api.auth.logout, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +46,7 @@ export function NavOption() {
     });
 
     // Fire and forget, let's log the user out and redirect
-    setAuthState({ isLoggedIn: false, token: '' });
+    setAuthState({ isLoggedIn: false, accessToken: '' });
   };
 
   return (
@@ -102,7 +104,7 @@ export function NavOption() {
           ) : (
             <DropdownMenuItem
               onClick={() => {
-                router.push('/auth/login');
+                router.push(urls.site.auth.login);
               }}
               className="flex cursor-pointer items-center gap-2"
             >

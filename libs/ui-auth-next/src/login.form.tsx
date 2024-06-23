@@ -1,13 +1,7 @@
-import { useEffect, useState } from 'react';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  type AuthState,
-  type LoginFormInputs,
-  LoginFormModel,
-  type ServerResponseType,
-} from '@lib/data-model-shared';
-import { useAuthState } from '@lib/data-store-next';
+import { type LoginFormInputs, LoginFormModel } from '@lib/data-model-shared';
 import { Icon, mdiSync } from '@lib/ui-icon-next';
 import { useDebounce } from '@lib/ui-util-next';
 import {
@@ -29,57 +23,30 @@ const useLoginForm = () => {
     mode: 'onChange',
   });
 
-  const debouncedEmail = useDebounce(form.watch('email'), 500);
-  const debouncedPassword = useDebounce(form.watch('password'), 500);
+  // catch all watch not available, so we need to watch each field
+  const debouncedFormStates = useDebounce(form.watch(['email', 'password']), 500);
 
   return {
     form,
-    debouncedEmail,
-    debouncedPassword,
+    debouncedFormStates,
   };
 };
 
-const loginUser = async (input: z.infer<typeof LoginFormModel>) => {
-  const response = await fetch('/api/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(input),
-  });
-  return response;
-};
+interface LoginFormProps {
+  onSubmit: (input: LoginFormInputs) => void;
+  isLoading: boolean;
+  error: string;
+  clearError: () => void;
+}
 
-export const LoginForm: React.FC = () => {
-  const [_, setAuthState] = useAuthState();
-  const [error, setError] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  const { form, debouncedEmail, debouncedPassword } = useLoginForm();
+export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error, clearError }) => {
+  const { form, debouncedFormStates } = useLoginForm();
 
   useEffect(() => {
-    setError('');
-  }, [debouncedEmail, debouncedPassword]);
-
-  const onSubmit: SubmitHandler<LoginFormInputs> = async (input: LoginFormInputs) => {
-    setIsLoading(true);
-    try {
-      const response = await loginUser(input);
-      if (!response.ok) {
-        setError('An error occurred. Please try again.');
-      }
-
-      const result = (await response.json()) as ServerResponseType;
-
-      if (!result.success) {
-        setError(result.message || 'An error occurred. Please try again.');
-      } else if (result.success) {
-        setAuthState({ isLoggedIn: true, token: 'token' } as AuthState);
-      }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
-    } finally {
-      setIsLoading(false);
+    if (error) {
+      clearError();
     }
-  };
+  }, [...debouncedFormStates]);
 
   return (
     <Form {...form}>

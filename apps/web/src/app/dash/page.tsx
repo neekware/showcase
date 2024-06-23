@@ -1,10 +1,13 @@
 import Link from 'next/link';
 import { Button } from '@lib/ui-vendor-next';
-import buildInfo from '../../cfg/config.json';
+import { siteSettings } from '@web/cfg';
+import buildInfo from '@web/cfg/config.json';
 
 export const metadata = {
   title: 'Dash | Showcase',
 };
+
+const { urls } = siteSettings;
 
 export default function Dash(): JSX.Element {
   return (
@@ -23,7 +26,7 @@ export default function Dash(): JSX.Element {
             <div>{JSON.stringify(buildInfo, null, 2)}</div>
 
             <div className="flex gap-2">
-              <Link href="/auth/login">
+              <Link href={urls.site.auth.login}>
                 <Button variant="default">Login</Button>
               </Link>
               <Link href="/products">

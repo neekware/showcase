@@ -1,5 +1,5 @@
 {
-  "name": "@lib/ui-auth-next",
+  "name": "@lib/data-jwt-shared",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,11 +9,6 @@
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.6.0",
-    "lodash-es": "^4.17.21",
-    "next": "14.2.4",
-    "react": "^18.3.1",
-    "react-hook-form": "^7.51.5",
-    "zod": "^3.23.8"
+    "jose": "^5.4.0"
   }
 }

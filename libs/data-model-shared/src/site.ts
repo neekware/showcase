@@ -1,4 +1,5 @@
 import { type Theme } from './theme';
+import { type UrlTypes } from './urls';
 
 export interface LinkItem {
   title: string;
@@ -24,6 +25,7 @@ export interface SiteMetadata {
 }
 
 export interface SiteSettings extends SiteMetadata {
+  urls: UrlTypes;
   themes: Theme[];
   navTopLinks: LinkItem[];
   navOptionLinks: LinkItem[];

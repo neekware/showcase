@@ -1,4 +1,5 @@
 import { I18nProvider } from '@lib/data-i18n-shared';
+import { logger, LogLevel } from '@lib/data-logger-shared';
 import { StateStoreProvider } from '@lib/data-store-next';
 import {
   AppInit,
@@ -15,6 +16,8 @@ import '@web/styles/styles.css';
 export const generateMetadata = () => metaSettings;
 
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
+  logger.setLogLevel(LogLevel.critical);
+
   return (
     <html lang="en" dir="ltr">
       <head>
@@ -32,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
               enableSystem
               disableTransitionOnChange
             >
-              <AppInit />
+              <AppInit siteSettings={siteSettings} />
               <div className="relative flex min-h-screen flex-col">
                 <SiteHeader
                   siteSettings={siteSettings}

@@ -1,8 +1,8 @@
 import { type ThemeMode } from './theme';
 
 export interface AuthState {
-  token: string;
   isLoggedIn: boolean;
+  accessToken: string;
 }
 
 export interface ThemeState {
