@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
               enableSystem
               disableTransitionOnChange
             >
-              <AppInit />
+              <AppInit siteSettings={siteSettings} />
               <div className="relative flex min-h-screen flex-col">
                 <SiteHeader
                   siteSettings={siteSettings}

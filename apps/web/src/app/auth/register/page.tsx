@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { logger } from '@lib/data-logger-shared';
@@ -31,7 +31,7 @@ const registerUser = async (input: RegisterFormInputs) => {
   return response;
 };
 
-export default function Register() {
+function Register() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [_, setAuthState] = useAuthState();
@@ -75,7 +75,7 @@ export default function Register() {
         title: 'Registration Successful',
         description: 'Enjoy your tour ...',
         timeout: 20000,
-        variant: 'info',
+        variant: 'success',
       });
 
       router.push(urls.site.home);
@@ -118,3 +118,13 @@ export default function Register() {
     </Card>
   );
 }
+
+const RegisterWithSuspense = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Register />
+    </Suspense>
+  );
+};
+
+export default RegisterWithSuspense;

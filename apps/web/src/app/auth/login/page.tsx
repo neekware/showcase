@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { logger } from '@lib/data-logger-shared';
@@ -35,7 +35,7 @@ const loginUser = async (input: LoginFormInputs) => {
   return response;
 };
 
-export default function Login() {
+function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [_, setAuthState] = useAuthState();
@@ -125,3 +125,13 @@ export default function Login() {
     </Card>
   );
 }
+
+const LoginWithSuspense = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Login />
+    </Suspense>
+  );
+};
+
+export default LoginWithSuspense;

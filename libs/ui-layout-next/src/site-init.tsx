@@ -3,10 +3,15 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
+import type { SiteSettings } from '@lib/data-model-shared';
 import { useAppState } from '@lib/data-store-next';
 import { useToast } from '@lib/ui-vendor-next';
 
-export function AppInit(): null {
+interface AppInitProps {
+  siteSettings: SiteSettings;
+}
+
+export function AppInit({ siteSettings }: AppInitProps): null {
   const router = useRouter();
   const [state] = useAppState();
   const { setTheme } = useTheme();
@@ -14,11 +19,12 @@ export function AppInit(): null {
   const [prevIsLoggedIn, setPrevIsLoggedIn] = useState(state.auth.isLoggedIn);
   const [initialLoad, setInitialLoad] = useState(true);
 
+  const { urls } = siteSettings;
+
   useEffect(() => {
     if (initialLoad) {
       if (state.auth.isLoggedIn) {
-        router.push('/');
-        router.refresh();
+        router.push(urls.site.home);
       }
       setPrevIsLoggedIn(state.auth.isLoggedIn);
       setInitialLoad(false);
@@ -30,8 +36,7 @@ export function AppInit(): null {
           timeout: 20000,
           variant: 'info',
         });
-        router.push('/auth/login');
-        router.refresh();
+        router.push(urls.site.auth.login);
       }
       setPrevIsLoggedIn(state.auth.isLoggedIn);
     }

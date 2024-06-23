@@ -6,6 +6,8 @@ import { useTranslate } from '@lib/data-i18n-shared';
 import { Button } from '@lib/ui-vendor-next';
 import { siteSettings } from '@web/cfg';
 
+const { urls } = siteSettings;
+
 export default function Home() {
   const t = useTranslate();
   return (
@@ -66,7 +68,7 @@ export default function Home() {
               ensures that your campaign will thrive. Let’s build a stronger future together.
             </p>
             <div className="mx-auto flex w-full items-center justify-center gap-6 pt-8 sm:w-auto md:w-auto lg:w-auto">
-              <Link href="/auth/login">
+              <Link href={urls.site.auth.login}>
                 <Button variant="default" className="w-20 sm:w-32 md:w-48 lg:w-64">
                   Login
                 </Button>
