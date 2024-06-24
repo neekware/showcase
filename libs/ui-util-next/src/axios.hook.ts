@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 import { getAuthAxios } from '@lib/data-net-shared';
-import { useAuthState } from '@lib/data-store-next';
+import { useAppState } from '@lib/data-store-next';
 
 export const useAuthAxios = (baseURL: string) => {
-  const [auth, _] = useAuthState();
+  const [state, _] = useAppState();
   const axiosAuth = getAuthAxios({ baseURL });
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export const useAuthAxios = (baseURL: string) => {
       axiosAuth.interceptors.request.eject(requestIntercept);
       axiosAuth.interceptors.response.eject(responseIntercept);
     };
-  }, [auth]);
+  }, [state]);
 
   return axiosAuth;
 };

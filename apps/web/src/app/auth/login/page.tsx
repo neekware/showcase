@@ -4,13 +4,9 @@ import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { logger } from '@lib/data-logger-shared';
-import {
-  type AuthState,
-  type LoginFormInputs,
-  type ServerResponseType,
-} from '@lib/data-model-shared';
+import { type LoginFormInputs, type ServerResponseType } from '@lib/data-model-shared';
 import { type AxiosInstance } from '@lib/data-net-shared';
-import { useAuthState } from '@lib/data-store-next';
+import { useAppState } from '@lib/data-store-next';
 import { LoginForm } from '@lib/ui-auth-next';
 import { Icon, mdiFolderPlus, mdiLogin } from '@lib/ui-icon-next';
 import { useAuthAxios } from '@lib/ui-util-next';
@@ -43,7 +39,7 @@ function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [nextUrl, setNextUrl] = useState<string>('');
-  const [_, setAuthState] = useAuthState();
+  const [_, setAppState] = useAppState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -82,15 +78,7 @@ function Login() {
     } else {
       logger.info('Login successful');
 
-      const { data: accessToken } = result;
-      setAuthState({ isLoggedIn: true, accessToken } as AuthState);
-
-      toast({
-        title: 'Login Successful',
-        description: 'Enjoy your tour ...',
-        timeout: 20000,
-        variant: 'success',
-      });
+      setAppState({ isLoggedIn: true });
 
       logger.info('Logged In, redirecting', nextUrl);
       router.push(nextUrl);

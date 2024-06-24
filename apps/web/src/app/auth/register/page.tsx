@@ -4,9 +4,9 @@ import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { logger } from '@lib/data-logger-shared';
-import type { AuthState, RegisterFormInputs, ServerResponseType } from '@lib/data-model-shared';
+import type { RegisterFormInputs, ServerResponseType } from '@lib/data-model-shared';
 import type { AxiosInstance } from '@lib/data-net-shared';
-import { useAuthState } from '@lib/data-store-next';
+import { useAppState } from '@lib/data-store-next';
 import { RegisterForm } from '@lib/ui-auth-next';
 import { Icon, mdiAccountPlus, mdiLogin } from '@lib/ui-icon-next';
 import { useAuthAxios } from '@lib/ui-util-next';
@@ -39,7 +39,7 @@ function Register() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [nextUrl, setNextUrl] = useState<string>('');
-  const [_, setAuthState] = useAuthState();
+  const [_, setAppState] = useAppState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -77,8 +77,7 @@ function Register() {
     } else {
       logger.info('Registration successful');
 
-      const { data: accessToken } = result;
-      setAuthState({ isLoggedIn: true, accessToken } as AuthState);
+      setAppState({ isLoggedIn: true });
 
       toast({
         title: 'Registration Successful',

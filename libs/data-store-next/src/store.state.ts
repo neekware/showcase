@@ -1,31 +1,24 @@
 'use client';
 
-import { atom, Provider as StateStoreProvider } from 'jotai';
+import { Provider as StateStoreProvider } from 'jotai';
 import { atomWithStorage, createJSONStorage } from 'jotai/utils';
-import {
-  type AppState,
-  type AuthState,
-  type ProfileState,
-  type ThemeState,
-} from '@lib/data-model-shared';
+import { type AppState } from '@lib/data-model-shared';
 import { sign, verify } from '@lib/data-util-shared';
 
 // Defining default state settings
 const getDefaultState = () => {
   return sign<AppState>({
     // Initial authentication state
-    auth: { isLoggedIn: false, accessToken: '' },
+    isLoggedIn: false,
+
     // Initial theme settings
-    theme: {
-      name: 'zinc',
-      mode: 'system',
-      radius: 0.5,
-    },
-    // Initial profile settings
-    profile: { username: '', email: '' },
+    name: 'zinc',
+    mode: 'system',
+    radius: 0.5,
+
     // Initial signature and version
     signature: 'not-signed-yet',
-    version: '1.0.3',
+    version: '1.0.4',
   });
 };
 
@@ -98,40 +91,4 @@ appStateAtom.onMount = (setAtom) => {
   };
 };
 
-// Creating atoms for theme with derived values and update functions
-const themeAtom = atom(
-  (get) => get(appStateAtom).theme,
-  (get, set, update: ThemeState) => {
-    set(appStateAtom, {
-      ...getDefaultState(),
-      ...get(appStateAtom),
-      theme: update,
-    });
-  }
-);
-
-// Creating atoms for auth with derived values and update functions
-const authAtom = atom(
-  (get) => get(appStateAtom).auth,
-  (get, set, update: AuthState) => {
-    set(appStateAtom, {
-      ...getDefaultState(),
-      ...get(appStateAtom),
-      auth: update,
-    });
-  }
-);
-
-// Creating atoms for profile with derived values and update functions
-const profileAtom = atom(
-  (get) => get(appStateAtom).profile,
-  (get, set, update: ProfileState) => {
-    set(appStateAtom, {
-      ...getDefaultState(),
-      ...get(appStateAtom),
-      profile: update,
-    });
-  }
-);
-
-export { appStateAtom, themeAtom, authAtom, profileAtom, getDefaultState, StateStoreProvider };
+export { appStateAtom, getDefaultState, StateStoreProvider };
