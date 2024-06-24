@@ -17,21 +17,24 @@ export const JWTService = {
   key(secret = process.env.AUTH_SECRET): Uint8Array {
     return new TextEncoder().encode(secret);
   },
-  async encrypt(userId: string, expires: number): Promise<DataRetrieval<string>> {
+  async encrypt(userId: string, expiresInMinutes: number): Promise<DataRetrieval<string>> {
     const key = JWTService.key(process.env.AUTH_SECRET);
+    const nowInSeconds = Math.floor(Date.now() / 1000);
+    const expiresInSeconds = nowInSeconds + expiresInMinutes * 60;
+
     try {
+      const token = await new SignJWT({
+        sub: userId,
+        iss: JWTService.issuer(),
+      })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt(nowInSeconds)
+        .setExpirationTime(expiresInSeconds)
+        .sign(key);
+
       return {
         success: true,
-        data: await new SignJWT({
-          sub: userId,
-          exp: expires,
-          iat: Date.now(),
-          iss: JWTService.issuer(),
-        })
-          .setProtectedHeader({ alg: 'HS256' })
-          .setIssuedAt()
-          .setExpirationTime(expires)
-          .sign(key),
+        data: token,
       };
     } catch (e) {
       logger.error(e);
