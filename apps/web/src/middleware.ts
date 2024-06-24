@@ -3,8 +3,8 @@ import { logger } from '@lib/data-logger-shared';
 import { JWTService } from '@lib/data-net-shared';
 import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY, siteSettings } from '@web/cfg';
 
-const protectedPaths = ['/admin', '/products'];
 const { urls } = siteSettings;
+const protectedPaths = ['/admin', '/products'];
 
 /**
  * Redirect to login page when session expires
@@ -19,7 +19,7 @@ const redirectOnExpiry = (req: NextRequest) => {
 };
 
 /**
- * Error middleware
+ * Error middleware - catch all errors and log them properly, preventing sensitive information from leaking
  * @param req request object
  * @returns request response
  */
@@ -32,6 +32,11 @@ export function errorMiddleware(req: NextRequest) {
   }
 }
 
+/**
+ * Authentication middleware - check if the user is logged in
+ * @param req request object
+ * @returns request response
+ */
 export async function authMiddleware(req: NextRequest) {
   const url = req.nextUrl.clone();
 
@@ -70,17 +75,18 @@ export async function authMiddleware(req: NextRequest) {
 }
 
 /**
- * Middleware function
+ * Middleware function to chain the authentication and error middlewares, etc.
  * @param req request object
  * @returns request response
  */
 export async function middleware(req: NextRequest) {
-  // Chain the middleware functions
+  // check protected paths
   const authResponse = await authMiddleware(req);
   if (authResponse.status !== 200) {
     return authResponse;
   }
 
+  // check and anonymize errors
   const errorResponse = errorMiddleware(req);
   if (errorResponse.status !== 200) {
     return errorResponse;
