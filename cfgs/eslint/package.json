@@ -20,10 +20,10 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^28.6.0",
     "eslint-plugin-jest-dom": "^5.4.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-playwright": "^1.6.2",
-    "eslint-plugin-tailwindcss": "^3.17.3",
-    "eslint-plugin-testing-library": "^6.2.2",
-    "eslint-plugin-node": "^11.1.0"
+    "eslint-plugin-tailwindcss": "^3.17.4",
+    "eslint-plugin-testing-library": "^6.2.2"
   }
 }
