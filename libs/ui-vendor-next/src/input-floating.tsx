@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 import { useFormField } from './form';
 
 export type FloatingLabelInputProps = React.InputHTMLAttributes<HTMLInputElement> & {

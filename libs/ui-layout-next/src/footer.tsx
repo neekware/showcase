@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { type SiteSettings } from '@lib/data-model-shared';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 import { FooterCategory } from './footer-category';
 import { FooterPreferences } from './footer-preference';
 import { FooterSite } from './footer-site';

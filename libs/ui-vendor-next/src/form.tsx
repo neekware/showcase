@@ -12,7 +12,7 @@ import {
 import type * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
 import { Icon, mdiAlertOutline, mdiInformation } from '@lib/ui-icon-next';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 import { Label } from './label';
 
 interface FormFieldContextValue<

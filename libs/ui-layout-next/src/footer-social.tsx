@@ -2,8 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { type LinkItem } from '@lib/data-model-shared';
 import { Icon } from '@lib/ui-icon-next';
-import { cn } from '@lib/ui-util-next';
-import { Button } from '@lib/ui-vendor-next';
+import { cn , Button } from '@lib/ui-vendor-next';
 
 interface FooterSocialProps {
   listItems: LinkItem[];

@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 import {
   Toast,
   ToastClose,
