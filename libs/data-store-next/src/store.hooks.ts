@@ -1,10 +1,9 @@
 import { useAtom } from 'jotai';
 import { type AppState } from '@lib/data-model-shared';
-import { appStateAtom, authAtom, getDefaultState, profileAtom, themeAtom } from './store.state';
+import { appStateAtom, getDefaultState } from './store.state';
 
 /**
  * Hook to access and update the application state
- *
  * @returns An array containing the current state and an update function
  */
 // eslint-disable-next-line no-unused-vars
@@ -13,7 +12,6 @@ export function useAppState(): readonly [AppState, (partialConfig: Partial<AppSt
 
   /**
    * Function to update the application state immutably
-   *
    * @param partialConfig - Partial configuration to update the state
    */
   const updateImmutable = (partialConfig: Partial<AppState>) => {

@@ -18,51 +18,62 @@ import {
   CardHeader,
   CardTitle,
   Separator,
-  toast,
 } from '@lib/ui-vendor-next';
 import { siteSettings } from '@web/cfg';
 
 const { urls } = siteSettings;
 
-const registerUser = async (input: RegisterFormInputs, axiosAuth: AxiosInstance) => {
+// api call to register a user
+const registerUser = async (input: RegisterFormInputs, axios: AxiosInstance) => {
   try {
-    const response = await axiosAuth.post(urls.api.auth.register, input);
+    const response = await axios.post(urls.api.auth.register, input);
     return response;
   } catch (error) {
     logger.error('Error during registration:', error);
-    return undefined;
   }
 };
 
+// registration page component
 function Register() {
-  const axiosAuth = useAuthAxios(urls.site.base);
+  const authAxios = useAuthAxios(urls.site.base);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [nextUrl, setNextUrl] = useState<string>('');
-  const [_, setAppState] = useAppState();
+  const [state, setAppState] = useAppState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // set nextUrl from query params
   useEffect(() => {
     setNextUrl(searchParams.get('nextUrl') || urls.site.home);
   }, [searchParams]);
 
+  // redirect if already logged in
+  useEffect(() => {
+    if (state.isLoggedIn) {
+      logger.info('Registration successful');
+      router.refresh();
+      router.push(nextUrl);
+    }
+  }, [state, nextUrl, router]);
+
+  // callback that is called form LoginForm component to clear error
   const cleanupError = () => {
     setError('');
-    logger.debug('Register: Error cleared');
   };
 
-  const handleRegister = async (input: RegisterFormInputs) => {
+  // callback that is called form LoginForm component on form submit
+  const onSubmit = async (input: RegisterFormInputs) => {
     setError('');
     setIsLoading(true);
 
     let result: ServerResponseType = { success: false, message: '' };
 
-    // register user
-    const response = await registerUser(input, axiosAuth);
+    // call the login API to authenticate the user
+    const response = await registerUser(input, authAxios);
     if (!response) {
       setError('A server error occurred. Please try again.');
-      logger.error('Error during registration');
+      logger.error('Error during login');
       setIsLoading(false);
       return;
     }
@@ -70,26 +81,14 @@ function Register() {
     result = response.data;
     setIsLoading(false);
 
-    // handle register result
+    // handle login result
     if (!result.success || !result.data) {
       setError(result.message || 'Failed to register your account. Please try again.');
-      logger.error('Registration unsuccessful:', result.message);
-    } else {
-      logger.info('Registration successful');
-
-      setAppState({ isLoggedIn: true });
-
-      toast({
-        title: 'Registration Successful',
-        description: 'Enjoy your tour ...',
-        timeout: 20000,
-        variant: 'success',
-      });
-
-      logger.info('Registered, redirecting', nextUrl);
-      router.push(nextUrl);
-      router.refresh();
+      logger.error('Registration failed:', result.message);
+      return;
     }
+
+    setAppState({ isLoggedIn: true });
   };
 
   return (
@@ -108,7 +107,7 @@ function Register() {
       <Separator orientation="horizontal" />
       <CardContent className="pb-3 pt-3">
         <RegisterForm
-          onSubmit={handleRegister}
+          onSubmit={onSubmit}
           isLoading={isLoading}
           clearError={cleanupError}
           error={error}

@@ -18,7 +18,6 @@ import {
   CardHeader,
   CardTitle,
   Separator,
-  toast,
 } from '@lib/ui-vendor-next';
 import { siteSettings } from '@web/cfg';
 
@@ -30,35 +29,46 @@ const loginUser = async (input: LoginFormInputs, axios: AxiosInstance) => {
     return response;
   } catch (error) {
     logger.error('Error during login:', error);
-    return undefined;
   }
 };
 
+// login page component
 function Login() {
   const authAxios = useAuthAxios(urls.site.base);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [nextUrl, setNextUrl] = useState<string>('');
-  const [_, setAppState] = useAppState();
+  const [state, setAppState] = useAppState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // set nextUrl from query params
   useEffect(() => {
     setNextUrl(searchParams.get('nextUrl') || urls.site.home);
   }, [searchParams]);
 
+  // redirect if already logged in
+  useEffect(() => {
+    if (state.isLoggedIn) {
+      logger.info('Login successful', nextUrl);
+      router.refresh();
+      router.push(nextUrl);
+    }
+  }, [state, nextUrl, router]);
+
+  // callback that is called form LoginForm component to clear error
   const cleanupError = () => {
     setError('');
-    logger.debug('Login: Error cleared');
   };
 
-  const handleLogin = async (input: LoginFormInputs) => {
+  // callback that is called form LoginForm component on form submit
+  const onSubmit = async (input: LoginFormInputs) => {
     setError('');
     setIsLoading(true);
 
     let result: ServerResponseType = { success: false, message: '' };
 
-    // login user
+    // call the login API to authenticate the user
     const response = await loginUser(input, authAxios);
     if (!response) {
       setError('A server error occurred. Please try again.');
@@ -68,24 +78,16 @@ function Login() {
     }
 
     result = response.data;
-
     setIsLoading(false);
 
     // handle login result
     if (!result.success || !result.data) {
       setError(result.message || 'Failed to register your account. Please try again.');
       logger.error('Login failed:', result.message);
-    } else {
-      logger.info('Login successful');
-
-      setAppState({ isLoggedIn: true });
-
-      logger.info('Logged In, redirecting', nextUrl);
-      router.push(nextUrl);
-      router.refresh();
+      return;
     }
 
-    setIsLoading(false);
+    setAppState({ isLoggedIn: true });
   };
 
   return (
@@ -104,7 +106,7 @@ function Login() {
       <Separator orientation="horizontal" />
       <CardContent className="pb-3 pt-3">
         <LoginForm
-          onSubmit={handleLogin}
+          onSubmit={onSubmit}
           isLoading={isLoading}
           clearError={cleanupError}
           error={error}
