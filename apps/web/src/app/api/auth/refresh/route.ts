@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
-import { JWTService } from '@lib/data-jwt-shared';
+import { JWTService } from '@lib/data-net-shared';
 import { UserService } from '@lib/data-user-shared';
 import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY } from '@web/cfg/auth';
 
@@ -47,14 +47,5 @@ export async function POST(req: NextRequest, res: NextResponse) {
     secure: process.env.NODE_ENV === 'production',
   });
 
-  // Create a access token and return it to user, to be used in headers on all requests
-  const jwtAccessPayload = await JWTService.encrypt(user.id, 5);
-  if (!jwtAccessPayload.success || !jwtAccessPayload.data) {
-    return NextResponse.json(
-      { success: false, message: 'Error creating access token' },
-      { status: 500 }
-    );
-  }
-  const { data: accessToken } = jwtAuthPayload;
-  return NextResponse.json({ success: true, data: accessToken });
+  return NextResponse.json({ success: true, data: user });
 }

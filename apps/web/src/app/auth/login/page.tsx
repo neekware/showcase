@@ -3,17 +3,17 @@
 import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import type { AxiosInstance } from '@lib/data-jwt-shared';
 import { logger } from '@lib/data-logger-shared';
 import {
   type AuthState,
   type LoginFormInputs,
   type ServerResponseType,
 } from '@lib/data-model-shared';
-import { useAxiosAuth } from '@lib/data-net-next';
+import { type AxiosInstance } from '@lib/data-net-shared';
 import { useAuthState } from '@lib/data-store-next';
 import { LoginForm } from '@lib/ui-auth-next';
 import { Icon, mdiFolderPlus, mdiLogin } from '@lib/ui-icon-next';
+import { useAuthAxios } from '@lib/ui-util-next';
 import {
   Card,
   CardContent,
@@ -28,9 +28,9 @@ import { siteSettings } from '@web/cfg';
 
 const { urls } = siteSettings;
 
-const loginUser = async (input: LoginFormInputs, axiosAuth: AxiosInstance) => {
+const loginUser = async (input: LoginFormInputs, axios: AxiosInstance) => {
   try {
-    const response = await axiosAuth.post(urls.api.auth.login, input);
+    const response = await axios.post(urls.api.auth.login, input);
     return response;
   } catch (error) {
     logger.error('Error during login:', error);
@@ -39,7 +39,7 @@ const loginUser = async (input: LoginFormInputs, axiosAuth: AxiosInstance) => {
 };
 
 function Login() {
-  const axiosAuth = useAxiosAuth(urls.site.base, urls.api.auth.refresh);
+  const authAxios = useAuthAxios(urls.site.base);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [nextUrl, setNextUrl] = useState<string>('');
@@ -63,7 +63,7 @@ function Login() {
     let result: ServerResponseType = { success: false, message: '' };
 
     // login user
-    const response = await loginUser(input, axiosAuth);
+    const response = await loginUser(input, authAxios);
     if (!response) {
       setError('A server error occurred. Please try again.');
       logger.error('Error during login');

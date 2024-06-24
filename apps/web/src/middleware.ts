@@ -1,10 +1,17 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { JWTService } from '@lib/data-jwt-shared';
 import { logger } from '@lib/data-logger-shared';
-import { siteSettings } from '@web/cfg';
+import { JWTService } from '@lib/data-net-shared';
+import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY, siteSettings } from '@web/cfg';
 
 const protectedPaths = ['/admin', '/products'];
 const { urls } = siteSettings;
+
+const redirectOnExpiry = (req: NextRequest) => {
+  const loginUrl = new URL(urls.site.auth.login, req.url);
+  loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+  logger.debug(`Session expired, redirect to login: ${loginUrl.toString()}`);
+  return NextResponse.redirect(loginUrl);
+};
 
 export function errorMiddleware(req: NextRequest) {
   try {
@@ -19,24 +26,33 @@ export async function authMiddleware(req: NextRequest) {
   const url = req.nextUrl.clone();
 
   if (protectedPaths.some((path) => url.pathname.startsWith(path))) {
-    console.log('Protected path:', req.headers);
-    // extract the access token from the request headers
-    const accessToken = req.headers.get('Authorization')?.replace('Bearer ', '');
-    if (accessToken) {
+    const cookie = req.cookies.get(ACCESS_TOKEN_KEY);
+    if (cookie && cookie.value) {
       // decrypt the access token to check its validity
-      const jwtAccessPayload = await JWTService.decrypt(accessToken);
-      if (jwtAccessPayload.success) {
-        return NextResponse.next();
+
+      const jwtPrev = await JWTService.decrypt(cookie.value);
+      if (jwtPrev.success && jwtPrev.data?.sub) {
+        const jwtNext = await JWTService.encrypt(jwtPrev.data.sub, 30);
+        if (!jwtNext.success || !jwtNext.data) {
+          // protected path, but no valid session
+          return redirectOnExpiry(req);
+        }
+
+        // session is still valid, refresh it
+        const { data: authToken } = jwtNext;
+        const response = NextResponse.next();
+        response.cookies.set(ACCESS_TOKEN_KEY, authToken, {
+          expires: new Date(Date.now() + ACCESS_TOKEN_EXPIRY * 60 * 1000),
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+        });
+
+        return response;
       }
     }
 
-    // redirect to login page if token is invalid
-    const loginUrl = new URL(urls.site.auth.login, req.url);
-    loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
-    logger.debug(
-      `Middleware: Invalid access token, redirecting to login page: ${loginUrl.toString()}`
-    );
-    return NextResponse.redirect(loginUrl);
+    // protected path, but no valid session
+    return redirectOnExpiry(req);
   }
 
   // un-protected path, continue
@@ -50,10 +66,10 @@ export async function middleware(request: NextRequest) {
     return authResponse;
   }
 
-  const errorResponse = errorMiddleware(request);
-  if (errorResponse.status !== 200) {
-    return errorResponse;
-  }
+  // const errorResponse = errorMiddleware(request);
+  // if (errorResponse.status !== 200) {
+  //   return errorResponse;
+  // }
 
   return NextResponse.next();
 }

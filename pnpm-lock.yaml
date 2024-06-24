@@ -215,15 +215,6 @@ importers:
 
   libs/data-i18n-shared: {}
 
-  libs/data-jwt-shared:
-    dependencies:
-      axios:
-        specifier: ^1.7.2
-        version: 1.7.2
-      jose:
-        specifier: ^5.4.0
-        version: 5.4.0
-
   libs/data-logger-shared:
     dependencies:
       ts-essentials:
@@ -242,20 +233,14 @@ importers:
         specifier: ^3.23.8
         version: 3.23.8
 
-  libs/data-net-next:
+  libs/data-net-shared:
     dependencies:
       axios:
         specifier: ^1.7.2
         version: 1.7.2
       jose:
-        specifier: ^5.4.0
-        version: 5.4.0
-      next:
-        specifier: 14.2.4
-        version: 14.2.4(@babel/core@7.24.7)(@playwright/test@1.44.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
+        specifier: ^5.4.1
+        version: 5.4.1
 
   libs/data-store-next:
     dependencies:
@@ -4368,8 +4353,8 @@ packages:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
 
-  jose@5.4.0:
-    resolution: {integrity: sha512-6rpxTHPAQyWMb9A35BroFl1Sp0ST3DpPcm5EVIxZxdH+e0Hv9fwhyB3XLKFUcHNpdSDnETmBfuPPTTlYz5+USw==}
+  jose@5.4.1:
+    resolution: {integrity: sha512-U6QajmpV/nhL9SyfAewo000fkiRQ+Yd2H0lBxJJ9apjpOgkOcBQJWOrMo917lxLptdS/n/o/xPzMkXhF46K8hQ==}
 
   jotai@2.8.0:
     resolution: {integrity: sha512-yZNMC36FdLOksOr8qga0yLf14miCJlEThlp5DeFJNnqzm2+ZG7wLcJzoOyij5K6U6Xlc5ljQqPDlJRgqW0Y18g==}
@@ -10537,7 +10522,7 @@ snapshots:
 
   jiti@1.21.6: {}
 
-  jose@5.4.0: {}
+  jose@5.4.1: {}
 
   jotai@2.8.0(@types/react@18.3.3)(react@18.3.1):
     optionalDependencies:

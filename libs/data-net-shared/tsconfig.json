@@ -6,6 +6,6 @@
       "@lib/*": ["../../libs/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "../data-util-shared/src/jwt.service.ts"],
   "exclude": ["node_modules", "dist", "coverage"]
 }

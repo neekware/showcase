@@ -1,5 +1,5 @@
 {
-  "name": "@lib/data-net-next",
+  "name": "@lib/data-net-shared",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,9 +9,7 @@
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {
-    "next": "14.2.4",
-    "react": "^18.3.1",
     "axios": "^1.7.2",
-    "jose": "^5.4.0"
+    "jose": "^5.4.1"
   }
 }

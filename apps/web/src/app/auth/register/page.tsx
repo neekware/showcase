@@ -3,13 +3,13 @@
 import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import type { AxiosInstance } from '@lib/data-jwt-shared';
 import { logger } from '@lib/data-logger-shared';
 import type { AuthState, RegisterFormInputs, ServerResponseType } from '@lib/data-model-shared';
-import { useAxiosAuth } from '@lib/data-net-next';
+import type { AxiosInstance } from '@lib/data-net-shared';
 import { useAuthState } from '@lib/data-store-next';
 import { RegisterForm } from '@lib/ui-auth-next';
 import { Icon, mdiAccountPlus, mdiLogin } from '@lib/ui-icon-next';
+import { useAuthAxios } from '@lib/ui-util-next';
 import {
   Card,
   CardContent,
@@ -35,7 +35,7 @@ const registerUser = async (input: RegisterFormInputs, axiosAuth: AxiosInstance)
 };
 
 function Register() {
-  const axiosAuth = useAxiosAuth(urls.site.base, urls.api.auth.refresh);
+  const axiosAuth = useAuthAxios(urls.site.base);
   const router = useRouter();
   const searchParams = useSearchParams();
   const [nextUrl, setNextUrl] = useState<string>('');
