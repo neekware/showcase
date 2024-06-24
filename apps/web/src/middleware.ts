@@ -6,6 +6,11 @@ import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY, siteSettings } from '@web/cfg';
 const protectedPaths = ['/admin', '/products'];
 const { urls } = siteSettings;
 
+/**
+ * Redirect to login page when session expires
+ * @param req request object
+ * @returns void
+ */
 const redirectOnExpiry = (req: NextRequest) => {
   const loginUrl = new URL(urls.site.auth.login, req.url);
   loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
@@ -13,6 +18,11 @@ const redirectOnExpiry = (req: NextRequest) => {
   return NextResponse.redirect(loginUrl);
 };
 
+/**
+ * Error middleware
+ * @param req request object
+ * @returns request response
+ */
 export function errorMiddleware(req: NextRequest) {
   try {
     return NextResponse.next();
@@ -59,17 +69,22 @@ export async function authMiddleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-export async function middleware(request: NextRequest) {
+/**
+ * Middleware function
+ * @param req request object
+ * @returns request response
+ */
+export async function middleware(req: NextRequest) {
   // Chain the middleware functions
-  const authResponse = await authMiddleware(request);
+  const authResponse = await authMiddleware(req);
   if (authResponse.status !== 200) {
     return authResponse;
   }
 
-  // const errorResponse = errorMiddleware(request);
-  // if (errorResponse.status !== 200) {
-  //   return errorResponse;
-  // }
+  const errorResponse = errorMiddleware(req);
+  if (errorResponse.status !== 200) {
+    return errorResponse;
+  }
 
   return NextResponse.next();
 }
