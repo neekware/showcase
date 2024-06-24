@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { type MobileSettings, type SiteSettings } from '@lib/data-model-shared';
 import { hrefToString } from '@lib/data-util-shared';
 import { Icon, mdiClose, mdiMenu } from '@lib/ui-icon-next';
-import { cn , Button, ScrollArea, Sheet, SheetContent, SheetTrigger } from '@lib/ui-vendor-next';
+import { Button, cn, ScrollArea, Sheet, SheetContent, SheetTrigger } from '@lib/ui-vendor-next';
 import { SiteLogo } from './site-logo';
 
 interface LinkMobileProps extends LinkProps {
