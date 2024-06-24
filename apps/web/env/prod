@@ -1,6 +1,6 @@
 AUTH_SECRET="some-amazing-seekret"
-AUTH_ISSUER="http://example.com"
+AUTH_ISSUER="http://show.neekware.com"
 
-SITE_URL="http://example.com"
+SITE_URL="http://show.neekware.com"
 
-DB_URL="postgresql://<user_name>:<user_pass>@localhost:5432/<db_name>"
+DB_URL="postgres://postgres.ajgjbqcmcaamgqwcfhiv:153960d0-42c3-42b7-bf62-1c130a4b217d@aws-0-us-east-1.pooler.supabase.com:6543/postgres"

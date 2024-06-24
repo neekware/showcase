@@ -43,26 +43,30 @@ export async function authMiddleware(req: NextRequest) {
   if (protectedPaths.some((path) => url.pathname.startsWith(path))) {
     const cookie = req.cookies.get(ACCESS_TOKEN_KEY);
     if (cookie && cookie.value) {
-      // decrypt the access token to check its validity
+      try {
+        // decrypt the access token to check its validity
+        const jwtPrev = await JWTService.decrypt(cookie.value);
+        if (jwtPrev.success && jwtPrev.data?.sub) {
+          const jwtNext = await JWTService.encrypt(jwtPrev.data.sub, 30);
+          if (!jwtNext.success || !jwtNext.data) {
+            // protected path, but no valid session
+            return redirectOnExpiry(req);
+          }
 
-      const jwtPrev = await JWTService.decrypt(cookie.value);
-      if (jwtPrev.success && jwtPrev.data?.sub) {
-        const jwtNext = await JWTService.encrypt(jwtPrev.data.sub, 30);
-        if (!jwtNext.success || !jwtNext.data) {
-          // protected path, but no valid session
-          return redirectOnExpiry(req);
+          // session is still valid, refresh it
+          const { data: authToken } = jwtNext;
+          const response = NextResponse.next();
+          response.cookies.set(ACCESS_TOKEN_KEY, authToken, {
+            expires: new Date(Date.now() + ACCESS_TOKEN_EXPIRY * 60 * 1000),
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+          });
+
+          return response;
         }
-
-        // session is still valid, refresh it
-        const { data: authToken } = jwtNext;
-        const response = NextResponse.next();
-        response.cookies.set(ACCESS_TOKEN_KEY, authToken, {
-          expires: new Date(Date.now() + ACCESS_TOKEN_EXPIRY * 60 * 1000),
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-        });
-
-        return response;
+      } catch (error) {
+        logger.error('Error during JWT processing:', error);
+        return redirectOnExpiry(req);
       }
     }
 
@@ -80,19 +84,24 @@ export async function authMiddleware(req: NextRequest) {
  * @returns request response
  */
 export async function middleware(req: NextRequest) {
-  // check protected paths
-  const authResponse = await authMiddleware(req);
-  if (authResponse.status !== 200) {
-    return authResponse;
-  }
+  try {
+    // check protected paths
+    const authResponse = await authMiddleware(req);
+    if (authResponse.status !== 200) {
+      return authResponse;
+    }
 
-  // check and anonymize errors
-  const errorResponse = errorMiddleware(req);
-  if (errorResponse.status !== 200) {
-    return errorResponse;
-  }
+    // check and anonymize errors
+    const errorResponse = errorMiddleware(req);
+    if (errorResponse.status !== 200) {
+      return errorResponse;
+    }
 
-  return NextResponse.next();
+    return NextResponse.next();
+  } catch (error) {
+    logger.error('Unexpected error in middleware:', error);
+    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
+  }
 }
 
 export const config = {
