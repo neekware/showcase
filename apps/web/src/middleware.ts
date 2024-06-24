@@ -1,53 +1,95 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { JWTService } from '@lib/data-jwt-shared';
-import { siteSettings } from '@web/cfg';
+import { logger } from '@lib/data-logger-shared';
+import { JWTService } from '@lib/data-net-shared';
+import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY, siteSettings } from '@web/cfg';
 
+const { urls } = siteSettings;
 const protectedPaths = ['/admin', '/products'];
 
-// Middleware to check paths, authentication, and authorization as well as redirects
-export async function middleware(req: NextRequest) {
+/**
+ * Redirect to login page when session expires
+ * @param req request object
+ * @returns void
+ */
+const redirectOnExpiry = (req: NextRequest) => {
+  const loginUrl = new URL(urls.site.auth.login, req.url);
+  loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+  logger.debug(`Session expired, redirect to login: ${loginUrl.toString()}`);
+  return NextResponse.redirect(loginUrl);
+};
+
+/**
+ * Error middleware - catch all errors and log them properly, preventing sensitive information from leaking
+ * @param req request object
+ * @returns request response
+ */
+export function errorMiddleware(req: NextRequest) {
+  try {
+    return NextResponse.next();
+  } catch (error) {
+    logger.error(error);
+    return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+/**
+ * Authentication middleware - check if the user is logged in
+ * @param req request object
+ * @returns request response
+ */
+export async function authMiddleware(req: NextRequest) {
   const url = req.nextUrl.clone();
-  const { urls } = siteSettings;
 
   if (protectedPaths.some((path) => url.pathname.startsWith(path))) {
-    // we received a request to a protected path
-
-    // extract the access token from the request headers
-    const accessToken = req.headers.get('Authorization')?.replace('Bearer ', '');
-    if (!accessToken) {
-      const loginUrl = new URL(urls.site.auth.login, req.url);
-      loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-
-    try {
+    const cookie = req.cookies.get(ACCESS_TOKEN_KEY);
+    if (cookie && cookie.value) {
       // decrypt the access token to check its validity
-      const jwtAccessPayload = await JWTService.decrypt(accessToken);
-      if (!jwtAccessPayload.success || !jwtAccessPayload.data) {
-        const refreshUrl = new URL(urls.api.auth.refresh, req.url);
-        const response = await fetch(refreshUrl);
-        if (response.status === 401) {
-          // auth token is expired, user must login again
-          const loginUrl = new URL(urls.site.auth.login, req.url);
-          loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
-          return NextResponse.redirect(loginUrl);
+
+      const jwtPrev = await JWTService.decrypt(cookie.value);
+      if (jwtPrev.success && jwtPrev.data?.sub) {
+        const jwtNext = await JWTService.encrypt(jwtPrev.data.sub, 30);
+        if (!jwtNext.success || !jwtNext.data) {
+          // protected path, but no valid session
+          return redirectOnExpiry(req);
         }
 
-        const { data: newAccessToken } = await response.json();
-        const newHeaders = new Headers(req.headers);
-        newHeaders.set('Authorization', `Bearer ${newAccessToken}`);
-        return NextResponse.next({
-          request: {
-            headers: newHeaders,
-          },
+        // session is still valid, refresh it
+        const { data: authToken } = jwtNext;
+        const response = NextResponse.next();
+        response.cookies.set(ACCESS_TOKEN_KEY, authToken, {
+          expires: new Date(Date.now() + ACCESS_TOKEN_EXPIRY * 60 * 1000),
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
         });
+
+        return response;
       }
-    } catch (error) {
-      console.error('Error during JWT decryption or token refresh:', error);
-      const loginUrl = new URL(urls.site.auth.login, req.url);
-      loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
-      return NextResponse.redirect(loginUrl);
     }
+
+    // protected path, but no valid session
+    return redirectOnExpiry(req);
+  }
+
+  // un-protected path, continue
+  return NextResponse.next();
+}
+
+/**
+ * Middleware function to chain the authentication and error middlewares, etc.
+ * @param req request object
+ * @returns request response
+ */
+export async function middleware(req: NextRequest) {
+  // check protected paths
+  const authResponse = await authMiddleware(req);
+  if (authResponse.status !== 200) {
+    return authResponse;
+  }
+
+  // check and anonymize errors
+  const errorResponse = errorMiddleware(req);
+  if (errorResponse.status !== 200) {
+    return errorResponse;
   }
 
   return NextResponse.next();
@@ -61,6 +103,6 @@ export const config = {
      * - _next/static (static files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|favicon.ico).*)',
+    '/((?!_next/static|favicon.ico).*)',
   ],
 };

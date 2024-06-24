@@ -1,10 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import { useThemeState } from '@lib/data-store-next';
+import { useAppState } from '@lib/data-store-next';
 
 export function ThemeSwap(): null {
-  const [theme] = useThemeState();
+  const [state] = useAppState();
 
   React.useEffect(() => {
     Array.from(document.body.classList)
@@ -13,9 +13,9 @@ export function ThemeSwap(): null {
         document.body.classList.remove(className);
       });
 
-    const nextTheme = theme.name;
+    const nextTheme = state.name;
     document.body.classList.add(`theme-${nextTheme}`);
-  }, [theme]);
+  }, [state]);
 
   return null;
 }

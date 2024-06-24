@@ -12,6 +12,7 @@ export const urls: UrlTypes = {
     },
   },
   site: {
+    base: '/',
     home: '/',
     about: '/about',
     auth: {

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { type Theme } from '@lib/data-model-shared';
-import { useThemeState } from '@lib/data-store-next';
+import { useAppState } from '@lib/data-store-next';
 import {
   Icon,
   mdiCheckCircle,
@@ -12,9 +12,9 @@ import {
   mdiWeatherNight,
   mdiWeatherSunny,
 } from '@lib/ui-icon-next';
-import { cn } from '@lib/ui-util-next';
 import {
   Button,
+  cn,
   Label,
   Popover,
   PopoverContent,
@@ -62,7 +62,7 @@ export function ThemeSelector({ themes, name, className }: ThemeSelectorProps) {
 
 function Selector({ themes }: ThemeSelectorProps) {
   const [mounted, setMounted] = React.useState(false);
-  const [theme, setThemeState] = useThemeState();
+  const [state, setAppState] = useAppState();
 
   React.useEffect(() => {
     setMounted(true);
@@ -80,17 +80,14 @@ function Selector({ themes }: ThemeSelectorProps) {
           <Label className="text-xs">Color</Label>
           <div className="grid grid-cols-3 gap-2">
             {themes.map((nextTheme) => {
-              const isActive = nextTheme.name === theme.name;
+              const isActive = nextTheme.name === state.name;
 
               return mounted ? (
                 <Button
                   variant="outline"
                   key={nextTheme.name}
                   onClick={() => {
-                    setThemeState({
-                      ...theme,
-                      name: nextTheme.name,
-                    });
+                    setAppState({ name: nextTheme.name });
                   }}
                   className={cn('justify-start px-1', isActive && 'border-primary border-2')}
                 >
@@ -102,7 +99,7 @@ function Selector({ themes }: ThemeSelectorProps) {
                         <Icon
                           path={mdiCircle}
                           className="size-6"
-                          color={`${nextTheme.activeColor[theme.mode === 'dark' ? 'dark' : 'light']}`}
+                          color={`${nextTheme.activeColor[state.mode === 'dark' ? 'dark' : 'light']}`}
                         />
                       )}
                     </div>
@@ -124,9 +121,9 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setThemeState({ ...theme, mode: 'light' });
+                    setAppState({ mode: 'light' });
                   }}
-                  className={cn(theme.mode === 'light' && 'border-primary border-2')}
+                  className={cn(state.mode === 'light' && 'border-primary border-2')}
                 >
                   <Icon path={mdiWeatherSunny} className="size-6 -translate-x-1" />
                 </Button>
@@ -134,9 +131,9 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setThemeState({ ...theme, mode: 'system' });
+                    setAppState({ mode: 'system' });
                   }}
-                  className={cn(theme.mode === 'system' && 'border-primary border-2')}
+                  className={cn(state.mode === 'system' && 'border-primary border-2')}
                 >
                   <Icon path={mdiMonitor} className="size-6 -translate-x-1" />
                 </Button>
@@ -144,9 +141,9 @@ function Selector({ themes }: ThemeSelectorProps) {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    setThemeState({ ...theme, mode: 'dark' });
+                    setAppState({ mode: 'dark' });
                   }}
-                  className={cn(theme.mode === 'dark' && 'border-primary border-2')}
+                  className={cn(state.mode === 'dark' && 'border-primary border-2')}
                 >
                   <Icon path={mdiWeatherNight} className="size-6 -translate-x-1" />
                 </Button>

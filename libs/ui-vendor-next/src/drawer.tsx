@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Drawer as DrawerPrimitive } from 'vaul';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 
 function Drawer({
   shouldScaleBackground = true,

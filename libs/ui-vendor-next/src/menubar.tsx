@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
 import { Icon, mdiCheck, mdiChevronRight, mdiCircleSmall } from '@lib/ui-icon-next';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 
 const MenubarMenu = MenubarPrimitive.Menu;
 

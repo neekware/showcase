@@ -1,25 +1,15 @@
 import { type ThemeMode } from './theme';
 
-export interface AuthState {
+export interface AppState {
+  // auth
   isLoggedIn: boolean;
-  accessToken: string;
-}
 
-export interface ThemeState {
+  // theme
   name: string;
   mode: ThemeMode;
   radius: number;
-}
 
-export interface ProfileState {
-  username: string;
-  email: string;
-}
-
-export interface AppState {
-  auth: AuthState;
-  theme: ThemeState;
-  profile: ProfileState;
+  // state store
   signature: string;
   version: string;
 }

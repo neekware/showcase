@@ -4,7 +4,7 @@ import * as React from 'react';
 import { type DateRange } from 'react-day-picker';
 import { addDays, format } from 'date-fns';
 import { Icon, mdiCalendar } from '@lib/ui-icon-next';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 import { Button } from './button';
 import { Calendar } from './calendar';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';

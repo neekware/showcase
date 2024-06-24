@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cn, cva, type VariantProps } from '@lib/ui-util-next';
+import { cn, cva, type VariantProps } from './util';
 
 const alertVariants = cva(
   '[&>svg]:text-foreground relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg~*]:pl-7',

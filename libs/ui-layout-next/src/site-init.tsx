@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import type { SiteSettings } from '@lib/data-model-shared';
@@ -16,21 +16,31 @@ export function AppInit({ siteSettings }: AppInitProps): null {
   const [state] = useAppState();
   const { setTheme } = useTheme();
   const { toast } = useToast();
-  const [prevIsLoggedIn, setPrevIsLoggedIn] = useState(state.auth.isLoggedIn);
+  const [prevIsLoggedIn, setPrevIsLoggedIn] = useState(state.isLoggedIn);
   const [initialLoad, setInitialLoad] = useState(true);
 
   const { urls } = siteSettings;
 
   useEffect(() => {
     if (initialLoad) {
-      if (state.auth.isLoggedIn) {
+      if (state.isLoggedIn) {
         router.push(urls.site.home);
         router.refresh();
       }
-      setPrevIsLoggedIn(state.auth.isLoggedIn);
+      setPrevIsLoggedIn(state.isLoggedIn);
       setInitialLoad(false);
     } else {
-      if (prevIsLoggedIn && !state.auth.isLoggedIn) {
+      // if (!prevIsLoggedIn && state.isLoggedIn) {
+      // setTimeout(() => {
+      //   toast({
+      //     title: 'Login Successful',
+      //     description: 'Enjoy looking around ...',
+      //     timeout: 20000,
+      //     variant: 'success',
+      //   });
+      // }, 1000);
+      // } else
+      if (prevIsLoggedIn && !state.isLoggedIn) {
         toast({
           title: 'Logout Successful',
           description: 'See you soon ...',
@@ -40,13 +50,13 @@ export function AppInit({ siteSettings }: AppInitProps): null {
         router.push(urls.site.auth.login);
         router.refresh();
       }
-      setPrevIsLoggedIn(state.auth.isLoggedIn);
+      setPrevIsLoggedIn(state.isLoggedIn);
     }
-  }, [state.auth, initialLoad, prevIsLoggedIn]);
+  }, [state, initialLoad, prevIsLoggedIn]);
 
   useEffect(() => {
-    setTheme(state.theme.mode as string);
-  }, [state.theme.mode]);
+    setTheme(state.mode as string);
+  }, [state.mode]);
 
   return null;
 }

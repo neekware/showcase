@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { Icon, mdiChevronDown } from '@lib/ui-icon-next';
-import { cn, cva } from '@lib/ui-util-next';
+import { cn, cva } from './util';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,

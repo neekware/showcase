@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { type MobileSettings, type SiteSettings } from '@lib/data-model-shared';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 import { NavDesktop } from './nav-desktop';
 import { NavMobile } from './nav-mobile';
 import { NavOption } from './nav-options';

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Icon, mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from '@lib/ui-icon-next';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 import { type ButtonProps, buttonVariants } from './button';
 
 function Pagination({ className, ...props }: React.ComponentProps<'nav'>) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { type SiteSettings } from '@lib/data-model-shared';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 import { SiteLogo } from './site-logo';
 
 interface FooterSiteProps {

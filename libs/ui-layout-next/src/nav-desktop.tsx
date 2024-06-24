@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { type LinkItem, type SiteSettings } from '@lib/data-model-shared';
-import { cn } from '@lib/ui-util-next';
+import { cn } from '@lib/ui-vendor-next';
 
 interface NavTopProps {
   siteSettings: SiteSettings;
