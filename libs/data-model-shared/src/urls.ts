@@ -11,6 +11,7 @@ export interface UrlTypes {
   site: {
     base: string;
     home: string;
+    admin: string;
     about: string;
     more: string;
     dash: string;

@@ -15,13 +15,14 @@ export const urls: UrlTypes = {
     base: '/',
     home: '/',
     about: '/about',
+    admin: '/admin',
+    more: '/more',
+    dash: '/dash',
+    products: '/products',
     auth: {
       login: '/auth/login',
       register: '/auth/register',
       logout: '/auth/logout',
     },
-    more: '/more',
-    dash: '/dash',
-    products: '/products',
   },
 };

@@ -1,21 +1,57 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { logger } from '@lib/data-logger-shared';
-import { JWTService } from '@lib/data-net-shared';
+import { type JWTPayload, JWTService } from '@lib/data-net-shared';
 import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY, siteSettings } from '@web/cfg';
 
 const { urls } = siteSettings;
-const protectedPaths = ['/admin', '/products'];
+const protectedPaths = [urls.site.admin, urls.site.products];
+const authPaths = [urls.site.auth.login, urls.site.auth.register, urls.site.auth.logout];
 
 /**
- * Redirect to login page when session expires
+ * Check if the session is still valid and refresh the cookie if needed
  * @param req request object
+ * @param authToken access token
  * @returns void
  */
-const redirectOnExpiry = (req: NextRequest) => {
-  const loginUrl = new URL(urls.site.auth.login, req.url);
-  loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
-  logger.debug(`Session expired, redirect to login: ${loginUrl.toString()}`);
-  return NextResponse.redirect(loginUrl);
+const isSessionValid = async (req: NextRequest): Promise<JWTPayload | undefined> => {
+  // get the access token from the cookie
+  const cookie = req.cookies.get(ACCESS_TOKEN_KEY);
+  if (cookie && cookie.value) {
+    // decrypt the access token to check its validity
+    const jwtPrev = await JWTService.decrypt(cookie.value);
+    if (jwtPrev.success && jwtPrev.data) {
+      return jwtPrev.data;
+    }
+  }
+  return undefined;
+};
+
+/**
+ * Refresh the session cookie if expired
+ * @param req request object
+ * @param authToken access token
+ * @returns void
+ */
+const refreshCookie = async (req: NextRequest): Promise<boolean> => {
+  // check if the session is still valid
+  const jwtPayload = await isSessionValid(req);
+  if (jwtPayload && jwtPayload.sub) {
+    // session is still valid, refresh it
+
+    const jwtNext = await JWTService.encrypt(jwtPayload.sub, ACCESS_TOKEN_EXPIRY);
+    if (jwtNext.success && jwtNext.data) {
+      const { data: authToken } = jwtNext;
+      const response = NextResponse.next();
+      response.cookies.set(ACCESS_TOKEN_KEY, authToken, {
+        expires: new Date(Date.now() + ACCESS_TOKEN_EXPIRY * 60 * 1000),
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+      });
+      return true;
+    }
+  }
+
+  return false;
 };
 
 /**
@@ -33,48 +69,45 @@ export function errorMiddleware(req: NextRequest) {
 }
 
 /**
- * Authentication middleware - check if the user is logged in
+ * Protected middleware - ensures authentication for protected paths
+ * @param req request object
+ * @returns request response
+ */
+export async function protectedMiddleware(req: NextRequest) {
+  const url = req.nextUrl.clone();
+
+  if (protectedPaths.some((path) => url.pathname.startsWith(path))) {
+    const refreshed = await refreshCookie(req);
+    if (!refreshed) {
+      const loginUrl = new URL(urls.site.auth.login, req.url);
+      loginUrl.searchParams.set('nextUrl', req.nextUrl.pathname);
+      logger.debug(`Session expired, redirect to login: ${loginUrl.toString()}`);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // continue to the next middleware
+  return NextResponse.next();
+}
+
+/**
+ * Authentication middleware - handles the authentication related paths (login, register)
  * @param req request object
  * @returns request response
  */
 export async function authMiddleware(req: NextRequest) {
   const url = req.nextUrl.clone();
 
-  if (protectedPaths.some((path) => url.pathname.startsWith(path))) {
-    const cookie = req.cookies.get(ACCESS_TOKEN_KEY);
-    if (cookie && cookie.value) {
-      try {
-        // decrypt the access token to check its validity
-        const jwtPrev = await JWTService.decrypt(cookie.value);
-        if (jwtPrev.success && jwtPrev.data?.sub) {
-          const jwtNext = await JWTService.encrypt(jwtPrev.data.sub, 30);
-          if (!jwtNext.success || !jwtNext.data) {
-            // protected path, but no valid session
-            return redirectOnExpiry(req);
-          }
-
-          // session is still valid, refresh it
-          const { data: authToken } = jwtNext;
-          const response = NextResponse.next();
-          response.cookies.set(ACCESS_TOKEN_KEY, authToken, {
-            expires: new Date(Date.now() + ACCESS_TOKEN_EXPIRY * 60 * 1000),
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-          });
-
-          return response;
-        }
-      } catch (error) {
-        logger.error('Error during JWT processing:', error);
-        return redirectOnExpiry(req);
-      }
+  if (authPaths.some((path) => url.pathname.startsWith(path))) {
+    const valid = await isSessionValid(req);
+    if (valid) {
+      // auth paths, but user is already authenticated
+      const homeUrl = new URL(urls.site.home, req.url);
+      return NextResponse.redirect(homeUrl);
     }
-
-    // protected path, but no valid session
-    return redirectOnExpiry(req);
   }
 
-  // un-protected path, continue
+  // continue to the next middleware
   return NextResponse.next();
 }
 
@@ -85,6 +118,12 @@ export async function authMiddleware(req: NextRequest) {
  */
 export async function middleware(req: NextRequest) {
   try {
+    // check protected paths
+    const protectedResponse = await protectedMiddleware(req);
+    if (protectedResponse.status !== 200) {
+      return protectedResponse;
+    }
+
     // check protected paths
     const authResponse = await authMiddleware(req);
     if (authResponse.status !== 200) {
