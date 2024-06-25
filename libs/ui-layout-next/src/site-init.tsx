@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import type { SiteSettings } from '@lib/data-model-shared';
 import { useAppState } from '@lib/data-store-next';
 import { useToast } from '@lib/ui-vendor-next';
+import { logger } from '../../data-logger-shared';
 
 interface AppInitProps {
   siteSettings: SiteSettings;
@@ -35,6 +36,7 @@ export function AppInit({ siteSettings }: AppInitProps): null {
         timeout: 20000,
         variant: 'info',
       });
+      logger.info('User logged out', window.location.href);
       router.push(urls.site.auth.login);
     }
     setPrevIsLoggedIn(state.isLoggedIn);
