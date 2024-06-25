@@ -12,8 +12,10 @@ const middlewares = [protectedMiddleware, authMiddleware];
 export default async function middleware(req: NextRequest): Promise<NextResponse> {
   try {
     for (const fn of middlewares) {
+      console.log('Middleware:', fn.name);
       const response = await fn(req);
       if (response && response.status !== 200) {
+        console.log('Middleware response:', response);
         return response;
       }
     }

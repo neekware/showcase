@@ -37,7 +37,8 @@ export function AppInit({ siteSettings }: AppInitProps): null {
         variant: 'info',
       });
       logger.info('User logged out', window.location.href);
-      router.push(urls.site.auth.login);
+      router.replace(urls.site.auth.login);
+      router.refresh();
     }
     setPrevIsLoggedIn(state.isLoggedIn);
   }, [state]);

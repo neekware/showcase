@@ -18,6 +18,7 @@ export async function protectedMiddleware(req: NextRequest): Promise<NextRespons
       return NextResponse.redirect(loginUrl);
     }
     console.log(`Session refreshed, continue to: ${url.toString()}`);
+    response.headers.set('Cache-Control', 'no-store');
     return response;
   }
   return NextResponse.next();
