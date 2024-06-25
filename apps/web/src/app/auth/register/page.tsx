@@ -53,7 +53,6 @@ function Register() {
     if (state.isLoggedIn) {
       logger.info('Registration successful');
       router.push(nextUrl);
-      router.refresh();
     }
   }, [state, nextUrl, router]);
 

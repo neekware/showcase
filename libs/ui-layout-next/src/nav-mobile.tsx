@@ -24,7 +24,6 @@ function LinkMobile({ href, onOpenChange, className, children, ...props }: LinkM
       onClick={() => {
         onOpenChange?.(false);
         router.push(hrefToString(href));
-        router.refresh();
       }}
       className={cn(className)}
       {...props}

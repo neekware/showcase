@@ -52,7 +52,6 @@ function Login() {
     if (state.isLoggedIn) {
       logger.info('Login successful', nextUrl);
       router.push(nextUrl);
-      router.refresh();
     }
   }, [state, nextUrl, router]);
 
