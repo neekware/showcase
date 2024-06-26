@@ -51,8 +51,7 @@ function Login() {
   useEffect(() => {
     if (state.isLoggedIn) {
       logger.info('Login successful', nextUrl);
-      router.push(nextUrl);
-      router.refresh();
+      router.replace(nextUrl);
     }
   }, [state, nextUrl, router]);
 

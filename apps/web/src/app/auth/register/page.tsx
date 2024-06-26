@@ -52,8 +52,7 @@ function Register() {
   useEffect(() => {
     if (state.isLoggedIn) {
       logger.info('Registration successful');
-      router.push(nextUrl);
-      router.refresh();
+      router.replace(nextUrl);
     }
   }, [state, nextUrl, router]);
 
