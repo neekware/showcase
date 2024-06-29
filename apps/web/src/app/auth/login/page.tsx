@@ -48,12 +48,12 @@ function Login() {
   }, [searchParams]);
 
   // redirect if already logged in
-  useEffect(() => {
-    if (state.isLoggedIn) {
-      logger.info('Login successful', nextUrl);
-      router.replace(`${nextUrl}?protected=true`);
-    }
-  }, [state, nextUrl, router]);
+  // useEffect(() => {
+  //   if (state.isLoggedIn) {
+  //     logger.info('Login successful', nextUrl);
+  //     router.push(`${nextUrl}?protected=true`);
+  //   }
+  // }, [state, nextUrl, router]);
 
   // callback that is called form LoginForm component to clear error
   const cleanupError = () => {
