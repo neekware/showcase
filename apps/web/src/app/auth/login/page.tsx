@@ -51,7 +51,7 @@ function Login() {
   useEffect(() => {
     if (state.isLoggedIn) {
       logger.info('Login successful', nextUrl);
-      router.replace(nextUrl);
+      router.replace(`${nextUrl}?protected=true`);
     }
   }, [state, nextUrl, router]);
 
