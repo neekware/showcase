@@ -8,8 +8,8 @@ on:
       - feat/* # Feature branches
       - fix/* # Fix branches
       - enha/* # Enhancement branches
-      - chore/* # Cleanups branches
       - hotfix/* # Hotfix branches
+      - chore/* # Cleanups branches
       - release/* # Release branches
       - dev # Development branch
       - ci # Continuous Integration branch
@@ -84,7 +84,7 @@ jobs:
       # Prepare playwright for end-to-end tests
       - name: Install Playwright & friends
         if: matrix.step == 'e2e'
-        run: pnpm exec playwright install --with-deps
+        run: pnpx playwright install --with-deps
 
       # Run end-to-end tests
       - name: Run end-to-end tests
