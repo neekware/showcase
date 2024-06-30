@@ -88,7 +88,7 @@ jobs:
 
       - name: Install Playwright & friends
         if: matrix.step == 'e2e'
-        run: pnpx playwright install --with-deps chromium webkit firefox
+        run: pnpx playwright@1.44.1 install --with-deps chromium webkit firefox
 
       - name: List Playwright Cache Directory
         if: matrix.step == 'e2e'

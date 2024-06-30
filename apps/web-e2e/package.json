@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "playwright": "^1.44.1"
+    "playwright": "1.44.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.44.1",
+    "@playwright/test": "1.44.1",
     "typescript": "^5.4.5"
   }
 }
