@@ -84,7 +84,7 @@ jobs:
       # Prepare playwright for end-to-end tests
       - name: Install Playwright & friends
         if: matrix.step == 'e2e'
-        run: pnpx playwright install --with-deps
+        run: npx playwright install --with-deps chromium webkit firefox
 
       # Run end-to-end tests
       - name: Run end-to-end tests

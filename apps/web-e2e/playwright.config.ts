@@ -100,7 +100,7 @@ export default defineConfig({
     //   },
     // },
     {
-      name: 'iphone',
+      name: 'Mobile Safari',
       use: devices['iPhone 12'],
     },
   ],
