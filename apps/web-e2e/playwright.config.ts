@@ -28,8 +28,8 @@ export default defineConfig({
 
   // Reporter to use
   reporter: [
-    ['html', { outputFolder: `${baseOutputDir}/html` }],
-    ['json', { outputFile: `${baseOutputDir}/report/result.json` }],
+    ['html', { outputFolder: `${baseOutputDir}/html`, open: 'never', preserveOutput: 'always' }],
+    ['json', { outputFile: `${baseOutputDir}/json/result.json` }],
   ],
 
   // expect options
@@ -69,7 +69,7 @@ export default defineConfig({
     timeout: 120 * 1000,
   },
 
-  outputDir: baseOutputDir,
+  outputDir: `${baseOutputDir}/test-results/`,
   snapshotDir: `${baseOutputDir}/snapshots/`,
 
   // Configure projects for major browsers.
