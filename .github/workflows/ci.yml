@@ -82,24 +82,17 @@ jobs:
           path-to-lcov: lcov.combo.info
 
       # Prepare playwright for end-to-end tests
+      - name: Clear Playwright Cache
+        if: matrix.step == 'e2e'
+        run: rm -rf /home/runner/.cache/ms-playwright
+
       - name: Install Playwright & friends
         if: matrix.step == 'e2e'
         run: pnpx playwright install --with-deps chromium webkit firefox
 
-      - name: Debugging Information
+      - name: List Playwright Cache Directory
         if: matrix.step == 'e2e'
-        run: |
-          echo "Node.js version:"
-          node --version
-          echo "NPM version:"
-          npm --version
-          echo "PNPM version:"
-          pnpm --version
-          echo "Playwright version:"
-          pnpx playwright --version
-          echo "Playwright browsers:"
-          pnpx playwright install --with-deps chromium webkit firefox
-          ls -la /home/runner/.cache/ms-playwright
+        run: ls -la /home/runner/.cache/ms-playwright
 
       # Run end-to-end tests
       - name: Run end-to-end tests
