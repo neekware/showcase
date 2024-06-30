@@ -47,7 +47,7 @@ jobs:
       - name: Set up Node.js and cache pnpm
         uses: actions/setup-node@v4
         with:
-          node-version: '18' # Use Node.js 18
+          node-version: '20' # Use Node.js 20
           cache: 'pnpm' # Cache pnpm dependencies
         # This step sets up Node.js and caches pnpm dependencies.
 
@@ -86,10 +86,20 @@ jobs:
         if: matrix.step == 'e2e'
         run: pnpx playwright install --with-deps chromium webkit firefox
 
-      # Verify Playwright installation
-      - name: Verify Playwright Installation
+      - name: Debugging Information
         if: matrix.step == 'e2e'
-        run: pnpx playwright --version
+        run: |
+          echo "Node.js version:"
+          node --version
+          echo "NPM version:"
+          npm --version
+          echo "PNPM version:"
+          pnpm --version
+          echo "Playwright version:"
+          pnpx playwright --version
+          echo "Playwright browsers:"
+          pnpx playwright install --with-deps chromium webkit firefox
+          ls -la /home/runner/.cache/ms-playwright
 
       # Run end-to-end tests
       - name: Run end-to-end tests
