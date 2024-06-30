@@ -8,8 +8,8 @@
     "__FORMAT_RELATED__": "__________________",
     "lint": "eslint ./src --fix",
     "__TEST_RELATED__": "__________________",
-    "e2e": "node_modules/.bin/playwright test",
-    "e2e:show": "node_modules/.bin/playwright show-report reports/html"
+    "e2e": "playwright test",
+    "e2e:show": "playwright show-report reports/html"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
