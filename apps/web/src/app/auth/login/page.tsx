@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, useEffect, useState } from 'react';
+import { unstable_noStore } from 'next/cache';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { logger } from '@lib/data-logger-shared';
@@ -18,6 +19,7 @@ import {
   CardHeader,
   CardTitle,
   Separator,
+  toast,
 } from '@lib/ui-vendor-next';
 import { siteSettings } from '@web/cfg';
 
@@ -34,6 +36,7 @@ const loginUser = async (input: LoginFormInputs, axios: AxiosInstance) => {
 
 // login page component - client side
 function Login() {
+  unstable_noStore();
   const authAxios = useAuthAxios(urls.site.base);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -41,6 +44,11 @@ function Login() {
   const [state, setAppState] = useAppState();
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+
+  if (state.isLoggedIn) {
+    logger.info('Login successful', nextUrl);
+    router.replace(`${nextUrl}`);
+  }
 
   // set nextUrl from query params
   useEffect(() => {
@@ -50,8 +58,14 @@ function Login() {
   // redirect if already logged in
   useEffect(() => {
     if (state.isLoggedIn) {
+      toast({
+        title: 'Login Successful',
+        description: 'Enjoy looking around ...',
+        timeout: 3000,
+        variant: 'success',
+      });
       logger.info('Login successful', nextUrl);
-      router.push(`${nextUrl}?protected=true`);
+      router.replace(`${nextUrl}`);
     }
   }, [state, nextUrl, router]);
 

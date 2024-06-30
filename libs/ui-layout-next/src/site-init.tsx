@@ -22,22 +22,15 @@ export function AppInit({ siteSettings }: AppInitProps): null {
   const { urls } = siteSettings;
 
   useEffect(() => {
-    if (!prevIsLoggedIn && state.isLoggedIn) {
-      toast({
-        title: 'Login Successful',
-        description: 'Enjoy looking around ...',
-        timeout: 5000,
-        variant: 'success',
-      });
-    } else if (prevIsLoggedIn && !state.isLoggedIn) {
+    if (prevIsLoggedIn && !state.isLoggedIn) {
       toast({
         title: 'Logout Successful',
         description: 'See you soon ...',
-        timeout: 5000,
+        timeout: 3000,
         variant: 'info',
       });
       logger.info('User logged out', window.location.href);
-      router.push(urls.site.auth.login);
+      router.replace(urls.site.auth.login);
     }
     setPrevIsLoggedIn(state.isLoggedIn);
   }, [state]);
