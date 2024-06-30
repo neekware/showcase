@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --info: #0dccf2;
-  --info-foreground: #050505;
+  --info: hsl(190, 90%, 50%);
+  --info-foreground: hsl(0, 0%, 2%);
 
-  --success: #198653;
-  --success-foreground: #fafafa;
+  --success: hsl(152, 69%, 31%);
+  --success-foreground: hsl(0, 0%, 98%);
 
-  --warning: #ffd105;
-  --warning-foreground: #050505;
+  --warning: hsl(49, 100%, 51%);
+  --warning-foreground: hsl(0, 0%, 2%);
 
-  --danger: #dc3848;
-  --danger-foreground: #fafafa;
+  --danger: hsl(354, 70%, 54%);
+  --danger-foreground: hsl(0, 0%, 98%);
 
   --radius: 0.5rem;
 }
