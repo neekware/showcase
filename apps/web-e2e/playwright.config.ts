@@ -28,7 +28,7 @@ export default defineConfig({
 
   // Reporter to use
   reporter: [
-    ['html', { outputFolder: `${baseOutputDir}/report` }],
+    ['html', { outputFolder: `${baseOutputDir}/html` }],
     ['json', { outputFile: `${baseOutputDir}/report/result.json` }],
   ],
 

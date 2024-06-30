@@ -22,7 +22,7 @@
     "coverage": "find . -name \"lcov.info\" -exec cat {} + > \"lcov.combo.info\"",
     "test": "pnpm recursive run test",
     "e2e": "pnpm recursive run e2e",
-    "e2e:report": "pnpm recursive run e2e:report",
+    "e2e:show": "pnpm recursive run e2e:show",
     "__DATABASE_RELATED__": "",
     "db:gen": "pnpm --filter web db:gen",
     "db:sync": "pnpm --filter web db:sync",
