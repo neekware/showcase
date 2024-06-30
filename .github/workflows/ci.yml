@@ -84,7 +84,7 @@ jobs:
       # Prepare playwright for end-to-end tests
       - name: Install Playwright & friends
         if: matrix.step == 'e2e'
-        run: pnpx exec playwright install --with-deps
+        run: pnpm exec playwright install --with-deps
 
       # Run end-to-end tests
       - name: Run end-to-end tests
