@@ -32,7 +32,7 @@ const loginUser = async (input: LoginFormInputs, axios: AxiosInstance) => {
   }
 };
 
-// login page component
+// login page component - client side
 function Login() {
   const authAxios = useAuthAxios(urls.site.base);
   const router = useRouter();
