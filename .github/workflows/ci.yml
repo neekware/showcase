@@ -86,6 +86,11 @@ jobs:
         if: matrix.step == 'e2e'
         run: pnpx playwright install --with-deps chromium webkit firefox
 
+      # Verify Playwright installation
+      - name: Verify Playwright Installation
+        if: matrix.step == 'e2e'
+        run: pnpx playwright --version
+
       # Run end-to-end tests
       - name: Run end-to-end tests
         if: matrix.step == 'e2e'
