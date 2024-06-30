@@ -15,7 +15,7 @@ on:
       - ci # Continuous Integration branch
       - main # Main branch
     paths:
-      - '.github/workflows/build.yml' # Workflow file itself
+      - '.github/workflows/ci.yml' # Workflow file itself
       - 'apps/**' # Apps directory
       - 'libs/**' # Libraries directory
 
