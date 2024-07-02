@@ -13,7 +13,7 @@ import { v4 as uuidV4 } from '@lib/data-model-shared';
 export const RoleEnum = pgEnum('Role', ['USER', 'STAFF', 'ADMIN', 'SUPERUSER']);
 
 export const UserTable = pgTable('user', {
-  id: varchar('id', { length: 36 }).$defaultFn(uuidV4).notNull().unique(),
+  id: varchar('id', { length: 36 }).$defaultFn(uuidV4).notNull().unique().primaryKey(),
   firstName: text('firstName').notNull(),
   lastName: text('lastName').notNull(),
   email: text('email').unique().notNull(),
