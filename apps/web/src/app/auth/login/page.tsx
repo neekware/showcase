@@ -10,7 +10,7 @@ import { type AxiosInstance } from '@lib/data-net-shared';
 import { useAppState } from '@lib/data-store-next';
 import { LoginForm } from '@lib/ui-auth-next';
 import { Icon, mdiFolderPlus, mdiLogin } from '@lib/ui-icon-next';
-import { useAuthAxios } from '@lib/ui-util-next';
+import { RedirectComponent, useAuthAxios } from '@lib/ui-util-next';
 import {
   Card,
   CardContent,
@@ -61,20 +61,19 @@ function Login() {
       toast({
         title: 'Login Successful',
         description: 'Enjoy looking around ...',
-        timeout: 3000,
+        timeout: 4000,
         variant: 'success',
       });
       logger.info('Login successful', nextUrl);
-      router.replace(`${nextUrl}`);
     }
   }, [state, nextUrl, router]);
 
-  // callback that is called form LoginForm component to clear error
+  // callback that is called from the Form component to clear error
   const cleanupError = () => {
     setError('');
   };
 
-  // callback that is called form LoginForm component on form submit
+  // callback that is called from the Form component to submit the form
   const onSubmit = async (input: LoginFormInputs) => {
     setError('');
     setIsLoading(true);
@@ -136,6 +135,7 @@ function Login() {
           Register
         </Link>
       </CardFooter>
+      <RedirectComponent redirect={nextUrl} go={state.isLoggedIn} />
     </Card>
   );
 }

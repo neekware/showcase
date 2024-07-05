@@ -9,7 +9,7 @@ import type { AxiosInstance } from '@lib/data-net-shared';
 import { useAppState } from '@lib/data-store-next';
 import { RegisterForm } from '@lib/ui-auth-next';
 import { Icon, mdiAccountPlus, mdiLogin } from '@lib/ui-icon-next';
-import { useAuthAxios } from '@lib/ui-util-next';
+import { RedirectComponent, useAuthAxios } from '@lib/ui-util-next';
 import {
   Card,
   CardContent,
@@ -18,6 +18,7 @@ import {
   CardHeader,
   CardTitle,
   Separator,
+  toast,
 } from '@lib/ui-vendor-next';
 import { siteSettings } from '@web/cfg';
 
@@ -51,17 +52,22 @@ function Register() {
   // redirect if already logged in
   useEffect(() => {
     if (state.isLoggedIn) {
-      logger.info('Registration successful');
-      router.push(nextUrl);
+      toast({
+        title: 'Registration Successful',
+        description: 'Enjoy looking around ...',
+        timeout: 3000,
+        variant: 'success',
+      });
+      logger.info('Registration successful', nextUrl);
     }
   }, [state, nextUrl, router]);
 
-  // callback that is called form LoginForm component to clear error
+  // callback that is called from the Form component to clear error
   const cleanupError = () => {
     setError('');
   };
 
-  // callback that is called form LoginForm component on form submit
+  // callback that is called from the Form component on submit
   const onSubmit = async (input: RegisterFormInputs) => {
     setError('');
     setIsLoading(true);
@@ -123,6 +129,7 @@ function Register() {
           Login
         </Link>
       </CardFooter>
+      <RedirectComponent redirect={nextUrl} go={state.isLoggedIn} />
     </Card>
   );
 }
