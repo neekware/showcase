@@ -20,11 +20,12 @@ export default async function middleware(req: NextRequest): Promise<NextResponse
   // prevent sensitive data from being returned on exceptions
   try {
     const jwtPayload = await isSessionValid(req);
+    const alreadyLoggedIn = jwtPayload && jwtPayload.sub;
 
-    // Check if the request is to authenticate users (login, register)
+    // Check auth related paths (login, register)
     //////////////////////////////////////////////////////////////////////
     if (mAuthPaths.some((path) => req.nextUrl.pathname.startsWith(path))) {
-      if (jwtPayload && jwtPayload.sub) {
+      if (alreadyLoggedIn) {
         const absoluteHomeURL = new URL(mUrls.site.home, req.nextUrl.origin);
         console.log(`Session is valid, redirect to home: ${absoluteHomeURL.toString()}`);
         return NextResponse.redirect(absoluteHomeURL);
@@ -35,7 +36,7 @@ export default async function middleware(req: NextRequest): Promise<NextResponse
     // Check if the request is to access protected paths
     //////////////////////////////////////////////////////////////////////
     if (mProtectedPaths.some((path) => req.nextUrl.pathname.startsWith(path))) {
-      if (jwtPayload && jwtPayload.sub) {
+      if (alreadyLoggedIn) {
         return refreshCookie(jwtPayload, NextResponse.next());
       }
 
