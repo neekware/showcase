@@ -37,7 +37,6 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
     return (
       <div
         className={cn('relative flex w-full items-center border-0 border-b-2', {
-          'border-foreground-400': !error,
           'border-danger': error,
         })}
       >
@@ -58,8 +57,6 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
           className={cn(
             'text-md pointer-events-none absolute left-0 top-4 transition-all duration-300',
             {
-              'text-primary': !error,
-              'text-danger': error,
               '-top-1 left-0 text-xs font-bold': isFocused || value, // Adjust the position and style on focus or value
               'peer-placeholder-shown:text-md font-bold': !value && !isFocused, // Ensure it's visible if there's no value
             }
@@ -67,7 +64,7 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
         >
           {label}
         </label>
-        {icon && <Icon path={icon} className="-mb-2.5 size-6" />}
+        {icon && <Icon path={icon} className="text-primary -mb-2.5 size-6" />}
       </div>
     );
   }
