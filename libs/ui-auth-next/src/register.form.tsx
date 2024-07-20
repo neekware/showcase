@@ -85,7 +85,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                 </FormItemControl>
                 <FormItemInfo end={true} className="flex w-full">
                   Your first name
-                </FormItemInfo>{' '}
+                </FormItemInfo>
               </FormItem>
             )}
           />
