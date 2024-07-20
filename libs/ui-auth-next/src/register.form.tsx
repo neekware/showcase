@@ -7,16 +7,7 @@ import { type z } from 'zod';
 import { type RegisterFormInputs, RegistrationFormModel } from '@lib/data-model-shared';
 import { Icon, mdiSync } from '@lib/ui-icon-next';
 import { useDebounce } from '@lib/ui-util-next';
-import {
-  Button,
-  Form,
-  FormError,
-  FormField,
-  FormItem,
-  FormItemControl,
-  FormItemInfo,
-  InputFloating,
-} from '@lib/ui-vendor-next';
+import { Button, DynamicFormField, Form, FormError } from '@lib/ui-vendor-next';
 
 const useRegisterForm = () => {
   const form = useForm<z.infer<typeof RegistrationFormModel>>({
@@ -68,108 +59,41 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     <Form {...form}>
       <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="mb-2">
         <div className="flex flex-col gap-y-4 sm:grid sm:grid-cols-2 sm:gap-2">
-          <FormField
-            control={form.control}
+          <DynamicFormField
+            form={form}
             name="firstName"
-            render={({ field }) => (
-              <FormItem className="-mb-3">
-                <FormItemControl>
-                  <InputFloating
-                    {...field}
-                    type="text"
-                    label="First Name"
-                    {...form.register('firstName')}
-                    onBlur={() => form.trigger('firstName')}
-                    ref={emailInputRef}
-                  />
-                </FormItemControl>
-                <FormItemInfo end={true} className="flex w-full">
-                  Your first name
-                </FormItemInfo>
-              </FormItem>
-            )}
+            type="text"
+            label="First Name"
+            infoText="Your first name"
           />
-          <FormField
-            control={form.control}
+          <DynamicFormField
+            form={form}
             name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormItemControl>
-                  <InputFloating
-                    {...field}
-                    type="text"
-                    label="Last Name"
-                    {...form.register('lastName')}
-                    onBlur={() => form.trigger('lastName')}
-                  />
-                </FormItemControl>
-                <FormItemInfo end={true} className="flex w-full">
-                  Your last name
-                </FormItemInfo>
-              </FormItem>
-            )}
+            type="text"
+            label="Last Name"
+            infoText="Your last name"
           />
         </div>
-        <FormField
-          className="mb-2"
-          control={form.control}
+        <DynamicFormField
+          form={form}
           name="email"
-          render={(field) => (
-            <FormItem>
-              <FormItemControl>
-                <InputFloating
-                  {...field}
-                  type="email"
-                  label="Email"
-                  {...form.register('email')}
-                  onBlur={() => form.trigger('email')}
-                />
-              </FormItemControl>
-              <FormItemInfo end={true} className="flex w-full">
-                Your email address
-              </FormItemInfo>
-            </FormItem>
-          )}
+          type="email"
+          label="Email"
+          infoText="Your account email address"
         />
-        <FormField
-          control={form.control}
+        <DynamicFormField
+          form={form}
           name="phone"
-          render={({ field }) => (
-            <FormItem>
-              <FormItemControl>
-                <InputFloating
-                  {...field}
-                  type="tel"
-                  label="Phone"
-                  {...form.register('phone')}
-                  onBlur={() => form.trigger('phone')}
-                />
-              </FormItemControl>
-              <FormItemInfo end={true} className="flex w-full">
-                Your phone number (+1234567890)
-              </FormItemInfo>
-            </FormItem>
-          )}
+          type="tel"
+          label="Phone"
+          infoText="Your phone number (+1234567890)"
         />
-        <FormField
-          control={form.control}
+        <DynamicFormField
+          form={form}
           name="password"
-          render={(field) => (
-            <FormItem>
-              <FormItemControl>
-                <InputFloating
-                  {...field}
-                  type="password"
-                  label="Password"
-                  {...form.register('password')}
-                  onBlur={() => form.trigger('password')}
-                />
-              </FormItemControl>
-              <FormItemInfo end={true} className="flex w-full">
-                Your account password
-              </FormItemInfo>
-            </FormItem>
-          )}
+          type="password"
+          label="Password"
+          infoText="Your account password"
         />
         <div className="flex w-full items-center justify-between">
           <Button
