@@ -22,8 +22,8 @@ interface DynamicFormFieldProps<TFieldValues extends FieldValues> {
   name: FieldPath<TFieldValues>;
   type: 'text' | 'textarea' | 'email' | 'tel' | 'password' | 'checkbox';
   label: string;
+  icon?: string;
   infoText: string;
-  infoTextPositionEnd?: boolean;
   className?: string;
 }
 
@@ -33,7 +33,7 @@ const DynamicFormField = <TFieldValues extends FieldValues>({
   type,
   label,
   infoText,
-  infoTextPositionEnd = true,
+  icon,
   className,
 }: DynamicFormFieldProps<TFieldValues>) => {
   const renderField = (field: any) => {
@@ -49,10 +49,18 @@ const DynamicFormField = <TFieldValues extends FieldValues>({
             {...field}
             {...form.register(name)}
             onBlur={() => form.trigger(name)}
+            icon={icon}
           />
         );
       case 'textarea':
-        return <Textarea {...field} {...form.register(name)} onBlur={() => form.trigger(name)} />;
+        return (
+          <Textarea
+            {...field}
+            {...form.register(name)}
+            onBlur={() => form.trigger(name)}
+            icon={icon}
+          />
+        );
       case 'checkbox':
         return (
           <Checkbox
@@ -75,7 +83,7 @@ const DynamicFormField = <TFieldValues extends FieldValues>({
       render={(field) => (
         <FormItem>
           <FormItemControl>{renderField(field)}</FormItemControl>
-          <FormItemInfo end={infoTextPositionEnd} className="flex w-full">
+          <FormItemInfo end={true} className="flex w-full">
             {infoText}
           </FormItemInfo>
         </FormItem>

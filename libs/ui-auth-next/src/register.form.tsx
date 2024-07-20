@@ -5,7 +5,15 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
 import { type RegisterFormInputs, RegistrationFormModel } from '@lib/data-model-shared';
-import { Icon, mdiSync } from '@lib/ui-icon-next';
+import {
+  Icon,
+  mdiAccount,
+  mdiAccountGroupOutline,
+  mdiEmail,
+  mdiKey,
+  mdiPhone,
+  mdiSync,
+} from '@lib/ui-icon-next';
 import { useDebounce } from '@lib/ui-util-next';
 import { Button, DynamicFormField, Form, FormError } from '@lib/ui-vendor-next';
 
@@ -65,6 +73,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             type="text"
             label="First Name"
             infoText="Your first name"
+            icon={mdiAccount}
           />
           <DynamicFormField
             form={form}
@@ -72,6 +81,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             type="text"
             label="Last Name"
             infoText="Your last name"
+            icon={mdiAccountGroupOutline}
           />
         </div>
         <DynamicFormField
@@ -80,6 +90,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           type="email"
           label="Email"
           infoText="Your account email address"
+          icon={mdiEmail}
         />
         <DynamicFormField
           form={form}
@@ -87,6 +98,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           type="tel"
           label="Phone"
           infoText="Your phone number (+1234567890)"
+          icon={mdiPhone}
         />
         <DynamicFormField
           form={form}
@@ -94,6 +106,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           type="password"
           label="Password"
           infoText="Your account password"
+          icon={mdiKey}
         />
         <div className="flex w-full items-center justify-between">
           <Button

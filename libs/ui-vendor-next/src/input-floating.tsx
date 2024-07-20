@@ -1,13 +1,17 @@
 import * as React from 'react';
+import { Icon } from '@mdi/react';
 import { cn } from '@lib/ui-vendor-next';
 import { useFormField } from './form';
 
+// Assuming Icon component is imported from mdi/react
+
 export type FloatingLabelInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
+  icon?: string;
 };
 
 const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps>(
-  ({ type = 'text', label, className, ...props }, ref) => {
+  ({ type = 'text', label, className, icon, ...props }, ref) => {
     const [value, setValue] = React.useState('');
     const [isFocused, setIsFocused] = React.useState(false);
     const inputRef = React.useRef<HTMLInputElement | null>(null);
@@ -31,12 +35,16 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
     };
 
     return (
-      <div className="relative w-full">
+      <div
+        className={cn('relative flex w-full items-center border-0 border-b-2', {
+          'border-foreground-400': !error,
+          'border-danger': error,
+        })}
+      >
         <input
           type={type}
           className={cn(
-            { 'border-foreground-400': !error, 'border-danger': error }, // Change border color based on error state
-            'peer w-full border-0 border-b-2 bg-transparent p-0 pb-2 pr-3 pt-4 text-sm outline-none transition-all duration-1000 focus:bg-transparent focus:outline-none',
+            'peer w-full bg-transparent p-0 pb-2 pr-1 pt-4 text-sm outline-none transition-all duration-1000 focus:bg-transparent focus:outline-none',
             className
           )}
           ref={inputRef}
@@ -59,6 +67,7 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
         >
           {label}
         </label>
+        {icon && <Icon path={icon} className="-mb-2.5 size-6" />}
       </div>
     );
   }

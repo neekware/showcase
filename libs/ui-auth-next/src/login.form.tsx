@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
 import { type LoginFormInputs, LoginFormModel } from '@lib/data-model-shared';
-import { Icon, mdiSync } from '@lib/ui-icon-next';
+import { Icon, mdiEmail, mdiKey, mdiLock, mdiSync } from '@lib/ui-icon-next';
 import { useDebounce } from '@lib/ui-util-next';
 import { Button, DynamicFormField, Form, FormError } from '@lib/ui-vendor-next';
 
@@ -56,6 +56,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error
           type="email"
           label="Email"
           infoText="Your account email address"
+          icon={mdiEmail}
         />
         <DynamicFormField
           form={form}
@@ -63,6 +64,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error
           type="password"
           label="Password"
           infoText="Your account password"
+          icon={mdiKey}
         />
         <div className="flex w-full items-center justify-between">
           <Button
