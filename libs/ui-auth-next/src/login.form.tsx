@@ -14,14 +14,11 @@ const useLoginForm = () => {
     mode: 'onChange',
   });
 
-  const oldFieldsValues = useRef(form.getValues());
-
   // catch all watch not available, so we need to watch each field
   const debouncedFormStates = useDebounce(form.watch(['email', 'password']), 500);
 
   return {
     form,
-    oldFieldsValues,
     debouncedFormStates,
   };
 };
@@ -34,16 +31,11 @@ interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error, clearError }) => {
-  const { form, oldFieldsValues, debouncedFormStates } = useLoginForm();
+  const { form, debouncedFormStates } = useLoginForm();
 
   useEffect(() => {
     if (error) {
       clearError();
-    }
-    for (const target of Object.keys(debouncedFormStates)) {
-      if (debouncedFormStates?.[target] !== oldFieldsValues?.current?.[target]) {
-        form.trigger(target as keyof LoginFormInputs);
-      }
     }
   }, [...debouncedFormStates]);
 
