@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
@@ -49,6 +49,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   error,
   clearError,
 }) => {
+  const emailInputRef = useRef<HTMLInputElement>(null);
   const { form, debouncedFormStates } = useRegisterForm();
 
   useEffect(() => {
@@ -56,6 +57,12 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
       clearError();
     }
   }, [...debouncedFormStates]);
+
+  useEffect(() => {
+    if (emailInputRef.current) {
+      emailInputRef.current.focus();
+    }
+  }, []);
 
   return (
     <Form {...form}>
@@ -73,6 +80,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                     label="First Name"
                     {...form.register('firstName')}
                     onBlur={() => form.trigger('firstName')}
+                    ref={emailInputRef}
                   />
                 </FormItemControl>
                 <FormItemInfo end={true} className="flex w-full">

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
@@ -40,6 +40,7 @@ interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error, clearError }) => {
+  const emailInputRef = useRef<HTMLInputElement>(null);
   const { form, debouncedFormStates } = useLoginForm();
 
   useEffect(() => {
@@ -47,6 +48,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error
       clearError();
     }
   }, [...debouncedFormStates]);
+
+  useEffect(() => {
+    if (emailInputRef.current) {
+      emailInputRef.current.focus();
+    }
+  }, []);
 
   return (
     <Form {...form}>
@@ -64,6 +71,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error
                   label="Email"
                   {...form.register('email')}
                   onBlur={() => form.trigger('email')}
+                  ref={emailInputRef}
                 />
               </FormItemControl>
               <FormItemInfo end={true} className="flex w-full">
