@@ -101,7 +101,7 @@ function Login() {
           </div>
         </div>
       </CardHeader>
-      <Separator orientation="horizontal" />
+      <Separator orientation="horizontal" className="border-2" />
       <CardContent className="pb-3 pt-3">
         <LoginForm
           onSubmit={onSubmit}
