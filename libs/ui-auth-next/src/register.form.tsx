@@ -66,7 +66,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   return (
     <Form {...form}>
       <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="mb-2">
-        <div className="flex flex-col gap-y-4 sm:grid sm:grid-cols-2 sm:gap-2">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-2">
           <DynamicFormField
             form={form}
             name="firstName"

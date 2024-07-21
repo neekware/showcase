@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
 import { type LoginFormInputs, LoginFormModel } from '@lib/data-model-shared';
-import { Icon, mdiEmail, mdiKey, mdiLock, mdiSync } from '@lib/ui-icon-next';
+import { Icon, mdiEmail, mdiKey, mdiSync } from '@lib/ui-icon-next';
 import { useDebounce } from '@lib/ui-util-next';
 import { Button, DynamicFormField, Form, FormError } from '@lib/ui-vendor-next';
 
@@ -33,11 +33,12 @@ interface LoginFormProps {
 export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error, clearError }) => {
   const { form, debouncedFormStates } = useLoginForm();
 
+  console.log('LoginForm render');
   useEffect(() => {
     if (error) {
       clearError();
     }
-  }, [...debouncedFormStates]);
+  }, [...debouncedFormStates, error]);
 
   return (
     <Form {...form}>

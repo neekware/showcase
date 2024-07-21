@@ -55,19 +55,6 @@ function Login() {
     setNextUrl(searchParams.get('nextUrl') || urls.site.home);
   }, [searchParams]);
 
-  // redirect if already logged in
-  useEffect(() => {
-    if (state.isLoggedIn) {
-      toast({
-        title: 'Login Successful',
-        description: 'Enjoy looking around ...',
-        timeout: 4000,
-        variant: 'success',
-      });
-      logger.info('Login successful', nextUrl);
-    }
-  }, [state, nextUrl, router]);
-
   // callback that is called from the Form component to clear error
   const cleanupError = () => {
     setError('');

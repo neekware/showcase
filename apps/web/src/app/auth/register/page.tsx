@@ -49,19 +49,6 @@ function Register() {
     setNextUrl(searchParams.get('nextUrl') || urls.site.home);
   }, [searchParams]);
 
-  // redirect if already logged in
-  useEffect(() => {
-    if (state.isLoggedIn) {
-      toast({
-        title: 'Registration Successful',
-        description: 'Enjoy looking around ...',
-        timeout: 3000,
-        variant: 'success',
-      });
-      logger.info('Registration successful', nextUrl);
-    }
-  }, [state, nextUrl, router]);
-
   // callback that is called from the Form component to clear error
   const cleanupError = () => {
     setError('');
