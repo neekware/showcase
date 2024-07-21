@@ -43,7 +43,7 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
         <input
           type={type}
           className={cn(
-            'peer w-full bg-transparent p-0 pb-2 pr-1 pt-4 text-sm outline-none transition-all duration-1000 focus:bg-transparent focus:outline-none',
+            'text-md peer w-full bg-transparent p-0 pb-2 pr-1 pt-4 outline-none transition-all duration-1000 focus:bg-transparent focus:outline-none',
             className
           )}
           ref={inputRef}
@@ -54,14 +54,17 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
           {...props}
         />
         <label
-          className={cn('text-md pointer-events-none absolute top-4 transition-all duration-300', {
-            '-top-1 text-xs font-bold': isFocused || value, // Adjust the position and style on focus or value
-            'peer-placeholder-shown:text-md font-bold': !value && !isFocused, // Ensure it's visible if there's no value
-          })}
+          className={cn(
+            'text-md pointer-events-none absolute top-4 opacity-70 transition-all duration-300',
+            {
+              '-top-1 text-sm font-bold': isFocused || value, // Adjust the position and style on focus or value
+              'peer-placeholder-shown:text-md font-bold': !value && !isFocused, // Ensure it's visible if there's no value
+            }
+          )}
         >
           {label}
         </label>
-        {icon && <Icon path={icon} className="text-primary -mb-2.5 size-6" />}
+        {icon && <Icon path={icon} className="text-primary -mb-2.5 size-6 opacity-70" />}
       </div>
     );
   }
