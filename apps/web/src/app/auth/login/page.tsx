@@ -19,7 +19,6 @@ import {
   CardHeader,
   CardTitle,
   Separator,
-  toast,
 } from '@lib/ui-vendor-next';
 import { siteSettings } from '@web/cfg';
 
