@@ -54,13 +54,10 @@ const InputFloating = React.forwardRef<HTMLInputElement, FloatingLabelInputProps
           {...props}
         />
         <label
-          className={cn(
-            'text-md pointer-events-none absolute left-0 top-4 transition-all duration-300',
-            {
-              '-top-1 left-0 text-xs font-bold': isFocused || value, // Adjust the position and style on focus or value
-              'peer-placeholder-shown:text-md font-bold': !value && !isFocused, // Ensure it's visible if there's no value
-            }
-          )}
+          className={cn('text-md pointer-events-none absolute top-4 transition-all duration-300', {
+            '-top-1 text-xs font-bold': isFocused || value, // Adjust the position and style on focus or value
+            'peer-placeholder-shown:text-md font-bold': !value && !isFocused, // Ensure it's visible if there's no value
+          })}
         >
           {label}
         </label>
