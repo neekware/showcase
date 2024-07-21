@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { type SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
 import { type RegisterFormInputs, RegistrationFormModel } from '@lib/data-model-shared';
@@ -23,15 +23,13 @@ const useRegisterForm = () => {
     mode: 'all',
   });
 
-  // catch all watch not available, so we need to watch each field
-  const debouncedFormStates = useDebounce(
-    form.watch(['firstName', 'lastName', 'email', 'phone', 'password']),
-    500
-  );
+  const values = useWatch({ control: form.control });
+  const debouncedValues = useDebounce(values, 500);
 
   return {
     form,
-    debouncedFormStates,
+    values,
+    debouncedValues,
   };
 };
 
@@ -49,13 +47,13 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   clearError,
 }) => {
   const emailInputRef = useRef<HTMLInputElement>(null);
-  const { form, debouncedFormStates } = useRegisterForm();
+  const { form, values, debouncedValues } = useRegisterForm();
 
   useEffect(() => {
     if (error) {
       clearError();
     }
-  }, [...debouncedFormStates]);
+  }, [values]);
 
   useEffect(() => {
     if (emailInputRef.current) {

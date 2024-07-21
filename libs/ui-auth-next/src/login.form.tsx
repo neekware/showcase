@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
 import { type LoginFormInputs, LoginFormModel } from '@lib/data-model-shared';
@@ -14,12 +14,13 @@ const useLoginForm = () => {
     mode: 'onChange',
   });
 
-  // catch all watch not available, so we need to watch each field
-  const debouncedFormStates = useDebounce(form.watch(['email', 'password']), 500);
+  const values = useWatch({ control: form.control });
+  const debouncedValues = useDebounce(values, 500);
 
   return {
     form,
-    debouncedFormStates,
+    values,
+    debouncedValues,
   };
 };
 
@@ -31,14 +32,14 @@ interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error, clearError }) => {
-  const { form, debouncedFormStates } = useLoginForm();
+  const { form, values, debouncedValues } = useLoginForm();
 
   console.log('LoginForm render');
   useEffect(() => {
     if (error) {
       clearError();
     }
-  }, [...debouncedFormStates, error]);
+  }, [values]);
 
   return (
     <Form {...form}>
