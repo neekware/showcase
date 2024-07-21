@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
   logger.setLogLevel(LogLevel.critical);
 
   return (
-    <html lang="en" dir="rtl">
+    <html lang="en" dir="ltr">
       <head>
         <meta
           name="viewport"
