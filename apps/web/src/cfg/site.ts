@@ -1,5 +1,6 @@
 import { type SiteSettings } from '@lib/data-model-shared';
 import { mdiCog, mdiGithub, mdiLogin, mdiLogout, mdiTwitter, mdiWrench } from '@lib/ui-icon-next';
+import { ACCESS_TOKEN_KEY } from './auth';
 import { availableThemes } from './theme';
 import { urls } from './urls';
 
@@ -10,6 +11,7 @@ export const metaSettings = {
   url: 'https://showcase.io',
   ogImage: 'https://showcase.io/og.jpg',
   description: 'Showcase your political self beautify on a unified portal.',
+  sessionName: ACCESS_TOKEN_KEY,
 };
 
 export const siteSettings: SiteSettings = {

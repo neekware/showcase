@@ -34,7 +34,7 @@ const loginUser = async (input: LoginFormInputs, axios: AxiosInstance) => {
 };
 
 // login page component - client side
-function Login() {
+function LoginPage() {
   unstable_noStore();
   const authAxios = useAuthAxios(urls.site.base);
   const router = useRouter();
@@ -129,7 +129,7 @@ function Login() {
 const LoginWithSuspense = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Login />
+      <LoginPage />
     </Suspense>
   );
 };
