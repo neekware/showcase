@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { type JWTPayload, JWTService } from '@lib/data-net-shared';
-import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY, siteSettings } from '@web/cfg';
+import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY, siteSettings, urls } from '@web/cfg';
 
 export const { urls: mUrls } = siteSettings;
-export const mProtectedPaths = [mUrls.site.admin, mUrls.site.products];
-export const mAuthPaths = [mUrls.site.auth.login, mUrls.site.auth.register, mUrls.site.auth.logout];
+export const mProtectedPaths = [];
+export const mAuthPaths = [urls.site.auth.login, urls.site.auth.register, urls.site.auth.logout];
 
 export const config = {
   matcher: ['/((?!_next/static|favicon.ico).*)'],

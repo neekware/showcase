@@ -9,7 +9,7 @@ import type { AxiosInstance } from '@lib/data-net-shared';
 import { useAppState } from '@lib/data-store-next';
 import { RegisterForm } from '@lib/ui-auth-next';
 import { Icon, mdiAccountPlus, mdiLogin } from '@lib/ui-icon-next';
-import { RedirectComponent, useAuthAxios } from '@lib/ui-util-next';
+import { useAuthAxios } from '@lib/ui-util-next';
 import {
   Card,
   CardContent,
@@ -18,7 +18,6 @@ import {
   CardHeader,
   CardTitle,
   Separator,
-  toast,
 } from '@lib/ui-vendor-next';
 import { siteSettings } from '@web/cfg';
 
@@ -48,6 +47,11 @@ function Register() {
   useEffect(() => {
     setNextUrl(searchParams.get('nextUrl') || urls.site.home);
   }, [searchParams]);
+
+  if (state.isLoggedIn) {
+    logger.info('Already logged in', nextUrl);
+    router.push(`${nextUrl}`);
+  }
 
   // callback that is called from the Form component to clear error
   const cleanupError = () => {
@@ -81,6 +85,7 @@ function Register() {
     }
 
     setAppState({ isLoggedIn: true });
+    router.push(nextUrl);
   };
 
   return (
@@ -116,7 +121,6 @@ function Register() {
           Login
         </Link>
       </CardFooter>
-      <RedirectComponent redirect={nextUrl} go={state.isLoggedIn} />
     </Card>
   );
 }

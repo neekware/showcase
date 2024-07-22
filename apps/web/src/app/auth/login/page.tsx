@@ -1,7 +1,6 @@
 'use client';
 
 import { Suspense, useEffect, useState } from 'react';
-import { unstable_noStore } from 'next/cache';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { logger } from '@lib/data-logger-shared';
@@ -10,7 +9,7 @@ import { type AxiosInstance } from '@lib/data-net-shared';
 import { useAppState } from '@lib/data-store-next';
 import { LoginForm } from '@lib/ui-auth-next';
 import { Icon, mdiFolderPlus, mdiLogin } from '@lib/ui-icon-next';
-import { RedirectComponent, useAuthAxios } from '@lib/ui-util-next';
+import { useAuthAxios } from '@lib/ui-util-next';
 import {
   Card,
   CardContent,
@@ -35,7 +34,6 @@ const loginUser = async (input: LoginFormInputs, axios: AxiosInstance) => {
 
 // login page component - client side
 function LoginPage() {
-  unstable_noStore();
   const authAxios = useAuthAxios(urls.site.base);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -44,15 +42,15 @@ function LoginPage() {
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
-  if (state.isLoggedIn) {
-    logger.info('Login successful', nextUrl);
-    router.replace(`${nextUrl}`);
-  }
-
   // set nextUrl from query params
   useEffect(() => {
     setNextUrl(searchParams.get('nextUrl') || urls.site.home);
   }, [searchParams]);
+
+  if (state.isLoggedIn) {
+    logger.info('Login successful', nextUrl);
+    router.push(`${nextUrl}`);
+  }
 
   // callback that is called from the Form component to clear error
   const cleanupError = () => {
@@ -80,12 +78,13 @@ function LoginPage() {
 
     // handle login result
     if (!result.success || !result.data) {
-      setError(result.message || 'Failed to register your account. Please try again.');
+      setError(result.message || 'Failed to log you in. Please try again.');
       logger.error('Login failed:', result.message);
       return;
     }
 
     setAppState({ isLoggedIn: true });
+    router.push(nextUrl);
   };
 
   return (
@@ -121,7 +120,6 @@ function LoginPage() {
           Register
         </Link>
       </CardFooter>
-      <RedirectComponent redirect={nextUrl} go={state.isLoggedIn} />
     </Card>
   );
 }

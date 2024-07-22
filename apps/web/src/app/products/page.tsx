@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { withAuth } from '@lib/ui-auth-next';
+import { authGuard } from '@lib/ui-auth-next';
 import { Button } from '@lib/ui-vendor-next';
 import { siteSettings } from '@web/cfg';
 
@@ -74,4 +74,4 @@ const ProductsPage: React.FC<ProductsProps> = ({ settings }: ProductsProps) => {
   );
 };
 
-export default withAuth(ProductsPage, siteSettings);
+export default authGuard(ProductsPage, siteSettings);
