@@ -34,7 +34,7 @@ export function AppInit({ siteSettings }: AppInitProps): JSX.Element {
 
   return (
     <>
-      <Suspense fallback={null}>
+      <Suspense>
         <NavigationEvents settings={siteSettings} />
       </Suspense>
     </>

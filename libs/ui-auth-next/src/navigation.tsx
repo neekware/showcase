@@ -16,21 +16,24 @@ export function NavigationEvents({ settings }: NavigationEventsProps): JSX.Eleme
   const searchParams = useSearchParams();
   const [state, setAppState] = useAppState();
   const [lastPath, setLastPath] = useState('');
-  const url = `${pathname}?${searchParams}`;
+  const url = `${pathname}${searchParams?.size ? `?${searchParams}` : ''}`;
 
   useEffect(() => {
-    if (lastPath !== url) {
-      isSessionValid(settings.sessionName || 'aTc').then((session) => {
+    const checkSessionAndSetState = async () => {
+      if (lastPath !== url) {
+        const session = await isSessionValid(settings.sessionName || 'aTc');
         if (session) {
           setAppState({ isLoggedIn: true });
         } else {
           setAppState({ isLoggedIn: false });
         }
-      });
 
-      setLastPath(url);
-      logger.info('NavigationComplete', url);
-    }
+        setLastPath(url);
+        logger.info('NavigationComplete', url);
+      }
+    };
+
+    checkSessionAndSetState();
   }, [pathname, searchParams]);
 
   return <></>;
