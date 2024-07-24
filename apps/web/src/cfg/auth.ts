@@ -1,2 +1,2 @@
 export const ACCESS_TOKEN_KEY = 'aTc';
-export const ACCESS_TOKEN_EXPIRY = 30; // minutes
+export const ACCESS_TOKEN_EXPIRY = 1; // minutes

@@ -65,6 +65,7 @@ const isSessionValid = async (req: NextRequest): Promise<JWTPayload | undefined>
     if (jwtPrev.success && jwtPrev.data) {
       return jwtPrev.data;
     }
+    req.cookies.delete(ACCESS_TOKEN_KEY);
   }
   return undefined;
 };
