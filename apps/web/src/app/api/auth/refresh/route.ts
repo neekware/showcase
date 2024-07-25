@@ -40,6 +40,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       { status: 500 }
     );
   }
+
   const { data: authToken } = jwtAuthPayload;
   cookies().set(ACCESS_TOKEN_KEY, authToken, {
     expires: new Date(Date.now() + ACCESS_TOKEN_EXPIRY * 60 * 1000),
