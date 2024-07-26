@@ -1,20 +1,13 @@
+'use client';
+
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
 import { type LoginFormInputs, LoginFormModel } from '@lib/data-model-shared';
-import { Icon, mdiSync } from '@lib/ui-icon-next';
+import { Icon, mdiEmail, mdiKey, mdiSync } from '@lib/ui-icon-next';
 import { useDebounce } from '@lib/ui-util-next';
-import {
-  Button,
-  Form,
-  FormError,
-  FormField,
-  FormItem,
-  FormItemControl,
-  FormItemInfo,
-  InputFloating,
-} from '@lib/ui-vendor-next';
+import { Button, DynamicFormField, Form, FormError } from '@lib/ui-vendor-next';
 
 const useLoginForm = () => {
   const form = useForm<z.infer<typeof LoginFormModel>>({
@@ -23,12 +16,13 @@ const useLoginForm = () => {
     mode: 'onChange',
   });
 
-  // catch all watch not available, so we need to watch each field
-  const debouncedFormStates = useDebounce(form.watch(['email', 'password']), 500);
+  const values = useWatch({ control: form.control });
+  const debouncedValues = useDebounce(values, 500);
 
   return {
     form,
-    debouncedFormStates,
+    values,
+    debouncedValues,
   };
 };
 
@@ -40,57 +34,33 @@ interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error, clearError }) => {
-  const { form, debouncedFormStates } = useLoginForm();
+  const { form, values, debouncedValues } = useLoginForm();
 
+  console.log('LoginForm render');
   useEffect(() => {
     if (error) {
       clearError();
     }
-  }, [...debouncedFormStates]);
+  }, [values]);
 
   return (
     <Form {...form}>
       <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="mb-2">
-        <FormField
-          className="mb-2"
-          control={form.control}
+        <DynamicFormField
+          form={form}
           name="email"
-          render={(field) => (
-            <FormItem>
-              <FormItemControl>
-                <InputFloating
-                  {...field}
-                  type="email"
-                  label="Email"
-                  {...form.register('email')}
-                  onBlur={() => form.trigger('email')}
-                />
-              </FormItemControl>
-              <FormItemInfo end={true} className="flex w-full">
-                Your account email address
-              </FormItemInfo>
-            </FormItem>
-          )}
+          type="email"
+          label="Email"
+          infoText="Your account email address"
+          icon={mdiEmail}
         />
-        <FormField
-          control={form.control}
+        <DynamicFormField
+          form={form}
           name="password"
-          render={(field) => (
-            <FormItem>
-              <FormItemControl>
-                <InputFloating
-                  {...field}
-                  type="password"
-                  label="Password"
-                  {...form.register('password')}
-                  onBlur={() => form.trigger('password')}
-                />
-              </FormItemControl>
-              <FormItemInfo end={true} className="flex w-full">
-                Your account password
-              </FormItemInfo>
-            </FormItem>
-          )}
+          type="password"
+          label="Password"
+          infoText="Your account password"
+          icon={mdiKey}
         />
         <div className="flex w-full items-center justify-between">
           <Button

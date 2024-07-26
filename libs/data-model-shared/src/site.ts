@@ -22,6 +22,7 @@ export interface SiteMetadata {
   url: string;
   ogImage: string;
   description: string;
+  sessionName: string;
 }
 
 export interface SiteSettings extends SiteMetadata {

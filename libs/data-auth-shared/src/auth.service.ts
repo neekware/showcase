@@ -6,14 +6,6 @@ import {
 import { type User, UserService } from '@lib/data-user-shared';
 import { compareSync } from '@lib/data-util-shared';
 
-if (!process.env.AUTH_SECRET) {
-  throw new Error('You must set AUTH_SECRET in your environment');
-}
-
-if (!process.env.AUTH_ISSUER) {
-  throw new Error('You must set AUTH_ISSUER in your environment');
-}
-
 export const AuthService = {
   async login(data: LoginFormInputs): Promise<DataRetrieval<User>> {
     const result = await UserService.getByEmailQuery(data.email);

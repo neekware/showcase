@@ -47,7 +47,7 @@ const NavigationMenuTrigger = React.forwardRef<
     className={cn(navigationMenuTriggerStyle(), 'group', className)}
     {...props}
   >
-    {children}{' '}
+    {children}
     <Icon
       path={mdiChevronDown}
       className="relative top-px ml-1 size-3 transition duration-200 group-data-[state=open]:rotate-180"

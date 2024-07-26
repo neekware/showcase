@@ -19,9 +19,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(result);
   }
 
-  const { data: user } = result;
-
   // Create an access auth token and save it in a httpOnly cookie
+  const { data: user } = result;
   const jwtAuthPayload = await JWTService.encrypt(user.id, 30);
   if (!jwtAuthPayload.success || !jwtAuthPayload.data) {
     return NextResponse.json(
@@ -29,6 +28,7 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
+
   const { data: authToken } = jwtAuthPayload;
   cookies().set(ACCESS_TOKEN_KEY, authToken, {
     expires: new Date(Date.now() + ACCESS_TOKEN_EXPIRY * 60 * 1000),

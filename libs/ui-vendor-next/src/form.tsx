@@ -131,7 +131,7 @@ const FormItemInfo = forwardRef<
         size={0.5}
         className={!children && !errorMessage ? 'invisible' : ''}
       />
-      <span ref={ref} id={FormItemInfoId} className="text-xs">
+      <span ref={ref} id={FormItemInfoId} className="text-sm">
         {errorMessage ? (
           errorMessage
         ) : children ? (

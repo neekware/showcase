@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { type JWTPayload, JWTService } from '@lib/data-net-shared';
-import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY, siteSettings } from '@web/cfg';
+import { ACCESS_TOKEN_EXPIRY, ACCESS_TOKEN_KEY, siteSettings, urls } from '@web/cfg';
 
 export const { urls: mUrls } = siteSettings;
-export const mProtectedPaths = [mUrls.site.admin, mUrls.site.products];
-export const mAuthPaths = [mUrls.site.auth.login, mUrls.site.auth.register, mUrls.site.auth.logout];
+export const mProtectedPaths = [];
+export const mAuthPaths = [urls.site.auth.login, urls.site.auth.register, urls.site.auth.logout];
 
 export const config = {
   matcher: ['/((?!_next/static|favicon.ico).*)'],
@@ -20,11 +20,12 @@ export default async function middleware(req: NextRequest): Promise<NextResponse
   // prevent sensitive data from being returned on exceptions
   try {
     const jwtPayload = await isSessionValid(req);
+    const alreadyLoggedIn = jwtPayload && jwtPayload.sub;
 
-    // Check if the request is to authenticate users (login, register)
+    // Check auth related paths (login, register)
     //////////////////////////////////////////////////////////////////////
     if (mAuthPaths.some((path) => req.nextUrl.pathname.startsWith(path))) {
-      if (jwtPayload && jwtPayload.sub) {
+      if (alreadyLoggedIn) {
         const absoluteHomeURL = new URL(mUrls.site.home, req.nextUrl.origin);
         console.log(`Session is valid, redirect to home: ${absoluteHomeURL.toString()}`);
         return NextResponse.redirect(absoluteHomeURL);
@@ -35,7 +36,7 @@ export default async function middleware(req: NextRequest): Promise<NextResponse
     // Check if the request is to access protected paths
     //////////////////////////////////////////////////////////////////////
     if (mProtectedPaths.some((path) => req.nextUrl.pathname.startsWith(path))) {
-      if (jwtPayload && jwtPayload.sub) {
+      if (alreadyLoggedIn) {
         return refreshCookie(jwtPayload, NextResponse.next());
       }
 
@@ -64,6 +65,7 @@ const isSessionValid = async (req: NextRequest): Promise<JWTPayload | undefined>
     if (jwtPrev.success && jwtPrev.data) {
       return jwtPrev.data;
     }
+    req.cookies.delete(ACCESS_TOKEN_KEY);
   }
   return undefined;
 };

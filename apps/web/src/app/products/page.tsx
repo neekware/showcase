@@ -1,11 +1,17 @@
 import Link from 'next/link';
+import { authGuard } from '@lib/ui-auth-next';
 import { Button } from '@lib/ui-vendor-next';
+import { siteSettings } from '@web/cfg';
 
 export const metadata = {
   title: 'Products | Showcase',
 };
 
-export default function Products(): JSX.Element {
+interface ProductsProps {
+  settings?: any;
+}
+
+const ProductsPage: React.FC<ProductsProps> = ({ settings }: ProductsProps) => {
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
       <section className="py-12 md:py-24 lg:py-32">
@@ -66,4 +72,6 @@ export default function Products(): JSX.Element {
       </section>
     </div>
   );
-}
+};
+
+export default authGuard(ProductsPage, siteSettings);

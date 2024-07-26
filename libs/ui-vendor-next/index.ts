@@ -17,6 +17,7 @@ export * from './src/date-picker';
 export * from './src/dialog';
 export * from './src/drawer';
 export * from './src/dropdown-menu';
+export * from './src/form-dynamic';
 export * from './src/form';
 export * from './src/hover-card';
 export * from './src/input';

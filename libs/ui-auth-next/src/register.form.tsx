@@ -1,22 +1,21 @@
 'use client';
 
-import { useEffect } from 'react';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { useEffect, useRef } from 'react';
+import { type SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
 import { type RegisterFormInputs, RegistrationFormModel } from '@lib/data-model-shared';
-import { Icon, mdiSync } from '@lib/ui-icon-next';
-import { useDebounce } from '@lib/ui-util-next';
 import {
-  Button,
-  Form,
-  FormError,
-  FormField,
-  FormItem,
-  FormItemControl,
-  FormItemInfo,
-  InputFloating,
-} from '@lib/ui-vendor-next';
+  Icon,
+  mdiAccount,
+  mdiAccountGroupOutline,
+  mdiEmail,
+  mdiKey,
+  mdiPhone,
+  mdiSync,
+} from '@lib/ui-icon-next';
+import { useDebounce } from '@lib/ui-util-next';
+import { Button, DynamicFormField, Form, FormError } from '@lib/ui-vendor-next';
 
 const useRegisterForm = () => {
   const form = useForm<z.infer<typeof RegistrationFormModel>>({
@@ -24,15 +23,13 @@ const useRegisterForm = () => {
     mode: 'all',
   });
 
-  // catch all watch not available, so we need to watch each field
-  const debouncedFormStates = useDebounce(
-    form.watch(['firstName', 'lastName', 'email', 'phone', 'password']),
-    500
-  );
+  const values = useWatch({ control: form.control });
+  const debouncedValues = useDebounce(values, 500);
 
   return {
     form,
-    debouncedFormStates,
+    values,
+    debouncedValues,
   };
 };
 
@@ -49,119 +46,65 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   error,
   clearError,
 }) => {
-  const { form, debouncedFormStates } = useRegisterForm();
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const { form, values, debouncedValues } = useRegisterForm();
 
   useEffect(() => {
     if (error) {
       clearError();
     }
-  }, [...debouncedFormStates]);
+  }, [values]);
+
+  useEffect(() => {
+    if (emailInputRef.current) {
+      emailInputRef.current.focus();
+    }
+  }, []);
 
   return (
     <Form {...form}>
       <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="mb-2">
-        <div className="flex flex-col gap-y-4 sm:grid sm:grid-cols-2 sm:gap-2">
-          <FormField
-            control={form.control}
+        <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-2">
+          <DynamicFormField
+            form={form}
             name="firstName"
-            render={({ field }) => (
-              <FormItem className="-mb-3">
-                <FormItemControl>
-                  <InputFloating
-                    {...field}
-                    type="text"
-                    label="First Name"
-                    {...form.register('firstName')}
-                    onBlur={() => form.trigger('firstName')}
-                  />
-                </FormItemControl>
-                <FormItemInfo end={true} className="flex w-full">
-                  Your first name
-                </FormItemInfo>{' '}
-              </FormItem>
-            )}
+            type="text"
+            label="First Name"
+            infoText="Your first name"
+            icon={mdiAccount}
           />
-          <FormField
-            control={form.control}
+          <DynamicFormField
+            form={form}
             name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormItemControl>
-                  <InputFloating
-                    {...field}
-                    type="text"
-                    label="Last Name"
-                    {...form.register('lastName')}
-                    onBlur={() => form.trigger('lastName')}
-                  />
-                </FormItemControl>
-                <FormItemInfo end={true} className="flex w-full">
-                  Your last name
-                </FormItemInfo>
-              </FormItem>
-            )}
+            type="text"
+            label="Last Name"
+            infoText="Your last name"
+            icon={mdiAccountGroupOutline}
           />
         </div>
-        <FormField
-          className="mb-2"
-          control={form.control}
+        <DynamicFormField
+          form={form}
           name="email"
-          render={(field) => (
-            <FormItem>
-              <FormItemControl>
-                <InputFloating
-                  {...field}
-                  type="email"
-                  label="Email"
-                  {...form.register('email')}
-                  onBlur={() => form.trigger('email')}
-                />
-              </FormItemControl>
-              <FormItemInfo end={true} className="flex w-full">
-                Your email address
-              </FormItemInfo>
-            </FormItem>
-          )}
+          type="email"
+          label="Email"
+          infoText="Your account email address"
+          icon={mdiEmail}
         />
-        <FormField
-          control={form.control}
+        <DynamicFormField
+          form={form}
           name="phone"
-          render={({ field }) => (
-            <FormItem>
-              <FormItemControl>
-                <InputFloating
-                  {...field}
-                  type="tel"
-                  label="Phone"
-                  {...form.register('phone')}
-                  onBlur={() => form.trigger('phone')}
-                />
-              </FormItemControl>
-              <FormItemInfo end={true} className="flex w-full">
-                Your phone number (+1234567890)
-              </FormItemInfo>
-            </FormItem>
-          )}
+          type="tel"
+          label="Phone"
+          infoText="Your phone number (+1234567890)"
+          icon={mdiPhone}
         />
-        <FormField
-          control={form.control}
+        <DynamicFormField
+          form={form}
           name="password"
-          render={(field) => (
-            <FormItem>
-              <FormItemControl>
-                <InputFloating
-                  {...field}
-                  type="password"
-                  label="Password"
-                  {...form.register('password')}
-                  onBlur={() => form.trigger('password')}
-                />
-              </FormItemControl>
-              <FormItemInfo end={true} className="flex w-full">
-                Your account password
-              </FormItemInfo>
-            </FormItem>
-          )}
+          type="password"
+          label="Password"
+          infoText="Your account password"
+          icon={mdiKey}
         />
         <div className="flex w-full items-center justify-between">
           <Button

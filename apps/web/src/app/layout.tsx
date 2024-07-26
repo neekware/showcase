@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
       <head>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
       <body className={fontRoboto.className}>
@@ -35,7 +35,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
               enableSystem
               disableTransitionOnChange
             >
-              <AppInit siteSettings={siteSettings} />
               <div className="relative flex min-h-screen flex-col">
                 <SiteHeader
                   siteSettings={siteSettings}
@@ -45,8 +44,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
                 <div className="flex-1 p-2">{children}</div>
                 <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
               </div>
-              <Breakpoints />
+              <AppInit siteSettings={siteSettings} />
               <Toaster classNameViewPort="bottom-0" />
+              <Breakpoints />
             </ThemeProvider>
             <ThemeSwap />
           </StateStoreProvider>

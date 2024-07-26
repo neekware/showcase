@@ -48,20 +48,17 @@ function Register() {
     setNextUrl(searchParams.get('nextUrl') || urls.site.home);
   }, [searchParams]);
 
-  // redirect if already logged in
-  useEffect(() => {
-    if (state.isLoggedIn) {
-      logger.info('Registration successful');
-      router.push(nextUrl);
-    }
-  }, [state, nextUrl, router]);
+  if (state.isLoggedIn) {
+    logger.info('Already logged in', nextUrl);
+    router.push(`${nextUrl}`);
+  }
 
-  // callback that is called form LoginForm component to clear error
+  // callback that is called from the Form component to clear error
   const cleanupError = () => {
     setError('');
   };
 
-  // callback that is called form LoginForm component on form submit
+  // callback that is called from the Form component on submit
   const onSubmit = async (input: RegisterFormInputs) => {
     setError('');
     setIsLoading(true);
@@ -88,6 +85,7 @@ function Register() {
     }
 
     setAppState({ isLoggedIn: true });
+    router.push(nextUrl);
   };
 
   return (
