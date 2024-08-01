@@ -470,8 +470,8 @@ importers:
         specifier: rc
         version: 19.0.0-rc-a7d1240c-20240731
       react-day-picker:
-        specifier: next
-        version: 9.0.0-rc.6(react@19.0.0-rc-a7d1240c-20240731)
+        specifier: latest
+        version: 9.0.6(react@19.0.0-rc-a7d1240c-20240731)
       react-hook-form:
         specifier: next
         version: 7.46.0-next.0(react@19.0.0-rc-a7d1240c-20240731)
@@ -5680,8 +5680,8 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react-day-picker@9.0.0-rc.6:
-    resolution: {integrity: sha512-nMt9nkxg1FzCVMfXoGVzraVH79LW0xA7GaRjpyuSfT9WOJYMW+nHW1JTHHwpBIYQrUxtJgNukzc6BF+R+81eJQ==}
+  react-day-picker@9.0.6:
+    resolution: {integrity: sha512-q4TUrUgA/TZbtrnoXYZrcQRky+HUHqnRmsldDG/jjsYQQehmQPRv4gWihEMrmcfI3sVWQlhUXx3bbnCYhfVMiA==}
     peerDependencies:
       react: '>=16.8.0'
 
@@ -12340,7 +12340,7 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react-day-picker@9.0.0-rc.6(react@19.0.0-rc-a7d1240c-20240731):
+  react-day-picker@9.0.6(react@19.0.0-rc-a7d1240c-20240731):
     dependencies:
       date-fns: 3.6.0
       react: 19.0.0-rc-a7d1240c-20240731

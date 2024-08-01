@@ -42,7 +42,7 @@ function DatePicker({ initialDate, onSelectDate, placeholder = 'Pick a date' }: 
               onSelectDate(newDate);
             }
           }}
-          initialFocus
+          // initialFocus
         />
       </PopoverContent>
     </Popover>
@@ -110,7 +110,7 @@ function DatePickerWithRange({
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar
-            initialFocus
+            // initialFocus
             mode="range"
             defaultMonth={dateRange?.from}
             selected={dateRange}

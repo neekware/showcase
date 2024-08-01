@@ -52,7 +52,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         day_hidden: 'invisible',
         ...classNames,
       }}
-      components={{ IconLeft, IconRight }}
+      // components={{ IconLeft, IconRight }}
       {...props}
     />
   );

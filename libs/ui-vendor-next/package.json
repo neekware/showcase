@@ -47,7 +47,7 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.1.5",
     "react": "rc",
-    "react-day-picker": "next",
+    "react-day-picker": "latest",
     "react-hook-form": "next",
     "react-resizable-panels": "^1.0.0",
     "tailwind-merge": "^2.3.0",
