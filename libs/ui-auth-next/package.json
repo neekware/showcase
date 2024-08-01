@@ -11,9 +11,9 @@
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
     "lodash-es": "^4.17.21",
-    "next": "15.0.0-rc.0",
-    "react": "19.0.0-rc-14a4699f-20240725",
-    "react-hook-form": "^7.51.5",
+    "next": "rc",
+    "react": "rc",
+    "react-hook-form": "next",
     "zod": "^3.23.8"
   }
 }
