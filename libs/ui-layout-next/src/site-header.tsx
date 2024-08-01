@@ -17,13 +17,13 @@ export function SiteHeader({ mobileSettings, siteSettings, className }: MainHead
   return (
     <div
       className={cn(
-        'supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-50 w-full border-b backdrop-blur',
+        'supports-backdrop-blur:bg-background/60 bg-background/95 border-b backdrop-blur',
         className
       )}
     >
       <header>
         <nav className="px-0 py-4">
-          <div className="container flex items-center justify-between">
+          <div className="container mx-auto flex items-center justify-between">
             {/* Burger Menu and Slider */}
             <NavMobile
               data-tag="mobile-nav"

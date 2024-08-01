@@ -9,7 +9,7 @@ import {
   ThemeProvider,
   ThemeSwap,
 } from '@lib/ui-layout-next';
-import { Toaster } from '@lib/ui-vendor-next';
+import { cn, Toaster } from '@lib/ui-vendor-next';
 import { fontRoboto, metaSettings, mobileSettings, siteSettings } from '@web/cfg';
 import '@web/styles/styles.css';
 
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body className={fontRoboto.className}>
+      <body className={cn('flex min-h-screen flex-col', fontRoboto.className)}>
         <I18nProvider>
           <StateStoreProvider>
             <ThemeProvider
@@ -35,15 +35,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
               enableSystem
               disableTransitionOnChange
             >
-              <div className="relative flex min-h-screen flex-col">
+              <div className="relative z-50 flex min-h-screen w-full flex-col border-b">
+                {/* <!-- Navbar --> */}
                 <SiteHeader
                   siteSettings={siteSettings}
                   mobileSettings={mobileSettings}
-                  className="mb-10"
+                  className="sticky top-0 mb-10"
                 />
-                <div className="flex-1 p-2">{children}</div>
-                <SiteFooter siteSettings={siteSettings} className="mt-10 py-4" />
+
+                {/* <!-- Main Content --> */}
+                <main className="container mx-auto flex-1 flex-grow p-2">{children}</main>
+
+                {/* <!-- Footer --> */}
+                <SiteFooter siteSettings={siteSettings} className="container mx-auto mt-10 py-4" />
               </div>
+
               <AppInit siteSettings={siteSettings} />
               <Toaster classNameViewPort="bottom-0" />
               <Breakpoints />

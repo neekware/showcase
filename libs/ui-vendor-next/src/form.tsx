@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, forwardRef, useContext, useId } from 'react';
+import { createContext, useContext, useId } from 'react';
 import {
   Controller,
   type ControllerProps,
@@ -65,51 +65,50 @@ interface FormItemContextValue {
 
 const FormItemContext = createContext<FormItemContextValue>({} as FormItemContextValue);
 
-const FormItem = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
-    const id = useId();
+const FormItem = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+  const id = useId();
 
-    return (
-      <FormItemContext.Provider value={{ id }}>
-        <div ref={ref} className={cn('mb-1 space-y-1', className)} {...props} />
-      </FormItemContext.Provider>
-    );
-  }
-);
+  return (
+    <FormItemContext.Provider value={{ id }}>
+      <div className={cn('mb-1 space-y-1', className)} {...props} />
+    </FormItemContext.Provider>
+  );
+};
+
 FormItem.displayName = 'FormItem';
 
-const FormItemLabel = forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
->(({ className, ...props }, ref) => {
+const FormItemLabel = ({
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>) => {
   const { formItemId } = useFormField();
 
-  return <Label ref={ref} className={className} htmlFor={formItemId} {...props} />;
-});
+  return <Label className={className} htmlFor={formItemId} {...props} />;
+};
+
 FormItemLabel.displayName = 'FormItemLabel';
 
-const FormItemControl = forwardRef<
-  React.ElementRef<typeof Slot>,
-  React.ComponentPropsWithoutRef<typeof Slot>
->(({ ...props }, ref) => {
+const FormItemControl = (props: React.ComponentPropsWithoutRef<typeof Slot>) => {
   const { error, formItemId, FormItemInfoId, FormItemErrorId } = useFormField();
 
   return (
     <Slot
-      ref={ref}
       id={formItemId}
       aria-describedby={!error ? FormItemInfoId : `${FormItemInfoId} ${FormItemErrorId}`}
       aria-invalid={Boolean(error)}
       {...props}
     />
   );
-});
+};
+
 FormItemControl.displayName = 'FormItemControl';
 
-const FormItemInfo = forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement> & { end?: boolean }
->(({ className, children, end = false, ...props }, ref) => {
+const FormItemInfo = ({
+  className,
+  children,
+  end = false,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement> & { end?: boolean }) => {
   const { error, FormItemInfoId } = useFormField();
   const errorMessage = error ? String(error.message) : null;
 
@@ -131,7 +130,7 @@ const FormItemInfo = forwardRef<
         size={0.5}
         className={!children && !errorMessage ? 'invisible' : ''}
       />
-      <span ref={ref} id={FormItemInfoId} className="text-sm">
+      <span id={FormItemInfoId} className="text-sm">
         {errorMessage ? (
           errorMessage
         ) : children ? (
@@ -142,27 +141,29 @@ const FormItemInfo = forwardRef<
       </span>
     </p>
   );
-});
+};
 
 FormItemInfo.displayName = 'FormItemInfo';
 
-const FormError = forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }
->(({ className, children, fixedHeight = false }, ref) => {
+const FormError = ({
+  className,
+  children,
+  fixedHeight = false,
+}: React.HTMLAttributes<HTMLParagraphElement> & { fixedHeight?: boolean }) => {
   if (!children && !fixedHeight) {
     return null;
   }
 
   return (
-    <p ref={ref} className={cn('text-danger mt-1 text-xs font-medium', className)}>
+    <p className={cn('text-danger mt-1 text-xs font-medium', className)}>
       <span className="flex items-center gap-1">
         <Icon path={mdiAlertOutline} size={0.5} className={cn(children ? 'block' : 'invisible')} />
         {children || (fixedHeight && <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />)}
       </span>
     </p>
   );
-});
+};
+
 FormError.displayName = 'FormError';
 
 export {

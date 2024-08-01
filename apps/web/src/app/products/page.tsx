@@ -74,4 +74,4 @@ const ProductsPage: React.FC<ProductsProps> = ({ settings }: ProductsProps) => {
   );
 };
 
-export default authGuard(ProductsPage, siteSettings);
+export default authGuard(ProductsPage, siteSettings, siteSettings.urls.site.products);

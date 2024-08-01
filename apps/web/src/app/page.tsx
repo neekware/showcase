@@ -17,7 +17,7 @@ export default function Home() {
           <div className="mx-auto max-w-4xl space-y-6 text-left">
             <div className="flex items-center justify-center">
               {siteSettings.icon ? (
-                <div className="w-120 sm:w-160 md:w-200 lg:w-200 relative">
+                <div className="w-120 sm:w-160 md:w-200 lg:w-200">
                   <Image
                     priority
                     src={siteSettings.icon}
@@ -36,7 +36,7 @@ export default function Home() {
               </h1>
 
               {siteSettings.icon ? (
-                <div className="w-120 sm:w-160 md:w-200 lg:w-200 relative -scale-x-100">
+                <div className="w-120 sm:w-160 md:w-200 lg:w-200 -scale-x-100">
                   <Image
                     priority
                     src={siteSettings.icon}
