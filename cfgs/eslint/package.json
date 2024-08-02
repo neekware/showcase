@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "eslint": "^8",
-    "eslint-config-next": "^14.2.4",
+    "eslint-config-next": "rc",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",

@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body className={cn('flex min-h-screen flex-col', fontRoboto.className)}>
+      <body className={cn('flex min-h-screen flex-col', fontRoboto.variable)}>
         <I18nProvider>
           <StateStoreProvider>
             <ThemeProvider

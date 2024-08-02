@@ -1,6 +1,5 @@
 import type { ComponentType } from 'react';
 import { redirect } from 'next/navigation';
-import { unstable_after as after } from 'next/server';
 import { logger } from '@lib/data-logger-shared';
 import type { SiteSettings } from '@lib/data-model-shared';
 import { getSession } from './session';
@@ -17,9 +16,7 @@ export const authGuard = (
       return <WrappedComponent {...props} settings={settings} />;
     }
 
-    after(() => {
-      logger.warn('AuthGuard: Redirecting to login page');
-    });
+    logger.warn('AuthGuard: Redirecting to login page');
 
     redirect(`${settings?.urls.site.auth.login}?nextUrl=${nextUrl}`);
   };
