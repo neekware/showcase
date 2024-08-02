@@ -317,8 +317,8 @@ importers:
         specifier: ^1.6.1
         version: 1.6.1
       react:
-        specifier: 19.0.0-rc-14a4699f-20240725
-        version: 19.0.0-rc-14a4699f-20240725
+        specifier: rc
+        version: 19.0.0-rc-8269d55d-20240802
 
   libs/ui-layout-next:
     dependencies:
@@ -5766,8 +5766,8 @@ packages:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
 
-  react@19.0.0-rc-14a4699f-20240725:
-    resolution: {integrity: sha512-aQjMEsPBkRyzy3j5N8b2enjZmBNfidooV8cs0GyymL5uZRLZbXXyHWRJTKrdIjgRKIhzR73DoZYrAYP+/wT1Qw==}
+  react@19.0.0-rc-8269d55d-20240802:
+    resolution: {integrity: sha512-vcBIi1I2mBP3SHTx3qSROW4Yx9p7g3MHSrZ8EKPhcoyfzWLpXpiDWZj7RgkwIyKdqX1qcO7rerow3pbIEXlnmw==}
     engines: {node: '>=0.10.0'}
 
   react@19.0.0-rc-a7d1240c-20240731:
@@ -12421,7 +12421,7 @@ snapshots:
       loose-envify: 1.4.0
     optional: true
 
-  react@19.0.0-rc-14a4699f-20240725: {}
+  react@19.0.0-rc-8269d55d-20240802: {}
 
   react@19.0.0-rc-a7d1240c-20240731: {}
 

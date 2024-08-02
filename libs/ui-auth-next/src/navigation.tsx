@@ -22,10 +22,8 @@ export function NavigationEvents({ settings }: NavigationEventsProps): JSX.Eleme
     const checkSessionAndSetState = async () => {
       if (lastPath !== url) {
         const session = await isSessionValid(settings.sessionName || 'aTc');
-        if (session) {
+        if (session && !state.isLoggedIn) {
           setAppState({ isLoggedIn: true });
-        } else {
-          setAppState({ isLoggedIn: false });
         }
 
         setLastPath(url);

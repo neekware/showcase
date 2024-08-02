@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { I18nProvider } from '@lib/data-i18n-shared';
 import { logger, LogLevel } from '@lib/data-logger-shared';
 import { StateStoreProvider } from '@lib/data-store-next';
@@ -44,7 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
                 />
 
                 {/* <!-- Main Content --> */}
-                <main className="container mx-auto flex-1 flex-grow p-2">{children}</main>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <main className="container mx-auto flex-1 flex-grow p-2">{children}</main>
+                </Suspense>
 
                 {/* <!-- Footer --> */}
                 <SiteFooter siteSettings={siteSettings} className="container mx-auto mt-10 py-4" />
