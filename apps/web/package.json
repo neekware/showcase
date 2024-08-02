@@ -29,6 +29,7 @@
     "react-dom": "rc"
   },
   "devDependencies": {
+    "babel-plugin-react-compiler": "0.0.0-experimental-334f00b-20240725",
     "drizzle-kit": "^0.22.7",
     "env-cmd": "^10.1.0",
     "esbuild-register": "^3.5.0",

@@ -5,6 +5,10 @@ dotenv.config();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    reactCompiler: true,
+    after: true,
+  },
   env: {
     AUTH_SECRET: process.env.AUTH_SECRET,
     AUTH_ISSUER: process.env.AUTH_ISSUER,
