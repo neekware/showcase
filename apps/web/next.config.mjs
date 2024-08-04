@@ -5,6 +5,8 @@ dotenv.config();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // bundlePagesRouterDependencies: true,
+  // serverExternalPackages: ['@mdi/js'],
   experimental: {
     reactCompiler: true,
     after: true,

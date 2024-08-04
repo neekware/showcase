@@ -1,6 +1,7 @@
 {
   "extends": "../../cfgs/typescript/next.lib.json",
   "compilerOptions": {
+    "types": ["react/canary"],
     "baseUrl": "./",
     "paths": {
       "@lib/*": ["../../libs/*"]

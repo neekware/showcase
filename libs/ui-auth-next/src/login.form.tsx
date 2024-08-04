@@ -51,6 +51,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error
           name="email"
           type="email"
           label="Email"
+          error={!!form.formState.errors.email}
           infoText="Your account email address"
           icon={mdiEmail}
         />
@@ -59,6 +60,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error
           name="password"
           type="password"
           label="Password"
+          error={!!form.formState.errors.email}
           infoText="Your account password"
           icon={mdiKey}
         />

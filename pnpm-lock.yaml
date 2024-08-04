@@ -300,10 +300,13 @@ importers:
         version: 4.17.21
       next:
         specifier: rc
-        version: 15.0.0-rc.0(@babel/core@7.25.2)(@playwright/test@1.44.1)(react-dom@19.0.0-rc-a7d1240c-20240731(react@19.0.0-rc-8269d55d-20240802))(react@19.0.0-rc-8269d55d-20240802)
+        version: 15.0.0-rc.0(@babel/core@7.25.2)(@playwright/test@1.44.1)(babel-plugin-react-compiler@0.0.0-experimental-334f00b-20240725)(react-dom@19.0.0-rc-8269d55d-20240802(react@19.0.0-rc-8269d55d-20240802))(react@19.0.0-rc-8269d55d-20240802)
       react:
         specifier: rc
         version: 19.0.0-rc-8269d55d-20240802
+      react-dom:
+        specifier: rc
+        version: 19.0.0-rc-8269d55d-20240802(react@19.0.0-rc-8269d55d-20240802)
       react-hook-form:
         specifier: next
         version: 7.46.0-next.0(react@19.0.0-rc-8269d55d-20240802)

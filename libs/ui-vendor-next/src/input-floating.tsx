@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Icon } from '@mdi/react';
-import { cn } from '@lib/ui-vendor-next';
-import { useFormField } from './form';
+import { Icon } from '@lib/ui-icon-next';
+import { cn } from './util';
 
 export type FloatingLabelInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   icon?: string;
+  error?: boolean;
 };
 
 const InputFloating = ({
@@ -13,12 +13,11 @@ const InputFloating = ({
   label,
   className,
   icon,
+  error,
   ...props
 }: FloatingLabelInputProps) => {
   const [value, setValue] = React.useState('');
   const [isFocused, setIsFocused] = React.useState(false);
-  const inputRef = React.useRef<HTMLInputElement | null>(null);
-  const { error } = useFormField();
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -46,7 +45,6 @@ const InputFloating = ({
           'text-md peer w-full bg-transparent p-0 pb-2 pr-1 pt-4 outline-none transition-all duration-1000 focus:bg-transparent focus:outline-none',
           className
         )}
-        ref={inputRef}
         onFocusCapture={handleFocus}
         onBlurCapture={handleBlur}
         onChangeCapture={handleChange}

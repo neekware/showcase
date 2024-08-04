@@ -23,6 +23,7 @@ interface DynamicFormFieldProps<TFieldValues extends FieldValues> {
   type: 'text' | 'textarea' | 'email' | 'tel' | 'password' | 'checkbox';
   label: string;
   icon?: string;
+  error: boolean;
   infoText: string;
   className?: string;
 }
@@ -32,6 +33,7 @@ const DynamicFormField = <TFieldValues extends FieldValues>({
   name,
   type,
   label,
+  error,
   infoText,
   icon,
   className,
@@ -46,6 +48,7 @@ const DynamicFormField = <TFieldValues extends FieldValues>({
           <InputFloating
             type={type}
             label={label}
+            error={error}
             {...field}
             {...form.register(name)}
             onBlur={() => form.trigger(name)}
