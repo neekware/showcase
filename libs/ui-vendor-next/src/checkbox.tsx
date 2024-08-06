@@ -5,14 +5,16 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { Icon, mdiCheck } from '@lib/ui-icon-next';
 import { cn } from '@lib/ui-vendor-next';
 
-const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
+export interface CheckboxProps extends React.ComponentProps<typeof CheckboxPrimitive.Root> {
+  className?: string;
+  error: boolean;
+}
+
+const Checkbox = ({ className, error, ...props }: CheckboxProps) => (
   <CheckboxPrimitive.Root
-    ref={ref}
     className={cn(
       'border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground peer h-4 w-4 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+      { 'border-danger': error },
       className
     )}
     {...props}
@@ -21,7 +23,8 @@ const Checkbox = React.forwardRef<
       <Icon path={mdiCheck} className="size-4" />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
-));
+);
+
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
 export { Checkbox };

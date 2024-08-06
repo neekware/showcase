@@ -7,7 +7,7 @@ import { TooltipProvider } from '@lib/ui-vendor-next';
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
-    <NextThemesProvider {...props}>
+    <NextThemesProvider {...{ ...props, disableTransitionOnChange: true }}>
       <TooltipProvider>{children}</TooltipProvider>
     </NextThemesProvider>
   );

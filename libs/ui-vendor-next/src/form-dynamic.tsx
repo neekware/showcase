@@ -18,6 +18,9 @@ interface DynamicFormFieldProps<TFieldValues extends FieldValues> {
     control: Control<TFieldValues>;
     register: UseFormRegister<TFieldValues>;
     trigger: UseFormTrigger<TFieldValues>;
+    formState: {
+      errors: Record<string, { message: string }>;
+    };
   };
   name: FieldPath<TFieldValues>;
   type: 'text' | 'textarea' | 'email' | 'tel' | 'password' | 'checkbox';
@@ -33,7 +36,6 @@ const DynamicFormField = <TFieldValues extends FieldValues>({
   name,
   type,
   label,
-  error,
   infoText,
   icon,
   className,
@@ -48,9 +50,9 @@ const DynamicFormField = <TFieldValues extends FieldValues>({
           <InputFloating
             type={type}
             label={label}
-            error={error}
             {...field}
             {...form.register(name)}
+            error={!!form.formState.errors[name]?.message}
             onBlur={() => form.trigger(name)}
             icon={icon}
           />
@@ -60,6 +62,7 @@ const DynamicFormField = <TFieldValues extends FieldValues>({
           <Textarea
             {...field}
             {...form.register(name)}
+            error={!!form.formState.errors[name]?.message}
             onBlur={() => form.trigger(name)}
             icon={icon}
           />
@@ -70,6 +73,7 @@ const DynamicFormField = <TFieldValues extends FieldValues>({
             {...field}
             type="checkbox"
             {...form.register(name)}
+            error={!!form.formState.errors[name]?.message}
             onBlur={() => form.trigger(name)}
           />
         );
