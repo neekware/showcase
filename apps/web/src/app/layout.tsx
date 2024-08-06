@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
 
                 {/* <!-- Main Content --> */}
                 <Suspense fallback={<div>Loading...</div>}>
-                  <main className="container mx-auto flex-1 flex-grow p-2">{children}</main>
+                  <main className="container mx-auto flex-1 flex-grow !px-2 py-2">{children}</main>
                 </Suspense>
 
                 {/* <!-- Footer --> */}

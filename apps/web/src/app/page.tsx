@@ -12,8 +12,8 @@ export default function Home() {
   const t = useTranslate();
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
-      <section className="py-1 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section className="py-1">
+        <div className="container !px-1 md:px-6">
           <div className="mx-auto max-w-4xl space-y-6 text-left">
             <div className="flex items-center justify-center">
               {siteSettings.icon ? (

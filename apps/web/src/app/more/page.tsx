@@ -9,7 +9,7 @@ export default function More(): JSX.Element {
   return (
     <div className="flex flex-col items-center space-y-2 p-2">
       <section className="py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+        <div className="container !px-1 md:px-6">
           <div className="mx-auto max-w-4xl space-y-6 text-left">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               About Showcase UI
