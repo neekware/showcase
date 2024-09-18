@@ -6,10 +6,10 @@
     "clean:mods": "rm -rf node_modules"
   },
   "dependencies": {
-    "tailwindcss": "^3.4.4",
+    "tailwindcss": "^3.4.12",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "typescript": "^5.4.5"
+    "typescript": "^5.6.2"
   }
 }

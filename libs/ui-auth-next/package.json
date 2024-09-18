@@ -9,9 +9,9 @@
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.6.0",
+    "@hookform/resolvers": "^3.9.0",
     "react": "^18.3.1",
-    "react-hook-form": "^7.51.5",
+    "react-hook-form": "^7.53.0",
     "zod": "^3.23.8"
   }
 }

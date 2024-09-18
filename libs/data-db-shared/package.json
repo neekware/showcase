@@ -9,8 +9,8 @@
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {
-    "drizzle-kit": "^0.22.7",
-    "drizzle-orm": "^0.31.2",
+    "drizzle-kit": "^0.24.2",
+    "drizzle-orm": "^0.33.0",
     "postgres": "^3.4.4",
     "zod": "^3.23.8"
   }

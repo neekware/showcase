@@ -7,13 +7,6 @@ import { cn } from '@lib/ui-util-next';
 import { buttonVariants } from './button';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
-// Define the Icon components outside the Calendar component
-function IconLeft() {
-  return <Icon path={mdiChevronLeft} className="size-6" />;
-}
-function IconRight() {
-  return <Icon path={mdiChevronRight} className="size-6" />;
-}
 
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
   return (
@@ -52,7 +45,6 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         day_hidden: 'invisible',
         ...classNames,
       }}
-      components={{ IconLeft, IconRight }}
       {...props}
     />
   );

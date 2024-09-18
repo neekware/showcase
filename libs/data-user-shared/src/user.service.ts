@@ -15,6 +15,7 @@ export const UserService = {
         return user;
       }
     } catch (error) {
+      console.error('Failed to fetch user by id', error);
       throw new Error('System error: Unable to fetch user by id.');
     }
     return user;
@@ -31,6 +32,7 @@ export const UserService = {
         return user;
       }
     } catch (error) {
+      console.error('Failed to fetch user by email', error);
       throw new Error('System error: Unable to fetch user by email.');
     }
     return user;
@@ -47,6 +49,7 @@ export const UserService = {
         return user;
       }
     } catch (error) {
+      console.error('Failed to fetch user by phone', error);
       throw new Error('System error: Unable to fetch user by phone.');
     }
     return user;
@@ -63,6 +66,7 @@ export const UserService = {
         return user;
       }
     } catch (error) {
+      console.error('Failed to fetch user by phone', error);
       throw new Error('System error: Unable to fetch user by phone.');
     }
     return user;
@@ -75,6 +79,7 @@ export const UserService = {
         return users;
       }
     } catch (error) {
+      console.error('Failed to fetch user by phone', error);
       throw new Error('System error: Unable to fetch user by phone.');
     }
     return users;
@@ -86,6 +91,7 @@ export const UserService = {
         throw new Error('Email is already in use');
       }
     } catch (error) {
+      console.error('Failed to create a user', error);
       throw new Error('System Error: Unable to create user.');
     }
 
@@ -95,6 +101,7 @@ export const UserService = {
         throw new Error('Phone is already in use');
       }
     } catch (error) {
+      console.error('Failed to create a user', error);
       throw new Error('System Error: Unable to create user.');
     }
 

@@ -9,6 +9,6 @@
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {
-    "ts-essentials": "^10.0.0"
+    "ts-essentials": "^10.0.2"
   }
 }

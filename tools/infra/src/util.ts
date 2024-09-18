@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -39,6 +40,7 @@ export function execute(script: string, debug = false): Promise<unknown> {
 export function fileExists(filePath: string): boolean {
   try {
     return fs.existsSync(filePath);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (err) {
     return false;
   }

@@ -9,9 +9,9 @@
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {
-    "jose": "^5.4.0",
-    "jotai": "2.8.0",
-    "next": "14.2.4",
+    "jose": "^5.9.2",
+    "jotai": "2.9.3",
+    "next": "14.2.12",
     "react": "^18.3.1"
   }
 }
