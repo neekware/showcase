@@ -1,35 +1,21 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { AuthService } from '@lib/data-auth-shared';
-import { logger } from '@lib/data-logger-shared';
 import { type RegisterFormInputs, RegistrationFormModel } from '@lib/data-model-shared';
+import type { User } from '@lib/data-user-shared';
 import { validateForm } from '@lib/data-util-shared';
 
 // POST /api/register
 export async function POST(req: NextRequest) {
   const data = (await req.json()) as RegisterFormInputs;
-  const result = await validateForm<RegisterFormInputs>(RegistrationFormModel, data);
+  const validated = await validateForm<RegisterFormInputs>(RegistrationFormModel, data);
+  if (!validated.success) return NextResponse.json(validated);
 
-  if (!result?.success) {
-    return NextResponse.json({ error: result?.message });
-  }
+  const result = await AuthService.register(data);
+  if (!result.success) return NextResponse.json(result);
 
-  let user;
-  try {
-    user = await AuthService.register(data);
-  } catch (error) {
-    const { message } = error as Error;
-    logger.error('Failed to create a user: ', message);
-    return NextResponse.json({ error: true, message });
-  }
+  const { data: user } = result;
 
-  if (!user) {
-    return NextResponse.json({ error: true, message: 'Failed to create a user' });
-  }
+  const { password, ...userWithoutPassword } = user as User;
 
-  const { password, ...userWithoutPassword } = user;
-
-  return NextResponse.json(
-    { success: true, data: userWithoutPassword, message: 'Registration successful!' },
-    { status: 200 }
-  );
+  return NextResponse.json({ success: true, data: userWithoutPassword });
 }

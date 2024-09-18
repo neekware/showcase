@@ -1,9 +1,10 @@
 import { dbClient, eq, inArray, or, sql } from '@lib/data-db-shared';
+import type { DataRetrieval } from '@lib/data-model-shared';
 import { genSaltSync, hashSync } from '@lib/data-util-shared';
 import { type CreateUser, type User, UserTable } from './user.schema';
 
 export const UserService = {
-  async getByIdQuery(userId: string): Promise<User | undefined> {
+  async getByIdQuery(userId: string): Promise<DataRetrieval<User>> {
     let user = undefined;
     try {
       user = await dbClient
@@ -12,15 +13,15 @@ export const UserService = {
         .where(eq(UserTable.id, userId))
         .then((res) => res && res[0]);
       if (user) {
-        return user;
+        return { success: true, data: user };
       }
     } catch (error) {
-      console.error('Failed to fetch user by id', error);
-      throw new Error('System error: Unable to fetch user by id.');
+      console.error('Failed to fetch user by id', JSON.stringify(error));
+      return { success: false, message: 'System error: Unable to fetch user by id.' };
     }
-    return user;
+    return { success: true, message: 'User not found' };
   },
-  async getByEmailQuery(email: string): Promise<User | undefined> {
+  async getByEmailQuery(email: string): Promise<DataRetrieval<User>> {
     let user = undefined;
     try {
       user = await dbClient
@@ -29,15 +30,15 @@ export const UserService = {
         .where(sql`LOWER(${UserTable.email}) = LOWER(${email})`)
         .then((res) => res && res[0]);
       if (user) {
-        return user;
+        return { success: true, data: user };
       }
     } catch (error) {
-      console.error('Failed to fetch user by email', error);
-      throw new Error('System error: Unable to fetch user by email.');
+      console.error('Failed to fetch user by email', JSON.stringify(error));
+      return { success: false, message: 'System error: Unable to fetch user by email.' };
     }
-    return user;
+    return { success: true, message: 'User not found' };
   },
-  async getByPhoneQuery(phone: string): Promise<User | undefined> {
+  async getByPhoneQuery(phone: string): Promise<DataRetrieval<User>> {
     let user = undefined;
     try {
       user = await dbClient
@@ -46,15 +47,15 @@ export const UserService = {
         .where(eq(UserTable.phone, phone))
         .then((res) => res && res[0]);
       if (user) {
-        return user;
+        return { success: true, data: user };
       }
     } catch (error) {
-      console.error('Failed to fetch user by phone', error);
-      throw new Error('System error: Unable to fetch user by phone.');
+      console.error('Failed to fetch user by phone', JSON.stringify(error));
+      return { success: false, message: 'System error: Unable to fetch user by phone.' };
     }
-    return user;
+    return { success: true, message: 'User not found' };
   },
-  async getByEmailOrPhoneQuery(email: string, phone: string): Promise<User | undefined> {
+  async getByEmailOrPhoneQuery(email: string, phone: string): Promise<DataRetrieval<User>> {
     let user = undefined;
     try {
       user = await dbClient
@@ -63,46 +64,31 @@ export const UserService = {
         .where(or(sql`LOWER(${UserTable.email}) = LOWER(${email})`, eq(UserTable.phone, phone)))
         .then((res) => res && res[0]);
       if (user) {
-        return user;
+        return { success: true, data: user };
       }
     } catch (error) {
-      console.error('Failed to fetch user by phone', error);
-      throw new Error('System error: Unable to fetch user by phone.');
+      console.error('Failed to fetch user by email or phone', JSON.stringify(error));
+      return { success: false, message: 'System error: Unable to fetch user by email or phone.' };
     }
-    return user;
+    return { success: true, message: 'User not found' };
   },
-  async getByIdsQuery(userIds: string[]): Promise<User[] | undefined> {
+  async getByIdsQuery(userIds: string[]): Promise<DataRetrieval<User[]>> {
     let users = undefined;
     try {
       users = await dbClient.select().from(UserTable).where(inArray(UserTable.id, userIds));
       if (users) {
-        return users;
+        return { success: true, data: users };
       }
     } catch (error) {
-      console.error('Failed to fetch user by phone', error);
-      throw new Error('System error: Unable to fetch user by phone.');
+      console.error('Failed to fetch user by ids', JSON.stringify(error));
+      return { success: false, message: 'System error: Unable to fetch user by ids.' };
     }
-    return users;
+    return { success: true, message: 'System error: Unable to fetch user by ids.' };
   },
-  async createUser(data: Partial<CreateUser>): Promise<CreateUser | undefined> {
-    try {
-      const user = await UserService.getByEmailQuery(data.email!);
-      if (user) {
-        throw new Error('Email is already in use');
-      }
-    } catch (error) {
-      console.error('Failed to create a user', error);
-      throw new Error('System Error: Unable to create user.');
-    }
-
-    try {
-      const user = await UserService.getByPhoneQuery(data.phone!);
-      if (user) {
-        throw new Error('Phone is already in use');
-      }
-    } catch (error) {
-      console.error('Failed to create a user', error);
-      throw new Error('System Error: Unable to create user.');
+  async createUser(data: Partial<CreateUser>): Promise<DataRetrieval<User>> {
+    const result = await UserService.getByEmailQuery(data.email!);
+    if (result.data) {
+      return { success: false, message: 'Email is already in use' };
     }
 
     const salt = genSaltSync(10);
@@ -116,16 +102,14 @@ export const UserService = {
         .returning()
         .then((res) => res[0]);
     } catch (error) {
-      console.error('Failed to create a user', error);
-      throw new Error('System error: Unable to create user.');
+      console.error('Failed to create a user', JSON.stringify(error));
+      return { success: false, message: 'System error: Unable to create user.' };
     }
 
     if (!insertedUser) {
-      throw new Error(' Unable to create user.');
+      return { success: false, message: 'Failed to create a user' };
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...userWithoutPassword } = insertedUser;
-    return userWithoutPassword;
+    return { success: true, data: insertedUser };
   },
 };

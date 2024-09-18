@@ -91,12 +91,12 @@ export const RegisterForm: React.FC = () => {
             control={form.control}
             name="firstName"
             render={({ field }) => (
-              <FormItem>
-                <FormItemLabel>First Name</FormItemLabel>
+              <FormItem className="-mb-3">
+                <FormItemLabel className="font-bold">First Name</FormItemLabel>
                 <FormItemControl>
                   <Input
                     {...field}
-                    type="firstName"
+                    type="text"
                     placeholder="Your first name"
                     {...form.register('firstName')}
                     onBlur={() => form.trigger('firstName')}
@@ -111,11 +111,11 @@ export const RegisterForm: React.FC = () => {
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormItemLabel>Last Name</FormItemLabel>
+                <FormItemLabel className="font-bold">Last Name</FormItemLabel>
                 <FormItemControl>
                   <Input
                     {...field}
-                    type="lastName"
+                    type="text"
                     placeholder="Your last name"
                     {...form.register('lastName')}
                     onBlur={() => form.trigger('lastName')}
@@ -131,7 +131,7 @@ export const RegisterForm: React.FC = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormItemLabel>Email</FormItemLabel>
+              <FormItemLabel className="font-bold">Email</FormItemLabel>
               <FormItemControl>
                 <Input
                   {...field}
@@ -151,11 +151,11 @@ export const RegisterForm: React.FC = () => {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormItemLabel>Phone</FormItemLabel>
+              <FormItemLabel className="font-bold">Phone</FormItemLabel>
               <FormItemControl>
                 <Input
                   {...field}
-                  type="phone"
+                  type="tel"
                   placeholder="Your phone number"
                   {...form.register('phone')}
                   onBlur={() => form.trigger('phone')}
@@ -170,7 +170,7 @@ export const RegisterForm: React.FC = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormItemLabel>Password</FormItemLabel>
+              <FormItemLabel className="font-bold">Password</FormItemLabel>
               <FormItemControl>
                 <Input
                   {...field}
@@ -185,7 +185,11 @@ export const RegisterForm: React.FC = () => {
           )}
         />
         <div className="flex w-full items-center justify-between">
-          <Button type="submit" disabled={!form.formState.isValid || isLoading}>
+          <Button
+            className="font-bold"
+            type="submit"
+            disabled={!form.formState.isValid || isLoading}
+          >
             Register
           </Button>
           {isLoading ? (

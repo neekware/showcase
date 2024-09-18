@@ -1,6 +1,10 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-import { type LoginFormInputs, type RegisterFormInputs } from '@lib/data-model-shared';
+import {
+  type DataRetrieval,
+  type LoginFormInputs,
+  type RegisterFormInputs,
+} from '@lib/data-model-shared';
 import { type User, UserService } from '@lib/data-user-shared';
 import { compareSync } from '@lib/data-util-shared';
 import { type JWTPayload, jwtVerify, SignJWT } from 'jose';
@@ -28,41 +32,43 @@ export const AuthService = {
     });
     return payload;
   },
-  async login(data: LoginFormInputs): Promise<User | null> {
-    const user = await UserService.getByEmailQuery(data.email);
-    if (!user) return null;
+  async login(data: LoginFormInputs): Promise<DataRetrieval<User>> {
+    const result = await UserService.getByEmailQuery(data.email);
+    if (!result?.success) return result;
 
-    const validPassword = compareSync(data.password, user.password ?? 'invalid-password-hash');
+    const { data: user } = result;
+    const validPassword = compareSync(data.password, user?.password ?? 'invalid-password-hash');
     if (validPassword) {
       const payload = { email: data.email };
       const expiryInMinutes = 30;
       const expires = new Date(Date.now() + expiryInMinutes * 60 * 1000);
       const session = await AuthService.encrypt({ payload, expires });
       cookies().set('session', session, { expires, httpOnly: true });
-      return user as User;
+      return { success: true, data: user };
     }
 
-    return null;
+    return { success: false, message: `Invalid password, or user doesn't exist` };
   },
   logout(): void {
     cookies().set('session', '', { expires: new Date(0) });
   },
-  async register(data: RegisterFormInputs): Promise<User | null> {
-    const user = await UserService.getByEmailQuery(data.email);
-    if (user) {
-      throw new Error('Email is already in use');
-    }
+  async register(data: RegisterFormInputs): Promise<DataRetrieval<User>> {
+    let result = await UserService.getByEmailQuery(data.email);
+    if (!result?.success) return result;
 
-    const newUser = await UserService.createUser(data);
-    if (newUser) {
-      const payload = { email: newUser.email };
+    result = await UserService.createUser(data);
+    if (!result?.success) return result;
+
+    const { data: user } = result;
+    if (user) {
+      const payload = { email: user.email };
       const expiryInMinutes = 30;
       const expires = new Date(Date.now() + expiryInMinutes * 60 * 1000);
       const session = await AuthService.encrypt({ payload, expires });
       cookies().set('session', session, { expires, httpOnly: true });
-      return newUser as User;
+      return { success: true, data: user };
     }
-    return null;
+    return { success: false, message: 'Failed to create a user' };
   },
   async updateSession(request: NextRequest): Promise<NextResponse | void> {
     const session = request.cookies.get('session')?.value;
