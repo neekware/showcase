@@ -14,7 +14,7 @@ import {
   mdiPhone,
   mdiSync,
 } from '@lib/ui-icon-next';
-import { useDebounce } from '@lib/ui-util-next';
+import { transformForm, useDebounce } from '@lib/ui-util-next';
 import { Button, DynamicFormField, Form, FormError } from '@lib/ui-vendor-next';
 
 const useRegisterForm = () => {
@@ -66,43 +66,48 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
       <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="mb-2">
         <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-2">
           <DynamicFormField
-            form={form}
+            form={transformForm(form)}
             name="firstName"
             type="text"
             label="First Name"
+            error={!!form.formState.errors.firstName}
             infoText="Your first name"
             icon={mdiAccount}
           />
           <DynamicFormField
-            form={form}
+            form={transformForm(form)}
             name="lastName"
             type="text"
             label="Last Name"
+            error={!!form.formState.errors.lastName}
             infoText="Your last name"
             icon={mdiAccountGroupOutline}
           />
         </div>
         <DynamicFormField
-          form={form}
+          form={transformForm(form)}
           name="email"
           type="email"
           label="Email"
+          error={!!form.formState.errors.email}
           infoText="Your account email address"
           icon={mdiEmail}
         />
         <DynamicFormField
-          form={form}
+          form={transformForm(form)}
           name="phone"
           type="tel"
           label="Phone"
+          error={!!form.formState.errors.phone}
           infoText="Your phone number (+1234567890)"
           icon={mdiPhone}
         />
         <DynamicFormField
-          form={form}
+          form={transformForm(form)}
           name="password"
           type="password"
           label="Password"
+          error={!!form.formState.errors.password}
           infoText="Your account password"
           icon={mdiKey}
         />

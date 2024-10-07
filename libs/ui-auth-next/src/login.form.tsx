@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { type z } from 'zod';
 import { type LoginFormInputs, LoginFormModel } from '@lib/data-model-shared';
 import { Icon, mdiEmail, mdiKey, mdiSync } from '@lib/ui-icon-next';
-import { useDebounce } from '@lib/ui-util-next';
+import { transformForm, useDebounce } from '@lib/ui-util-next';
 import { Button, DynamicFormField, Form, FormError } from '@lib/ui-vendor-next';
 
 const useLoginForm = () => {
@@ -47,7 +47,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error
     <Form {...form}>
       <form noValidate onSubmit={form.handleSubmit(onSubmit)} className="mb-2">
         <DynamicFormField
-          form={form}
+          form={transformForm(form)}
           name="email"
           type="email"
           label="Email"
@@ -56,7 +56,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading, error
           icon={mdiEmail}
         />
         <DynamicFormField
-          form={form}
+          form={transformForm(form)}
           name="password"
           type="password"
           label="Password"

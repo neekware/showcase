@@ -9,6 +9,7 @@
     "test": "jest --coverage --color --verbose"
   },
   "dependencies": {
+    "react-hook-form": "next",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "react": "rc",
